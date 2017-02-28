@@ -1,25 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
-	public function adminView($view){
+	public function adminView($view,$data = null){
 		$this->load->view('admin/header');
-		$this->load->view('admin/'.$view);
+		$this->load->view('admin/'.$view,$data);
 		$this->load->view('admin/footer');
 	}
 	public function index(){
-		$this->adminView('index');	
+		$this->adminView('index');
 	}
 	public function articles(){
-		$this->adminView('articles');
+	    $this->load->model('articles');
+	    $data['articles'] = $this->articles->getArticles();
+		$this->adminView('articles', $data);
 	}	
 	public function ajoutArticles(){
-		$this->adminView('ajoutArticles');
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getrubrique();
+		$this->adminView('ajoutArticles',$data);
 	}
 	public function rubrique(){
-		$this->adminView('rubrique');
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getrubrique();
+		$this->adminView('rubrique',$data);
 	}
 	public function ajoutRubrique(){
-		$this->adminView('ajouterRubrique');
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getFirstRang();
+		$this->adminView('ajouterRubrique',$data);
 	}
 	public function ajoutJournal(){
 		$this->adminView('ajoutJournal');

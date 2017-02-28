@@ -18,12 +18,18 @@
 							<thead>
 								<tr>
 									<th>Nom du rubrique</th>
-									<th>Image</th>
+									<th>Niveau</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								
+								<?php foreach ($rubrique as $rub):?>
+                                <tr>
+                                    <th><?=$rub->libelle?></th>
+                                    <th><?=$rub->rang?></th>
+                                    <th></th>
+                                </tr>
+                                <?php endforeach;?>
 							</tbody>
 						</table>
 					</div>
