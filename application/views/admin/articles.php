@@ -63,7 +63,7 @@
                         <th><?= $article->resume?></th>
                         <th><?= $article->image?></th>
                         <th><?= $article->publie?></th>
-                        <th><?= $article->la_une?></th>
+                        <th><?= $article->laune?></th>
                     </tr>
                 <?php endforeach;?>
               </tbody>
