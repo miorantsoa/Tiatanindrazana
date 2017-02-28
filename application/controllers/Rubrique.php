@@ -14,5 +14,6 @@ class Rubrique extends  CI_Controller{
             'niveau'=> $this->input->get('niveau')
         );
         $this->rubrique_model->insertRubrique($data);
+        redirect('admin/rubrique','refresh');
     }
 }

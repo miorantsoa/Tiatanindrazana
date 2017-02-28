@@ -7,8 +7,16 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
-					<form class="form-horizontal form-label-left">
-						
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Contenu du fil d'actualité <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea name="contenu" placeholder="Entrer le cotenu..." id="fil" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
 					</form>
 				</div>
 			</div>

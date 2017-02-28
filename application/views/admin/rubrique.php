@@ -26,7 +26,7 @@
 								<?php foreach ($rubrique as $rub):?>
                                 <tr>
                                     <th><?=$rub->libelle?></th>
-                                    <th><?=$rub->rang?></th>
+                                    <th><?=$rub->niveau?></th>
                                     <th></th>
                                 </tr>
                                 <?php endforeach;?>
