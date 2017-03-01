@@ -14,21 +14,30 @@
 				</div>
 				<div class="x_content">
                     <?php
+                    $data = array();
+                    if(isset($article)){
+                        $data = $article[0];
+                    }
                     $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-                    echo form_open_multipart('articles/addArticle',$attributes);?>
+                    $lien_action  = (isset($article)) ? 'articles/updateArticle' : 'articles/addArticle';
+                    echo form_open_multipart($lien_action,$attributes);
+                   ?>
                     <form action="">
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="titre">Titre <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" id="titre" name="titre" required="required" class="form-control col-md-7 col-xs-12">
+								<input type="text" id="titre" name="titre" required="required" value="<?php $titre = (isset($article)) ? $data->titre : ""; echo $titre;?>" class="form-control col-md-7 col-xs-12">
 							</div>
 						</div>
                         <br>
+                        <?php if(isset($article)){?>
+                            <input type="hidden" value="<?= $data->idarticle?>" name="article">
+                        <?php }?>
                         <div class="form-group">
                             <label for="journal" class="control-label col-md-3 col-sm-3 col-xs-12">Journal</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" name="journal" class="form-control col-md-7 col-xs-12">
+                                <input type="text" name="journal" value="<?php $titre = (isset($article) && $article[0]->idjournal!=null) ? $data->idjournal : ""; echo $titre;?>" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <p></p>
@@ -39,7 +48,7 @@
 								<select class="form-control" name="rubrique">
 									<option  value="">-- Choisir un rubrique --</option>
 									<?php foreach ($rubrique as $rubrique):?>
-                                        <option value="<?= $rubrique->idcategorie?>"><?= $rubrique->libelle?></option>
+                                        <option value="<?= $rubrique->idcategorie?>" <?php echo (isset($article) && $article[0]->idcategorie == $rubrique->idcategorie) ? "selected" : ""?>><?= $rubrique->libelle?></option>
                                     <?php endforeach;?>
 								</select>
 							</div>
@@ -48,7 +57,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Date de parrution<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input id="parution" name="date" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" value="<?= date('Y-m-d')?>">
+								<input id="parution" name="date" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" value="<?php echo (isset($article)) ? $data->dateparution : date('Y-m-d')?>">
 							</div>
 						</div>
                         <div class="form-group">
@@ -56,8 +65,8 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="niveau" id="niveau" class="form-control text-center">
                                     <option>---Choisir le niveau--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    <option value="1" <?php echo (isset($article) && $article[0]->niveau == 1) ? "selected" : ""?>>1</option>
+                                    <option value="2" <?php echo (isset($article) && $article[0]->niveau == 2) ? "selected" : ""?>>2</option>
                                 </select>
                             </div>
                         </div>
@@ -70,14 +79,14 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Résumé</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<textarea class="resizable_textarea form-control" placeholder="Resumé" name="resume"></textarea>
+								<textarea class="resizable_textarea form-control" placeholder="Resumé" name="resume"><?=(isset($article) && $article[0]->resume != "") ? $data->resume : ""?></textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="contenu">Contenu<span class="required">*</span>
 							</label>
                             <div>
-                                <textarea name="contenu" id="contenu"></textarea>
+                                <textarea name="contenu" id="contenu"><?=(isset($article) && $article[0]->resume != "") ? $data->contenue : ""?></textarea>
                             </div>
 						</div>
 						<div class="ln_solid"></div>

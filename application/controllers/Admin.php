@@ -40,5 +40,16 @@ class Admin extends CI_Controller {
 	}	
 	public function ajoutFilActu(){
 		$this->adminView('ajoutFilActu');
-	}		
+	}
+	public function editArticle($id){
+	    $this->load->model('articlesmodel');
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getrubrique();
+	    $data['article'] = $this->articlesmodel->getSingleArticle($id);
+	    $this->adminView('ajoutArticles',$data);
+    }
+    public function deleteArticle($id){
+
+    }
+
 }

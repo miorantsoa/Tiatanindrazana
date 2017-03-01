@@ -31,7 +31,7 @@ class ArticlesModel extends CI_Model {
      * @param $idarticle
      */
     public function getSingleArticle($idarticle){
-        $this->db->where('idaricle',$idarticle);
+        $this->db->where('idarticle',$idarticle);
         $article = $this->db->get('article');
         return $article->result();
     }
@@ -90,8 +90,13 @@ class ArticlesModel extends CI_Model {
         $this->db->where('idarticle',$idarticle);
         $this->db->update('article',$data);
     }
+    public function update($idarticle,$data){
+        $this->db->where('idarticle',$idarticle);
+        $this->db->update('article',$data);
+    }
     public function deleteArticle($idarticle){
-        //insertion dans une table historique
+        $this->db->where('idarticle',$idarticle);
+        $this->db->delete('article');
     }
     public function getUne(){
         $this->db->where('laune',1);
