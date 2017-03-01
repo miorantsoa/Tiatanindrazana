@@ -3,7 +3,7 @@
 * 
 */
 //create view detail_article as select article.*,categorie.libelle,categorie.niveau as level,journal.numeroparution,journal.datepublication,journal.liencouverture from article join journal on article.idjournal = journal.idjournal join categorie on article.idcategorie = categorie.idcategorie order by journal.datepublication desc
-class Articles extends CI_Model {
+class ArticlesModel extends CI_Model {
     public function __construct(){
             // Call the CI_Model constructor
             parent::__construct();
