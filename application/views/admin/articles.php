@@ -2,7 +2,7 @@
    <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Users <small>Some examples to get you started</small></h3>
+        <h3>Tous mes articles</h3>
       </div>
 
       <div class="title_right">
@@ -67,8 +67,12 @@
                         <th><?= $article->laune?></th>
                         <th>
                             <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-danger"><a href="<?=base_url('index.php/articles/deleteArticle/'.$article->idarticle)?>"><i class="glyphicon glyphicon-trash"></i></a></button>
-                                <button type="button" class="btn btn-info"><a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>"><i class="glyphicon glyphicon-edit"></i></a></button>
+                                <a href="<?=base_url('index.php/articles/deleteArticle/'.$article->idarticle)?>">
+                                <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                </a>
+                                <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
+                                <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button>
+                                </a>
                             </div>
                         </th>
                     </tr>

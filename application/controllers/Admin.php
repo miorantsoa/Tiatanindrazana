@@ -33,7 +33,9 @@ class Admin extends CI_Controller {
 		$this->adminView('ajoutJournal');
 	}
 	public function journal(){
-		$this->adminView('journal');
+	    $this->load->model('journal');
+	    $data['journals'] = $this->journal->getJournal();
+		$this->adminView('journal',$data);
 	}	
 	public function detailJournal(){
 		$this->adminView('detailJournal');
@@ -48,8 +50,10 @@ class Admin extends CI_Controller {
 	    $data['article'] = $this->articlesmodel->getSingleArticle($id);
 	    $this->adminView('ajoutArticles',$data);
     }
-    public function deleteArticle($id){
-
+    public function editJournal($id){
+	    $this->load->model('journal');
+	    $data['journal'] = $this->journal->getById($id);
+        $this->adminView('ajoutJournal',$data);
     }
 
 }

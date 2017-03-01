@@ -3,7 +3,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_title">
-					<h2>Nouvelle article</h2>
+					<h2>Nouvelle article<small>Veuillez remplir le formulaire puis appuyer sur enregistrer</small></h2>
 					<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -86,14 +86,12 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="contenu">Contenu<span class="required">*</span>
 							</label>
                             <div>
-                                <textarea name="contenu" id="contenu"><?=(isset($article) && $article[0]->resume != "") ? $data->contenue : ""?></textarea>
+                                <textarea name="contenu" id="contenu" rows="10"><?=(isset($article) && $article[0]->resume != "") ? $data->contenue : "" ?></textarea>
                             </div>
 						</div>
 						<div class="ln_solid"></div>
 						<div class="form-group">
 						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-						<button class="btn btn-primary" type="button">Cancel</button>
-						<button class="btn btn-primary" type="reset">Reset</button>
 						<button type="submit" class="btn btn-success">Enregistrer</button>
 						</div>
 						</div>
