@@ -10,8 +10,8 @@ class Admin extends CI_Controller {
 		$this->adminView('index');
 	}
 	public function articles(){
-	    $this->load->model('articles');
-	    $data['articles'] = $this->articles->getArticles();
+	    $this->load->model('articlesmodel');
+	    $data['articles'] = $this->articlesmodel->getArticles();
 		$this->adminView('articles', $data);
 	}	
 	public function ajoutArticles(){

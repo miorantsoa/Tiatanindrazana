@@ -58,11 +58,11 @@
                 <?php foreach ($articles as $article):?>
                     <tr>
                         <th><?= $article->titre?></th>
-                        <th><?= $article->date?></th>
+                        <th><?= $article->dateparution?></th>
                         <th><?= $article->resume?></th>
-                        <th><?= $article->resume?></th>
-                        <th><?= $article->image?></th>
-                        <th><?= $article->publie?></th>
+                        <th><?= $article->contenue?></th>
+                        <th><img src="<?= base_url($article->lien_image_une)?>" class="img-thumbnail"></th>
+                        <th><?= $article->etatpublication?></th>
                         <th><?= $article->laune?></th>
                     </tr>
                 <?php endforeach;?>

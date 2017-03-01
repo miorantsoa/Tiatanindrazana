@@ -33,7 +33,6 @@
 								<select name="niveau" id="niveau" class="form-control" required>
 									<option>1</option>
 									<option>2</option>
-									<option>3</option>
 								</select>
 							</div>
 						</div>
