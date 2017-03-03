@@ -6,6 +6,7 @@
  * Date: 25/02/2017
  * Time: 22:29
  */
+//create view sous_categorie as SELECT categorie.* ,categorie_mere.idcategorie as idmere, categorie_mere.libelle as catmere from categorie join assoc_sous_categorie on categorie.idcategorie = assoc_sous_categorie.idcategorie2 JOIN categorie_mere on assoc_sous_categorie.idcategorie2 = categorie_mere.idcategorie2
 class Rubrique_model extends CI_Model{
     public function __construct(){
         parent::__construct();
@@ -46,6 +47,11 @@ class Rubrique_model extends CI_Model{
         $this->db->where('rang_cat',1);
         $categorie = $this->db->get('categorie');
         return $categorie->result();
+    }
+    public function getSousCategorieByIdMere($id){
+        $this->db->where('idmere',$id);
+        $categories = $this->db->get('sous_categorie');
+        return $categories->result();
     }
 
 }
