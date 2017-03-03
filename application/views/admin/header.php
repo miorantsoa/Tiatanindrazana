@@ -80,7 +80,7 @@
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Abonnées<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="">Liste des abonnées</a></li>
+                        <li><a href="<?= base_url('index.php/admin/abonnee')?>">Liste des abonnées</a></li>
                         <li><a href="">Rechercher</a></li>
                       </ul>
                   </li>

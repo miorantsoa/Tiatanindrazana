@@ -43,6 +43,10 @@ class Admin extends CI_Controller {
 	public function ajoutFilActu(){
 		$this->adminView('ajoutFilActu');
 	}
+
+	public function abonnee(){
+        $this->adminView('abonne');
+    }
 	public function editArticle($id){
 	    $this->load->model('articlesmodel');
         $this->load->model('rubrique_model');

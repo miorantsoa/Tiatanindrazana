@@ -113,5 +113,14 @@ class ArticlesModel extends CI_Model {
         $sarisary = $this->db->get('article');
         return $sarisary->result();
     }
+    public function get($titre,$rubrique,$contenu,$date1,$date2){
+        if($titre != null)
+            $this->db->where('titre',$titre);
+        if($rubrique!=null)
+            $this->db->where('rubrique',$rubrique);
+        if($contenu != null)
+            $this->db->where('contenu',$contenu);
+
+    }
 
 }
