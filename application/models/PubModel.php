@@ -10,14 +10,15 @@ class PubModel extends CI_Model{
     public function __construct(){
         parent::__construct();
     }
-    public function insertPub($dataTable){
+    public function insertPub($datedebutdiffusion,$datefindiffusion,$alt,$position,$lienredirection,$lienimage){
 
         $data = array(
-            'datedebutdiffusion' => $dataTable['datedebutdiffusion'],
-            'datefindiffusion' => $dataTable['datefindiffusion'],
-            'alt' => $dataTable['alt'],
-            'lienredirection' => $dataTable['lienredirection'],
-            'lienimage' => $dataTable['lienimage']
+            'datedebutdiffusion' => $datedebutdiffusion,
+            'datefindiffusion' => $datefindiffusion,
+            'alt' => $alt,
+            'position' => $position,
+            'lienredirection' => $lienredirection,
+            'lienimage' => $lienimage
         );
         $this->db->trans_start();
         $this->db->insert("publicite",$data);

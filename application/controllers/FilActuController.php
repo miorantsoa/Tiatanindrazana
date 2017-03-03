@@ -8,15 +8,15 @@
 
 class FilActuController extends CI_Controller{
     public function addFilActu(){
-        $this->load->model('FilActu_model');
+        $this->load->model('filactu_model');
         $data = array(
-            'datepublication' => $this->input->get('datepublication'),
-            'heurepublication' => $this->input->get('heurepublication'),
-            'extrait' => $this->input->get('extrait'),
-            'contenue' => $this->input->get('contenue')
+            'datepublication' => $this->input->post('datepublication'),
+            'heurepublication' => $this->input->post('heurepublication'),
+            'extrait' => $this->input->post('extrait'),
+            'contenue' => $this->input->post('contenue')
 
         );
-        $this->rubrique_model->insertFilActu($data);
+        $this->filactu_model->insertFilActu($data);
         redirect('admin/ajoutFilActu','refresh');
     }
 }

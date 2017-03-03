@@ -6,7 +6,7 @@
  * Time: 17:10
  */
 
-class FilActu extends CI_Model{
+class FilActu_model extends CI_Model{
     public function __construct(){
         parent::__construct();
     }

@@ -7,6 +7,11 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
+                    <?php
+                    $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
+                    $lien_action  = 'filactucontroller/addFilActu';
+                    echo form_open_multipart($lien_action,$attributes);
+                    ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
