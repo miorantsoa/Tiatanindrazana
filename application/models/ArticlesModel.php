@@ -3,6 +3,9 @@
 * 
 */
 //create view detail_article as select article.*,categorie.libelle,categorie.niveau as level,journal.numeroparution,journal.datepublication,journal.liencouverture from article join journal on article.idjournal = journal.idjournal join categorie on article.idcategorie = categorie.idcategorie order by journal.datepublication desc
+//create view article_journal as SELECT detail_article.*,journal.numeroparution,journal.datepublication,journal.liencouverture FROM `detail_article` JOIN journal on journal.idjournal = detail_article.idjournal ORDER by dateparution DESC
+//create view last_journal as SELECT * from article_journal where datepublication in (SELECT max(article_journal.datepublication ) as datepublication from article_journal)
+
 class ArticlesModel extends CI_Model {
     public function __construct(){
             // Call the CI_Model constructor
@@ -113,14 +116,26 @@ class ArticlesModel extends CI_Model {
         $sarisary = $this->db->get('article');
         return $sarisary->result();
     }
-    public function get($titre,$rubrique,$contenu,$date1,$date2){
+
+    //fonction utilisé pour la recherche
+    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit){
+        $this->db->limit($limit,$maxlimit);
         if($titre != null)
             $this->db->where('titre',$titre);
         if($rubrique!=null)
             $this->db->where('rubrique',$rubrique);
         if($contenu != null)
-            $this->db->where('contenu',$contenu);
-
+            $this->db->like('contenu',$contenu);
+        if($resume != null)
+            $this->db->like('resume',$resume);
+        if($date1!=null && $date2!=null)
+            $this->db->where('dateparution BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+        if($date1!=null && $date2 == null)
+            $this->db->where('dateparution',$date1);
+        if($laune!=null)
+            $this->db->where('laune',$laune);
+        $article = $this->db->get('detail_article');
+        return $article->result();
     }
 
 }
