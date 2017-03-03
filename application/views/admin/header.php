@@ -86,7 +86,7 @@
                   </li>
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                        <li><a href="">Ajouter</a></li>
+                        <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter</a></li>
                         <li><a href="">Lister</a></li>
                     </ul>
                   </li>

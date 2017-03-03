@@ -55,5 +55,8 @@ class Admin extends CI_Controller {
 	    $data['journal'] = $this->journal->getById($id);
         $this->adminView('ajoutJournal',$data);
     }
+    public function  ajoutPub(){
+        $this->adminView('ajoutPub');
+    }
 
 }
