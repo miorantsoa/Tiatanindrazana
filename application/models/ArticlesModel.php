@@ -138,4 +138,15 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
 
+    //recuperer les articles de j-2, par défaut, on recupère tous les rubriques. on peut aussi specifié des rubriques : ex : rubrique images seulement
+    public function getIdPublicArticle($idrubrique=null){
+        if($idrubrique!=null)
+            $this->db->where('idcategorie',$idrubrique);
+        $this->db->where('datepublication < ','now()-2');
+        $articles = $this->db->get('detail_article');
+        return $articles->result();
+    }
+
+    
+
 }
