@@ -63,4 +63,16 @@ class Admin extends CI_Controller {
         $this->adminView('ajoutPub');
     }
 
+    public function  filactu(){
+        $this->load->model('filactu_model');
+        $data['filactualite'] = $this->filactu_model->getFilActu();
+        $this->adminView('filactu',$data);
+    }
+
+    public function publicite(){
+        $this->load->model('pubmodel');
+        $data['publicite'] = $this->pubmodel->getPub();
+        $this->adminView('publicite', $data);
+    }
+
 }

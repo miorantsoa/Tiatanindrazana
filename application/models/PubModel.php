@@ -10,7 +10,7 @@ class PubModel extends CI_Model{
     public function __construct(){
         parent::__construct();
     }
-    public function insertPub($datedebutdiffusion,$datefindiffusion,$alt,$position,$lienredirection,$lienimage){
+    public function insertPub($datedebutdiffusion,$datefindiffusion,$alt,$position,$lienredirection,$lienimage,$commentaire){
 
         $data = array(
             'datedebutdiffusion' => $datedebutdiffusion,
@@ -18,7 +18,8 @@ class PubModel extends CI_Model{
             'alt' => $alt,
             'position' => $position,
             'lienredirection' => $lienredirection,
-            'lienimage' => $lienimage
+            'lienimage' => $lienimage,
+            'commentaire' => $commentaire
         );
         $this->db->trans_start();
         $this->db->insert("publicite",$data);

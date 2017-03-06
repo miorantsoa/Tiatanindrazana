@@ -75,7 +75,7 @@
                   <li><a><i class="fa fa-rss"></i>Fil d'actualités<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('index.php/admin/ajoutFilActu')?>">Ajouter</a></li>
-                      <li><a href="">Lister</a></li>
+                      <li><a href="<?= base_url('index.php/admin/filactu')?>">Lister</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Abonnées<span class="fa fa-chevron-down"></span></a>
@@ -87,7 +87,7 @@
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
                         <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter</a></li>
-                        <li><a href="">Lister</a></li>
+                        <li><a href="<?= base_url('index.php/admin/publicite')?>">Lister</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-cogs"></i>Configurations<span class="fa fa-chevron-down"></a>

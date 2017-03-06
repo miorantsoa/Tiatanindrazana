@@ -54,9 +54,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Image</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Image *</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="lienimage" name="lienimage" class="form-control col-md-7 col-xs-12" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Commentaire (facultatif) *</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea class="resizable_textarea form-control" placeholder="text" name="resume"><?=(isset($publicite) && $publicite[0]->commentaire != "") ? $data->commentaire : ""?></textarea>
                             </div>
                         </div>
 
