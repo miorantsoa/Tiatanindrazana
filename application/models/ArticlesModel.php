@@ -147,6 +147,6 @@ class ArticlesModel extends CI_Model {
         return $articles->result();
     }
 
-    
+
 
 }

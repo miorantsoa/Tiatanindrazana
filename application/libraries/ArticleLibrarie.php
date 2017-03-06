@@ -13,7 +13,7 @@ class ArticleLibrarie{
         $this->CI =& get_instance();
     }
     public function ajoutArticle($idJournal, $idCategorie, $idadministrateur, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
-        if($niveau == ""){
+        if($niveau == ""){//Si l'on ne renseigne pas le niveau, on recupère le niveau par defaut du rubrique
             $this->CI->load->model('Rubrique_model');
             $rubrique = $this->CI->rubrique_model->getRubriqueById($idCategorie);
             $niveau = $rubrique->niveau;

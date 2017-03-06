@@ -53,13 +53,4 @@ class JournalController extends CI_Controller {
         $config['file_name'] = "couverture-".date('y-m-d').'-'.time('');
         return $config;
     }
-
-    //besoin d'une vue liant journal medias feuille journal -> view feuilles_journal
-    //create view feuilles_journal as select * from  journal join feuille_journal on journal.idjournal = feuille_journal.idjournal join medias on feuille_journal.idmedias = medias.idmedias
-    //La fonction consiste à avoir le journal du jour
-    public function  getJournalDuJour(){
-        $this->db->where('datepublication',currdate());
-        $pages_journal = $this->db->get('feuilles_journal');
-        return $pages_journal->result();
-    }
 }

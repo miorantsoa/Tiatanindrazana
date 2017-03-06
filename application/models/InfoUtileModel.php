@@ -12,22 +12,34 @@ class InfoUtileModel extends CI_Model {
             'titre' => $titre,
             'contenu' => $contenu,
             'idcatbeinfo'=>$idcategorie,
-            'lien' => $lienImage,
+            'lienphoto' => $lienImage,
             'copyrightphoto' => $copyrightphoto,
             'lien' => $lienutile
         );
         $this->db->insert('infoutil',$data);
     }
-    public function getInfoUtile($id,$titre,$idcategorie,$contenu){
+
+    public function update($id,$data){
+        $this->db->where('idbeinfo',$id);
+        $this->db->update('infoutil',$data);
+    }
+
+    public function getInfoUtile($id,$titre,$idcategorie,$contenu,$date1,$date2){
         if($id!=null)
             $this->db->where('idbeinfo',$id);
         if($titre!=null)
             $this->db->where('titre',$titre);
         if($contenu!=null)
             $this->db->like('contenu',$contenu);
+        if($date1!=null && $date2!=null)
+            $this->db->where('derniermaj BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+        if($date1!=null && $date2==null){
+            $this->db->where('dernieremaj',$date1);
+        }
         if($idcategorie!=null)
             $this->db->where('idcatbeinfo');
-        $ingoutil = $this->db->get('infoutil');
-        return $ingoutil->result();
+        $infoutil = $this->db->get('infoutil');
+        return $infoutil->result();
     }
+
 }
