@@ -147,6 +147,12 @@ class ArticlesModel extends CI_Model {
         return $articles->result();
     }
 
+    public function getArticlesByJournal($idJoournal){
+        $this->db->where('idjournal',$idJoournal);
+        $articles = $this->db->get('article_journal');
+        return $articles->result();
+    }
+
 
 
 }
