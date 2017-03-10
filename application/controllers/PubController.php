@@ -36,7 +36,7 @@ class PubController extends CI_Controller{
 
         /**$datedebutdiffusion,$datefindiffusion,$alt,$position,$lienredirection,$lienimage**/
         $this->load->model('pubmodel');
-        $this->pubmodel->insertPub($this->input->post('datedebutdiffusion'),$this->input->post('datefindiffusion'), $this->input->post('alt'), $this->input->post('position') ,$this->input->post('lienredirection') ,$image);
+        $this->pubmodel->insertPub($this->input->post('datedebutdiffusion'),$this->input->post('datefindiffusion'), $this->input->post('alt'), $this->input->post('position') ,$this->input->post('lienredirection') ,$image,$this->input->post('commentaire'));
         redirect('admin/ajoutpub','refresh');
     }
     public function configUpload(){
