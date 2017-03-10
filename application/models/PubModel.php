@@ -35,5 +35,10 @@ class PubModel extends CI_Model{
         $publicite= $this->db->get("publicite");
         return  $publicite>result();
     }
+    public function getPubByPosition($position){
+        $this->db->where('position',$position);
+        $pub = $this->db->get('publicite');
+        return $pub->result();
+    }
 
 }

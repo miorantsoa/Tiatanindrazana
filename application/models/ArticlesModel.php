@@ -117,6 +117,11 @@ class ArticlesModel extends CI_Model {
         return $sarisary->result();
     }
 
+    public function getById($id){
+        $this->db->where('idarticle',$id);
+        $article = $this->db->get('detail_article');
+        return $article->result()[0];
+    }
     //fonction utilisé pour la recherche
     public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit){
         $this->db->limit($limit,$maxlimit);
@@ -151,6 +156,22 @@ class ArticlesModel extends CI_Model {
         $this->db->where('idjournal',$idJoournal);
         $articles = $this->db->get('article_journal');
         return $articles->result();
+    }
+    //Ampamoaka ampisehoana eo @ accueil
+    public function getLastAmpamoaka(){
+        $this->db->where('idcategorie',12);
+        $this->db->order_by('datepublication','DESC');
+        $this->db->limit(1);
+        $ampamoaka = $this->db->get('article_journal');
+        return $ampamoaka->result();
+    }
+    //Sarisary aseho eo @ accueil
+    public function getLastSarisary(){
+        $this->db->where('idcategorie',11);
+        $this->db->order_by('datepublication','DESC');
+        $this->db->limit(1);
+        $ampamoaka = $this->db->get('article_journal');
+        return $ampamoaka->result();
     }
 
 
