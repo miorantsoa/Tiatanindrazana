@@ -7,15 +7,7 @@
  * Time: 10:48
  */
 class InfoUtileModel extends CI_Model {
-    public function insert($titre,$idcategorie,$contenu,$lienImage,$copyrightphoto,$lienutile){
-        $data = array(
-            'titre' => $titre,
-            'contenu' => $contenu,
-            'idcatbeinfo'=>$idcategorie,
-            'lienphoto' => $lienImage,
-            'copyrightphoto' => $copyrightphoto,
-            'lien' => $lienutile
-        );
+    public function insert($data){
         $this->db->insert('infoutil',$data);
     }
 
@@ -40,6 +32,11 @@ class InfoUtileModel extends CI_Model {
             $this->db->where('idcatbeinfo');
         $infoutil = $this->db->get('infoutil');
         return $infoutil->result();
+    }
+
+    public function getCategorie(){
+        $categories = $this->db->get('categorieinfoutile');
+        return $categories->result();
     }
 
 }

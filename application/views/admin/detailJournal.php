@@ -39,14 +39,16 @@
 							</tr>
 						</thead>
 						<tbody>
+                            <?php foreach ($articles as $article):?>
 							<tr>
-								<th>Un homme prend la fuite à Heathrow</th>
-								<th>Politika</th>
-								<th>Résumé vetivety</th>
-								<th></th>
-								<th>Content</th>
-								<th></th>
+                                <th><?= $article->titre?></th>
+                                <th><?= $article->idcategorie?></th>
+                                <th><?= $article->resume?></th>
+                                <th><img src="<?= base_url($article->lien_image_une)?>" alt="Enawo Mandravarava"></th>
+                                <th><?= $article->contenue?></th>
+                                <th></th>
 							</tr>
+                            <?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>

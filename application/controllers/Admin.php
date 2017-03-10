@@ -37,8 +37,11 @@ class Admin extends CI_Controller {
 	    $data['journals'] = $this->journal->getJournal();
 		$this->adminView('journal',$data);
 	}	
-	public function detailJournal(){
-		$this->adminView('detailJournal');
+	public function detailJournal($id){
+	    $this->load->model('articlesmodel');
+	    $detail_journal = $this->articlesmodel->getArticlesByJournal($id);
+	    $data['articles'] = $detail_journal;
+		$this->adminView('detailJournal',$data);
 	}	
 	public function ajoutFilActu(){
 		$this->adminView('ajoutFilActu');
@@ -61,6 +64,11 @@ class Admin extends CI_Controller {
     }
     public function  ajoutPub(){
         $this->adminView('ajoutPub');
+    }
+    public function ajoutInfoUtile(){
+        $this->load->model('infoutilemodel');
+        $data['categorie'] = $this->infoutilemodel->getCategorie();
+        $this->adminView('ajoutInfoUtile',$data);
     }
 
     public function  filactu(){

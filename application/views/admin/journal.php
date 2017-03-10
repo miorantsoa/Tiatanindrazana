@@ -26,9 +26,9 @@
 							<tbody>
 								<?php foreach ($journals as $journal):?>
                                     <tr>
-                                        <th><?= $journal->numeroparution?></th>
-                                        <th><?= $journal->datepublication?></th>
-                                        <th><?= $journal->liencouverture ?></th>
+                                        <th><a href="<?= base_url('index.php/admin/detailJournal/'.$journal->idjournal)?>"><?= $journal->numeroparution?></a></th>
+                                        <th><a href="<?= base_url('index.php/admin/detailJournal/'.$journal->idjournal)?>"><?= $journal->datepublication?></a></th>
+                                        <th><a href="<?= base_url('index.php/admin/detailJournal/'.$journal->idjournal)?>"><?= $journal->liencouverture ?></a></th>
                                         <th>
                                             <div class="btn-group btn-group-lg" role="group">
                                                 <a href="<?= base_url('index.php/journalcontroller/delete/'.$journal->idjournal)?>">
