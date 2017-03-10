@@ -31,6 +31,21 @@ class Journal extends CI_Model{
         $journal = $this->db->get('journal');
         return $journal->result();
     }
+    public function get($id,$numparution,$date1,$date2,$ordre = 'DESC'){//utiliser pour recherche avancé dans le journal
+        if($id!=null){
+            $this->db->where('idjournal',$id);
+        }
+        if($numparution!=null)
+            $this->db->where('numeroparution',$numparution);
+
+        if($date1!=null && $date2 == null)
+            $this->db->where('datepublication < ',$date1);
+
+        if($date1!=null && $date2!=null)
+            $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+        $this->db->order_by('datepublication',$ordre);
+        $journal = $this->db->get('journal');
+    }
     public function getLastJournal(){
         $this->db->order_by('dateparution','DESC');
         $journal = $this->db->get('journal');
