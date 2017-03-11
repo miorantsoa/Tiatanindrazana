@@ -15,7 +15,6 @@
             </li>
         </ul>
     </div> <!-- End Widget -->
-
     <div class="widget clearfix">
         <div class="enews-tab">
 
@@ -172,6 +171,50 @@
 
         </div> <!-- End Enews-Tab -->
     </div> <!-- End Widget -->
+    <div class="widget clearfix">
+        <div class="best-picture">
+
+            <div class="header">
+                <h4>Ampamoaka</h4>
+            </div>
+
+            <div class="content">
+                <p><a href="single_photo.html" title="View permalink House in The Woods">Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci [..]</a></p>
+
+                <!-- Photo Galleries -->
+                <figure class="flexslider loading">
+                    <ul class="slides">
+                        <li><a href="<?= base_url($ampamoaka->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($ampamoaka->lien_image_une)?>" alt="<?=$ampamoaka->titre?>" /></a></li>
+                    </ul>
+                </figure>
+
+                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 7, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
+            </div>
+
+        </div>
+    </div> <!-- End Widget -->
+    <div class="widget clearfix">
+        <div class="best-picture">
+
+            <div class="header">
+                <h4>Sarisary zaritena</h4>
+            </div>
+
+            <div class="content">
+                <p><a href="single_photo.html" title="View permalink House in The Woods">Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci [..]</a></p>
+
+                <!-- Photo Galleries -->
+                <figure class="flexslider loading">
+                    <ul class="slides">
+                        <li><a href="<?= base_url($sarisary->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
+                    </ul>
+                </figure>
+
+                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 7, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
+            </div>
+
+        </div>
+    </div> <!-- End Widget -->
 
     <div class="widget clearfix">
         <div class="sponsors">
@@ -191,31 +234,6 @@
     </div> <!-- End Widget -->
 
     <div class="widget clearfix">
-        <div class="best-picture">
-
-            <div class="header">
-                <h4>Best Picture</h4>
-            </div>
-
-            <div class="content">
-                <p><a href="single_photo.html" title="View permalink House in The Woods">Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci [..]</a></p>
-
-                <!-- Photo Galleries -->
-                <figure class="flexslider loading">
-                    <ul class="slides">
-                        <li><img src="<?= base_url()?>/assets/default/images/content/full/4.jpg" alt="Thumbnail 1" /></li>
-                        <li><img src="<?= base_url()?>/assets/default/images/content/full/9.jpg" alt="Thumbnail 2" /></li>
-                        <li><img src="<?= base_url()?>/assets/default/images/content/full/2.jpg" alt="Thumbnail 3" /></li>
-                    </ul>
-                </figure>
-
-                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 7, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
-            </div>
-
-        </div>
-    </div> <!-- End Widget -->
-
-    <div class="widget clearfix">
         <div class="subscribe-form">
 
             <div class="header">
@@ -228,22 +246,6 @@
                     <input type="text" name="email_address" placeholder="ex: your_email@domain.com" />
                     <input type="submit" name="submit" value="Send" class="btn btn-blue" />
                 </form>
-            </div>
-
-        </div>
-    </div> <!-- End Widget -->
-
-    <div class="widget clearfix">
-        <div class="best-video">
-
-            <div class="header">
-                <h4>Video of The Week</h4>
-            </div>
-
-            <div class="content">
-                <p><a href="single_video.html" title="View permalink Devil May Cry Launch Trailer">Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci [..]</a></p>
-                <figure><iframe height="240" src="http://www.youtube.com/embed/psSqNRaHBgk?feature=player_detailpage"></iframe></figure>
-                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 12, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
             </div>
 
         </div>

@@ -133,12 +133,12 @@
 
         <!-- Logo -->
         <div class="logo pull-left">
-            <a href="<?= base_url("accueil")?>"><img src="<?= base_url()?>/assets/default/images/banniere.jpg" alt="Tia Tanindrazana" /></a>
+            <a href="<?= base_url("accueil")?>"><img src="<?= base_url()?>/assets/default/images/banniere-tia.jpg" alt="Tia Tanindrazana" height="80"/></a>
         </div>
 
 
         <div class="ads pull-right">
-            <img src="<?php echo ($banniere->lienimage) ? base_url($banniere->lienimage) : base_url('assets/default/images/ads/480x80.png')?>" alt="Ads" />
+            <img src="<?php echo  base_url('assets/default/images/kolikoly-bann.jpg')?>" alt="Ads" height="80"/>
         </div>
 
     </header> <!-- End Header -->
@@ -152,7 +152,7 @@
                         ?>
                         <ul>
                             <?php foreach ($souscats as $souscat):?>
-                            <li><a href=""><?= $souscat->libelle?></a>
+                            <li><a href="<?= base_url('accueil/detail_categorie/'.$souscat->idcategorie)?>"><?= $souscat->libelle?></a>
                             <?php endforeach; ?>
                         </ul>
                     <?php }?>

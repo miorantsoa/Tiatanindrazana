@@ -108,6 +108,9 @@ class ArticlesModel extends CI_Model {
     }
     public function getListArticle(){
         $this->db->where('laune<>',1);
+        $this->db->where('idcategorie <> ',11);
+        $this->db->where('idcategorie <> ',12);
+        $this->db->where('idcategorie <> ',13);
         $this->db->order_by('libelle');
         $articles = $this->db->get('last_journal');
         return $articles->result();

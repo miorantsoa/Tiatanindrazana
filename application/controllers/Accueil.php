@@ -27,8 +27,8 @@ class Accueil extends CI_Controller{
         $data['rubriques'] = $this->rubrique_model->getFirstRang();
         $data['laune'] = $this->articlesmodel->getUne()[0];
         $data['articlejournal'] = $this->articlesmodel->getListArticle();
-        $data['ampamoaka'] = $this->articlesmodel->getLastAmpamoaka();
-        $data['sarisary'] = $this->articlesmodel->getLastSarisary();
+        $data['ampamoaka'] = $this->articlesmodel->getLastAmpamoaka()[0];
+        $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
         $data['pub'] = $this->pubmodel->getPubByPosition(2);
         return $data;
