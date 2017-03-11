@@ -1,3 +1,4 @@
+<div class="row-fluid">
 <div id="main" class="span8 blog-posts image-preloader">
 
     <div class="row-fluid">

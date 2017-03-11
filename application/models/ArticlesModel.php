@@ -5,7 +5,7 @@
 //create view detail_article as select article.*,categorie.libelle,categorie.niveau as level,journal.numeroparution,journal.datepublication,journal.liencouverture from article join journal on article.idjournal = journal.idjournal join categorie on article.idcategorie = categorie.idcategorie order by journal.datepublication desc
 //create view article_journal as SELECT detail_article.*,journal.numeroparution,journal.datepublication,journal.liencouverture FROM `detail_article` JOIN journal on journal.idjournal = detail_article.idjournal ORDER by dateparution DESC
 //create view last_journal as SELECT * from article_journal where datepublication in (SELECT max(article_journal.datepublication ) as datepublication from article_journal)
-
+//create view article_categories as select categorie.*,categorie_mere.idcategorie as idmere, categorie_mere.libelle as catmere from categorie left JOIN assoc_sous_categorie ON categorie.idcategorie = assoc_sous_categorie.idcategorie2 left join categorie_mere on assoc_sous_categorie.idcategorie1 = categorie_mere.idcategorie
 class ArticlesModel extends CI_Model {
     public function __construct(){
             // Call the CI_Model constructor
@@ -149,6 +149,7 @@ class ArticlesModel extends CI_Model {
 
     public function getByRubrique($idRubrique){
         $this->db->where('idcategorie',$idRubrique);
+        $this->db->or_where('idmere',$idRubrique);
         $articles = $this->db->get('article_journal');
         return $articles->result();
     }

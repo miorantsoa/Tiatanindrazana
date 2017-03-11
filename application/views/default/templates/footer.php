@@ -1,4 +1,3 @@
-</div><!-- end row-fluid -->
 </div><!-- end container-->
 <div id="bottom">
     <div class="container">

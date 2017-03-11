@@ -24,6 +24,7 @@ class Accueil extends CI_Controller{
         $this->load->model("articlesmodel");
         $this->load->model("journal");
         $this->load->model("pubmodel");
+        $this->load->library("articlelibrarie");
         $data['rubriques'] = $this->rubrique_model->getFirstRang();
         $data['laune'] = $this->articlesmodel->getUne()[0];
         $data['articlejournal'] = $this->articlesmodel->getListArticle();
@@ -58,5 +59,18 @@ class Accueil extends CI_Controller{
         $data['article_lie'] = $articles;
         $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
         $this->homeView('detailcategorie',$data,$data);
+    }
+    public function list_sarisary($id){
+        $data = $this->indexData();
+        $sarisary =  $this->articlesmodel->getByRubrique($id);
+        $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
+        $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
+        $data['categorie']= $rubrique;
+        $data['sarisary'] = $sarisary;
+        $data['sous_rubrique'] = $sous_rubrique;
+        $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/detailsarisary',$data);
+        $this->load->view('default/templates/footer');
     }
 }

@@ -252,3 +252,4 @@
     </div> <!-- End Widget -->
 
 </div> <!-- End Sidebar -->
+</div><!-- end row-fluid -->

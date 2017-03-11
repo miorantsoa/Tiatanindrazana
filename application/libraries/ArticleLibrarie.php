@@ -52,4 +52,16 @@ class ArticleLibrarie{
         $this->CI->load->model('articlesmodel');
         $this->CI->articlesmodel->update($idarticle,$data);
     }
+    public  function is_sarisary($id){
+        $this->CI->load->model('rubrique_model');
+        $sarisary = $this->CI->rubrique_model->getSousCategorieByIdMere(10);
+        if($id == 10)
+            return true;
+        for($i = 0; $i<count($sarisary); $i++){
+            if($id == $sarisary[$i]->idcategorie){
+                return true;
+            }
+        }
+        return false;
+    }
 }

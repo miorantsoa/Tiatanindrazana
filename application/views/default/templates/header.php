@@ -12,7 +12,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap.min.css')?>">
-    <link rel="stylesheet" href="<<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">
+    <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>/assets/default/css/style.css">
@@ -146,13 +146,13 @@
     <nav id="main-navigation" class="clearfix">
         <ul>
             <?php foreach($rubriques as $rubrique):?>
-                <li><a href="<?= base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>"><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
+                <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>"><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
                     <?php if($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)){
                         $souscats = $this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie);
                         ?>
                         <ul>
                             <?php foreach ($souscats as $souscat):?>
-                            <li><a href="<?= base_url('accueil/detail_categorie/'.$souscat->idcategorie)?>"><?= $souscat->libelle?></a>
+                            <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$souscat->idcategorie)?>"><?= $souscat->libelle?></a>
                             <?php endforeach; ?>
                         </ul>
                     <?php }?>
@@ -160,4 +160,3 @@
             <?php endforeach;?>
         </ul>
     </nav> <!-- End Main-Navigation -->
-    <div class="row-fluid">
