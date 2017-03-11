@@ -2,25 +2,25 @@
 <html>
 <head>
 	<title>Admin</title>
-	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/bootstrap.min.css')?>">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/font-awesome.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
     <!-- NProgress -->
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/nprogress.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/nprogress.css')?>">
     <!-- iCheck -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/skins/flat/green.css')?>">	
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/skins/flat/green.css')?>">
     <!-- bootstrap-progressbar -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap-progressbar-3.3.4.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/bootstrap-progressbar-3.3.4.min.css')?>">
     <!-- bootstrap-daterangepicker -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/daterangepicker.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/daterangepicker.css')?>">
     <!-- Custom Theme Style -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/custom.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/custom.min.css')?>">
     <!--Datatables-->
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/dataTables.bootstrap.min.css')?>">
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/buttons.bootstrap.min.css')?>">
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/fixedHeader.bootstrap.min.css')?>">
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/responsive.bootstrap.min.css')?>">
-     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/scroller.bootstrap.min.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/dataTables.bootstrap.min.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/buttons.bootstrap.min.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/fixedHeader.bootstrap.min.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/responsive.bootstrap.min.css')?>">
+     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/scroller.bootstrap.min.css')?>">
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -36,7 +36,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?=base_url('assets/img/img.jpg')?>" alt="..." class="img-circle profile_img">
+                <img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -132,7 +132,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?=base_url('assets/img/img.jpg')?>" alt="">John Doe
+                    <img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -156,7 +156,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="<?=base_url('assets/img/img.jpg')?>" alt="Profile Image" /></span>
+                        <span class="image"><img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -168,7 +168,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="<?=base_url('assets/img/img.jpg')?>" alt="Profile Image" /></span>
+                        <span class="image"><img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -180,7 +180,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="<?=base_url('assets/img/img.jpg')?>" alt="Profile Image" /></span>
+                        <span class="image"><img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -192,7 +192,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="<?=base_url('assets/img/img.jpg')?>" alt="Profile Image" /></span>
+                        <span class="image"><img src="<?=base_url('assets/admin/img/img.jpg')?>" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>

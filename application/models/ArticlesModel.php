@@ -120,7 +120,7 @@ class ArticlesModel extends CI_Model {
     public function getById($id){
         $this->db->where('idarticle',$id);
         $article = $this->db->get('detail_article');
-        return $article->result()[0];
+        return $article->result();
     }
     //fonction utilisé pour la recherche
     public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit){
