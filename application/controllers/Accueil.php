@@ -6,16 +6,17 @@
  * Date: 10/03/2017
  * Time: 13:13
  */
-class AccueilController extends CI_Controller{
+class Accueil extends CI_Controller{
     public function homeView($view,$data = null,$titre=null){
         $this->load->view('default/templates/header.php',$titre);
         $this->load->view('default/'.$view,$data);
+        $this->load->view('default/templates/sidebar.php',$data);
         $this->load->view('default/templates/footer');
     }
     public function index(){
         $data = $this->indexData();
-        $titre['titre'] = "Tonga soa : Tia Tanindrazana";
-        $this->homeView('accueil',$data,$titre);
+        $data['titre'] = "Tonga soa : Tia Tanindrazana";
+        $this->homeView('accueil',$data,$data);
     }
     //initialisation données ao @ accueil
     public function indexData(){
@@ -23,12 +24,12 @@ class AccueilController extends CI_Controller{
         $this->load->model("articlesmodel");
         $this->load->model("journal");
         $this->load->model("pubmodel");
-        $data['rubrique'] = $this->rubrique_model->getFirstRang();
-        $data['laune'] = $this->articlesmodel->getUne();
+        $data['rubriques'] = $this->rubrique_model->getFirstRang();
+        $data['laune'] = $this->articlesmodel->getUne()[0];
         $data['articlejournal'] = $this->articlesmodel->getListArticle();
         $data['ampamoaka'] = $this->articlesmodel->getLastAmpamoaka();
         $data['sarisary'] = $this->articlesmodel->getLastSarisary();
-        $data['banniere'] = $this->pubmodel->getPubByPosition(1);
+        $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
         $data['pub'] = $this->pubmodel->getPubByPosition(2);
         return $data;
     }
@@ -43,8 +44,19 @@ class AccueilController extends CI_Controller{
             $data['error'] = "Vous n'avez pas accées à cet article";
             $this->homeView('accueil',$data,$titre);
         }
+        $data = $this->indexData();
+        $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
         $data['article'] = $article;
-        $titre['titre'] =  $article->titre." : Tia Tanindrazana";
-        $this->homeView('detail',$data,$titre);
+        $data['titre'] =  $article->titre." : Tia Tanindrazana";
+        $this->homeView('detail',$data,$data);
+    }
+    public function detail_categorie($id){
+        $data = $this->indexData();
+        $articles =  $this->articlesmodel->getByRubrique($id);
+        $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
+        $data['categorie']= $rubrique;
+        $data['article_lie'] = $articles;
+        $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
+        $this->homeView('detailcategorie',$data,$data);
     }
 }

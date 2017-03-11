@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <!-- Your Basic Site Informations -->
-    <title><?= "Titre"?></title>
+    <title><?= $titre?></title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="description" content="Enews is a news or magazine site template that built with very cool responsive template with clean design, fast load, seo friendly, beauty color and a slew of features." />
     <meta name="keywords" content="Site Template, News, Magazine, Portofolio, HTML, CSS, jQuery, Newsletter, PHP Contact, Subscription, Responsive, Marketing, Clean, SEO" />
@@ -58,7 +58,7 @@
 
         <!-- Navigation -->
         <ul class="nav-menu pull-left">
-            <li class="active"><a href="<?= base_url("accueilcontroller")?>">Fandraisana</a></li>
+            <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
             <li><a href="#">Features</a>
                 <div class="nav-sub-menu">
                     <ul class="container">
@@ -132,59 +132,32 @@
     <header id="header" class="clearfix">
 
         <!-- Logo -->
-        <div class="logo">
-            <a href="<?= base_url("accueilcontroller")?>"><img src="<?= base_url()?>/assets/default/images/banniere.jpg" alt="Tia Tanindrazana" /></a>
+        <div class="logo pull-left">
+            <a href="<?= base_url("accueil")?>"><img src="<?= base_url()?>/assets/default/images/banniere.jpg" alt="Tia Tanindrazana" /></a>
         </div>
 
-        <!-- Ads
+
         <div class="ads pull-right">
-            <img src="<?= base_url()?>/assets/default/images/ads/480x80.png" alt="Ads" />
-        </div> -->
+            <img src="<?php echo ($banniere->lienimage) ? base_url($banniere->lienimage) : base_url('assets/default/images/ads/480x80.png')?>" alt="Ads" />
+        </div>
 
     </header> <!-- End Header -->
 
     <nav id="main-navigation" class="clearfix">
         <ul>
-            <li><a href="blog_posts.html">Business</a></li>
-            <li><a href="blog_posts.html">Technology <i class="arrow-main-nav"></i></a>
-                <ul>
-                    <li><a href="blog_posts.html">Smartphone</a></li>
-                    <li><a href="blog_posts.html">Tablet</a></li>
-                    <li><a href="blog_posts.html">Internet</a></li>
-                    <li><a href="blog_posts.html">Software</a></li>
-                    <li><a href="blog_posts.html">Hardware</a></li>
-                    <li><a href="blog_posts.html">Laptop</a></li>
-                    <li><a href="blog_posts.html">Hot News <i class="arrow-main-nav"></i></a>
+            <?php foreach($rubriques as $rubrique):?>
+                <li><a href="<?= base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>"><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
+                    <?php if($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)){
+                        $souscats = $this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie);
+                        ?>
                         <ul>
-                            <li><a href="blog_posts.html">Windows 8</a></li>
-                            <li><a href="blog_posts.html">Apple iPhone 5</a></li>
-                            <li><a href="blog_posts.html">Microsoft Surface</a></li>
-                            <li><a href="blog_posts.html">Nokia Lumia 920</a></li>
+                            <?php foreach ($souscats as $souscat):?>
+                            <li><a href=""><?= $souscat->libelle?></a>
+                            <?php endforeach; ?>
                         </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="blog_posts.html">Education</a></li>
-            <li><a href="blog_posts.html">Entertainment</a></li>
-            <li><a href="blog_photos.html">Photo <i class="arrow-main-nav"></i></a>
-                <ul>
-                    <li><a href="single_photo.html">Single Photo</a></li>
-                </ul>
-            </li>
-            <li><a href="blog_videos.html">Video <i class="arrow-main-nav"></i></a>
-                <ul>
-                    <li><a href="single_video.html">Single Video</a></li>
-                </ul>
-            </li>
-            <li><a href="blog_musics.html">Music <i class="arrow-main-nav"></i></a>
-                <ul>
-                    <li><a href="single_music.html">Single Music</a></li>
-                </ul>
-            </li>
-            <li><a href="blog_reviews.html">Review <i class="arrow-main-nav"></i></a>
-                <ul>
-                    <li><a href="single_review.html">Single Review</a></li>
-                </ul>
-            </li>
+                    <?php }?>
+                </li>
+            <?php endforeach;?>
         </ul>
     </nav> <!-- End Main-Navigation -->
+    <div class="row-fluid">

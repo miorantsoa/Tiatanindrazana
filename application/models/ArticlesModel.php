@@ -108,6 +108,7 @@ class ArticlesModel extends CI_Model {
     }
     public function getListArticle(){
         $this->db->where('laune<>',1);
+        $this->db->order_by('libelle');
         $articles = $this->db->get('last_journal');
         return $articles->result();
     }
@@ -143,6 +144,11 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
 
+    public function getByRubrique($idRubrique){
+        $this->db->where('idcategorie',$idRubrique);
+        $articles = $this->db->get('article_journal');
+        return $articles->result();
+    }
     //recuperer les articles de j-2, par défaut, on recupère tous les rubriques. on peut aussi specifié des rubriques : ex : rubrique images seulement
     public function getIdPublicArticle($idrubrique=null){
         if($idrubrique!=null)

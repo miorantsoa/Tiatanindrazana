@@ -102,7 +102,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="<?= base_url('assets/js/tinymce/tinymce.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/admin/js/tinymce/tinymce.min.js') ?>"></script>
 <script type="text/javascript">
     tinymce.init({
         // General options

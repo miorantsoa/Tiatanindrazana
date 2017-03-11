@@ -1,3 +1,5 @@
+</div><!-- end row-fluid -->
+</div><!-- end container-->
 <div id="bottom">
     <div class="container">
         <div class="row-fluid">
@@ -81,7 +83,7 @@
 <div id="footer">
     <div class="container">
 
-        <p class="pull-left">Copyright 2013 Dots Theme&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Dots Theme</a></p>
+        <p class="pull-left">Copyright 2010 - <?= date('Y')?> Tia Tanindrazana</p>
         <ul class="social pull-right">
             <li><a href="#" title="Youtube"><img src="<?= base_url()?>/assets/default/images/social/f0101/youtube.png" alt="Youtube" /></a></li>
             <li><a href="#" title="LinkedIn"><img src="<?= base_url()?>/assets/default/images/social/f0101/linkedin.png" alt="LinkedIn" /></a></li>
