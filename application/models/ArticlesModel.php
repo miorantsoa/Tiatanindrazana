@@ -127,16 +127,25 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
     //fonction utilisé pour la recherche
-    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit){
-        $this->db->limit($limit,$maxlimit);
-        if($titre != null)
-            $this->db->where('titre',$titre);
+    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset){
+        $this->db->limit($offset,$limit);
+        if($titre!=null && $contenu!=null && $resume!=null){
+            $this->db->like('titre',$titre);
+            $this->db->or_like('contenue',$contenu);
+            $this->db->or_like('resume',$resume);
+        }
+        if($titre != null && $contenu==null && $resume==null)
+            $this->db->like('titre',$titre);
+
         if($rubrique!=null)
-            $this->db->where('rubrique',$rubrique);
-        if($contenu != null)
+            $this->db->where('libelle',$rubrique);
+
+        if($contenu!=null && $resume==null && $titre == null)
             $this->db->like('contenu',$contenu);
-        if($resume != null)
+
+        if($resume != null && $contenu==null && $titre == null)
             $this->db->like('resume',$resume);
+
         if($date1!=null && $date2!=null)
             $this->db->where('dateparution BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         if($date1!=null && $date2 == null)

@@ -64,4 +64,19 @@ class ArticleLibrarie{
         }
         return false;
     }
+    public function getNbPage($reponseSize, $nbReponse){
+        $pages = "";
+        if($reponseSize <= $nbReponse)
+            return 1;
+        else{
+           if($reponseSize % $nbReponse!=0){
+               $pages = ($reponseSize / $nbReponse) + 1;
+               return $pages;
+           }
+           else{
+               return $reponseSize / $nbReponse;
+           }
+
+        }
+    }
 }

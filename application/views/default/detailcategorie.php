@@ -28,20 +28,13 @@
         <?php endforeach;?>
         <nav class="nav-pagination">
             <ul>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="#">9</a></li>
-                <li><a href="#">10</a></li>
-                <li class="empty-space">....</li>
-                <li><a href="#">17</a></li>
+                <?php
+                $nbpage = $this->articlelibrarie->getNbPage(count($article_lie),$nbreponse);
+                for($i = 1; $i<=$nbpage;$i++){?>
+                    <li class="active"><a href="#"><?= $i?></a></li>
+                <?php }?>
             </ul>
-            <p>Page 1 of 17</p>
+            <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
         </nav> <!-- End Nav-Pagination -->
 
     </div> <!-- End Row-Fluid -->

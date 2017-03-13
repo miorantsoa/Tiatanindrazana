@@ -609,7 +609,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 			line-height:1em;
 			padding:20px 16px;
 			float:left;
-			font-size:16px;
+			font-size:14px;
 			border-right:1px solid #2a2a2a;
 		}
 		#main-navigation ul li:last-child a { border-right:0px; }	
@@ -3058,5 +3058,9 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 		font-size:12px;
 		padding:8px 2px;
 	}
+    /*---------Custom--------------*/
+    .abonner{
+        margin-top:10px;
+    }
 	
 }

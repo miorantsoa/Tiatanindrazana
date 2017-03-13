@@ -1,6 +1,21 @@
 <div class="row-fluid">
 <div id="main" class="span8 image-preloader">
-
+    <div class="modal fade " id="myModal" role="dialog" hidden>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Merci pour votre interêt pour cette article</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Ce site est gratuit et ouvert à tous, mais seul nos utilisateurs enregistrés peuvent avoir des privilèges supplémentaires comme poster, commenter ou voter.</p>
+                    <?php  $this->session->set_userdata('last_page', current_url());
+                    // var_dump($this->session->userdata('last_page')) ?>
+                    <a href="<?= base_url()?>index.php/login/?url=<?= current_url()?>" class="btn btn-link">Se connecter</a>ou <a href="<?=  base_url()?>index.php/sign/?url=<?= current_url()?>" class="btn btn-link">S'enregistrer</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="home-slider" class="home-slider3">
 
         <div class="flexslider home-slider3-gallery">
@@ -10,10 +25,10 @@
                     <div class="content">
                         <div class="header">
                             <span class="date">
-                            <span class="day">24</span>
+                            <span class="day"><?= date('d',strtotime($laune->dateparution)) ?></span>
                             <span class="date-details">
-                            <span class="year">2013</span>
-                            <span class="month">January</span>
+                            <span class="year"><?= date('Y',strtotime($laune->dateparution))?></span>
+                            <span class="month"><?= date('M',strtotime($laune->dateparution))?></span>
                             </span>
                             </span>
                             <h3><a href="<?= base_url('accueil/detailArticle/'.$laune->idarticle)?>"><?= $laune->titre?></a></h3>
@@ -37,14 +52,12 @@
     </div> <!-- End Home-Slider3 -->
 
     <div class="headlines clearfix">
-        <span class="base">30<i>Tue</i></span>
+        <span class="base"><?= date('d',strtotime($fil_actu[0]->datepublication)) ?><i><?= date('M',strtotime($fil_actu[0]->datepublication)) ?></i></span>
         <div class="text-rotator">
-            <div><a href="single_post.html" title="View permalink Small Market and St. Sebastian's Square in Opole">Small Market and St. Sebastian's Square in Opole</a></div>
-            <div><a href="single_post.html" title="View permalink Mosaic Pool is Amazing And Beautiful Place">Mosaic Pool is Amazing And Beautiful Place</a></div>
-            <div><a href="single_post.html" title="View permalink Glass House Below The Dark of Moon Light">Glass House Below The Dark of Moon Light</a></div>
-            <div><a href="single_post.html" title="View permalink Platform House with Minimal Design">Platform House with Minimal Design</a></div>
-            <div><a href="single_post.html" title="View permalink Winter Kitchen with Silver Panorama">Winter Kitchen with Silver Panorama</a></div>
-        </div>
+            <?php foreach ($fil_actu as $fil):?>
+                <div><a href="single_post.html" title="<?= $fil->contenue?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= $fil->contenue?></a></div>
+           <?php endforeach;?>
+            </div>
     </div> <!-- End Headlines -->
 
     <div class="row-fluid">

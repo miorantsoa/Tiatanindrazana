@@ -59,70 +59,18 @@
         <!-- Navigation -->
         <ul class="nav-menu pull-left">
             <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
-            <li><a href="#">Features</a>
-                <div class="nav-sub-menu">
-                    <ul class="container">
-                        <li><a href="features_typography.html">Typography</a></li>
-                        <li><a href="features_columns.html">Columns</a></li>
-                        <li><a href="features_shortcodes.html">Shortcodes</a></li>
-                        <li><a href="features_pricing.html">Pricing Table</a></li>
-                        <li><a href="features_sitemap.html">Sitemap</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="#">Blog</a>
-                <div class="nav-sub-menu">
-                    <ul class="container">
-                        <li><a href="blog_posts.html">Archives</a></li>
-                        <li><a href="blog_photos.html">Photos</a></li>
-                        <li><a href="blog_videos.html">Videos</a></li>
-                        <li><a href="blog_musics.html">Musics</a></li>
-                        <li><a href="blog_reviews.html">Reviews</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="#">Portofolio</a>
-                <div class="nav-sub-menu">
-                    <ul class="container">
-                        <li><a href="portofolio.html">1 Column</a></li>
-                        <li><a href="portofolio_2.html">2 Columns</a></li>
-                        <li><a href="portofolio_3.html">3 Columns</a></li>
-                        <li><a href="portofolio_4.html">4 Columns</a></li>
-                        <li><a href="single_portofolio.html">Single Portofolio</a></li>
-                        <li><a href="single_portofolio_2.html">Single Portofolio 2</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="#">Pages</a>
-                <div class="nav-sub-menu">
-                    <ul class="container">
-                        <li><a href="author.html">Author</a></li>
-                        <li><a href="404.html">404 Page</a></li>
-                        <li><a href="search.html">Search</a></li>
-                        <li><a href="index.html">Homepage 1</a></li>
-                        <li><a href="index_2.html">Homepage 2</a></li>
-                        <li><a href="index_3.html">Homepage 3</a></li>
-                        <li><a href="index_4.html">Homepage 4</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="contact.html">Hitafa</a></li>
+            <li><a href="<?= base_url("accueil")?>">Ilaiko</a></li>
+            <li><a href="<?= base_url("accueil")?>">Tahiry</a></li>
+            <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
         </ul>
-
         <!-- Search Form -->
-        <form name="form-search" method="post" action="search.html" class="form-search pull-right">
-            <input type="text" name="search" placeholder="Search...." class="input-icon input-icon-search" />
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
+            <input type="text" name="search" placeholder="Fikarohana ...." class="input-icon input-icon-search" />
         </form>
 
         <!-- Social Media -->
         <ul class="social pull-right">
-            <li><a href="#" data-placement="bottom" data-original-title="Find us on LinkedIn"><img src="<?= base_url()?>/assets/default/images/social/infocus/linkedin-logo.png" alt="LinkedIn"></a></li>
-            <li><a href="#" data-placement="bottom" data-original-title="Find us on Flickr"><img src="<?= base_url()?>/assets/default/images/social/infocus/flickr.png" alt="Flickr"></a></li>
             <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"><img src="<?= base_url()?>/assets/default/images/social/infocus/facebook-logo.png" alt="Facebook"></a></li>
-            <li><a href="#" data-placement="bottom" data-original-title="Follow on DeviantArt"><img src="<?= base_url()?>/assets/default/images/social/infocus/deviantart.png" alt="DeviantArt"></a></li>
-            <li><a href="#" data-placement="bottom" data-original-title="Follow on Twitter"><img src="<?= base_url()?>/assets/default/images/social/infocus/twitter.png" alt="Twitter"></a></li>
-            <li><a href="#" data-placement="bottom" data-original-title="Follow on Stumbleupon"><img src="<?= base_url()?>/assets/default/images/social/infocus/stumbleupon.png" alt="Stumbleupon"></a></li>
-            <li><a href="#" data-placement="bottom" data-original-title="Call us via Skype"><img src="<?= base_url()?>/assets/default/images/social/infocus/skype.png" alt="Skype"></a></li>
         </ul>
 
     </div> <!-- End Container -->
@@ -146,7 +94,7 @@
     <nav id="main-navigation" class="clearfix">
         <ul>
             <?php foreach($rubriques as $rubrique):?>
-                <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>"><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
+                <li class="<?php echo ($rubrique->libelle == $active) ? "active" : "" ?>"><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>" ><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
                     <?php if($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)){
                         $souscats = $this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie);
                         ?>
