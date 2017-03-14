@@ -112,4 +112,11 @@ class Accueil extends CI_Controller{
         $data['page'] = $page;
         $this->homeView('resultat_recherche',$data,$data);
     }
+    public function inscription(){
+        $data = $this->indexData();
+        $data['titre'] = "Inscription : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/inscription',$data);
+        $this->load->view('default/templates/footer');
+    }
 }
