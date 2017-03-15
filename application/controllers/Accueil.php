@@ -112,4 +112,24 @@ class Accueil extends CI_Controller{
         $data['page'] = $page;
         $this->homeView('resultat_recherche',$data,$data);
     }
+    public function archive($date1 = null, $date2 = null, $numparution = null){
+        $data = $this->indexData();
+        //$id,$numparution,$date1,$date2
+        $data['titre'] = "Archive : Tia Tanindrazana";
+        $journal = $this->journal->get(null,$numparution,$date1,$date2);
+        $data['archive'] = $journal;
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/archive',$data);
+        $this->load->view('default/templates/footer');
+    }
+    public function detailjournal($id){
+        $data = $this->indexData();
+        $gazety = $this->articlesmodel->get(null,null,null,null,null,null,false,null,null,$id);
+        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset,$idjournal=null
+        $data['laune'] = $this->articlesmodel->get(null,null,null,null,null,null,true,null,null,$id)[0];
+        $data['articlejournal'] = $this->articlesmodel->get(null,null,null,null,null,null,false,null,null,$id);
+        $data['titre'] = "Gazety nivoaka ny ".$gazety[0]->dateparution."  : Tia Tanindrazana";
+        $data['fil_actu'] = $this->filactu_model->getFilActu();
+        $this->homeView('accueil',$data,$data);
+    }
 }

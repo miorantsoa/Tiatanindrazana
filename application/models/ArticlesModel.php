@@ -127,8 +127,11 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
     //fonction utilisé pour la recherche
-    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset){
+    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset,$idjournal=null){
         $this->db->limit($offset,$limit);
+        if($idjournal!=null){
+            $this->db->where('idjournal',$idjournal);
+        }
         if($titre!=null && $contenu!=null && $resume!=null){
             $this->db->like('titre',$titre);
             $this->db->or_like('contenue',$contenu);
@@ -152,6 +155,10 @@ class ArticlesModel extends CI_Model {
             $this->db->where('dateparution',$date1);
         if($laune!=null)
             $this->db->where('laune',$laune);
+        $this->db->where('idcategorie <> ',11);
+        $this->db->where('idcategorie <> ',12);
+        $this->db->where('idcategorie <> ',13);
+        $this->db->order_by('libelle',"ASC");
         $article = $this->db->get('detail_article');
         return $article->result();
     }
@@ -173,6 +180,9 @@ class ArticlesModel extends CI_Model {
 
     public function getArticlesByJournal($idJoournal){
         $this->db->where('idjournal',$idJoournal);
+        $this->db->where('idcategorie <> ',11);
+        $this->db->where('idcategorie <> ',12);
+        $this->db->where('idcategorie <> ',13);
         $articles = $this->db->get('article_journal');
         return $articles->result();
     }

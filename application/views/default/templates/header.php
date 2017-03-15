@@ -60,7 +60,7 @@
         <ul class="nav-menu pull-left">
             <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
             <li><a href="<?= base_url("accueil")?>">Ilaiko</a></li>
-            <li><a href="<?= base_url("accueil")?>">Tahiry</a></li>
+            <li><a href="<?= base_url("accueil/archive")?>">Tahiry</a></li>
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
         </ul>
         <!-- Search Form -->

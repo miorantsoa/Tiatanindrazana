@@ -1088,7 +1088,10 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 /* Homepage Posts */
 
 .post { margin-bottom:20px;	}
-	.post figure { position:relative; }
+	.post figure { position:relative;
+		height:200px;
+		overflow: hidden;
+	}
 		.post figure .cat-name {
 			position:absolute;
 			bottom:0;
