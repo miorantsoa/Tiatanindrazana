@@ -48,6 +48,7 @@ class Accueil extends CI_Controller{
         $article = $this->articlesmodel->getById($id)[0];
         if(!$this->session->userdata('user') && $article->niveau != 1){
             $data = $this->indexData();
+            $data['fil_actu'] = $this->filactu_model->getFilActu();
             $data['titre'] = "Tonga soa : Tia Tanindrazana";
             $data['error'] = "erreur";
             $this->homeView('accueil',$data,$data,$data);
@@ -95,7 +96,7 @@ class Accueil extends CI_Controller{
         $this->load->view('default/contact',$data);
         $this->load->view('default/templates/footer');
     }
-    public function recherche_simple($query = null,$limit = 0,$offset = 1, $page= 1){
+    public function recherche_simple($query = null,$limit = 0,$offset = 5, $page= 1){
         if($this->input->post('search'))
             $query = $this->input->post('search');
         if($query!=null)

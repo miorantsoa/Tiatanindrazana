@@ -25,10 +25,10 @@
                     <div class="content">
                         <div class="header">
                             <span class="date">
-                            <span class="day"><?= date('d',strtotime($laune->dateparution)) ?></span>
+                            <span class="day"><?= date('d',strtotime($laune->datepublication)) ?></span>
                             <span class="date-details">
-                            <span class="year"><?= date('Y',strtotime($laune->dateparution))?></span>
-                            <span class="month"><?= date('M',strtotime($laune->dateparution))?></span>
+                            <span class="year"><?= date('Y',strtotime($laune->datepublication))?></span>
+                            <span class="month"><?= date('M',strtotime($laune->datepublication))?></span>
                             </span>
                             </span>
                             <h3><a href="<?= base_url('accueil/detailArticle/'.$laune->idarticle)?>"><?= $laune->titre?></a></h3>
