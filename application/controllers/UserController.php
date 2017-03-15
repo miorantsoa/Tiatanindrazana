@@ -9,7 +9,8 @@ class UserController extends CI_Controller
 {
     public function addUser()
     {
-        $config = $this->configUpload();
+        var_dump($_FILES);
+        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
         $this->load->library('upload', $config);
         $lienpdp = null;
         $lienrectocin =null;
@@ -21,6 +22,8 @@ class UserController extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
             $lienpdp = 'upload/infouser/' . $data['upload_data']['file_name'];
         }
+        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"rectocin");
+        $this->load->library('upload', $config);
         if (!$this->upload->do_upload('lienimagerectocin')) {
             $error = array('error' => $this->upload->display_errors());
         }
@@ -28,6 +31,8 @@ class UserController extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
             $lienrectocin = 'upload/infouser/' . $data['upload_data']['file_name'];
         }
+        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"versocin");
+        $this->load->library('upload', $config);
         if (!$this->upload->do_upload('lienimageversocin')) {
             $error = array('error' => $this->upload->display_errors());
         }
@@ -37,9 +42,10 @@ class UserController extends CI_Controller
         }
 
         /**INSERT INTO `abonnee`(`idabonnement`, `civilite`, `nomutilisateur`, `prenomutilisateur`, `naissanceutilisateur`, `cin`, `datedelivrancecin`, `lieudelivrancecin`, `liencin_recto`, `liencin_verso`, `emailutilisateur`, `identifiant`, `motdepasse`, `statututilisateur`, `imageprofile`) VALUES (**/
+                                                        /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
         $this->load->model('abonneemodel');
-        $this->pubmodel->insertUtilisateur($this->input->post('idabonnement'), $this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'),$this->input->post('cin'),$this->input->post('datedelivrancecin'),$this->input->post('lieudelivrancecin'),$lienrectocin,$lienversocin, $this->input->post('emailutilisateur'),$this->input->post('identifiant'),$this->input->post('motdepasse'),$this->input->post('statututilisateur'),$lienpdp);
-        redirect('admin/ajoutpub', 'refresh');
+        $this->abonneemodel->insertUtilisateur('1', $this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'),$this->input->post('cin'),$this->input->post('datedelivrancecin'),$this->input->post('lieudelivrancecin'),$lienrectocin,$lienversocin, $this->input->post('emailutilisateur'),$this->input->post('identifiant'),$this->input->post('motdepasse'),'0',$lienpdp);
+     //   redirect('/', 'refresh');
     }
 
 
@@ -50,7 +56,7 @@ class UserController extends CI_Controller
         $config['max_size'] = 8000;
         $config['max_width'] = 2024;
         $config['max_height'] = 1768;
-        $config['file_name'] = $nomutilisateur . $prenomutilisateur . $detail;
+        $config['file_name'] = $nomutilisateur .'-'. $prenomutilisateur .'-'. $detail;
         return $config;
     }
 }
