@@ -48,6 +48,16 @@ class InfoUtileController extends CI_Controller {
         redirect('admin/ajoutInfoUtile');
     }
     public function updateInfoUtile(){
-
+        $config = $this->configUpload();
+        $this->load->library('upload',$config);
+        $photo = null;
+        var_dump($_POST);
+        if (!$this->upload->do_upload('photo')) {
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $photo = 'upload/info_utile/'. $data['upload_data']['file_name'];
+        }
     }
 }

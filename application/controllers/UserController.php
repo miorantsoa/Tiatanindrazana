@@ -23,8 +23,8 @@ class UserController extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
             $lienpdp = 'upload/infouser/' . $data['upload_data']['file_name'];
         }
-        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"rectocin");
-        $this->load->library('upload', $config);
+        $config1 = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"rectocin");
+        $this->load->library('upload', $config1);
         if (!$this->upload->do_upload('lienimagerectocin')) {
             $error = array('error' => $this->upload->display_errors());
             var_dump($error);
@@ -33,8 +33,8 @@ class UserController extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
             $lienrectocin = 'upload/infouser/' . $data['upload_data']['file_name'];
         }
-        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"versocin");
-        $this->load->library('upload', $config);
+        $config2 = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"versocin");
+        $this->load->library('upload', $config2);
         if (!$this->upload->do_upload('lienimageversocin')) {
             $error = array('error' => $this->upload->display_errors());
             var_dump($error);

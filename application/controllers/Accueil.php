@@ -62,6 +62,7 @@ class Accueil extends CI_Controller{
         }
         
     }
+
     public function detail_categorie($id,$page = 1,$nbreponse = 10){
         $data = $this->indexData();
         $articles =  $this->articlesmodel->getByRubrique($id);
@@ -139,5 +140,11 @@ class Accueil extends CI_Controller{
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/inscription',$data);
         $this->load->view('default/templates/footer');
+    }
+    public function addCommentaire(){
+        $nomprenom = $this->input->post('nom');
+        $email = $this->input->post('email');
+        $commentaire = $this->input->post('commentaire');
+        $idarticle = $this->input->post('article');
     }
 }
