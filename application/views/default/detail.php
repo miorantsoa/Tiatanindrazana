@@ -11,14 +11,13 @@
             <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/full/4.jpg"')?>" alt="Image" />
             <div class="head-section-content">
                 <h1><?= $article->titre?></h1>
-                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="blog_posts.html" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#comments" title="View all comments">8 comments</a></p>
+                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="blog_posts.html" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#comments" title="View all comments">8 comments</a><a name="fb_share" type="box_count" share_url="http://www.example.com/page.html"></a></p>
             </div>
         </figure>
 
         <div class="content">
             <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
            <?= $article->contenue?>
-
         </div> <!-- End Content -->
 
         <div class="sep-border no-margin-bottom"></div> <!-- Separator -->
@@ -173,3 +172,4 @@
 
     </div> <!-- End Row-Fluid -->
 </div> <!-- End Main -->
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
