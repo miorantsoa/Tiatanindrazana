@@ -12,8 +12,9 @@ class AbonneeModel extends CI_Model {
         parent::__construct();
     }
 
-    public function insertUtilisateur($civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$imageprofile){
+    public function insertUtilisateur($idabonnement,$civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile){
         $data = array(
+            'idabonnement' => $idabonnement,
             'civilite' => $civilite,
             'nomutilisateur' => $nom,
             'prenomutilisateur' => $prenom,
@@ -26,6 +27,7 @@ class AbonneeModel extends CI_Model {
             'emailutilisateur' => $email,
             'identifiant' => $identifiant,
             'motdepasse' => $password,
+            'statututilisateur' => $statuulisateur,
             'imageprofile' => $imageprofile,
         );
         $this->db->insert('abonnee',$data);
