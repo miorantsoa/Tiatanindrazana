@@ -1087,8 +1087,11 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 
 /* Homepage Posts */
 
-.post { margin-bottom:20px;	}
-	.post figure { position:relative; }
+.post { margin-bottom:20px;}
+	.post figure { position:relative;
+		height:200px;
+		overflow: hidden;
+	}
 		.post figure .cat-name {
 			position:absolute;
 			bottom:0;
@@ -1116,7 +1119,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 		border:1px solid #dadada;
 	}
 		.post .text h2 {
-			font-size:24px;
+			font-size:18px;
 			line-height:1.25em;
 			border-bottom:2px dashed #dadada;
 			padding-bottom:20px;

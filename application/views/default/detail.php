@@ -16,6 +16,7 @@
         </figure>
 
         <div class="content">
+            <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
            <?= $article->contenue?>
 
         </div> <!-- End Content -->
@@ -39,23 +40,26 @@
             <h3>Mitovy sokajy</h3>
             <?php
                 $count = 1;
-                foreach ($article_lie as $article):
+                for($i = 0 ; $i<count($article_lie);$i++){
+                    if($i<4){
             ?>
             <!-- One -->
             <div class="<?= ($count == 1) ? "item span3 no-margin-left" : "item span3"?>">
                 <a href="<?= base_url('accueil/detailArticle/'.$article->idarticle)?>">
                     <figure class="figure-hover">
-                        <img src="<?php echo ($article->lien_image_une) ? base_url($article->lien_image_une) : base_url('assets/default/images/content/300/4.jpg')?>" alt="Thumbnail 1" />
+                        <img src="<?php echo ($article_lie[$i]->lien_image_une) ? base_url($article_lie[$i]->lien_image_une) : base_url('assets/default/images/content/300/4.jpg')?>" alt="Thumbnail 1" />
                         <div class="figure-hover-masked">
                             <p class="icon-plus"></p>
                         </div>
                     </figure>
                 </a>
-                <p><?= $article->titre?></p>
+                <p><?= $article_lie[$i]->titre?></p>
             </div>
             <?php
-                $count++;
-                endforeach;?>
+                        $count++;
+                    }
+
+            }?>
 
         </div> <!-- End Related-Posts -->
 

@@ -45,6 +45,7 @@ class Journal extends CI_Model{
             $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         $this->db->order_by('datepublication',$ordre);
         $journal = $this->db->get('journal');
+        return $journal->result();
     }
     public function getLastJournal(){
         $this->db->order_by('dateparution','DESC');
