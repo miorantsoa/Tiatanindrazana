@@ -69,14 +69,18 @@ class ArticleLibrarie{
         if($reponseSize <= $nbReponse)
             return 1;
         else{
-           if($reponseSize % $nbReponse!=0){
-               $pages = ($reponseSize / $nbReponse) + 1;
-               return $pages;
-           }
-           else{
-               return $reponseSize / $nbReponse;
-           }
+           return round(($reponseSize / $nbReponse),0,PHP_ROUND_HALF_UP);
 
         }
+    }
+    public function getLimit($page,$per_page){
+        if($page == 1){
+            return $page;
+        }
+        $limit = 0;
+        for($i = 1; $i<$page; $i++){
+            $limit +=$per_page;
+        }
+        return $limit;
     }
 }

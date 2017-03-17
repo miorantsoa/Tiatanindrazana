@@ -13,6 +13,7 @@ class Accueil extends CI_Controller{
         $this->load->model("articlesmodel");
         $this->load->model("journal");
         $this->load->model("pubmodel");
+        $this->load->library("pagination");
         $this->load->library("articlelibrarie");
         $this->load->model("filactu_model");
     }
@@ -63,17 +64,24 @@ class Accueil extends CI_Controller{
         
     }
 
-    public function detail_categorie($id,$page = 1,$nbreponse = 10){
+    public function detail_categorie($id,$page = 1,$limit = 0){
         $data = $this->indexData();
         $articles =  $this->articlesmodel->getByRubrique($id);
         $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
+        $per_page = 2;
+
+        $resultats = $this->articlesmodel->get(null,$rubrique->libelle,null,null,null,null,null,$per_page,$limit);
+        $data['results'] = $resultats;
+        $data['limit'] = $limit;
+        $data["links"] = $this->pagination->create_links();
+        /***************Fin pagination************/
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
-        $resultats = $this->articlesmodel->get(null,$rubrique->libelle,null,null,null,null,null,$nbreponse,$page);
         $data['categorie']= $rubrique;
+        $data['per_page'] = $per_page;
         $data['article_lie'] = $articles;
         $data['active'] = $rubrique->libelle;
         $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
-        $data['nbreponse'] = $nbreponse;
+        $data['nbreponse'] = $per_page;
         $data['page'] = $page;
         $this->homeView('detailcategorie',$data,$data);
     }
@@ -97,7 +105,8 @@ class Accueil extends CI_Controller{
         $this->load->view('default/contact',$data);
         $this->load->view('default/templates/footer');
     }
-    public function recherche_simple($query = null,$limit = 0,$offset = 5, $page= 1){
+    public function recherche_simple($query = null,$page = 1,$limit = 0){
+        $per_page = 10;
         if($this->input->post('search'))
             $query = $this->input->post('search');
         if($query!=null)
@@ -105,12 +114,14 @@ class Accueil extends CI_Controller{
         $data = $this->indexData();
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
         $all = $this->articlesmodel->get($query,null,$query,$query,null,null,null,null,null);
-        $resultats = $this->articlesmodel->get($query,null,$query,$query,null,null,null,$limit,$offset);
-        $data['articles'] = $resultats;
+        $resultats = $this->articlesmodel->get($query,null,$query,$query,null,null,null,$per_page,$limit);
+        $data['articles'] = $all;
         $data['all'] =  $all;
         $data['recherche'] = $query;
+        $data['results'] = $resultats;
+        $data['limit'] = $limit;
         $data['titre'] = "Valin'ny fikarohana : ".$query." :Tiatanindrazana";
-        $data['nbreponse'] = $offset;
+        $data['nbreponse'] = $per_page;
         $data['page'] = $page;
         $this->homeView('resultat_recherche',$data,$data);
     }
@@ -146,5 +157,32 @@ class Accueil extends CI_Controller{
         $email = $this->input->post('email');
         $commentaire = $this->input->post('commentaire');
         $idarticle = $this->input->post('article');
+        $this->load->model('commentairemodel');
+        $this->commentairemodel->insert($nomprenom,$email,$commentaire,$idarticle);
+    }
+    public function addFavoris($idarticle){
+        $message = "";
+        $article = $this->articlesmodel->getById($idarticle)[0];
+        if($this->$this->session->userdata('user')){
+            $user = $this->session->userdata('user');
+            $this->load->model('abonneemodel');
+            $this->load->library('globalfunction');
+            if(!$this->globalfunction->isFavorisExit($idarticle,$user->iduser)){
+                $this->abonneemodel->addFavoris($user->iduser, $idarticle);
+                $message = "Tontosa ny fanampiana favoris nataonao";
+            }
+            else{
+                $message = "Efa anisan'ny favoris-nao io lahatsoratra io";
+            }
+        }
+        $data = $this->indexData();
+        $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
+        $data['article'] = $article;
+        $data['titre'] =  $article->titre." : Tia Tanindrazana";
+        $this->homeView('detail',$data,$data);
+        $message = "Tsy afaka manao an'io operation io ianao";
+        $data['message'] = $message;
+        //redirection vers la page de l'article
+        $this->homeView('detail',$data,$data);
     }
 }

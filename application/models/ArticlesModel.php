@@ -127,8 +127,8 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
     //fonction utilisé pour la recherche
-    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset,$idjournal=null){
-        $this->db->limit($offset,$limit);
+    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$idjournal=null){
+        $this->db->limit($limit,$start);
         if($idjournal!=null){
             $this->db->where('idjournal',$idjournal);
         }

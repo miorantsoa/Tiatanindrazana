@@ -8,11 +8,11 @@
             <input type="text" name="search" value="<?= $recherche?>" />
             <input type="submit" name="submit" value="Karohy" class="btn btn-blue" />
         </form>
-        <p class="search-info">Valiny <?= count($articles)?> amin'ny <i><?= count($articles)?></i></p>
+        <p class="search-info">Valiny <?= count($results)?> amin'ny <i><?= count($articles)?></i></p>
 
         <div class="sep-border margin-bottom20"></div> <!-- Separator -->
 
-        <?php foreach ($articles as $article):?>
+        <?php foreach ($results as $article):?>
         <div class="post clearfix">
             <figure>
                 <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/300/1.jpg')?>" alt="Post 1" />
@@ -36,7 +36,7 @@
                 <?php
                 $nbpage = $this->articlelibrarie->getNbPage(count($all),$nbreponse);
                 for($i = 1; $i<=$nbpage;$i++){?>
-                    <li class="active"><a href="<?= base_url('accueil/recherche_simple/'.$recherche.'/'.($i-1).'/'.$nbreponse.'/'.$i)?>"><?= $i?></a></li>
+                    <li class="active"><a href="<?= base_url('accueil/recherche_simple/'.$recherche.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$nbreponse))?>"><?= $i?></a></li>
                 <?php }?>
             </ul>
             <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>

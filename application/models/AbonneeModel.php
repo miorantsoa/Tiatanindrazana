@@ -52,6 +52,30 @@ class AbonneeModel extends CI_Model {
         $result = $this->db->get('abonnee');
         return $result->num_rows();
     }
+    /****Favoris*****/
+    public function addFavoris($iduser, $idarticle){
+        $data = array(
+            "idutilisateur" => $iduser,
+            "idarticle" => $idarticle
+        );
+        $this->db->insert('favoris',$data);
+    }
+    public function deleteFavoris($iduser,$idarticles){
+        $this->db->where('idutilisateur',$iduser);
+        $this->db->where('idarticle',$idarticles);
+        $this->db->delete('favoris');
+    }
+    public function getFavoris($iduser,$idfavoris){
+        $this->db->select('*');
+        $this->db->from('favoris');
+        $this->db->join('detail_article', 'favoris.idarticle = detail_article.idarticle');
+        $this->db->where('idutilisateur',$iduser);
+        if($idfavoris!=null)
+            $this->db->where('idfavoris',$idfavoris);
+        $favoris = $this->db->get('favoris');
+        return $favoris->result();
+    }
+    /****!Fin Favoris*******/
 
 
 
