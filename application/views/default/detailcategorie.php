@@ -6,6 +6,24 @@
             <span class="base">Ato no misy anao</span>
             <p><a href="<?= base_url('accueil')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Sokajy: <a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie)?>" title="View articles in Technology"><?= $categorie->libelle?></a></p>
         </div> <!-- End Breadcrumb -->
+        <div class="filtre search-page">
+            <form name="fikarohana" method="post" action="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie)?>">
+                <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+               <select name="ordre" id="ordre">
+                    <option value="">Fantina amin'ny daty</option>
+                    <option value="DESC">Daty midina</option>
+                    <option value="ASC">Daty miakatra</option>
+                </select>
+                <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+            </form>
+        </div>
+        <div class="filtre search-page">
+            <form name="fikarohana" method="post" action="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie)?>">
+                <input type="date" name="date1" title="Daty niatombohaha">
+                <input type="date" name="date2" title="Daty niafarana">
+                <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+            </form>
+        </div>
         <?php foreach ($results as $article):?>
         <!-- Four -->
         <div class="post clearfix">
@@ -29,8 +47,12 @@
             <ul>
                 <?php
                 $nbpage = $this->articlelibrarie->getNbPage(count($article_lie),$nbreponse);
+                $query = $filtre['query'];
+                if($query == null){
+                    $query = "-";
+                }
                 for($i = 1; $i<=$nbpage;$i++){?>
-                    <li class="active"><a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page))?>"><?= $i?></a></li>
+                    <li class="active"><a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date_1'].'/'.$filtre['date_2']?>"><?= $i?></a></li>
                 <?php }?>
             </ul>
             <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>

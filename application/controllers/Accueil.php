@@ -16,6 +16,7 @@ class Accueil extends CI_Controller{
         $this->load->library("pagination");
         $this->load->library("articlelibrarie");
         $this->load->model("filactu_model");
+        $this->load->model('infoutilemodel');
     }
 
     public function homeView($view,$data = null,$titre=null){
@@ -64,17 +65,31 @@ class Accueil extends CI_Controller{
         
     }
 
-    public function detail_categorie($id,$page = 1,$limit = 0){
+    public function detail_categorie($id,$page = 1,$limit = 0,$q=null,$date1=null,$date2=null){
         $data = $this->indexData();
-        $articles =  $this->articlesmodel->getByRubrique($id);
+        $query = $this->input->post('recherche');
+        if($q!=null){
+            $query = $q;
+        }
+        if($q == "-"){
+            $query = null;
+        }
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
+
+        $articles =  $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));
         $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
         $per_page = 2;
-
-        $resultats = $this->articlesmodel->get(null,$rubrique->libelle,null,null,null,null,null,$per_page,$limit);
+        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
+        $resultats = $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,$per_page,$limit,$this->input->post('ordre'));
         $data['results'] = $resultats;
         $data['limit'] = $limit;
-        $data["links"] = $this->pagination->create_links();
-        /***************Fin pagination************/
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
         $data['categorie']= $rubrique;
         $data['per_page'] = $per_page;
@@ -83,6 +98,11 @@ class Accueil extends CI_Controller{
         $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
         $data['nbreponse'] = $per_page;
         $data['page'] = $page;
+        $data['filtre'] = array(
+            "query" => $query,
+            "date_1" => $date_1,
+            "date_2"=> $date_2
+        );
         $this->homeView('detailcategorie',$data,$data);
     }
     public function list_sarisary($id){
@@ -105,6 +125,49 @@ class Accueil extends CI_Controller{
         $this->load->view('default/contact',$data);
         $this->load->view('default/templates/footer');
     }
+    /*Info utile*/
+    public function info_utile(){
+        $data = $this->indexData();
+        $data['titre'] = "Ilaiko | Info util : Tia Tanindrazana";
+        $data['info_util'] = $this->infoutilemodel->get();
+        $data['categories'] = $this->infoutilemodel->getCategorie(1);
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/info_util',$data);
+        $this->load->view('default/templates/footer');
+    }
+
+    public function detail_info_utile($id){
+        $data = $this->indexData();
+        $info_util = $this->infoutilemodel->get($id);
+        $associe = $this->infoutilemodel->get();//mitovy sokajy
+        $data['associe'] = $associe;
+        if(count($info_util)!=0) {
+            $data['titre'] = $info_util[0]->titre . " : Tia Tanindrazana";
+            $data['info_utile'] = $info_util[0];
+        }
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/detail_info_utile',$data);
+        $this->load->view('default/templates/footer');
+    }
+    public function filtre_info_utile(){
+        $data = $this->indexData();
+        $data['titre'] = "Ilaiko | Info util : Tia Tanindrazana";
+        $data['categories'] = $this->infoutilemodel->getCategorie(1);
+        //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
+        $resultat = $this->infoutilemodel->get(null,$this->input->post('recherche'),$this->input->post('categorie'),$this->input->post('recherche'),$this->input->post('ordre'),$this->input->post('date1'),$this->input->post('date2'));
+        $data['info_util']=array();
+        if(count($resultat)) {
+            $data['info_util'] = $resultat;
+        }
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/info_util',$data);
+        $this->load->view('default/templates/footer');
+    }
+
+
+    /*Info utile*/
+
+    /*Recherche*/
     public function recherche_simple($query = null,$page = 1,$limit = 0){
         $per_page = 10;
         if($this->input->post('search'))

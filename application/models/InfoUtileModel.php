@@ -19,7 +19,7 @@ class InfoUtileModel extends CI_Model {
         $this->db->update('infoutil',$data);
     }
 
-    public function get($id=null,$titre=null,$idcategorie=null,$contenu=null,$date1=null,$date2=null){
+    public function get($id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null){
         if($id!=null)
             $this->db->where('idbeinfo',$id);
         if($titre!=null && $contenu!=null){
@@ -31,19 +31,30 @@ class InfoUtileModel extends CI_Model {
         if($contenu!=null && $titre==null)
             $this->db->like('contenue',$contenu);
         if($date1!=null && $date2!=null)
-            $this->db->where('derniermaj BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+            $this->db->where('dernieremaj BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         if($date1!=null && $date2==null){
             $this->db->where('dernieremaj',$date1);
         }
-        if($idcategorie!=null)
-            $this->db->where('idcatbeinfo',$idcategorie);
+        if($idcategorie!=null) {
+            $this->db->where('idcatbeinfo', $idcategorie);
+            $this->db->where('idmere', $idcategorie);
+        }
+        $this->db->order_by('dernieremaj',$ordre);
         $infoutil = $this->db->get('detail_info_utile');
         return $infoutil->result();
     }
 
-    public function getCategorie(){
-        $categories = $this->db->get('categorieinfoutile');
+    public function getCategorie($niveau = null){//Selection de tout les rubriques mères
+        if($niveau!=null){
+            $this->db->where('niveau',$niveau);
+        }
+        $categories = $this->db->get('info_utile_categorie');
         return $categories->result();
+    }
+    public function getSousCategorieByIdMere($id){
+        $this->db->where('idmere',$id);
+        $categorie = $this->db->get('info_utile_categorie');
+        return $categorie->result();
     }
 
 }

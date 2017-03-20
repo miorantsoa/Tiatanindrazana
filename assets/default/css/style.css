@@ -332,7 +332,7 @@ input[type="text"], textarea {
 	-o-transition:none;
 	transition:none;
 }
-input[type="text"] {
+input[type="text"],input[type="date"]{
 	height:36px;
 	padding:0px 10px;
 }
@@ -1537,7 +1537,13 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 		color:#f15620;
 		font-style:normal;
 	}
-
+.search-page .filtre-form{
+	width: 40% !important;
+}
+.filtre select{
+	height:36px !important;
+	margin-bottom:0;
+}
 .search-page form {
 	padding:10px;
 	background-color:#f3f3f3;
@@ -1550,6 +1556,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 .search-page input[type="submit"] {
 	width:15%;
 	margin-left:1%;
+	margin-bottom:0;
 }
 .search-page .search-info {
 	text-align:right;
