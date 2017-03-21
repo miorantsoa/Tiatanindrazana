@@ -105,9 +105,24 @@ class Accueil extends CI_Controller{
         );
         $this->homeView('detailcategorie',$data,$data);
     }
-    public function list_sarisary($id){
+    public function list_sarisary($id,$q=null,$date1=null,$date2=null){
         $data = $this->indexData();
-        $sarisary =  $this->articlesmodel->getByRubrique($id);
+        $query = $this->input->post('recherche');
+        if($q!=null){
+            $query = $q;
+        }
+        if($q == "-"){
+            $query = null;
+        }
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
+        $sarisary =  $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
         $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
         $data['categorie']= $rubrique;

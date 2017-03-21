@@ -5,11 +5,29 @@
         <p><a href="<?= base_url('accueilcontroller')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/list_sarisary/'.$categorie->idcategorie)?>" title="Vaovao rehetra ao amin'ny sokajy <?= $categorie->libelle?>"><?= $categorie->libelle ?></a></p>
     </div> <!-- End Breadcrumb -->
 
+    <div class="filtre search-page">
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/list_sarisary/'.$categorie->idcategorie)?>">
+            <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+            <select name="ordre" id="ordre">
+                <option value="">Fantina amin'ny daty</option>
+                <option value="DESC">Daty midina</option>
+                <option value="ASC">Daty miakatra</option>
+            </select>
+            <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+        </form>
+    </div>
+    <div class="filtre search-page">
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/list_sarisary/'.$categorie->idcategorie)?>">
+            <input type="date" name="date1" title="Daty niatombohaha">
+            <input type="date" name="date2" title="Daty niafarana">
+            <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+        </form>
+    </div>
     <div class="margin-top40">
         <ul class="portofolio-filter">
             <li><a href="#" class="current active" data-filter="*">Sarisary rehetra</a></li>
             <?php foreach ($sous_rubrique as $rubrique):?>
-            <li><a href="#" class="current" data-filter=".<?php echo str_replace(' ','',$rubrique->libelle)?>"><?= $rubrique->libelle?></a></li>
+            <li><a href="#" data-filter=".<?php echo str_replace(' ','',$rubrique->libelle)?>"><?= $rubrique->libelle?></a></li>
             <?php endforeach;?>
             <!--<li><a href="#" data-filter=".web-design">Web Design</a></li>
             <li><a href="#" data-filter=".typography">Typography</a></li>
