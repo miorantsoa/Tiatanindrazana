@@ -45,10 +45,15 @@ class UserController extends CI_Controller
         }
 
         /**INSERT INTO `abonnee`(`idabonnement`, `civilite`, `nomutilisateur`, `prenomutilisateur`, `naissanceutilisateur`, `cin`, `datedelivrancecin`, `lieudelivrancecin`, `liencin_recto`, `liencin_verso`, `emailutilisateur`, `identifiant`, `motdepasse`, `statututilisateur`, `imageprofile`) VALUES (**/
-                                                        /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
-        $this->load->model('abonneemodel');
-        $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'),$this->input->post('cin'),$this->input->post('datedelivrancecin'),$this->input->post('lieudelivrancecin'),$lienrectocin,$lienversocin, $this->input->post('emailutilisateur'),$this->input->post('identifiant'),$this->input->post('motdepasse'),'0',$lienpdp);
-     //   redirect('/', 'refresh');
+         /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
+        if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
+            $this->load->model('abonneemodel');
+            $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
+            //   redirect('/', 'refresh');
+        }
+        else{
+            var_dump($this->input->post('motdepasse'));
+        }
     }
 
 

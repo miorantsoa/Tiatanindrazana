@@ -3,13 +3,10 @@
     <div class="row-fluid">
 
         <h1>fisoratana anarana / Inscription</h1>
-        <p>`civilite`, `nomutilisateur`, `prenomutilisateur`, `naissanceutilisateur`, `cin`, `datedelivrancecin`, `lieudelivrancecin`, `liencin_recto`, `liencin_verso`, `emailutilisateur`, `identifiant`, `motdepasse`, `statututilisateur`, `imageprofile`</p>
 
         <?php
         $data = array();
-        if(isset($article)){
-            $data = $article[0];
-        }
+
         $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
         $lien_action  ='usercontroller/addUser';
         echo form_open_multipart($lien_action,$attributes);
@@ -30,6 +27,12 @@
                     Mrs.
                 </label>
             </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios2" value="Mlle.">
+                    Mlle.
+                </label>
+            </div>
 
             <label>Anarana / Nom</label>
             <input type="text" name="nomutilisateur" maxlength="80" required/>
@@ -48,12 +51,12 @@
             <label>Sary verso karapanondro / image verso CIN</label>
             <input id="lienimageversocin" name="lienimageversocin" type="file">
             <label>Mailaka / E-mail <span class="font-required">*</span></label>
-            <input type="text" name="emailutilisateur" maxlength="225" required/>
+            <input type="email" name="emailutilisateur" maxlength="225" required/>
             <p></p>
             <div class="sep-border no-margin-top"></div>
             <p></p>
             <h4>Ny momba ny kaonty / a propos de votre compte:</h4>
-            <label>Anrana fahafantarana / Nom d'utilisateur</label>
+            <label>Anarana fahafantarana / Nom d'utilisateur</label>
             <input type="text" name="identifiant" required/>
             <label>Tenimiafina / Mot de passe</label>
             <input type="password" name="motdepasse" required>
@@ -61,7 +64,27 @@
             <input type="password" name="motdepasseverif" required>
             <label>Sary / photo de profil</label>
             <input id="lienimagepdp" name="lienimagepdp" type="file">
+
+            <p></p>
+            <div class="sep-border no-margin-top"></div>
+            <p></p>
+            <h4>Choix de l'offre:</h4>
+            <label>Type Abonnement</label>
+            <select name="rubrique-mere" id="rubrique-mere">
+                <option value="">--choix type abonnement--</option>
+                <?php foreach ($typeabonnement as $typeabonnement):?>
+                    <option value="<?=$typeabonnement->idtypeabon?>"><?=$typeabonnement->libelle?></option>
+                <?php endforeach;?>
+            </select>
+            <label>duree abonnement</label>
+            <select name="rubrique-mere" id="rubrique-mere">
+                <option value="">--choix durree--</option>
+                <?php foreach ($tarifabonnement as $tarifabonnement):?>
+                <option value="<?=$tarifabonnement->idtarif?>"><?=$tarifabonnement->durreeabonnement?></option>
+                <?php endforeach;?>
+            </select>
             <input type="submit" name="submit" value="S'inscrire" class="btn btn-blue" />
+
 
             <div class="data-status"></div> <!-- data submit status -->
 
