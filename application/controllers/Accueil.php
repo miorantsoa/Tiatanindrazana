@@ -16,7 +16,8 @@ class Accueil extends CI_Controller{
         $this->load->library("pagination");
         $this->load->library("articlelibrarie");
         $this->load->model("filactu_model");
-        $this->load->model('infoutilemodel');
+        $this->load->model("infoutilemodel");
+        $this->load->model("abonnementmodel");
     }
 
     public function homeView($view,$data = null,$titre=null){
@@ -226,6 +227,8 @@ class Accueil extends CI_Controller{
     public function inscription(){
         $data = $this->indexData();
         $data['titre'] = "Inscription : Tia Tanindrazana";
+        $data['typeabonnement'] = $this->abonnementmodel->getTypeAbonnement();
+        $data['tarifabonnement'] = $this->abonnementmodel->getTarifAbonnement();
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/inscription',$data);
         $this->load->view('default/templates/footer');
@@ -262,5 +265,12 @@ class Accueil extends CI_Controller{
         $data['message'] = $message;
         //redirection vers la page de l'article
         $this->homeView('detail',$data,$data);
+    }
+    public function monCompte(){
+        $data = $this->indexData();
+        $data['titre'] = "Mon compte : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/monCompte',$data);
+        $this->load->view('default/templates/footer');
     }
 }

@@ -80,9 +80,10 @@
             <select name="rubrique-mere" id="rubrique-mere">
                 <option value="">--choix durree--</option>
                 <?php foreach ($tarifabonnement as $tarifabonnement):?>
-                <option value="<?=$tarifabonnement->idtarif?>"><?=$tarifabonnement->durreeabonnement?></option>
+                    <option value="<?=$tarifabonnement->idtarif?>"><?=$tarifabonnement->durreeabonnement?></option>
                 <?php endforeach;?>
             </select>
+
             <input type="submit" name="submit" value="S'inscrire" class="btn btn-blue" />
 
 
