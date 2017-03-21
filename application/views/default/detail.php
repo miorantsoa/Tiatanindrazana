@@ -44,7 +44,7 @@
             ?>
             <!-- One -->
             <div class="<?= ($count == 1) ? "item span3 no-margin-left" : "item span3"?>">
-                <a href="<?= base_url('accueil/detailArticle/'.$article->idarticle)?>">
+                <a href="<?= base_url('accueil/detailArticle/'.$article_lie[$i]->idarticle)?>">
                     <figure class="figure-hover">
                         <img src="<?php echo ($article_lie[$i]->lien_image_une) ? base_url($article_lie[$i]->lien_image_une) : base_url('assets/default/images/content/300/4.jpg')?>" alt="Thumbnail 1" />
                         <div class="figure-hover-masked">

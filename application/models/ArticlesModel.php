@@ -127,8 +127,8 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
     //fonction utilisé pour la recherche
-    public function get($titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset,$idjournal=null){
-        $this->db->limit($offset,$limit);
+    public function get($titre=null,$rubrique=null,$contenu=null,$resume=null,$date1=null,$date2=null,$laune=false,$limit=null,$start=null,$ordre='DESC',$image=false,$idjournal=null){
+        $this->db->limit($limit,$start);
         if($idjournal!=null){
             $this->db->where('idjournal',$idjournal);
         }
@@ -140,8 +140,10 @@ class ArticlesModel extends CI_Model {
         if($titre != null && $contenu==null && $resume==null)
             $this->db->like('titre',$titre);
 
-        if($rubrique!=null)
-            $this->db->where('libelle',$rubrique);
+        if($rubrique!=null) {
+            $this->db->where('idcategorie', $rubrique);
+            $this->db->or_where('idmere', $rubrique);
+        }
 
         if($contenu!=null && $resume==null && $titre == null)
             $this->db->like('contenu',$contenu);
@@ -155,10 +157,11 @@ class ArticlesModel extends CI_Model {
             $this->db->where('dateparution',$date1);
         if($laune!=null)
             $this->db->where('laune',$laune);
-        $this->db->where('idcategorie <> ',11);
-        $this->db->where('idcategorie <> ',12);
-        $this->db->where('idcategorie <> ',13);
-        $this->db->order_by('libelle',"ASC");
+        if($image == false) {
+            $this->db->where('idmere <> ', 10);
+        }
+        //$this->db->order_by('libelle',"ASC");
+        $this->db->order_by('dateparution',$ordre);
         $article = $this->db->get('detail_article');
         return $article->result();
     }

@@ -72,19 +72,20 @@
         <!-- Navigation -->
         <ul class="nav-menu pull-left">
             <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
-            <li><a href="<?= base_url("accueil")?>">Ilaiko</a></li>
+            <li><a href="<?= base_url("accueil/info_utile")?>">Ilaiko</a></li>
             <li><a href="<?= base_url("accueil/archive")?>">Tahiry</a></li>
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
+        </ul>
+        <ul class="social pull-right">
+            <li class="glyphicon glyphicon-user"></a></li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook">Se connecter</a>
+        </ul>
+        <ul class="social pull-right">
+            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook">Hiditra pikambana</a>
         </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
             <input type="text" name="search" placeholder="Fikarohana ...." class="input-icon input-icon-search" />
         </form>
-
-        <!-- Social Media -->
-        <ul class="social pull-right">
-            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"><img src="<?= base_url()?>/assets/default/images/social/infocus/facebook-logo.png" alt="Facebook"></a></li>
-        </ul>
 
     </div> <!-- End Container -->
 </div> <!-- End Top-Navigation -->
