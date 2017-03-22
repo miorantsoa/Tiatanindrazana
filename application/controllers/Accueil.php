@@ -84,11 +84,11 @@ class Accueil extends CI_Controller{
             $date_2 = $date2;
         }
 
-        $articles =  $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));
+        $articles =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));
         $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
         $per_page = 2;
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
-        $resultats = $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,$per_page,$limit,$this->input->post('ordre'));
+        $resultats = $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,$per_page,$limit,$this->input->post('ordre'));
         $data['results'] = $resultats;
         $data['limit'] = $limit;
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
@@ -123,7 +123,7 @@ class Accueil extends CI_Controller{
         if($date2!=null){
             $date_2 = $date2;
         }
-        $sarisary =  $this->articlesmodel->get($query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
+        $sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
         $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
         $data['categorie']= $rubrique;
@@ -141,6 +141,18 @@ class Accueil extends CI_Controller{
         $this->load->view('default/contact',$data);
         $this->load->view('default/templates/footer');
     }
+
+    /***Fueilleter journal*/
+    public function feuilleter_journal(){
+        $data = $this->indexData();
+        $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/feuilleter_journal',$data);
+        $this->load->view('default/templates/footer');
+    }
+    /***Fueilleter journal*/
+
+
     /*Info utile*/
     public function info_utile(){
         $data = $this->indexData();
@@ -192,8 +204,8 @@ class Accueil extends CI_Controller{
             $query =$query;
         $data = $this->indexData();
         //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
-        $all = $this->articlesmodel->get($query,null,$query,$query,null,null,null,null,null);
-        $resultats = $this->articlesmodel->get($query,null,$query,$query,null,null,null,$per_page,$limit);
+        $all = $this->articlesmodel->get(null,$query,null,$query,$query,null,null,null,null,null);
+        $resultats = $this->articlesmodel->get(null,$query,null,$query,$query,null,null,null,$per_page,$limit);
         $data['articles'] = $all;
         $data['all'] =  $all;
         $data['recherche'] = $query;
@@ -209,6 +221,10 @@ class Accueil extends CI_Controller{
         //$id,$numparution,$date1,$date2
         $data['titre'] = "Archive : Tia Tanindrazana";
         $journal = $this->journal->get(null,$numparution,$date1,$date2);
+        $last_journal = $this->journal->getLastJournal();
+        if(count($last_journal)!=0){
+            $data['last_journal'] = $last_journal[0];
+        }
         $data['archive'] = $journal;
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/archive',$data);
@@ -216,14 +232,46 @@ class Accueil extends CI_Controller{
     }
     public function detailjournal($id){
         $data = $this->indexData();
-        $gazety = $this->articlesmodel->get(null,null,null,null,null,null,false,null,null,$id);
-        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$offset,$idjournal=null
-        $data['laune'] = $this->articlesmodel->get(null,null,null,null,null,null,true,null,null,$id)[0];
-        $data['articlejournal'] = $this->articlesmodel->get(null,null,null,null,null,null,false,null,null,$id);
-        $data['titre'] = "Gazety nivoaka ny ".$gazety[0]->dateparution."  : Tia Tanindrazana";
+        $gazety = $this->articlesmodel->getArticlesByJournal($id,false);//Tous les articles sauf la une
+        $une = $this->articlesmodel->getArticlesByJournal($id,true);//La une
+        if(count($une)!=0){
+            $data['laune'] = $une[0];
+        }
+        $data['articlejournal'] = $gazety;
+        if(count($gazety)!=0) {
+            $data['titre'] = "Gazety nivoaka ny " . $gazety[0]->dateparution . "  : Tia Tanindrazana";
+        }
+        else{
+            $data['titre'] = "Archive : Tia Tanindrazana";
+        }
         $data['fil_actu'] = $this->filactu_model->getFilActu();
         $this->homeView('accueil',$data,$data);
     }
+    public function filtre_journal($page = 1,$limit = 0,$date1=null,$date2=null){
+        $data = $this->indexData();
+        $per_page = 10;
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
+        $ordre = $this->input->post('ordre');
+        $data['titre'] = "Archive : Tia Tanindrazana";
+        $journal = $this->journal->get(null,null,null,null,$ordre,$per_page,$limit);
+        $last_journal = $this->journal->getLastJournal();
+        if(count($last_journal)!=0){
+            $data['last_journal'] = $last_journal[0];
+        }
+        $data['archive'] = $journal;
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/archive',$data);
+        $this->load->view('default/templates/footer');
+
+    }
+
     public function inscription(){
         $data = $this->indexData();
         $data['titre'] = "Inscription : Tia Tanindrazana";

@@ -31,15 +31,17 @@ class Journal extends CI_Model{
         $journal = $this->db->get('journal');
         return $journal->result();
     }
-    public function get($id,$numparution,$date1,$date2,$ordre = 'DESC'){//utiliser pour recherche avancé dans le journal
+    public function get($id,$numparution,$date1,$date2,$ordre = 'DESC',$limit=null,$start=null){//utiliser pour recherche avancé dans le journal
+        $this->db->limit($limit,$start);
         if($id!=null){
             $this->db->where('idjournal',$id);
         }
         if($numparution!=null)
             $this->db->where('numeroparution',$numparution);
 
-        if($date1!=null && $date2 == null)
-            $this->db->where('datepublication < ',$date1);
+        /*if($date1!=null && $date2 == null)
+            $date2 = date();
+            $this->db->where('datepublication < ',$date1);*/
 
         if($date1!=null && $date2!=null)
             $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
@@ -48,9 +50,9 @@ class Journal extends CI_Model{
         return $journal->result();
     }
     public function getLastJournal(){
-        $this->db->order_by('dateparution','DESC');
+        $this->db->order_by('datepublication','DESC');
         $journal = $this->db->get('journal');
-        return $journal->reslult();
+        return $journal->result();
     }
     //besoin d'une vue liant journal medias feuille journal -> view feuilles_journal
     //create view feuilles_journal as select * from  journal join feuille_journal on journal.idjournal = feuille_journal.idjournal join medias on feuille_journal.idmedias = medias.idmedias

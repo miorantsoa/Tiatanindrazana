@@ -1,31 +1,44 @@
-<div id="main" class="portofolio">
-    <div class="breadcrumb clearfix">
-        <span class="base">You are here</span>
-        <p><a href="index.html">Home</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Portofolio 4 Columns</p>
-    </div> <!-- End Breadcrumb -->
-
-    <div class="margin-top40">
-        <ul class="portofolio-filter">
-            <li><a href="#" class="current active" data-filter="*">All</a></li>
-            <li><a href="#" data-filter=".web-design">Web Design</a></li>
-            <li><a href="#" data-filter=".typography">Typography</a></li>
-            <li><a href="#" data-filter=".design-inspiration">Design Inspiration</a></li>
-            <li><a href="#" data-filter=".wordpress">Wordpress</a></li>
-        </ul> <!-- End Portofolio-Filter -->
-
-        <div class="portofolio-items row">
-            <?php foreach ($archive as $journal):?>
-            <div class="span3 item web-design wordpress"> <!-- One -->
-                <figure class="figure-overlay">
-                    <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>" title="View more detail about this project">
-                        <img src="<?= base_url($journal->liencouverture)?>" alt="Thumbnail 1" />
-                        <div><p>Gazety niseho ny <?= $journal->datepublication?></p></div>
-                    </a>
-                </figure>
-                <p>Gazety niseho ny <?= $journal->datepublication?></p>
+<div id="main" class="portofolio blog-posts image-preloader"">
+<div class="breadcrumb clearfix">
+    <span class="base">Ato no misy anao</span>
+    <p><a href="<?= base_url('accueil')?>">Tahiry</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Tahiry</p>
+</div> <!-- End Breadcrumb -->
+<div class="margin-top40">
+    <div class="filtre search-page">
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_journal')?>">
+            <span class="tile_header">Tahiry</span>
+            <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+            <select name="categorie" id="categorie">
+                <option value="">Fantina ara-tsokajy</option>
+            </select>
+            <select name="ordre" id="ordre">
+                <option value="">Fantina amin'ny daty</option>
+                <option value="DESC">Daty midina</option>
+                <option value="ASC">Daty miakatra</option>
+            </select>
+            <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+        </form>
+    </div>
+    <div class="span3">
+        <figure class="figure">
+            <img src="<?= base_url($last_journal->liencouverture)?>" alt="" class="img-thumbnail">
+        </figure>
+        <a href="<?= base_url('accueil/detailjournal/'.$last_journal->idjournal)?>" > <button class="btn btn-blue aligncenter span3 margin-top20">Hamaky</button></a>
+        <p>Gazety nivoaka ny <?= $last_journal->datepublication?></p>
+    </div>
+    <div class="span8 pull-right">
+        <div class="panel-danger ">
+            <div class="panel-body">
+                <?php foreach ($archive as $journal):?>
+                    <div class="span2 no-margin-left archive">
+                        <figure class="figure">
+                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                        </figure>
+                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
+                    </div>
+                <?php endforeach;?>
             </div>
-            <?php endforeach;?>
-        </div> <!-- End Portofolio-Items -->
-
-    </div> <!-- End Margin-Top40 -->
-</div> <!-- End Main -->
+        </div>
+    </div>
+</div>
+</div>

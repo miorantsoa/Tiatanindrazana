@@ -16,12 +16,12 @@
     <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>/assets/default/css/style.css">
-    <link rel="stylesheet" href="<?= base_url()?>/assets/default/css/color.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
