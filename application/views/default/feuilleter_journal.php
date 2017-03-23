@@ -27,25 +27,25 @@
                 <div class="panel-body">
                     <div class="span2 no-margin-left archive">
                         <figure class="figure">
-                            <a href=""><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/page_journal')?>"><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
                         </figure>
                         <p class="span2 margin-top20">Gazety ny 21/09/2017</p>
                     </div>
                     <div class="span2 archive">
                         <figure class="figure">
-                            <a href=""><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/page_journal')?>"><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
                         </figure>
                         <p class="span2 margin-top20">Gazety ny 21/09/2017</p>
                     </div>
                     <div class="span2 archive">
                         <figure class="figure">
-                            <a href=""><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/page_journal')?>"><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
                         </figure>
                         <p class="span2 margin-top20">Gazety ny 21/09/2017</p>
                     </div>
                     <div class="span2 archive">
                         <figure class="figure">
-                            <a href=""><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/page_journal')?>"><img src="<?= base_url('assets/default/images/couverture-17-03-14-1489481493.jpg')?>" alt="" class="img-thumbnail"></a>
                         </figure>
                         <p class="span2 margin-top20">Gazety ny 21/09/2017</p>
                     </div>

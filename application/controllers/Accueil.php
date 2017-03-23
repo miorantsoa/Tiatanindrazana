@@ -29,7 +29,6 @@ class Accueil extends CI_Controller{
     public function index(){
         $data = $this->indexData();
         $data['titre'] = "Tonga soa : Tia Tanindrazana";
-        $data['fil_actu'] = $this->filactu_model->getFilActu();
         $this->homeView('accueil',$data,$data);
     }
     //initialisation données ao @ accueil
@@ -41,6 +40,7 @@ class Accueil extends CI_Controller{
         $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
         $data['pub'] = $this->pubmodel->getPubByPosition(2);
+        $data['fil_actu'] = $this->filactu_model->getFilActu();
         $data['active'] = "";
         return $data;
     }
@@ -270,6 +270,10 @@ class Accueil extends CI_Controller{
         $this->load->view('default/archive',$data);
         $this->load->view('default/templates/footer');
 
+    }
+
+    public function page_journal(){
+        $this->load->view('default/page_journal');
     }
 
     public function inscription(){

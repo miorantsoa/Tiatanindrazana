@@ -189,7 +189,10 @@ ul.the-icons {
 	margin-top:5px;
 	font-size: 23px;
 }
-
+.tab-content {
+	overflow: auto;
+	height: 350px;
+}
 .panel {
 	margin-bottom: 23px;
 	background-color: #ffffff;
