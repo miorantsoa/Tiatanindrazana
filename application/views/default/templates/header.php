@@ -77,10 +77,10 @@
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
         </ul>
         <ul class="social pull-right">
-            <li class="glyphicon glyphicon-user"></a></li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook">Se connecter</a>
+            <li class="glyphicon glyphicon-user"></a></li><a onclick="document.getElementById('id01').style.display='block'" data-placement="bottom" data-original-title="Like us on Facebook">Se connecter</a>
         </ul>
         <ul class="social pull-right">
-            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook">Hiditra pikambana</a>
+            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Like us on Facebook">Hiditra pikambana</a>
         </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">

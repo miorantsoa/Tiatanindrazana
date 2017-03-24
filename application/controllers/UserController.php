@@ -49,7 +49,10 @@ class UserController extends CI_Controller
         if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
             $this->load->model('abonneemodel');
             $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
-            //   redirect('/', 'refresh');
+            //$data=> array(//
+
+  //          )//
+            $this->load->loadview('default/templates/header',$data);
         }
         else{
             var_dump($this->input->post('motdepasse'));

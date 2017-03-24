@@ -99,3 +99,5 @@
 </div> <!-- End Footer -->
 
 <a href="#" class="scrollup" title="Hiverina miakatra!">Scroll</a>
+
+</body>
