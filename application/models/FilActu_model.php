@@ -24,9 +24,11 @@ class FilActu_model extends CI_Model{
         $this->db->trans_complete();
     }
     public function getFilActu(){
+        $this->db->order_by('datepublication, heurepublication','desc');
         $filactualite = $this->db->get("filactualite");
         return  $filactualite->result();
     }
+
     public function getFilActuById($id){
         $this->db->where('idfilactualite',$id);
         $filactualite = $this->db->get("filactualite");
