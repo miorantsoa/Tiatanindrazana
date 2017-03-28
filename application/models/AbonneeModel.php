@@ -40,6 +40,11 @@ class AbonneeModel extends CI_Model {
         $abonnees = $this->db->get('abonnee');
         return $abonnees->result();
     }
+    public function connectUser($usermail,$userpassword){
+        $abonnee = $this->db-where('emailutilisateur',$usermail);
+        $abonnee = $this->db-where('motdepasse',$userpassword);
+        return $abonnee->result();
+    }
     public function getAbonneeById($id){
         $this->db->where('idabonnee',$id);
         $abonnee = $this->db->get('abonnee');
@@ -75,7 +80,7 @@ class AbonneeModel extends CI_Model {
         $favoris = $this->db->get('favoris');
         return $favoris->result();
     }
-    /****!Fin Favoris*******/
+    /****!Fin Utilisateur*******/
 
 
 
