@@ -39,10 +39,11 @@ class InfoUtileController extends CI_Controller {
             $error = array('error' => "Entrer un contenu valide");
 
         $data['titre'] = $this->input->post('titre');
-        $data['contenu'] = $this->input->post('contenu');
+        $data['contenue'] = $this->input->post('contenu');
         $data['idcatbeinfo'] = $this->input->post('categorie');
         $data['lienphoto'] = $photo;
         $data['copyrightphoto'] = $this->input->post('copyrightphoto');
+        $data['dernieremaj'] = date('Y-m-d');
         $data['lien'] = $this->input->post('lien');
         $this->infoutilemodel->insert($data);
         redirect('admin/ajoutInfoUtile');
@@ -59,5 +60,16 @@ class InfoUtileController extends CI_Controller {
             $data = array('upload_data' => $this->upload->data());
             $photo = 'upload/info_utile/'. $data['upload_data']['file_name'];
         }
+        $this->load->library('infoutillibrary');
+        //$id,$idcategorie,$contenu,$lienImage,$copyrightphoto,$lienutile
+        $this->infoutillibrary->update($this->input->post('infoutile'),$this->input->post('categorie'),$this->input->post('contenu'),$photo,$this->input->post('copyrightphoto'), $this->input->post('lien'));
+        redirect('admin/infoutile');
+    }
+
+    public function deleteInfoUtile($id){
+        $this->load->model('infoutilemodel');
+        $this->infoutilemodel->delete($id);
+        $data['infos'] = $this->infoutilemodel->get();
+        $this->adminView('infoutile',$data);
     }
 }

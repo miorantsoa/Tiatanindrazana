@@ -52,10 +52,10 @@
     </div> <!-- End Home-Slider3 -->
 
     <div class="headlines clearfix">
-        <span class="base"><?= date('d',strtotime($fil_actu[0]->datepublication)) ?><i><?= date('M',strtotime($fil_actu[0]->datepublication)) ?></i></span>
+        <span class="base"><?= date('d',strtotime($last_fil[0]->datepublication)) ?><i><?= date('M',strtotime($last_fil[0]->datepublication)) ?></i></span>
         <div class="text-rotator">
-            <?php foreach ($fil_actu as $fil):?>
-                <div><a href="single_post.html" title="<?= $fil->contenue?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= $fil->contenue?></a></div>
+            <?php foreach ($last_fil as $fil):?>
+                <div><a href="single_post.html" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
            <?php endforeach;?>
             </div>
     </div> <!-- End Headlines -->

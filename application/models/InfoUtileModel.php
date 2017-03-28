@@ -37,13 +37,17 @@ class InfoUtileModel extends CI_Model {
         }
         if($idcategorie!=null) {
             $this->db->where('idcatbeinfo', $idcategorie);
-            $this->db->where('idmere', $idcategorie);
+            $this->db->or_where('idmere', $idcategorie);
         }
         $this->db->order_by('dernieremaj',$ordre);
         $infoutil = $this->db->get('detail_info_utile');
         return $infoutil->result();
     }
 
+    public function delete($id){
+        $this->db->where('idbeinfo',$id);
+        $this->db->delete('infoutil');
+    }
     public function getCategorie($niveau = null){//Selection de tout les rubriques mères
         if($niveau!=null){
             $this->db->where('niveau',$niveau);

@@ -93,7 +93,7 @@
                   <li><a><i class="fa fa-lightbulb-o"></i>Info Utile|Ilaiko <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                           <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter</a></li>
-                          <li><a href="">Lister</a></li>
+                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister</a></li>
                       </ul>
                   </li>
                   <li><a><i class="fa fa-cogs"></i>Configurations<span class="fa fa-chevron-down"></a></li>

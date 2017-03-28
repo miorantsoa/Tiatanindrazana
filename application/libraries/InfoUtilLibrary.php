@@ -19,7 +19,7 @@ class InfoUtilLibrary{
         if($idcategorie!=null)
             $data['idcatbeinfo'] = $idcategorie;
         if($contenu!=null){
-            $data['contenu'] = $contenu;
+            $data['contenue'] = $contenu;
         }
         if($lienImage!=null)
             $data['lienphoto'] = $lienImage;
@@ -27,6 +27,7 @@ class InfoUtilLibrary{
             $data['copyrightphoto'] = $copyrightphoto;
         if($lienutile!=null)
             $data['lien'] = $lienutile;
+        $data['dernieremaj'] = date('Y-m-d');
         $this->CI->infoutilemodel->update($id,$data);
     }
 

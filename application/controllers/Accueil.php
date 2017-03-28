@@ -40,25 +40,30 @@ class Accueil extends CI_Controller{
         $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
         $data['pub'] = $this->pubmodel->getPubByPosition(2);
-        $data['fil_actu'] = $this->filactu_model->getFilActu();
+        $data['fil_actuj2'] = $this->filactu_model->getJ2Fil();
+        $data['last_fil'] = $this->filactu_model->getLastFil();
+        //var_dump($data['last_fil']);
         $data['active'] = "";
         return $data;
     }
     public function detailArticle($id){
         $this->load->model('articlesmodel');
+        $this->load->model('commentairemodel');
+        $data = $this->indexData();
         $niveau_user = 1;
         //verifier session utilisateur
         $article = $this->articlesmodel->getById($id)[0];
+        $comment = $this->commentairemodel->get(null,$id);
+        $data['commentaire'] = $comment;
+        $lie = $this->articlesmodel->get(null,null,$article->idcategorie);
+         $data['article_lie'] = $lie;
         if(!$this->session->userdata('user') && $article->niveau != 1){
-            $data = $this->indexData();
             $data['fil_actu'] = $this->filactu_model->getFilActu();
             $data['titre'] = "Tonga soa : Tia Tanindrazana";
             $data['error'] = "erreur";
             $this->homeView('accueil',$data,$data,$data);
         }
         else{
-            $data = $this->indexData();
-            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
             $data['article'] = $article;
             $data['titre'] =  $article->titre." : Tia Tanindrazana";
             $this->homeView('detail',$data,$data);
@@ -167,15 +172,13 @@ class Accueil extends CI_Controller{
     public function detail_info_utile($id){
         $data = $this->indexData();
         $info_util = $this->infoutilemodel->get($id);
-        $associe = $this->infoutilemodel->get();//mitovy sokajy
-        $data['associe'] = $associe;
         if(count($info_util)!=0) {
+            //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
+            $data['associe'] = $this->infoutilemodel->get(null,null,$info_util[0]->idcatbeinfo);
             $data['titre'] = $info_util[0]->titre . " : Tia Tanindrazana";
             $data['info_utile'] = $info_util[0];
         }
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/detail_info_utile',$data);
-        $this->load->view('default/templates/footer');
+        $this->homeView('detail_info_utile',$data,$data);
     }
     public function filtre_info_utile(){
         $data = $this->indexData();
@@ -285,6 +288,7 @@ class Accueil extends CI_Controller{
         $this->load->view('default/inscription',$data);
         $this->load->view('default/templates/footer');
     }
+    /*Commentaire*/
     public function addCommentaire(){
         $nomprenom = $this->input->post('nom');
         $email = $this->input->post('email');
@@ -292,7 +296,10 @@ class Accueil extends CI_Controller{
         $idarticle = $this->input->post('article');
         $this->load->model('commentairemodel');
         $this->commentairemodel->insert($nomprenom,$email,$commentaire,$idarticle);
+        $this->detailArticle($idarticle);
+
     }
+    /*Commentaire*/
     public function addFavoris($idarticle){
         $message = "";
         $article = $this->articlesmodel->getById($idarticle)[0];
