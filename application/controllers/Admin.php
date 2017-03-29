@@ -97,4 +97,10 @@ class Admin extends CI_Controller {
         $this->adminView('publicite', $data);
     }
 
+    /*Feuille journal*/
+    public function ajoutFeuilleJournal(){
+        $this->adminView('ajoutpagejournal');
+    }
+    /*Feuille journal*/
+
 }

@@ -21,6 +21,13 @@
      <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/fixedHeader.bootstrap.min.css')?>">
      <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/responsive.bootstrap.min.css')?>">
      <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/scroller.bootstrap.min.css')?>">
+    <link href="<?= base_url('assets/admin/css/fileinput.min.css')?>" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('assets/admin/themes/explorer/theme.css')?>">
+    <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="<?= base_url('assets/admin/js/jquery.min.js')?>"></script>
+    <script src="<?= base_url('assets/admin/js/fileinput.min.js')?>"></script>
+    <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
 </head>
 <body class="nav-md">
     <div class="container body">

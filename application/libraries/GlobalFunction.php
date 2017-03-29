@@ -10,6 +10,7 @@ class GlobalFunction{
     protected $CI;
     public function __construct(){
         $this->CI =& get_instance();
+        $this->CI->load->library('upload');
     }
 
     public function isFavorisExist($id,$idfavoris){
@@ -19,5 +20,34 @@ class GlobalFunction{
             return true;
         }
         return false;
+    }
+    public function uploadImage($inputname,$destination,$name){
+        //$config = $this->configUpload($destination,$name);
+        $uploadPath ='./'.$destination;
+        $config = null;
+        $config['upload_path'] = $uploadPath;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['file_name'] = $name;
+        var_dump($config);
+        $this->CI->upload->initialize($config);
+        $image=array();
+        if (!$this->CI->upload->do_upload($inputname)) {
+            $error = array('error' => $this->CI->upload->display_errors());
+        }
+        else {
+            $data = array('upload_data' => $this->CI->upload->data());
+            $image['name'] = $data['upload_data']['file_name'];
+            $image['path'] = substr($config['upload_path'],2).'/'. $data['upload_data']['file_name'];
+        }
+        return $image;
+    }
+    public function configUpload($destination,$name){
+        $config['upload_path']   = './'.$destination;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']      = 8000;
+        $config['max_width']     = 2024;
+        $config['max_height']    = 1768;
+        $config['file_name'] = $name;
+        return $config;
     }
 }

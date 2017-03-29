@@ -18,6 +18,7 @@ class Accueil extends CI_Controller{
         $this->load->model("filactu_model");
         $this->load->model("infoutilemodel");
         $this->load->model("abonnementmodel");
+        $this->load->model("feuillejournalmodel");
     }
 
     public function homeView($view,$data = null,$titre=null){
@@ -148,12 +149,62 @@ class Accueil extends CI_Controller{
     }
 
     /***Fueilleter journal*/
-    public function feuilleter_journal(){
+    public function feuilleter_journal($q=null,$date1=null,$date2=null){
         $data = $this->indexData();
+        $query = $this->input->post('recherche');
+        if($q!=null){
+            $query = $q;
+        }
+        if($q == "-"){
+            $query = null;
+        }
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
+        if(strtotime($date_1)> strtotime($date_2)){
+            $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
+            $date_2 =  "";
+            $date_1 = "";
+        }
+        $ordre = "desc";
+        if(!$this->input->post('ordre')){
+            $ordre = "desc";
+        }
+        else{
+            $ordre = $this->input->post('ordre');
+        }
+        //$sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
+        $data['last'] = $this->feuillejournalmodel->getLast();
+        //$idfeuille=null,$date1="",$date2="",$limit=null,$start=null,$order="desc"
+        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date2,null,null,$ordre);
+        $data['gazety'] = $gazety;
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/feuilleter_journal',$data);
         $this->load->view('default/templates/footer');
+    }
+    public function detail_gazety($id){
+        $data = $this->indexData();
+        $feuille_journal = $this->feuillejournalmodel->getDetail($id);
+        if(count($feuille_journal)!=0) {
+            $data['detail'] = $feuille_journal;
+            $data['titre'] = "Gazety niseho ny ".$feuille_journal[0]->dateparution." : Tia Tanindrazana";
+            $this->load->view('default/page_journal',$data);
+        }
+        else{
+            $data['message'] = "Tsy misy sary mifanaraka @io gazety io";
+            $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
+            $gazety = $this->feuillejournalmodel->get();
+            $data['gazety'] = $gazety;
+            $this->load->view('default/templates/header',$data);
+            $this->load->view('default/feuilleter_journal',$data);
+            $this->load->view('default/templates/footer');
+        }
     }
     /***Fueilleter journal*/
 
@@ -275,9 +326,19 @@ class Accueil extends CI_Controller{
 
     }
 
+    /*Feuilleter journal*/
+    public function list_journal(){
+        $data = $this->indexData();
+        //$id,$numparution,$date1,$date2
+        $data['titre'] = "Kiosque : Tia Tanindrazana";
+        $this->homeView('feuilleter_journal',$data,$data);
+    }
     public function page_journal(){
         $this->load->view('default/page_journal');
     }
+    /*Feuilleter journal*/
+
+
 
     public function inscription(){
         $data = $this->indexData();
@@ -332,4 +393,5 @@ class Accueil extends CI_Controller{
         $this->load->view('default/monCompte',$data);
         $this->load->view('default/templates/footer');
     }
+
 }
