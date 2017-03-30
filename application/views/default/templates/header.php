@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -77,6 +79,7 @@
             <li><a href="<?= base_url("accueil/info_utile")?>">Ilaiko</a></li>
             <li><a href="<?= base_url("accueil/archive")?>">Tahiry</a></li>
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
+            <li><a href="<?= base_url('accueil/feuilleter_journal')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
         <ul class="social pull-right">
             <li class="glyphicon glyphicon-user"></a></li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook">Se connecter</a>

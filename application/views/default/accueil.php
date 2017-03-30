@@ -67,7 +67,7 @@
             $count = 1;
             foreach ($articlejournal as $article):
         ?>
-        <div class="<?php echo ($count%2==0) ? "span6 post" : "span6 post no-margin-left"?>">
+        <div class="<?php echo ($count%2==0) ? "span6 post box" : "span6 post no-margin-left box"?>">
             <figure>
                 <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/600/1.jpg')?>" alt="Thumbnail 1" />
                 <div class="cat-name">

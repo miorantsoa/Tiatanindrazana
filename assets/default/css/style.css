@@ -1139,7 +1139,9 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 /* ========================= 4. Main Section ========================= */
 
 /* Homepage Posts */
-
+.box{
+	height: 500px !important;
+}
 .post { margin-bottom:20px;}
 	.post figure { position:relative;
 		height:200px;
