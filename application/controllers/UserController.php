@@ -70,4 +70,51 @@ class UserController extends CI_Controller
         $config['file_name'] = $nomutilisateur .'-'. $prenomutilisateur .'-'. $detail;
         return $config;
     }
+    public function user_uptdate(){
+        $config = $this->configUpload();
+        $config = $this->configUpload();
+        $this->load->library('upload', $config);
+        $image = null;
+        $this->load->modele('abonneemodele');
+        $iduser = $this->input->post('iduser');
+        $data = array(
+            'civilte' => $this->input->get('civilite'),
+            'nom' => $this->input->get('nomutilisateur'),
+            'prenom' => $this->input->get('prenomutilisateur'),
+            'ddn' => $this->input->get('naissanceutilisateur'),
+            'numcin' => $this->input->get('cin'),
+            'datedelivrance' => $this->input->get('datedelivrancecin'),
+            'lieudelivrance' => $this->input->get('lieudelivrancecin'),
+            'lienrecto' => $this->input->get('lienimagerectocin'),
+            'lienverso' => $this->input->get('lienimageversocin'),
+            'email' => $this->input->get('emailutilisateur'),
+            'identifiant' => $this->input->get('identifiant'),
+            'pdp' => $this->input->get('lienimagepdp')
+        );
+        $this->db->where('user_id', $iduser);
+
+    }
+/**    public function update(){
+        $config = $this->configUpload();
+        $config = $this->configUpload();
+        $this->load->library('upload', $config);
+        $image = null;
+        if (!$this->upload->do_upload('couverture')) {
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $image = 'upload/couverture/'. $data['upload_data']['file_name'];
+        }
+        $this->load->library('journallibrary');
+        $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'));
+        redirect('admin/journal');
+    }
+**/
+    public function updatepassword(){
+        $iduser = $this->input->get('iduser');
+        $password = $this->input->get('newmdp');
+        $this->load->model('abonneemodel');
+        $this->abonneemodel->updatepassword($iduser,$password);
+    }
 }

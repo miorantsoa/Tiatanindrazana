@@ -7,16 +7,12 @@
  */
 class LoginController extends CI_Controller {
     public function connect(){
-        $username = $_POST['email'];
-        $pass = $_POST['password'];
+        $username = $this->input->get('email');
+        $pass = $this->input->get('password');
         $this->load->model('abonneemodel');
-        $rep = $this->abonneemodel->connectUser($username,$pass);
-        if($rep){
-            $this->session->set_userdata('user',array(
-                'user_id'=>$rep[0],
-                'allreaction'=>$this->post->getAllUserReaction($rep[0]->idutilisateur2),
-                'toUpdate'=>array()
-            ));
+        $data = $this->abonneemodel->connectUser($username,$pass);
+        if($data){
+            $this->session->set_userdata('user',$data);
             if($_POST['url']){
                 echo $_POST['url'];
             }

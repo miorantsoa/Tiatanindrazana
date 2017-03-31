@@ -41,9 +41,10 @@ class AbonneeModel extends CI_Model {
         return $abonnees->result();
     }
     public function connectUser($usermail,$userpassword){
-        $abonnee = $this->db-where('emailutilisateur',$usermail);
-        $abonnee = $this->db-where('motdepasse',$userpassword);
-        return $abonnee->result();
+        $this->db->where('emailutilisateur',$usermail);
+        $this->db->where('motdepasse',$userpassword);
+        $result = $this->db->get('detail_abonnement');
+        return $result;
     }
     public function getAbonneeById($id){
         $this->db->where('idabonnee',$id);
@@ -56,6 +57,10 @@ class AbonneeModel extends CI_Model {
         $this->db->where('motdepasse',$passsword);
         $result = $this->db->get('abonnee');
         return $result->num_rows();
+    }
+
+    public function userUpdate($data){
+
     }
     /****Favoris*****/
     public function addFavoris($iduser, $idarticle){
