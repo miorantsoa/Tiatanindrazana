@@ -1,4 +1,19 @@
+<?php  ?>
+
 <div id="main" class="portofolio blog-posts image-preloader"">
+    <div id="dialog" title="Basic dialog" style="display:none;">
+        <div class="modal-header">
+            <h4 class="modal-title">Fampahafantarana</h4>
+        </div>
+        <div class="modal-body">
+            <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
+            <?php  $this->session->set_userdata('last_page', current_url());
+            // var_dump($this->session->userdata('last_page')) ?>
+        </div>
+        <div class="span12 aligncenter">
+            <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-blue">Hisoratra anarana</a>
+        </div>
+    </div>
     <div class="margin-top40">
         <div class="filtre search-page">
             <form name="fikarohana" method="post" action="<?= base_url('accueil/feuilleter_journal')?>">
@@ -38,14 +53,21 @@
 <script type="text/javascript" src="<?= base_url()?>assets/default/js/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="<?= base_url()?>assets/default/js/hash.js"></script>
 <script type="text/javascript">
+    $(document).ready(function(){
+        var error = "<?=$this->session->flashdata('erreur')?>";
+        if (error) {
+           $("#dialog").modal();
+           console.log(error);
+        }
+    });
     $('#datetimepicker').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        formatDate:'Y-m-d'
+        timepicker: false,
+        format: 'Y-m-d',
+        formatDate: 'Y-m-d'
     });
     $('#datetimepicker2').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        formatDate:'Y-m-d'
+        timepicker: false,
+        format: 'Y-m-d',
+        formatDate: 'Y-m-d'
     });
 </script>

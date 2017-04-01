@@ -31,6 +31,13 @@ class Journal extends CI_Model{
         $journal = $this->db->get('journal');
         return $journal->result();
     }
+    public function getJournalByDate($date){
+        $this->db->where('datepublication',date('Y-m-d', strtotime($date)));
+        //$sql = $this->db->get_compiled_select('journal');
+        //var_dump($sql);
+        $journal = $this->db->get('journal');
+        return $journal->result();
+    }
     public function get($id,$numparution,$date1,$date2,$ordre = 'DESC',$limit=null,$start=null){//utiliser pour recherche avancé dans le journal
         $this->db->limit($limit,$start);
         if($id!=null){

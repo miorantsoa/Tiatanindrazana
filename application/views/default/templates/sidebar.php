@@ -1,21 +1,5 @@
 <div id="sidebar" class="span4">
     <div class="widget clearfix">
-        <ul class="social-subscribers">
-            <li>
-                <a href="#" data-original-title="Like us on Facebook"><img src="<?= base_url()?>assets/default/images/social/somacro/facebook.png" alt="Facebook" /></a>
-                <p>25,645<i>likes</i></p>
-            </li>
-            <li>
-                <a href="#" data-original-title="Follow us on Twitter"><img src="<?= base_url()?>assets/default/images/social/somacro/twitter.png" alt="Twitter" /></a>
-                <p>8,480<i>followers</i></p>
-            </li>
-            <li>
-                <a href="#" data-original-title="Subscribe our RSS Feed"><img src="<?= base_url()?>assets/default/images/social/somacro/rss.png" alt="RSS" /></a>
-                <p>17,289<i>subscribers</i></p>
-            </li>
-        </ul>
-    </div> <!-- End Widget -->
-    <div class="widget clearfix">
         <div class="header">
             <h4>Faham-baovao</h4>
         </div>

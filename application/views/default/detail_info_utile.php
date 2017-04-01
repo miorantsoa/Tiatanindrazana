@@ -20,19 +20,6 @@
 
             <div class="sep-border no-margin-bottom"></div> <!-- Separator -->
 
-            <div class="prevnext-posts clearfix">
-                <a href="#" class="prev">
-                    <p>Vaovao teo aloha</p>
-                    <p class="title">Alvear Art Black and White Theme</p>
-                </a>
-                <a href="#" class="next">
-                    <p>Vaovao manaraka</p>
-                    <p class="title">Platform House with Minimal Design</p>
-                </a>
-            </div> <!-- End PrevNext-Posts -->
-
-            <div class="sep-border no-margin-top"></div> <!-- Separator -->
-
             <div class="related-posts">
                 <h3>Mitovy sokajy</h3>
                 <?php

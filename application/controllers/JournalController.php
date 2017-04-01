@@ -9,7 +9,6 @@
 class JournalController extends CI_Controller {
     public function ajoutJournal(){
         $config = $this->configUpload();
-        $config = $this->configUpload();
         $this->load->library('upload', $config);
         $image = null;
         if (!$this->upload->do_upload('couverture')) {
@@ -22,6 +21,21 @@ class JournalController extends CI_Controller {
         $this->load->model('journal');
         $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
         redirect('admin/journal');
+    }
+    public function ajoutAjax(){
+        $config = $this->configUpload();
+        $this->load->library('upload', $config);
+        $image = null;
+        if (!$this->upload->do_upload('couverture')) {
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $image = 'upload/couverture/'. $data['upload_data']['file_name'];
+        }
+        $this->load->model('journal');
+        $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
+        echo "success";
     }
     public function delete($id){
         $this->load->model('journal');

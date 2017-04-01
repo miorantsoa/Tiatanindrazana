@@ -19,5 +19,19 @@
 </div> <!-- End Footer -->
 
 <a href="#" class="scrollup" title="Hiverina miakatra!">Scroll</a>
-
+<script type='text/javascript' src='<?= base_url('assets/default/js/jquery.modal.min.js')?>'></script>
+<script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.easing.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.flexslider-min.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jflickrfeed.min.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.fitvids.min.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.lazyload.mini.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.prettyPhoto.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.placeholder.min.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.jticker.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.mobilemenu.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.isotope.min.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.hoverdir.js'></script>
+<script type='text/javascript' src='<?= base_url()?>/assets/default/js/modernizr.custom.js'></script>
+<script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js"></script>
 </body>

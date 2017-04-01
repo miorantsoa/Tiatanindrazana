@@ -22,5 +22,15 @@ class JournalLibrary{
         $this->CI->load->model('journal');
         $this->CI->journal->update($idjournal,$data);
     }
+    public function isnewJournal($dateJournal){
+        $this->CI->load->model('journal');
+        $last_journal = $this->CI->journal->getLastJournal();
+        if(count($last_journal)!=0){
+            if(strtotime($last_journal[0]->datepublication) == strtotime($dateJournal)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

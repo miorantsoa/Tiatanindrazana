@@ -90,8 +90,10 @@ class ArticlesModel extends CI_Model {
             'niveau'=> $niveau,
             'lien_image_une'=> $chemin_une
         );
+        $this->db->trans_start();
         $this->db->where('idarticle',$idarticle);
         $this->db->update('article',$data);
+        $this->db->trans_complete();
     }
     public function update($idarticle,$data){
         $this->db->where('idarticle',$idarticle);
@@ -187,6 +189,11 @@ class ArticlesModel extends CI_Model {
         $this->db->where('idcategorie <> ',12);
         $this->db->where('idcategorie <> ',13);
         $this->db->where('laune',$une);
+        $articles = $this->db->get('article_journal');
+        return $articles->result();
+    }
+    public function getAllArticleByJournal($idjournal){
+        $this->db->where('idjournal',$idjournal);
         $articles = $this->db->get('article_journal');
         return $articles->result();
     }

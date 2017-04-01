@@ -647,7 +647,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 	background-color:#3A3A3A;
 	margin-bottom:5px;
 	position:relative;
-	z-index:999;
+	z-index:1;
 }
 	#main-navigation .select-nav { margin:0px; }
 	#main-navigation ul li {
