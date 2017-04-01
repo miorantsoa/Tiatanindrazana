@@ -59,9 +59,19 @@
             <label>Anarana fahafantarana / Nom d'utilisateur</label>
             <input type="text" name="identifiant" required/>
             <label>Tenimiafina / Mot de passe</label>
-            <input type="password" name="motdepasse" required>
+            <input type="password" name="motdepasse" id="pass1" required>
             <label>Fanamarinana tenimiafina / Verification mot de passe</label>
-            <input type="password" name="motdepasseverif" required>
+            <input type="password" name="motdepasseverif" id="pass2" onchange="testmotdepass()" required>
+            <p id="resulrcomparemdp"></p>
+
+            <script>
+                function testmotdepass() {
+                    var pass1 = document.getElementById("pass1").value;
+                    var pass2 = document.getElementById("pass2").value;
+                    var ret  = (pass1 == pass2)? "correspond":"ne correspond pas";
+                    document.getElementById("resulrcomparemdp").innerHTML = "le mot de passe " + ret;
+                }
+            </script>
             <label>Sary / photo de profil</label>
             <input id="lienimagepdp" name="lienimagepdp" type="file">
 
@@ -70,20 +80,29 @@
             <p></p>
             <h4>Choix de l'offre:</h4>
             <label>Type Abonnement</label>
-            <select name="rubrique-mere" id="rubrique-mere">
-                <option value="">--choix type abonnement--</option>
+            <select name="typeabonnement" id="typeabonnement" >
+
                 <?php foreach ($typeabonnement as $typeabonnement):?>
                     <option value="<?=$typeabonnement->idtypeabon?>"><?=$typeabonnement->libelle?></option>
                 <?php endforeach;?>
             </select>
             <label>duree abonnement</label>
-            <select name="rubrique-mere" id="rubrique-mere">
-                <option value="">--choix durree--</option>
-                <?php foreach ($tarifabonnement as $tarifabonnement):?>
-                    <option value="<?=$tarifabonnement->idtarif?>"><?=$tarifabonnement->durreeabonnement?></option>
-                <?php endforeach;?>
+            <select name="tarifabonnement" id="tarifabonnement" onchange="montantabonnement()">
+                <option value="1">1 mois</option>
+                <option value="3">3 mois</option>
+                <option value="6">6 mois</option>
+                <option value="12">12 mois</option>
             </select>
 
+            <p id="prix"></p>
+
+            <script>
+                function montantabonnement() {
+                    var x = document.getElementById("tarifabonnement").value;
+                    var y = document.getElementById("typeabonnement").value;
+                    document.getElementById("prix").innerHTML = "Ny sarany io tolotra dia : Ar " + x*y*200*30;
+                }
+            </script>
             <input type="submit" name="submit" value="S'inscrire" class="btn btn-blue" />
 
 
