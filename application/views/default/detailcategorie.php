@@ -61,11 +61,14 @@
                 if($query == null){
                     $query = "-";
                 }
-                for($i = 1; $i<=$nbpage;$i++){?>
-                    <li class="active"><a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date_1'].'/'.$filtre['date_2']?>"><?= $i?></a></li>
-                <?php }?>
+                if($nbpage >1){
+                    for($i = 1; $i<=$nbpage;$i++){?>
+                        <li class="active"><a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date_1'].'/'.$filtre['date_2']?>"><?= $i?></a></li>
+                    <?php }?>
             </ul>
-            <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
+                var_dump($nbpage)?>
+                <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
+            <?php }?>
         </nav> <!-- End Nav-Pagination -->
 
     </div> <!-- End Row-Fluid -->

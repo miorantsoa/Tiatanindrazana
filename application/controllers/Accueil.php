@@ -63,8 +63,9 @@ class Accueil extends CI_Controller{
         $niveau_user = 1;
         //verifier session utilisateur
         $articles = $this->articlesmodel->getById($id);
+        $interval = date_diff(date_create(($articles[0]->datepublication)),date_create(date('Y-m-d')))->format('%a');
         if (count($articles) != 0) {
-            if(($this->session->userdata('user') &&  $this->session->userdata('user')->niveau >=1) || (strtotime(date('Y-m-d')) - strtotime($articles[0]->datepublication)) >=2 ) {
+            if(($this->session->userdata('user') &&  $this->session->userdata('user')->niveau >=1) || $interval >=2 || $articles[0]->niveau <= 1) {
                     $article = $articles[0];
                     $comment = $this->commentairemodel->get(null, $id);
                     $data['commentaire'] = $comment;
@@ -108,7 +109,7 @@ class Accueil extends CI_Controller{
         $rubrique =$this->rubrique_model->getRubriqueById($id);
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
-            $per_page = 2;
+            $per_page = 10;
             //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
             $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'));
             $data['results'] = $resultats;

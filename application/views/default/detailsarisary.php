@@ -18,8 +18,8 @@
     </div>
     <div class="filtre search-page">
         <form name="fikarohana" method="post" action="<?= base_url('accueil/list_sarisary/'.$categorie->idcategorie)?>">
-            <input type="date" name="date1" title="Daty niatombohaha">
-            <input type="date" name="date2" title="Daty niafarana">
+            <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+            <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
             <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
         </form>
     </div>
@@ -51,3 +51,17 @@
 
     </div> <!-- End Margin-Top40 -->
 </div> <!-- End Main -->
+<script>
+    $(document).ready(function(){
+        $('#datetimepicker').datetimepicker({
+            timepicker:false,
+            format:'Y-m-d',
+            formatDate:'Y-m-d'
+        });
+        $('#datetimepicker2').datetimepicker({
+            timepicker:false,
+            format:'Y-m-d',
+            formatDate:'Y-m-d'
+        });
+    });
+</script>
