@@ -11,24 +11,24 @@ class CommentaireModel extends CI_Model{
         $data = array(
             "nomprenom" => $nomprenom,
             "email" => $email,
-            "datecommentaire" => date('Y-m-d'),
+            "datecommentaire" => date('Y-m-d H:M'),
             "idarticle" => $idarticle,
             "commentaire" => $commentaire
         );
         $this->db->insert("commentaire",$data);
     }
 
-    public function get($id,$idarticle,$nomprenom){
-        $this->db->select('*');
+    public function get($id=null,$idarticle=null,$nomprenom=null){
+        $this->db->select('nomprenom,email,commentaire,datecommentaire');
         $this->db->from('commentaire');
         $this->db->join('article', 'commentaire.idarticle = article.idarticle');
         if($id!=null)
             $this->db->where('idcommentaire',$id);
         if($idarticle!=null)
-            $this->db->where('$idarticle',$idarticle);
+            $this->db->where('article.idarticle',$idarticle);
         if($nomprenom!=null)
             $this->db->where('nomprenom',$nomprenom);
-        $comment = $this->db->get('commentaire');
+        $comment = $this->db->get();
         return $comment->result();
     }
     public function delete($id){

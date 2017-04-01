@@ -116,7 +116,7 @@ class ArticlesModel extends CI_Model {
         return $articles->result();
     }
     public function getSarisary(){
-        $this->db->where('idcategorie',1);
+        $this->db->where('idcategorie',10);
         $sarisary = $this->db->get('article');
         return $sarisary->result();
     }

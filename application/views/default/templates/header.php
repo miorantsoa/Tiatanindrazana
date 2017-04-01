@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -37,10 +39,11 @@
     <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url()?>/assets/default/images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url()?>/assets/default/images/apple-touch-icon-114x114.png">
+    <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="<?= base_url()?>/assets/default/js/jquery-1.8.3.min.js"></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
+    <script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.easing.js'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.flexslider-min.js'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jflickrfeed.min.js'></script>
@@ -54,6 +57,7 @@
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.hoverdir.js'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/modernizr.custom.js'></script>
     <script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js"></script>
+    <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -75,6 +79,7 @@
             <li><a href="<?= base_url("accueil/info_utile")?>">Ilaiko</a></li>
             <li><a href="<?= base_url("accueil/archive")?>">Tahiry</a></li>
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
+            <li><a href="<?= base_url('accueil/feuilleter_journal')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
         <ul class="social pull-right">
             <li class="glyphicon glyphicon-user"></a></li><a onclick="document.getElementById('id01').style.display='block'" data-placement="bottom" data-original-title="Like us on Facebook">Se connecter</a>

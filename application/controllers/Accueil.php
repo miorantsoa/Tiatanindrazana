@@ -18,6 +18,7 @@ class Accueil extends CI_Controller{
         $this->load->model("filactu_model");
         $this->load->model("infoutilemodel");
         $this->load->model("abonnementmodel");
+        $this->load->model("feuillejournalmodel");
     }
 
     public function homeView($view,$data = null,$titre=null){
@@ -40,28 +41,40 @@ class Accueil extends CI_Controller{
         $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
         $data['pub'] = $this->pubmodel->getPubByPosition(2);
-        $data['fil_actu'] = $this->filactu_model->getFilActu();
+        $data['fil_actuj2'] = $this->filactu_model->getJ2Fil();
+        $data['last_fil'] = $this->filactu_model->getLastFil();
+        //var_dump($data['last_fil']);
         $data['active'] = "";
         return $data;
     }
     public function detailArticle($id){
         $this->load->model('articlesmodel');
+        $this->load->model('commentairemodel');
+        $data = $this->indexData();
         $niveau_user = 1;
         //verifier session utilisateur
-        $article = $this->articlesmodel->getById($id)[0];
-        if(!$this->session->userdata('user') && $article->niveau != 1){
-            $data = $this->indexData();
-            $data['fil_actu'] = $this->filactu_model->getFilActu();
-            $data['titre'] = "Tonga soa : Tia Tanindrazana";
-            $data['error'] = "erreur";
-            $this->homeView('accueil',$data,$data,$data);
+        $articles = $this->articlesmodel->getById($id);
+        if(count($articles)!=0) {
+            $article = $articles[0];
+            $comment = $this->commentairemodel->get(null, $id);
+            $data['commentaire'] = $comment;
+            $lie = $this->articlesmodel->get(null, null, $article->idcategorie);
+            $data['article_lie'] = $lie;
+            if (!$this->session->userdata('user') && $article->niveau != 1) {
+                $data['fil_actu'] = $this->filactu_model->getFilActu();
+                $data['titre'] = "Tonga soa : Tia Tanindrazana";
+                $data['error'] = "erreur";
+                $this->homeView('accueil', $data, $data, $data);
+            } else {
+                $data['article'] = $article;
+                $data['titre'] = $article->titre . " : Tia Tanindrazana";
+                $this->homeView('detail', $data, $data);
+            }
         }
         else{
-            $data = $this->indexData();
-            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
-            $data['article'] = $article;
-            $data['titre'] =  $article->titre." : Tia Tanindrazana";
-            $this->homeView('detail',$data,$data);
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
         }
         
     }
@@ -85,26 +98,34 @@ class Accueil extends CI_Controller{
         }
 
         $articles =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));
-        $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
-        $per_page = 2;
-        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
-        $resultats = $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,$per_page,$limit,$this->input->post('ordre'));
-        $data['results'] = $resultats;
-        $data['limit'] = $limit;
-        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
-        $data['categorie']= $rubrique;
-        $data['per_page'] = $per_page;
-        $data['article_lie'] = $articles;
-        $data['active'] = $rubrique->libelle;
-        $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
-        $data['nbreponse'] = $per_page;
-        $data['page'] = $page;
-        $data['filtre'] = array(
-            "query" => $query,
-            "date_1" => $date_1,
-            "date_2"=> $date_2
-        );
-        $this->homeView('detailcategorie',$data,$data);
+        $rubrique =$this->rubrique_model->getRubriqueById($id);
+        if(count($rubrique)!=0) {
+            $rubrique = $rubrique[0];
+            $per_page = 2;
+            //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
+            $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'));
+            $data['results'] = $resultats;
+            $data['limit'] = $limit;
+            //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
+            $data['categorie'] = $rubrique;
+            $data['per_page'] = $per_page;
+            $data['article_lie'] = $articles;
+            $data['active'] = $rubrique->libelle;
+            $data['titre'] = $rubrique->libelle . " : Tia Tanindrazana";
+            $data['nbreponse'] = $per_page;
+            $data['page'] = $page;
+            $data['filtre'] = array(
+                "query" => $query,
+                "date_1" => $date_1,
+                "date_2" => $date_2
+            );
+            $this->homeView('detailcategorie', $data, $data);
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
     public function list_sarisary($id,$q=null,$date1=null,$date2=null){
         $data = $this->indexData();
@@ -124,15 +145,23 @@ class Accueil extends CI_Controller{
             $date_2 = $date2;
         }
         $sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
-        $rubrique =$this->rubrique_model->getRubriqueById($id)[0];
-        $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
-        $data['categorie']= $rubrique;
-        $data['sarisary'] = $sarisary;
-        $data['sous_rubrique'] = $sous_rubrique;
-        $data['titre'] =  $rubrique->libelle." : Tia Tanindrazana";
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/detailsarisary',$data);
-        $this->load->view('default/templates/footer');
+        $rubrique =$this->rubrique_model->getRubriqueById($id);
+        if(count($rubrique)!=0) {
+            $rubrique = $rubrique[0];
+            $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
+            $data['categorie'] = $rubrique;
+            $data['sarisary'] = $sarisary;
+            $data['sous_rubrique'] = $sous_rubrique;
+            $data['titre'] = $rubrique->libelle . " : Tia Tanindrazana";
+            $this->load->view('default/templates/header', $data);
+            $this->load->view('default/detailsarisary', $data);
+            $this->load->view('default/templates/footer');
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
     public function contact(){
         $data = $this->indexData();
@@ -143,12 +172,68 @@ class Accueil extends CI_Controller{
     }
 
     /***Fueilleter journal*/
-    public function feuilleter_journal(){
+    public function feuilleter_journal($q=null,$date1=null,$date2=null){
         $data = $this->indexData();
+        $query = $this->input->post('recherche');
+        if($q!=null){
+            $query = $q;
+        }
+        if($q == "-"){
+            $query = null;
+        }
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
+        if(strtotime($date_1)> strtotime($date_2)){
+            $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
+            $date_2 =  "";
+            $date_1 = "";
+        }
+        $ordre = "desc";
+        if(!$this->input->post('ordre')){
+            $ordre = "desc";
+        }
+        else{
+            $ordre = $this->input->post('ordre');
+        }
+        //$sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
+        $data['last'] = $this->feuillejournalmodel->getLast();
+        //$idfeuille=null,$date1="",$date2="",$limit=null,$start=null,$order="desc"
+        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date2,null,null,$ordre);
+        $data['gazety'] = $gazety;
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/feuilleter_journal',$data);
         $this->load->view('default/templates/footer');
+    }
+    public function detail_gazety($id){
+        $data = $this->indexData();
+        $feuille_journal = $this->feuillejournalmodel->getDetail($id);
+        if(count($feuille_journal != 0)) {
+            if (count($feuille_journal) != 0) {
+                $data['detail'] = $feuille_journal;
+                $data['titre'] = "Gazety niseho ny " . $feuille_journal[0]->dateparution . " : Tia Tanindrazana";
+                $this->load->view('default/page_journal', $data);
+            } else {
+                $data['message'] = "Tsy misy sary mifanaraka @io gazety io";
+                $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
+                $gazety = $this->feuillejournalmodel->get();
+                $data['gazety'] = $gazety;
+                $this->load->view('default/templates/header', $data);
+                $this->load->view('default/feuilleter_journal', $data);
+                $this->load->view('default/templates/footer');
+            }
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
     /***Fueilleter journal*/
 
@@ -167,15 +252,19 @@ class Accueil extends CI_Controller{
     public function detail_info_utile($id){
         $data = $this->indexData();
         $info_util = $this->infoutilemodel->get($id);
-        $associe = $this->infoutilemodel->get();//mitovy sokajy
-        $data['associe'] = $associe;
         if(count($info_util)!=0) {
+            //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
+            $data['associe'] = $this->infoutilemodel->get(null,null,$info_util[0]->idcatbeinfo);
             $data['titre'] = $info_util[0]->titre . " : Tia Tanindrazana";
             $data['info_utile'] = $info_util[0];
+            $this->homeView('detail_info_utile',$data,$data);
         }
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/detail_info_utile',$data);
-        $this->load->view('default/templates/footer');
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
+
     }
     public function filtre_info_utile(){
         $data = $this->indexData();
@@ -272,9 +361,19 @@ class Accueil extends CI_Controller{
 
     }
 
+    /*Feuilleter journal*/
+    public function list_journal(){
+        $data = $this->indexData();
+        //$id,$numparution,$date1,$date2
+        $data['titre'] = "Kiosque : Tia Tanindrazana";
+        $this->homeView('feuilleter_journal',$data,$data);
+    }
     public function page_journal(){
         $this->load->view('default/page_journal');
     }
+    /*Feuilleter journal*/
+
+
 
     public function inscription(){
         $data = $this->indexData();
@@ -285,6 +384,7 @@ class Accueil extends CI_Controller{
         $this->load->view('default/inscription',$data);
         $this->load->view('default/templates/footer');
     }
+    /*Commentaire*/
     public function addCommentaire(){
         $nomprenom = $this->input->post('nom');
         $email = $this->input->post('email');
@@ -292,7 +392,10 @@ class Accueil extends CI_Controller{
         $idarticle = $this->input->post('article');
         $this->load->model('commentairemodel');
         $this->commentairemodel->insert($nomprenom,$email,$commentaire,$idarticle);
+        $this->detailArticle($idarticle);
+
     }
+    /*Commentaire*/
     public function addFavoris($idarticle){
         $message = "";
         $article = $this->articlesmodel->getById($idarticle)[0];
@@ -346,4 +449,5 @@ class Accueil extends CI_Controller{
         $data['titre'] = "Connection : Tia TAnindrazana";
         $this->load->view('default/connection',$data);
     }
+
 }

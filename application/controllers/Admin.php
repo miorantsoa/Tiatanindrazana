@@ -65,12 +65,26 @@ class Admin extends CI_Controller {
     public function  ajoutPub(){
         $this->adminView('ajoutPub');
     }
+
+    /*info utile*/
     public function ajoutInfoUtile(){
         $this->load->model('infoutilemodel');
         $data['categorie'] = $this->infoutilemodel->getCategorie();
         $this->adminView('ajoutInfoUtile',$data);
     }
+    public function infoutile(){
+        $this->load->model('infoutilemodel');
+        $data['infos'] = $this->infoutilemodel->get();
+        $this->adminView('infoutil',$data);
+    }
+    public function editInfoutile($id){
+        $this->load->model('infoutilemodel');
+        $data['categorie'] = $this->infoutilemodel->getCategorie();
+        $data['infoutiles'] = $this->infoutilemodel->get($id);
+        $this->adminView('ajoutInfoUtile',$data);
+    }
 
+    /*info util*/
     public function  filactu(){
         $this->load->model('filactu_model');
         $data['filactualite'] = $this->filactu_model->getFilActu();
@@ -82,5 +96,11 @@ class Admin extends CI_Controller {
         $data['publicite'] = $this->pubmodel->getPub();
         $this->adminView('publicite', $data);
     }
+
+    /*Feuille journal*/
+    public function ajoutFeuilleJournal(){
+        $this->adminView('ajoutpagejournal');
+    }
+    /*Feuille journal*/
 
 }

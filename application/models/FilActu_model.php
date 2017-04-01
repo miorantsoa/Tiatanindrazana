@@ -29,6 +29,16 @@ class FilActu_model extends CI_Model{
         return  $filactualite->result();
     }
 
+    public function getLastFil(){
+        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication) as datepublication from filactualite)');
+        //$fil = $this->db->get();
+        return $fil->result();
+    }
+    public function getJ2Fil(){
+        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication)-2 as datepublication from filactualite)');
+        //$fil = $this->db->get();
+        return $fil->result();
+    }
     public function getFilActuById($id){
         $this->db->where('idfilactualite',$id);
         $filactualite = $this->db->get("filactualite");

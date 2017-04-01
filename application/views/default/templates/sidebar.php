@@ -23,13 +23,13 @@
 
             <!-- Tab Menu -->
             <ul class="nav nav-tabs" id="enewsTabs">
-                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= $fil_actu[2]->datepublication?></a></li>
-                <li><a href="#tab-recents" data-toggle="tab"><?= $fil_actu[0]->datepublication?></a></li>
+                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= $last_fil[0]->datepublication?></a></li>
+                <?= (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab"><?= (count($fil_actuj2)!=0) ? $fil_actuj2[0]->datepublication : "" ?></a></li>' : ""?>
             </ul>
 
             <div class="tab-content fil">
                 <div class="tab-pane active fil" id="tab-populars">
-                    <?php foreach ($fil_actu as $fil):?>
+                    <?php foreach ($last_fil as $fil):?>
                     <!-- One -->
                     <div class="item">
                         <div class="span2">
@@ -44,7 +44,7 @@
 
                 <div class="tab-pane" id="tab-recents">
 
-                    <?php foreach ($fil_actu as $fil):?>
+                    <?php foreach ($fil_actuj2 as $fil):?>
                         <!-- One -->
                         <div class="item">
                             <div class="span2">
