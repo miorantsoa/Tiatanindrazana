@@ -1,3 +1,14 @@
+<div id="dialog" title="Basic dialog" style="display:none;">
+    <div class="modal-header">
+        <h4 class="modal-title">Fampahafantarana</h4>
+    </div>
+    <div class="modal-body">
+        <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
+    </div>
+    <div class="span12 aligncenter">
+        <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-blue">Hisoratra anarana</a>
+    </div>
+</div>
 <div id="main" class="portofolio blog-posts image-preloader"">
     <div class="breadcrumb clearfix">
         <span class="base">Ato no misy anao</span>
@@ -25,8 +36,8 @@
         </div>
             <div class="filtre search-page">
                 <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_info_utile')?>">
-                    <input type="date" name="date1" title="Daty niatombohaha">
-                    <input type="date" name="date2" title="Daty niafarana">
+                    <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+                    <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
                 </form>
             </div>
@@ -98,3 +109,22 @@
         <?php }?>
     </div> <!-- End Margin-Top40 -->
 </div> <!-- End Main -->
+<script>
+    $(document).ready(function(){
+        var error = "<?=$this->session->flashdata('erreur')?>";
+        if (error) {
+            $("#dialog").modal();
+            console.log(error);
+        }
+    });
+    $('#datetimepicker').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        formatDate:'Y-m-d'
+    });
+    $('#datetimepicker2').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        formatDate:'Y-m-d'
+    });
+</script>

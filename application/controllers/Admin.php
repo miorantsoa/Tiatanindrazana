@@ -39,11 +39,18 @@ class Admin extends CI_Controller {
 	}	
 	public function detailJournal($id){
 	    $this->load->model('articlesmodel');
-	    $detail_journal = $this->articlesmodel->getArticlesByJournal($id);
+	    $detail_journal = $this->articlesmodel->getAllArticleByJournal($id);
 	    $data['articles'] = $detail_journal;
 		$this->adminView('detailJournal',$data);
-	}	
-	public function ajoutFilActu(){
+	}
+    public function editUne($idArticle){
+        $this->load->library('articlelibrarie');
+        $id = $this->articlelibrarie->setUne($idArticle);
+        redirect('admin/detailjournal/'.$id);
+    }
+
+
+    public function ajoutFilActu(){
 		$this->adminView('ajoutFilActu');
 	}
 
@@ -54,14 +61,30 @@ class Admin extends CI_Controller {
 	    $this->load->model('articlesmodel');
         $this->load->model('rubrique_model');
         $data['rubrique'] = $this->rubrique_model->getrubrique();
-	    $data['article'] = $this->articlesmodel->getSingleArticle($id);
-	    $this->adminView('ajoutArticles',$data);
+        if($this->articlesmodel->getSingleArticle($id)!=null) {
+            $data['article'] = $this->articlesmodel->getSingleArticle($id);
+            $this->adminView('ajoutArticles', $data);
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
     public function editJournal($id){
 	    $this->load->model('journal');
-	    $data['journal'] = $this->journal->getById($id);
-        $this->adminView('ajoutJournal',$data);
+	    if($this->journal->getByID($id)!=null) {
+            $data['journal'] = $this->journal->getById($id);
+            $this->adminView('ajoutJournal', $data);
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
+
+
     public function  ajoutPub(){
         $this->adminView('ajoutPub');
     }
@@ -79,9 +102,16 @@ class Admin extends CI_Controller {
     }
     public function editInfoutile($id){
         $this->load->model('infoutilemodel');
-        $data['categorie'] = $this->infoutilemodel->getCategorie();
-        $data['infoutiles'] = $this->infoutilemodel->get($id);
-        $this->adminView('ajoutInfoUtile',$data);
+        if($this->infoutilemodel->get($id)!=null) {
+            $data['categorie'] = $this->infoutilemodel->getCategorie();
+            $data['infoutiles'] = $this->infoutilemodel->get($id);
+            $this->adminView('ajoutInfoUtile', $data);
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
 
     /*info util*/

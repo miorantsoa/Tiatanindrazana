@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/jquery.modal.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
@@ -29,7 +30,6 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <noscript><link rel="stylesheet" href="<?= base_url()?>/assets/default/css/no-js.css"></noscript> <!-- If JavaScript Disabled -->
-
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -43,29 +43,7 @@
 
     <!-- JavaScript -->
     <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
-    <script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.easing.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.flexslider-min.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jflickrfeed.min.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.fitvids.min.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.lazyload.mini.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.prettyPhoto.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.placeholder.min.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.jticker.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.mobilemenu.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.isotope.min.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.hoverdir.js'></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/modernizr.custom.js'></script>
-    <script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js"></script>
     <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 
 </head>
 <body>

@@ -1,6 +1,19 @@
+<?php
+$this->session->set_userdata('last_page', current_url());
+?>
 <div class="row-fluid">
 <div id="main" class="span8 image-preloader">
-    
+    <div id="dialog" title="Basic dialog" style="display:none;">
+        <div class="modal-header">
+            <h4 class="modal-title">Fampahafantarana</h4>
+        </div>
+        <div class="modal-body">
+            <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
+        </div>
+        <div class="span12 aligncenter">
+            <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-blue">Hisoratra anarana</a>
+        </div>
+    </div>
     <div id="home-slider" class="home-slider3">
 
         <div class="flexslider home-slider3-gallery">
@@ -79,9 +92,10 @@
 </div> <!-- End Main -->
     <script>
         $(document).ready(function(){
-            var message = "<?= $error?>";
-            if(message!=null){
-                $("#myModal").modal();
+            var error = "<?=$this->session->flashdata('erreur')?>";
+            if (error) {
+                $("#dialog").modal();
+                console.log(error);
             }
         });
     </script>

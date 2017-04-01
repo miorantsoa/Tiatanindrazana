@@ -63,8 +63,8 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i>Journal<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    	<li><a href="<?= base_url('index.php/admin/ajoutJournal')?>">Créer un journal</a></li>
                     	<li><a href="<?= base_url('index.php/admin/journal')?>">Tous les journaux</a></li>
+                        <li><a href="<?= base_url('index.php/admin/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Articles <span class="fa fa-chevron-down"></span></a>

@@ -39,7 +39,7 @@ class ArticleLibrarie{
             $data['resume'] = $resume;
         if($contenu!="")
             $data['contenue'] = $contenu;
-        if($laune!="" && $laune!=null)
+        if(isset($laune))
             $data['laune'] = $laune;
         if($niveau!="")
             $data['niveau']=$niveau;
@@ -50,6 +50,7 @@ class ArticleLibrarie{
         if($etat!="" && $etat!=null)
             $data['etatpublication'] = $etat;
         $this->CI->load->model('articlesmodel');
+        var_dump($idarticle);
         $this->CI->articlesmodel->update($idarticle,$data);
     }
     public  function is_sarisary($id){
@@ -82,5 +83,22 @@ class ArticleLibrarie{
             $limit +=$per_page;
         }
         return $limit;
+    }
+    public function setUne($id){
+        $this->CI->load->model('articlesmodel');
+        $this->CI->load->model('journal');
+        $article = $this->CI->articlesmodel->getById($id)[0];
+        $journal = $this->CI->journal->getJournalByDate($article->datepublication)[0];
+        $une = $this->CI->articlesmodel->getArticlesByJournal($journal->idjournal,true);
+        if($article->laune==false) {
+            $this->updateArticle($id, null, null, null, null, null, null, null, true, null, null, null);
+            $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+        }
+        else{
+            var_dump($id);
+            //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat
+            $this->updateArticle($id, null, null, null, null, null, null, null, false, null, null, null);
+        }
+        return $journal->idjournal;
     }
 }

@@ -61,7 +61,7 @@
                         <th><?= $article->titre?></th>
                         <th><?= $article->dateparution?></th>
                         <th><?= $article->resume?></th>
-                        <th><?= $article->contenue?></th>
+                        <th><?= substr(strip_tags($article->contenue),0,250)?></th>
                         <th><img src="<?= base_url($article->lien_image_une)?>" class="img-thumbnail"></th>
                         <th><?= $article->etatpublication?></th>
                         <th><?= $article->laune?></th>

@@ -6,6 +6,14 @@
  * Time: 23:52
  */
 class Articles extends CI_Controller{
+    public  function __construct(){
+        parent::__construct();
+        $this->load->library('articlelibrarie');
+        $this->load->library('journallibrary');
+        $this->load->model('journal');
+        $this->load->model('articlesmodel');
+    }
+
     public function addArticle(){
         $config = $this->configUpload();
         $this->load->library('upload', $config);
@@ -17,9 +25,27 @@ class Articles extends CI_Controller{
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/'. $data['upload_data']['file_name'];
         }
-        $this->load->library('articlelibrarie');
-        $this->articlelibrarie->ajoutArticle($this->input->post('journal'),$this->input->post('rubrique'),null, $this->input->post('titre'), $this->input->post('date') ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
+        if(!$this->input->post('rubrique')){
+            $message['erreur'] = "Le rubrique ne peut pas être null";
+        }
+        if(!$this->input->post('titre')){
+            $message['erreur'] = "Veuillez ajouter un titre";
+        }
+        $date = $this->input->post('date');
+        if(!$date){
+            $date = date('Y-m-d');
+        }
+        $journal = $this->journal->getJournalByDate($date);
+        $this->articlelibrarie->ajoutArticle($journal[0]->idjournal,$this->input->post('rubrique'),null, $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
         redirect('admin/articles','refresh');
+    }
+    public function isNewJournal($date){
+        if($this->journallibrary->isnewJournal($date)){
+            echo "success";
+        }
+        else{
+            echo "false";
+        }
     }
     public function configUpload(){
         $config['upload_path']   = './upload/';
@@ -42,13 +68,11 @@ class Articles extends CI_Controller{
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/'. $data['upload_data']['file_name'];
         }
-        $this->load->library('articlelibrarie');
         //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat
         $this->articlelibrarie->updateArticle($this->input->post('article'),$this->input->post('journal'),$this->input->post('rubrique'), $this->input->post('titre'), $this->input->post('date') ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
         redirect('admin/articles');
     }
     public function deleteArticle($id){
-        $this->load->model('articlesmodel');
         $this->articlesmodel->deleteArticle($id);
         redirect('admin/articles');
     }
