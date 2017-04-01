@@ -456,6 +456,21 @@ class Accueil extends CI_Controller{
         $this->load->view('default/monCompte',$data);
         $this->load->view('default/templates/footer');
     }
+    public function modif_Info_User(){
+        $data = $this->indexData();
+        $data['titre'] = "Modifier information utilisateur : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/modif_info_user',$data);
+        $this->load->view('default/templates/footer');
+    }
+
+    public function modifier_mot_de_passe(){
+        $data = $this->indexData();
+        $data['titre'] = "Modifier information utilisateur : Tia Tanindrazana";
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/modifier_mot_de_passe',$data);
+        $this->load->view('default/templates/footer');
+    }
 
     public function connection(){
         $data = $this->indexData();

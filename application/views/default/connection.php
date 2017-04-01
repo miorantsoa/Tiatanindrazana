@@ -26,6 +26,13 @@
                 <div class="panel-heading">
                     <strong class="panel-title">Hiditra / Se Connecter</strong>
                 </div>
+                <?php
+                $data = array();
+
+                $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
+                $lien_action  ='logincontroller/connect';
+                echo form_open_multipart($lien_action,$attributes);
+                ?>
                 <div class="panel-body">
                     <form role="form">
                         <fieldset>
