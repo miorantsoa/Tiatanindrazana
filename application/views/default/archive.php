@@ -20,11 +20,13 @@
         </form>
     </div>
     <div class="span3">
+        <?php if(isset($last_journal)){?>
         <figure class="figure">
             <img src="<?= base_url($last_journal->liencouverture)?>" alt="" class="img-thumbnail">
         </figure>
         <a href="<?= base_url('accueil/detailjournal/'.$last_journal->idjournal)?>" > <button class="btn btn-blue aligncenter span3 margin-top20">Hamaky</button></a>
         <p>Gazety nivoaka ny <?= $last_journal->datepublication?></p>
+        <?php }?>
     </div>
     <div class="span8 pull-right">
         <div class="panel-danger ">

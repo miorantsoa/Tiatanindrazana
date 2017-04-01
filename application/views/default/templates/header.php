@@ -42,8 +42,8 @@
     <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="<?= base_url()?>/assets/default/js/jquery-1.8.3.min.js"></script>
-    <script type='text/javascript' src='<?= base_url()?>/assets/default/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
+    <script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.easing.js'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.flexslider-min.js'></script>
     <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jflickrfeed.min.js'></script>

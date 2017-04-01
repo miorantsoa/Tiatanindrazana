@@ -1,25 +1,11 @@
 <div class="row-fluid">
 <div id="main" class="span8 image-preloader">
-    <div class="modal fade " id="myModal" role="dialog" hidden>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Merci pour votre interêt pour cette article</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Ce site est gratuit et ouvert à tous, mais seul nos utilisateurs enregistrés peuvent avoir des privilèges supplémentaires comme poster, commenter ou voter.</p>
-                    <?php  $this->session->set_userdata('last_page', current_url());
-                    // var_dump($this->session->userdata('last_page')) ?>
-                    <a href="<?= base_url()?>index.php/login/?url=<?= current_url()?>" class="btn btn-link">Se connecter</a>ou <a href="<?=  base_url()?>index.php/sign/?url=<?= current_url()?>" class="btn btn-link">S'enregistrer</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div id="home-slider" class="home-slider3">
 
         <div class="flexslider home-slider3-gallery">
             <ul class="slides">
+                <?php if(isset($laune)){?>
                 <li> <!-- One -->
                     <img src="<?= base_url($laune->lien_image_une)?>" alt="Screenshoot 1" />
                     <div class="content">
@@ -36,6 +22,7 @@
                         <p><?= $laune->resume?>[..]</p>
                     </div>
                 </li>
+                <?php }?>
             </ul>
         </div> <!-- End Home-Slider-Gallery -->
 
@@ -52,12 +39,14 @@
     </div> <!-- End Home-Slider3 -->
 
     <div class="headlines clearfix">
-        <span class="base"><?= date('d',strtotime($last_fil[0]->datepublication)) ?><i><?= date('M',strtotime($last_fil[0]->datepublication)) ?></i></span>
+        <?php if(isset($last_fil) && count($last_fil)!=0){?>
+        <span class="base"><?= date('d',strtotime($last_fil[0]->datepublication))?><i><?= date('M',strtotime($last_fil[0]->datepublication)) ?></i></span>
         <div class="text-rotator">
             <?php foreach ($last_fil as $fil):?>
                 <div><a href="single_post.html" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
            <?php endforeach;?>
-            </div>
+         </div>
+        <?php }?>
     </div> <!-- End Headlines -->
 
     <div class="row-fluid">
@@ -88,3 +77,11 @@
 
     </div> <!-- End Row-Fluid -->
 </div> <!-- End Main -->
+    <script>
+        $(document).ready(function(){
+            var message = "<?= $error?>";
+            if(message!=null){
+                $("#myModal").modal();
+            }
+        });
+    </script>
