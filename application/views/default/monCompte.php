@@ -1,7 +1,7 @@
 <div id="main" class="span8 page contact-page image-preloader">
 
     <div class="row-fluid">
-
+        <?php var_dump($this->session->userdata('user'))?>
         <h1>Ny kaontiko / Mon compte</h1>
         <img src="<?= base_url("upload/infouser/mahefa-arivo-pdp.jpg")?>">
         <p></p>
