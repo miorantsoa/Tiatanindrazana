@@ -429,4 +429,10 @@ class Accueil extends CI_Controller{
         $this->load->view('default/templates/footer');
     }
 
+    public function connection(){
+        $data = $this->indexData();
+        $data['titre'] = "Connection : Tia TAnindrazana";
+        $this->load->view('default/connection',$data);
+    }
+
 }
