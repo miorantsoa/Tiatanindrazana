@@ -324,6 +324,26 @@ class Accueil extends CI_Controller{
         $data['page'] = $page;
         $this->homeView('resultat_recherche',$data,$data);
     }
+    
+    public function detail_filactu($date=null){
+        $data = $this->indexData();
+        $interval = date_diff(date_create(($date)),date_create(date('Y-m-d')))->format('%a');
+        if($this->session->userdata('user') || $interval >= 2) {
+            if ($date != null) {
+                $fil_actu = $this->filactu_model->getByDate($date);
+                $data['detail_fil'] = $fil_actu;
+                $data['titre'] = "Faham-baovao ny " . $date;
+            }
+            $data['titre'] = "Faham-baovao : Tia Tanindrazana";
+            $this->homeView('detail_fil_info', $data, $data);
+        }
+        else{
+            $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
+            redirect('accueil');
+        }
+    }
+
+    
     public function archive($date1 = null, $date2 = null, $numparution = null){
         
         $data = $this->indexData();

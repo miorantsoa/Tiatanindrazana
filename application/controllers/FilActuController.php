@@ -12,7 +12,7 @@ class FilActuController extends CI_Controller{
         $data = array(
             'datepublication' => $this->input->post('datepublication'),
             'heurepublication' => $this->input->post('heurepublication'),
-            'extrait' => $this->input->post('extrait'),
+            'extrait' => substr($this->input->post('contenue'),0,150)."...",
             'contenue' => $this->input->post('contenue')
 
         );

@@ -27,7 +27,7 @@ class InfoUtilLibrary{
             $data['copyrightphoto'] = $copyrightphoto;
         if($lienutile!=null)
             $data['lien'] = $lienutile;
-        $data['dernieremaj'] = date('Y-m-d');
+        $data['dernieremaj'] = date('Y-m-d H:i');
         $this->CI->infoutilemodel->update($id,$data);
     }
 

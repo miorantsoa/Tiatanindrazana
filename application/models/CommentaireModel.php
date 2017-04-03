@@ -11,7 +11,7 @@ class CommentaireModel extends CI_Model{
         $data = array(
             "nomprenom" => $nomprenom,
             "email" => $email,
-            "datecommentaire" => date('Y-m-d H:M'),
+            "datecommentaire" => date('Y-m-d H:i'),
             "idarticle" => $idarticle,
             "commentaire" => $commentaire
         );

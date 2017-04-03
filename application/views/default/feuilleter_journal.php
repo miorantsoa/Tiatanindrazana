@@ -14,6 +14,10 @@
             <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-blue">Hisoratra anarana</a>
         </div>
     </div>
+    <div class="breadcrumb clearfix">
+        <span class="base">Ato no misy anao</span>
+        <p><a href="<?= base_url('accueil/feuileter_journal')?>">Hamaky Gazety</a></p>
+    </div> <!-- End Breadcrumb -->
     <div class="margin-top40">
         <div class="filtre search-page">
             <form name="fikarohana" method="post" action="<?= base_url('accueil/feuilleter_journal')?>">
@@ -45,6 +49,39 @@
                         <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
                     </div>
                     <?php endforeach;?>
+                    <?php foreach ($gazety as $item):?>
+                        <div class="span2  archive">
+                            <figure class="figure">
+                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
+                            </figure>
+                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
+                        </div>
+                    <?php endforeach;?>
+                    <?php foreach ($gazety as $item):?>
+                        <div class="span2  archive">
+                            <figure class="figure">
+                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
+                            </figure>
+                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
+                        </div>
+                    <?php endforeach;?>
+                    <?php foreach ($gazety as $item):?>
+                        <div class="span2  archive">
+                            <figure class="figure">
+                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
+                            </figure>
+                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
+                        </div>
+                    <?php endforeach;?>
+                    <?php foreach ($gazety as $item):?>
+                        <div class="span2  archive">
+                            <figure class="figure">
+                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
+                            </figure>
+                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
+                        </div>
+                    <?php endforeach;?>
+
                 </div>
             </div>
         </div>

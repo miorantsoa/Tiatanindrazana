@@ -8,7 +8,7 @@
             <!-- Tab Menu -->
             <ul class="nav nav-tabs" id="enewsTabs">
                 <li class="active"><a href="#tab-populars" data-toggle="tab"><?= $last_fil[0]->datepublication?></a></li>
-                <?= (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab"><?= (count($fil_actuj2)!=0) ? $fil_actuj2[0]->datepublication : "" ?></a></li>' : ""?>
+                <?php echo (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab">'.$fil_actuj2[0]->datepublication.'</a></li>' : ""?>
             </ul>
 
             <div class="tab-content fil">
@@ -20,7 +20,7 @@
                             <span class="meta alignright"> <?= date('H:i',strtotime($fil->heurepublication))?></span>
                         </div>
                         <div class="span2 content pull-right">
-                            <p><a href="single_post.html" title="<?= $fil->contenue?>"><?= $fil->contenue?></a></p>
+                            <p><a href="<?= base_url('accueil/detail_filactu/'.$fil->datepublication)?>" title="<?= $fil->extrait?>"><?= $fil->extrait?></a></p>
                         </div>
                     </div>
                     <?php endforeach;?>
@@ -28,14 +28,15 @@
 
                 <div class="tab-pane" id="tab-recents">
 
-                    <?php foreach ($fil_actuj2 as $fil):?>
+                    <?php
+                   foreach ($fil_actuj2 as $fil):?>
                         <!-- One -->
                         <div class="item">
                             <div class="span2">
                                 <span class="meta alignright"> <?= date('H:i',strtotime($fil->heurepublication))?></span>
                             </div>
                             <div class="span2 content pull-right">
-                                <p><a href="single_post.html" title="<?= $fil->contenue?>"><?= $fil->contenue?></a></p>
+                                <p><a href="<?= base_url('accueil/detail_filactu/'.$fil->datepublication)?>" title="<?= $fil->extrait?>"><?= $fil->extrait?></a></p>
                             </div>
                         </div>
                     <?php endforeach;?>
