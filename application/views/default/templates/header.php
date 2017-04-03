@@ -65,6 +65,9 @@
         <ul class="social pull-right">
             <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Like us on Facebook">Hiditra pikambana</a>
         </ul>
+        <ul class="social pull-right">
+            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="<?= base_url('logincontroller/deconnect')?>" data-placement="bottom" data-original-title="Like us on Facebook">Deconexion</a>
+        </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
             <input type="text" name="search" placeholder="Fikarohana ...." class="input-icon input-icon-search" />

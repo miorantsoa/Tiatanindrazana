@@ -44,7 +44,7 @@ class AbonneeModel extends CI_Model {
         $this->db->where('emailutilisateur',$usermail);
         $this->db->where('motdepasse',$userpassword);
         $result = $this->db->get('detail_abonnement');
-        return $result;
+        return $result->result();
     }
     public function getAbonneeById($id){
         $this->db->where('idabonnee',$id);

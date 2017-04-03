@@ -37,10 +37,10 @@
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Mailaka / E-mail" name="email" type="email" autofocus>
+                                <input class="form-control" placeholder="Mailaka / E-mail" name="email" type="email" autofocus required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Teny miafina / mot de passe" name="password" type="password" value="">
+                                <input class="form-control" placeholder="Teny miafina / mot de passe" name="password" type="password" value="" required>
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -48,7 +48,7 @@
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <a href="#" class="btn btn-lg btn-success btn-block">Hiditra</a>
+                            <button href="#" class="btn btn-lg btn-success btn-block">Hiditra</button>
                         </fieldset>
                     </form>
                 </div>
@@ -58,7 +58,6 @@
 </div>
 
 <!-- Core Scripts - Include with every page -->
-<li><a href="#" title="Twitter"><img src="<?= base_url()?>/assets/default/images/social/f0101/twitter.png" alt="Twitter" /></a></li>
 <script src="<?= base_url("assets/login/plugins/jquery-1.10.2.js")?>"></script>
 <script src="<?= base_url("assets/login/plugins/bootstrap/bootstrap.min.js")?>"</script>
 <script src="<?= base_url("assets/login//plugins/metisMenu/jquery.metisMenu.js")?>"</script>
