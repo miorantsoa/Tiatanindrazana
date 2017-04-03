@@ -9,7 +9,7 @@ class UserController extends CI_Controller
 {
     public function addUser()
     {
-        var_dump($_FILES);
+      /**  var_dump($_FILES); */
         $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
         $this->load->library('upload', $config);
         $lienpdp = null;
@@ -59,6 +59,88 @@ class UserController extends CI_Controller
         }
     }
 
+
+    public function updateInfoUser(){
+
+        if ($this->input->post('civilite')!=""){
+            $Data['civilite']=$this->input->post('civilite');
+        }
+        if ($this->input->post('nomutilisateur')!=""){
+            $Data['nomutilisateur']=$this->input->post('nomutilisateur');
+        }
+        if ($this->input->post('prenomutilisateur')!=""){
+            $Data['prenomutilisateur']=$this->input->post('prenomutilisateur');
+        }
+        if ($this->input->post('naissanceutilisateur')!=""){
+            $Data['naissanceutilisateur']=$this->input->post('naissanceutilisateur');
+        }
+        if ($this->input->post('cin')!=""){
+            $Data['cin']=$this->input->post('cin');
+        }
+        if ($this->input->post('datedelivrancecin')!=""){
+            $Data['datedelivrancecin']=$this->input->post('datedelivrancecin');
+        }
+        if ($this->input->post('lieudelivrancecin')!=""){
+            $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
+        }
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $liencinrecto = "    ";
+            if (!$this->upload->do_upload('liencin_recto')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if ($liencinrecto!="") {
+                $Data['liencin_recto'] = $liencinrecto;
+            }
+
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $lienverso = "";
+            if (!$this->upload->do_upload('liencin_verso')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if($lienverso!=""){
+            $Data['liencin_verso']=$lien;
+        }
+        if ($this->input->post('emailutilisateur')!=""){
+            $Data['emailutilisateur']=$this->input->post('emailutilisateur');
+        }
+        if ($this->input->post('identifiant')!=""){
+            $Data['identifiant']=$this->input->post('identifiant');
+        }
+
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $lienprofile = "";
+            if (!$this->upload->do_upload('imageprofile')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if($lienprofile!=""){
+            $Data['imageprofile']=$lien;
+        }
+        $this->load->model('abonneemodel');
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->abonneemodel->updateUtilisateur($id,$Data);
+        $temp = $this->abonneemodel->getAbonneeById($id);
+        $this->session->set_userdata('user',$temp);
+        redirect('Accueil/monCompte');
+
+    }
 
     public function configUpload($nomutilisateur,$prenomutilisateur,$detail)
     {

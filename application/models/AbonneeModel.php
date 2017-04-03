@@ -32,7 +32,7 @@ class AbonneeModel extends CI_Model {
         $this->db->insert('abonnee',$data);
     }
     public function updateUtilisateur($idabonnee,$data){
-        $this->db->where('idabonne',$idabonnee);
+        $this->db->where('idutilisateur2',$idabonnee);
         $this->db->update('abonnee',$data);
     }
 
@@ -47,7 +47,7 @@ class AbonneeModel extends CI_Model {
         return $result->result();
     }
     public function getAbonneeById($id){
-        $this->db->where('idabonnee',$id);
+        $this->db->where('idutilisateur2',$id);
         $abonnee = $this->db->get('abonnee');
         return $abonnee->result();
     }
