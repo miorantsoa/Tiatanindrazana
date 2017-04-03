@@ -85,32 +85,32 @@ class UserController extends CI_Controller
         }
             $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
             $this->load->library('upload', $config);
-            $liencinrecto = "    ";
+            $liencinrecto = null;
             if (!$this->upload->do_upload('liencin_recto')) {
                 $error = array('error' => $this->upload->display_errors());
                 var_dump($error);
             }
             else {
                 $data = array('upload_data' => $this->upload->data());
-                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+                $liencinrecto = 'upload/infouser/' . $data['upload_data']['file_name'];
             }
-            if ($liencinrecto!="") {
+            if ($liencinrecto!=null) {
                 $Data['liencin_recto'] = $liencinrecto;
             }
 
             $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
             $this->load->library('upload', $config);
-            $lienverso = "";
+            $lienverso = null;
             if (!$this->upload->do_upload('liencin_verso')) {
                 $error = array('error' => $this->upload->display_errors());
                 var_dump($error);
             }
             else {
                 $data = array('upload_data' => $this->upload->data());
-                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+                $lienverso = 'upload/infouser/' . $data['upload_data']['file_name'];
             }
-            if($lienverso!=""){
-            $Data['liencin_verso']=$lien;
+            if($lienverso!=null){
+            $Data['liencin_verso']=$lienverso;
         }
         if ($this->input->post('emailutilisateur')!=""){
             $Data['emailutilisateur']=$this->input->post('emailutilisateur');
@@ -121,17 +121,17 @@ class UserController extends CI_Controller
 
             $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
             $this->load->library('upload', $config);
-            $lienprofile = "";
+            $lienprofile = null;
             if (!$this->upload->do_upload('imageprofile')) {
                 $error = array('error' => $this->upload->display_errors());
                 var_dump($error);
             }
             else {
                 $data = array('upload_data' => $this->upload->data());
-                $lien = 'upload/infouser/' . $data['upload_data']['file_name'];
+                $lienprofile = 'upload/infouser/' . $data['upload_data']['file_name'];
             }
-            if($lienprofile!=""){
-            $Data['imageprofile']=$lien;
+            if($lienprofile!=null){
+            $Data['imageprofile']=$lienprofile;
         }
         $this->load->model('abonneemodel');
         $id = $this->session->userdata('user')[0]->idutilisateur2;

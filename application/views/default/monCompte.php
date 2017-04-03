@@ -33,7 +33,6 @@
         <h4>Ny momba ny kaonty / a propos de votre compte:</h4>
         <strong>Anarana fahafantarana / Nom d'utilisateur</strong>
         <p><?php echo($this->session->userdata('user')[0]->identifiant)?></p>
-        <strong>Tenimiafina / Mot de passe</strong>
-        <p><?php echo($this->session->userdata('user')[0]->motdepasse)?></p>
+
     </div> <!-- End Row-Fluid -->
 </div>
