@@ -14,7 +14,14 @@ class LoginController extends CI_Controller {
         var_dump($data);
         if(count($data)!=0){
             /** updateUtilisateur */
-            $temp = rand (1,999999);
+            $ran = rand (1,999999);
+            $temp['idsession']=$ran;
+            $id = $this->session->userdata('user')[0]->idutilisateur2;
+            $this->abonneemodel->updateUtilisateur($id,$temp);
+            /**  $this->load->model('abonneemodel');
+            $id = $this->session->userdata('user')[0]->idutilisateur2;
+            $this->abonneemodel->updateUtilisateur($id,$Data);
+             */
             $this->session->set_userdata('user',$data);
             redirect('Accueil/monCompte');
         }
@@ -25,6 +32,9 @@ class LoginController extends CI_Controller {
     }
 
     public function deconnect(){
+        $temp['idsession']=null;
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->abonneemodel->updateUtilisateur($id,$temp);
         $this->session->unset_userdata('user');
         redirect('accueil');
     }
