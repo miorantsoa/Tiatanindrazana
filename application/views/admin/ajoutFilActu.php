@@ -27,13 +27,13 @@
                                 <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($fildactu)) ? $fildactu[0]->heurepublication : time('hour(:)minute')?>">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Extrait du fil d'actualité <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea name="extrait" placeholder="En quelque mot..." id="fil" class="form-control"></textarea>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Contenu du fil d'actualité <span class="required">*</span>
                             </label>

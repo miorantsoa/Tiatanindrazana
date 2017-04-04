@@ -154,7 +154,11 @@ ul.the-icons {
 	z-index:99999;
 }
 .figure{
+	min-height: 240px;
+}
+.figure img{
 	box-shadow: 0px 2px 10px 0px #212121;
+	min-height: 240px;
 }
 .archive.first{
 	margin-left:0px!important;

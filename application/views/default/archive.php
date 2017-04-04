@@ -1,7 +1,7 @@
 <div id="main" class="portofolio blog-posts image-preloader"">
 <div class="breadcrumb clearfix">
     <span class="base">Ato no misy anao</span>
-    <p><a href="<?= base_url('accueil')?>">Tahiry</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Tahiry</p>
+    <p><a href="<?= base_url('accueil/archive')?>">Tahiry</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Tahiry</p>
 </div> <!-- End Breadcrumb -->
 <div class="margin-top40">
     <div class="filtre search-page">
@@ -31,6 +31,30 @@
     <div class="span8 pull-right">
         <div class="panel-danger ">
             <div class="panel-body">
+                <?php foreach ($archive as $journal):?>
+                    <div class="span2 no-margin-left archive">
+                        <figure class="figure">
+                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                        </figure>
+                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
+                    </div>
+                <?php endforeach;?>
+                <?php foreach ($archive as $journal):?>
+                    <div class="span2 no-margin-left archive">
+                        <figure class="figure">
+                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                        </figure>
+                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
+                    </div>
+                <?php endforeach;?>
+                <?php foreach ($archive as $journal):?>
+                    <div class="span2 no-margin-left archive">
+                        <figure class="figure">
+                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                        </figure>
+                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
+                    </div>
+                <?php endforeach;?>
                 <?php foreach ($archive as $journal):?>
                     <div class="span2 no-margin-left archive">
                         <figure class="figure">

@@ -52,7 +52,7 @@ class UserController extends CI_Controller
             //$data=> array(//
 
   //          )//
-            $this->load->loadview('default/templates/header',$data);
+            redirect('accueil');
         }
         else{
             var_dump($this->input->post('motdepasse'));

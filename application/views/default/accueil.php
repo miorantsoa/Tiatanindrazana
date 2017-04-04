@@ -56,7 +56,7 @@ $this->session->set_userdata('last_page', current_url());
         <span class="base"><?= date('d',strtotime($last_fil[0]->datepublication))?><i><?= date('M',strtotime($last_fil[0]->datepublication)) ?></i></span>
         <div class="text-rotator">
             <?php foreach ($last_fil as $fil):?>
-                <div><a href="single_post.html" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
+                <div><a href="<?= base_url('accueil/detail_filactu/'.$fil->datepublication)?>" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
            <?php endforeach;?>
          </div>
         <?php }?>
@@ -80,7 +80,7 @@ $this->session->set_userdata('last_page', current_url());
             <div class="text">
                 <h2><a href="<?= base_url('accueil/detailArticle/'.$article->idarticle)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
                 <p><?= substr($article->contenue,0,250)."...</p>"?></p>
-                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= $article->datepublication?>&nbsp;&nbsp;</div>
+                <div class="meta"><a href="author.html">Niseho ny</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= $article->datepublication?>&nbsp;&nbsp;</div>
             </div>
         </div>
         <?php
