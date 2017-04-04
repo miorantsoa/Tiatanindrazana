@@ -36,7 +36,6 @@ class FilActu_model extends CI_Model{
     }
     public function getJ2Fil(){
         $this->db->where('datepublication < (select max(datepublication)-2 as datepublication from filactualite)');
-        $this->db->group_by('datepublication');
         $this->db->order_by('datepublication','desc');
         $this->db->limit(1);
         $date= $this->db->get('filactualite');

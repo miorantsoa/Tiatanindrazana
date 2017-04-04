@@ -19,6 +19,15 @@
 </div> <!-- End Footer -->
 
 <a href="#" class="scrollup" title="Hiverina miakatra!">Scroll</a>
+<script>
+    $(document).ready(function(){
+        var error = "<?=$this->session->flashdata('erreur')?>";
+        if (error) {
+            $("#dialog").modal();
+            console.log(error);
+        }
+    });
+</script>
 <script type='text/javascript' src='<?= base_url('assets/default/js/jquery.modal.min.js')?>'></script>
 <script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.easing.js'></script>

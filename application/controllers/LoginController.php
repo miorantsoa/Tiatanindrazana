@@ -16,7 +16,7 @@ class LoginController extends CI_Controller {
             /** updateUtilisateur */
             $temp = rand (1,999999);
             $this->session->set_userdata('user',$data);
-            redirect('Accueil/monCompte');
+            redirect($this->session->userdata('last_page'));
         }
         else {
             var_dump($data);
