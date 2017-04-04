@@ -1,5 +1,6 @@
 <?php
 $this->session->set_userdata('last_page', current_url());
+var_dump($this->session->userdata());
 ?>
 <div class="row-fluid">
 <div id="main" class="span8 image-preloader">

@@ -61,7 +61,7 @@
         </ul>
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
             <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-            <li><a href="" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+            <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
         </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
