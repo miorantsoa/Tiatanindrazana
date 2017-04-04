@@ -3,35 +3,36 @@
     <div class="row-fluid">
 
         <h1>Ny kaontiko / Mon compte</h1>
-        <img src="<?= base_url("upload/infouser/mahefa-arivo-pdp.jpg")?>">
+        <img src="<?= base_url( $this->session->userdata('user')[0]->imageprofile)?>">
         <p></p>
         <strong>Anarana / Nom:</strong>
-        <p>Landry</p>
+        <p><?php echo($this->session->userdata('user')[0]->nomutilisateur)?></p>
         <strong>Fananpiny / Prenom:</strong>
-        <p>Mialy</p>
+        <p><?php echo($this->session->userdata('user')[0]->prenomutilisateur)?></p>
+        <strong>Daty nahaterahana / Date de naissance</strong>
+        <p><?php echo($this->session->userdata('user')[0]->naissanceutilisateur)?></p>
         <strong>Laharana karapanondro / Numéro CIN</strong>
-        <p>1234567</p>
+        <p><?php echo($this->session->userdata('user')[0]->cin)?></p>
         <strong>Daty nazahona karapanondro / Date de livraison CIN</strong>
-        <p>12/12/2012</p>
+        <p><?php echo($this->session->userdata('user')[0]->datedelivrancecin)?></p>
         <strong>Toerana nazahona karapanondro / Lieu d'obtention CIN</strong>
-        <p>tana</p>
+        <p><?php echo($this->session->userdata('user')[0]->lieudelivrancecin)?></p>
         <strong>Sary recto karapanondro / image recto CIN</strong>
         <p></p>
-        <img src="<?= base_url("upload/infouser/mahefa-arivo-pdp.jpg")?>">
+        <img src="<?= base_url($this->session->userdata('user')[0]->liencin_recto)?>">
         <p></p>
         <strong>Sary verso karapanondro / image verso CIN</strong>
         <p></p>
-        <img src="<?= base_url("upload/infouser/mahefa-arivo-pdp.jpg")?>">
+        <img src="<?= base_url($this->session->userdata('user')[0]->liencin_verso)?>">
         <p></p>
         <strong>Mailaka / E-mail <span class="font-required">*</span></strong>
-        <p>wawa@mail.com</p>
+        <p><?php echo($this->session->userdata('user')[0]->emailutilisateur)?></p>
         <p></p>
         <div class="sep-border no-margin-top"></div>
         <p></p>
         <h4>Ny momba ny kaonty / a propos de votre compte:</h4>
         <strong>Anarana fahafantarana / Nom d'utilisateur</strong>
-        <p>mialylondry</p>
-        <strong>Tenimiafina / Mot de passe</strong>
-        <p>13456</p>
+        <p><?php echo($this->session->userdata('user')[0]->identifiant)?></p>
+
     </div> <!-- End Row-Fluid -->
 </div>

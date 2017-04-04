@@ -7,34 +7,29 @@
  */
 class LoginController extends CI_Controller {
     public function connect(){
-        $username = $this->input->get('email');
-        $pass = $this->input->get('password');
+        $username = $this->input->post('email');
+        $pass = $this->input->post('password');
         $this->load->model('abonneemodel');
         $data = $this->abonneemodel->connectUser($username,$pass);
-        if($data){
+        var_dump($data);
+        if(count($data)!=0){
+            /** updateUtilisateur */
+            $temp = rand (1,999999);
             $this->session->set_userdata('user',$data);
-            if($_POST['url']){
-                echo $_POST['url'];
-            }
-            else
-                echo $this->session->userdata['last_page'];
+            redirect('Accueil/monCompte');
         }
-        else{
-            echo "Tsizy";
+        else {
+            var_dump($data);
+            redirect('Accueil/connection');
         }
     }
-    function isIdInReact($idSujet){
-        $sess_user = $this->session->userdata('user');
-        $dballreact = $this->post->getAllUserReaction($sess_user['user_id']->IDUTILISATEUR);
-        for($i = 0; $i<count($dballreact);$i++){
-            if($idSujet == $dballreact[$i]->IDSUJET){
-                return true;
-            }
-        }
-        return false;
-    }
+
     public function deconnect(){
         $this->session->unset_userdata('user');
-        redirect($_GET['url']);
+        redirect('accueil');
     }
+
+    public function updateUser (){
+
+}
 }

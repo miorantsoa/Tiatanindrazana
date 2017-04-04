@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: Steave_pc
  * Date: 13/03/2017
- * Time: 11:16 wawa
+ * Time: 11:16 test1
  */
 class UserController extends CI_Controller
 {
     public function addUser()
     {
-        var_dump($_FILES);
+      /**  var_dump($_FILES); */
         $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
         $this->load->library('upload', $config);
         $lienpdp = null;
@@ -60,6 +60,88 @@ class UserController extends CI_Controller
     }
 
 
+    public function updateInfoUser(){
+
+        if ($this->input->post('civilite')!=""){
+            $Data['civilite']=$this->input->post('civilite');
+        }
+        if ($this->input->post('nomutilisateur')!=""){
+            $Data['nomutilisateur']=$this->input->post('nomutilisateur');
+        }
+        if ($this->input->post('prenomutilisateur')!=""){
+            $Data['prenomutilisateur']=$this->input->post('prenomutilisateur');
+        }
+        if ($this->input->post('naissanceutilisateur')!=""){
+            $Data['naissanceutilisateur']=$this->input->post('naissanceutilisateur');
+        }
+        if ($this->input->post('cin')!=""){
+            $Data['cin']=$this->input->post('cin');
+        }
+        if ($this->input->post('datedelivrancecin')!=""){
+            $Data['datedelivrancecin']=$this->input->post('datedelivrancecin');
+        }
+        if ($this->input->post('lieudelivrancecin')!=""){
+            $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
+        }
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $liencinrecto = null;
+            if (!$this->upload->do_upload('liencin_recto')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $liencinrecto = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if ($liencinrecto!=null) {
+                $Data['liencin_recto'] = $liencinrecto;
+            }
+
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $lienverso = null;
+            if (!$this->upload->do_upload('liencin_verso')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $lienverso = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if($lienverso!=null){
+            $Data['liencin_verso']=$lienverso;
+        }
+        if ($this->input->post('emailutilisateur')!=""){
+            $Data['emailutilisateur']=$this->input->post('emailutilisateur');
+        }
+        if ($this->input->post('identifiant')!=""){
+            $Data['identifiant']=$this->input->post('identifiant');
+        }
+
+            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+            $this->load->library('upload', $config);
+            $lienprofile = null;
+            if (!$this->upload->do_upload('imageprofile')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }
+            else {
+                $data = array('upload_data' => $this->upload->data());
+                $lienprofile = 'upload/infouser/' . $data['upload_data']['file_name'];
+            }
+            if($lienprofile!=null){
+            $Data['imageprofile']=$lienprofile;
+        }
+        $this->load->model('abonneemodel');
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->abonneemodel->updateUtilisateur($id,$Data);
+        $temp = $this->abonneemodel->getAbonneeById($id);
+        $this->session->set_userdata('user',$temp);
+        redirect('Accueil/monCompte');
+
+    }
+
     public function configUpload($nomutilisateur,$prenomutilisateur,$detail)
     {
         $config['upload_path'] = './upload/infouser/';
@@ -69,52 +151,5 @@ class UserController extends CI_Controller
         $config['max_height'] = 1768;
         $config['file_name'] = $nomutilisateur .'-'. $prenomutilisateur .'-'. $detail;
         return $config;
-    }
-    public function user_uptdate(){
-        $config = $this->configUpload();
-        $config = $this->configUpload();
-        $this->load->library('upload', $config);
-        $image = null;
-        $this->load->modele('abonneemodele');
-        $iduser = $this->input->post('iduser');
-        $data = array(
-            'civilte' => $this->input->get('civilite'),
-            'nom' => $this->input->get('nomutilisateur'),
-            'prenom' => $this->input->get('prenomutilisateur'),
-            'ddn' => $this->input->get('naissanceutilisateur'),
-            'numcin' => $this->input->get('cin'),
-            'datedelivrance' => $this->input->get('datedelivrancecin'),
-            'lieudelivrance' => $this->input->get('lieudelivrancecin'),
-            'lienrecto' => $this->input->get('lienimagerectocin'),
-            'lienverso' => $this->input->get('lienimageversocin'),
-            'email' => $this->input->get('emailutilisateur'),
-            'identifiant' => $this->input->get('identifiant'),
-            'pdp' => $this->input->get('lienimagepdp')
-        );
-        $this->db->where('user_id', $iduser);
-
-    }
-/**    public function update(){
-        $config = $this->configUpload();
-        $config = $this->configUpload();
-        $this->load->library('upload', $config);
-        $image = null;
-        if (!$this->upload->do_upload('couverture')) {
-            $error = array('error' => $this->upload->display_errors());
-        }
-        else {
-            $data = array('upload_data' => $this->upload->data());
-            $image = 'upload/couverture/'. $data['upload_data']['file_name'];
-        }
-        $this->load->library('journallibrary');
-        $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'));
-        redirect('admin/journal');
-    }
-**/
-    public function updatepassword(){
-        $iduser = $this->input->get('iduser');
-        $password = $this->input->get('newmdp');
-        $this->load->model('abonneemodel');
-        $this->abonneemodel->updatepassword($iduser,$password);
     }
 }
