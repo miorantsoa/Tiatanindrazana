@@ -47,6 +47,9 @@
                                     <input name="remember" type="checkbox" value="Remember Me">tatidio
                                 </label>
                             </div>
+                            <div>
+                                <a href="<?= base_url("accueil/inscription")?>">Mbola tsy manana kaonty?</a>
+                            </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <button href="#" class="btn btn-lg btn-success btn-block">Hiditra</button>
                         </fieldset>
