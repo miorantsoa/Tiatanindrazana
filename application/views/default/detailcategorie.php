@@ -1,16 +1,5 @@
 <div class="row-fluid">
 <div id="main" class="span8 blog-posts image-preloader">
-    <div id="dialog" title="Basic dialog" style="display:none;">
-        <div class="modal-header">
-            <h4 class="modal-title">Fampahafantarana</h4>
-        </div>
-        <div class="modal-body">
-            <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
-        </div>
-        <div class="span12 aligncenter">
-            <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription?url='.current_url())?>" class="btn btn-blue">Hisoratra anarana</a>
-        </div>
-    </div>
     <div class="row-fluid">
         <div class="breadcrumb clearfix">
             <span class="base">Ato no misy anao</span>
@@ -66,7 +55,6 @@
                         <li class="active"><a href="<?= base_url('accueil/detail_categorie/'.$categorie->idcategorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date_1'].'/'.$filtre['date_2']?>"><?= $i?></a></li>
                     <?php }?>
             </ul>
-                var_dump($nbpage)?>
                 <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
             <?php }?>
         </nav> <!-- End Nav-Pagination -->
@@ -74,13 +62,6 @@
     </div> <!-- End Row-Fluid -->
 </div> <!-- End Main -->
     <script>
-        $(document).ready(function(){
-            var error = "<?=$this->session->flashdata('erreur')?>";
-            if (error) {
-                $("#dialog").modal();
-                console.log(error);
-            }
-        });
         $('#datetimepicker').datetimepicker({
             timepicker:false,
             format:'Y-m-d',

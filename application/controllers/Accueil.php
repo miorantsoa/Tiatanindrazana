@@ -65,7 +65,7 @@ class Accueil extends CI_Controller{
         $articles = $this->articlesmodel->getById($id);
         $interval = date_diff(date_create(($articles[0]->datepublication)),date_create(date('Y-m-d')))->format('%a');
         if (count($articles) != 0) {
-            if(($this->session->userdata('user') &&  $this->session->userdata('user')->niveau >=1) || $interval >=2 || $articles[0]->niveau <= 1) {
+            if($this->session->userdata('user') || $interval >=2 || $articles[0]->niveau <= 1) {
                     $article = $articles[0];
                     $comment = $this->commentairemodel->get(null, $id);
                     $data['commentaire'] = $comment;
@@ -222,7 +222,7 @@ class Accueil extends CI_Controller{
     public function detail_gazety($id){
         $data = $this->indexData();
         $feuille_journal = $this->feuillejournalmodel->getDetail($id);
-        if ($this->session->userdata('user') && $this->session->userdata('user')->niveau >= 2) {
+        if ($this->session->userdata('user')) {
             if (count($feuille_journal) != 0) {
                 if (count($feuille_journal) != 0) {
                     $data['detail'] = $feuille_journal;
@@ -266,7 +266,7 @@ class Accueil extends CI_Controller{
     public function detail_info_utile($id){
         $data = $this->indexData();
         $info_util = $this->infoutilemodel->get($id);
-        if ($this->session->userdata('user') && $this->session->userdata('user')->niveau >= 2) {
+        if ($this->session->userdata('user')) {
             if (count($info_util) != 0) {
                 //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
                 $data['associe'] = $this->infoutilemodel->get(null, null, $info_util[0]->idcatbeinfo);
@@ -344,7 +344,7 @@ class Accueil extends CI_Controller{
     }
 
     
-    public function archive($date1 = null, $date2 = null, $numparution = null){
+    public function archive($q = null ,$date1 = null, $date2 = null, $numparution = null){
         
         $data = $this->indexData();
         //$id,$numparution,$date1,$date2
@@ -384,9 +384,24 @@ class Accueil extends CI_Controller{
         }
 
     }
-    public function filtre_journal($page = 1,$limit = 0,$date1=null,$date2=null){
+    public function filtre_journal($q = null, $page = 1,$limit = 0,$date1=null,$date2=null){
         $data = $this->indexData();
         $per_page = 10;
+        $query = $this->input->post('recherche');
+        if($q!=null){
+            $query = $q;
+        }
+        if($q == "-"){
+            $query = null;
+        }
+        $date_1 = $this->input->post('date1');
+        $date_2 = $this->input->post('date2');
+        if($date1!=null){
+            $date_1 = $date1;
+        }
+        if($date2!=null){
+            $date_2 = $date2;
+        }
         $date_1 = $this->input->post('date1');
         $date_2 = $this->input->post('date2');
         if($date1!=null){
@@ -397,7 +412,7 @@ class Accueil extends CI_Controller{
         }
         $ordre = $this->input->post('ordre');
         $data['titre'] = "Archive : Tia Tanindrazana";
-        $journal = $this->journal->get(null,null,null,null,$ordre,$per_page,$limit);
+        $journal = $this->journal->get(null,null,$date_1,$date_2,$ordre,$query,$per_page,$limit);
         $last_journal = $this->journal->getLastJournal();
         if(count($last_journal)!=0){
             $data['last_journal'] = $last_journal[0];

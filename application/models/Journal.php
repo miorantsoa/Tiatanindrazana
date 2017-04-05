@@ -38,10 +38,13 @@ class Journal extends CI_Model{
         $journal = $this->db->get('journal');
         return $journal->result();
     }
-    public function get($id,$numparution,$date1,$date2,$ordre = 'DESC',$limit=null,$start=null){//utiliser pour recherche avancé dans le journal
+    public function get($id,$numparution,$date1,$date2,$ordre = 'DESC',$titre=null,$limit=null,$start=null){//utiliser pour recherche avancé dans le journal
         $this->db->limit($limit,$start);
         if($id!=null){
             $this->db->where('idjournal',$id);
+        }
+        if($titre!=null){
+            $this->db->where("idjournal in (select idjournal from detail_article where titre like '%".$titre."%')");
         }
         if($numparution!=null)
             $this->db->where('numeroparution',$numparution);
@@ -53,7 +56,10 @@ class Journal extends CI_Model{
         if($date1!=null && $date2!=null)
             $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         $this->db->order_by('datepublication',$ordre);
+        //$sql = $this->db->get_compiled_select('journal');
+        //echo($sql);
         $journal = $this->db->get('journal');
+        //var_dump($journal->result());
         return $journal->result();
     }
     public function getLastJournal(){

@@ -143,8 +143,8 @@ class ArticlesModel extends CI_Model {
             $this->db->like('titre',$titre);
 
         if($rubrique!=null) {
-            $this->db->where('idcategorie', $rubrique);
-            $this->db->or_where('idmere', $rubrique);
+            $this->db->where('(idcategorie = '.$rubrique.' or idmere ='. $rubrique.')');
+            //$this->db->or_where('idmere', $rubrique);
         }
 
         if($contenu!=null && $resume==null && $titre == null)
@@ -159,12 +159,14 @@ class ArticlesModel extends CI_Model {
             $this->db->where('dateparution',$date1);
         if($laune!=null)
             $this->db->where('laune',$laune);
-        if($image == false) {
+        if($image == false && $rubrique==null) {
             $this->db->where('idmere <> ', 10);
         }
         //$this->db->order_by('libelle',"ASC");
         $this->db->order_by('dateparution',$ordre);
         $article = $this->db->get('detail_article');
+        /*$sql = $this->db->get_compiled_select('detail_article');
+        die($sql);*/
         return $article->result();
     }
 

@@ -8,14 +8,16 @@
         <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_journal')?>">
             <span class="tile_header">Tahiry</span>
             <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
-            <select name="categorie" id="categorie">
-                <option value="">Fantina ara-tsokajy</option>
-            </select>
             <select name="ordre" id="ordre">
                 <option value="">Fantina amin'ny daty</option>
                 <option value="DESC">Daty midina</option>
                 <option value="ASC">Daty miakatra</option>
             </select>
+            <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+        </form>
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_journal')?>">
+            <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+            <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
             <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
         </form>
     </div>
@@ -39,32 +41,20 @@
                         <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
                     </div>
                 <?php endforeach;?>
-                <?php foreach ($archive as $journal):?>
-                    <div class="span2 no-margin-left archive">
-                        <figure class="figure">
-                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
-                        </figure>
-                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
-                    </div>
-                <?php endforeach;?>
-                <?php foreach ($archive as $journal):?>
-                    <div class="span2 no-margin-left archive">
-                        <figure class="figure">
-                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
-                        </figure>
-                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
-                    </div>
-                <?php endforeach;?>
-                <?php foreach ($archive as $journal):?>
-                    <div class="span2 no-margin-left archive">
-                        <figure class="figure">
-                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
-                        </figure>
-                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
-                    </div>
-                <?php endforeach;?>
             </div>
         </div>
     </div>
 </div>
 </div>
+<script>
+    $('#datetimepicker').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        formatDate:'Y-m-d'
+    });
+    $('#datetimepicker2').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        formatDate:'Y-m-d'
+    });
+</script>

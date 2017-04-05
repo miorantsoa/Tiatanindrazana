@@ -61,7 +61,7 @@
         </ul>
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
             <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-            <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+            <li><a href="" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
         </ul>
         <ul class="social pull-right">
             <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="<?= base_url('logincontroller/deconnect')?>" data-placement="bottom" data-original-title="Like us on Facebook">Deconexion</a>
