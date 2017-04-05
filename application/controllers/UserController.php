@@ -145,6 +145,16 @@ class UserController extends CI_Controller
 
     }
 
+    public function modifiermotdepasse(){
+        $Data = array(
+          'motdepasse'=>  $this->input->post('motdepasse')
+        );
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->load->model('abonneemodel');
+        $this->abonneemodel->updateUtilisateur($id,$Data);
+        redirect('Accueil/');
+    }
+
     public function configUpload($nomutilisateur,$prenomutilisateur,$detail)
     {
         $config['upload_path'] = './upload/infouser/';
