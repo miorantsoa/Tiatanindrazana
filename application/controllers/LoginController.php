@@ -7,16 +7,20 @@
  */
 class LoginController extends CI_Controller {
     public function connect(){
-        $username = $this->input->post('email');
+        $email = $this->input->post('email');
         $pass = $this->input->post('password');
         $this->load->model('abonneemodel');
-        $data = $this->abonneemodel->connectUser($username,$pass);
+        $data = $this->abonneemodel->connectUser($email,$pass);
         var_dump($data);
         if(count($data)!=0){
             /** updateUtilisateur */
-            $temp = rand (1,999999);
+            $ran = rand (1,999999);
+            $temp['idsession']=$ran;
             $this->session->set_userdata('user',$data);
-            redirect($this->session->userdata('last_page'));
+            $id = $this->session->userdata('user')[0]->idutilisateur2;
+            $this->abonneemodel->updateUtilisateur($id,$temp);
+
+            redirect('Accueil/monCompte');
         }
         else {
             var_dump($data);
@@ -24,7 +28,32 @@ class LoginController extends CI_Controller {
         }
     }
 
+    public function connectlog($email,$pass){
+        $this->load->model('abonneemodel');
+        $data = $this->abonneemodel->connectUser($email,$pass);
+        var_dump($data);
+        if(count($data)!=0){
+            /** updateUtilisateur */
+            $ran = rand (1,999999);
+            $temp['idsession']=$ran;
+            $this->session->set_userdata('user',$data);
+            $id = $this->session->userdata('user')[0]->idutilisateur2;
+            $this->abonneemodel->updateUtilisateur($id,$temp);
+
+            redirect('Accueil/monCompte');
+        }
+        else {
+            var_dump($data);
+            redirect('Accueil/connection');
+        }
+    }
+
+
     public function deconnect(){
+        $temp['idsession']=NULL;
+        $this->load->model('abonneemodel');
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->abonneemodel->updateUtilisateur($id,$temp);
         $this->session->unset_userdata('user');
         redirect('accueil');
     }

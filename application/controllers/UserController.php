@@ -52,7 +52,10 @@ class UserController extends CI_Controller
             //$data=> array(//
 
   //          )//
-            redirect('accueil');
+
+       //     $this->load->controller('logincontroller');
+        //    $this->logincontroller->connectlog($this->input->post('emailutilisateur'),$this->input->post('motdepasse'));
+            redirect('Accueil/Connection');
         }
         else{
             var_dump($this->input->post('motdepasse'));
@@ -142,6 +145,16 @@ class UserController extends CI_Controller
 
     }
 
+    public function modifiermotdepasse(){
+        $Data = array(
+          'motdepasse'=>  $this->input->post('motdepasse')
+        );
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->load->model('abonneemodel');
+        $this->abonneemodel->updateUtilisateur($id,$Data);
+        redirect('Accueil/');
+    }
+
     public function configUpload($nomutilisateur,$prenomutilisateur,$detail)
     {
         $config['upload_path'] = './upload/infouser/';
@@ -151,5 +164,15 @@ class UserController extends CI_Controller
         $config['max_height'] = 1768;
         $config['file_name'] = $nomutilisateur .'-'. $prenomutilisateur .'-'. $detail;
         return $config;
+    }
+
+    public function addfavoris($idarticle){
+        if($this->session->userdata('user')) {
+            $iduser = $this->session->userdata('user')[0]->nomutilisateur;
+            $this->load->model('abonneemodel');
+            $this->abonneemodel->addFavoris($iduser,$idarticle);
+
+
+        }
     }
 }

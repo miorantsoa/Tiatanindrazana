@@ -15,6 +15,10 @@
             </div>
         </figure>
 
+        <h5>
+            <a href="<?= base_url('Abonnemodel/addFavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
+        </h5>
+        <div class="fb-share-button" data-href="<?=base_url(current_url())?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F<?=base_url(current_url())?>%2F&amp;src=sdkpreparse">Partager</a></div>
         <div class="content">
             <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
            <?= $article->contenue?>

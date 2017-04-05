@@ -8,19 +8,29 @@
         $data = array();
 
         $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-        $lien_action  ='usercontroller/addUser';
+        $lien_action  ='usercontroller/modifiermotdepasse';
         echo form_open_multipart($lien_action,$attributes);
         ?>
 
         <form id="enews-contact-form" method="post" action="#">
             <h4></h4>
             <label>Temy miafina taloha / Ancien mot de passe:</label>
-            <input type="password" name="ancienmdp" required/>
+            <input type="password" name="ancienmdp" id="ancienmdp" onchange="testancienmotdepass()" required/>
+            <p id="testancienmdp"></p>
             <label>Tenimiafina vaovao/ Nouveau mot de passe</label>
             <input type="password" name="motdepasse" id="pass1" required>
             <label>Fanamarinana tenimiafina vaovao/ Verification du nouveau mot de passe</label>
             <input type="password" name="motdepasseverif" id="pass2" onchange="testmotdepass()" required>
             <p id="resulrcomparemdp"></p>
+
+            <script>
+                function testancienmotdepass() {
+                    var pass1 = document.getElementById("ancienmdp").value;
+                    var pass2 = <?php echo($this->session->userdata('user')[0]->motdepasse)?>;
+                    var ret  = (pass1 == pass2)? "correspond avec le votre":"ne correspond pas avec le votre";
+                    document.getElementById("testancienmdp").innerHTML = "le mot de passe " + ret;
+                }
+            </script>
 
             <script>
                 function testmotdepass() {

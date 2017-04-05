@@ -47,17 +47,7 @@
 
 </head>
 <body>
-<div id="dialog" title="Basic dialog" style="display:none;">
-    <div class="modal-header">
-        <h4 class="modal-title">Fampahafantarana</h4>
-    </div>
-    <div class="modal-body">
-        <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
-    </div>
-    <div class="span12 aligncenter">
-        <a href="<?= base_url('accueil/connection')?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription')?>" class="btn btn-blue">Hisoratra anarana</a>
-    </div>
-</div>
+
 <div id="top-navigation">
     <div class="container">
 
@@ -69,16 +59,13 @@
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
             <li><a href="<?= base_url('accueil/feuilleter_journal')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
-        <?php if(!$this->session->userdata('user')){?>
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
             <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-            <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+            <li><a href="" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
         </ul>
-        <?php }else{?>
-            <ul class="nav-menu  pull-right" style="margin-left: 10px;">
-                <li><a href="<?= base_url('logincontroller/deconnect')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i>Hivoaka</a></li>
-            </ul>
-        <?php }?>
+        <ul class="social pull-right">
+            <li><a href="#" data-placement="bottom" data-original-title="Like us on Facebook"></a></li><a href="<?= base_url('logincontroller/deconnect')?>" data-placement="bottom" data-original-title="Like us on Facebook">Deconexion</a>
+        </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
             <input type="text" name="search" placeholder="Fikarohana ...." class="input-icon input-icon-search" />
