@@ -49,6 +49,17 @@
 <body>
 
 <div id="top-navigation">
+    <div id="dialog" title="Basic dialog" style="display:none;">
+        <div class="modal-header">
+            <h4 class="modal-title">Fampahafantarana</h4>
+        </div>
+        <div class="modal-body">
+            <p>Tsy manana fahafahana ny mijery an'io pejy io ianao. Mamorona kaonty vaovao manana fahafahana ambonimbony na midira amin'ny alalan'ny kaontinao.</p>
+        </div>
+        <div class="span12 aligncenter">
+            <a href="<?= base_url('accueil/connection')?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription')?>" class="btn btn-blue">Hisoratra anarana</a>
+        </div>
+    </div>
     <div class="container">
 
         <!-- Navigation -->
