@@ -43,6 +43,7 @@
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.hoverdir.js'></script>
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/modernizr.custom.js'></script>
 <script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js"></script>
+<script src="<?= base_url('assets/default/js/jquery.filestyle.min.js')?>" type="text/javascript"></script>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -50,5 +51,12 @@
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+    $("input[type=file]").filestyle({
+        image: "<?= base_url('assets/default/images/import.png')?>",
+        imageheight : 22,
+        imagewidth : 82,
+        width : 250
+    });
+</script>
 </body>
