@@ -44,7 +44,7 @@ class ArticlesModel extends CI_Model {
         $article =  $this->db->get('detail_article');
         return $article->result();
     }
-    
+
 
     /**
      * @param $idJournal
@@ -58,11 +58,10 @@ class ArticlesModel extends CI_Model {
      * @param $niveau
      * @param $chemin_une
      */
-    public function insertArticle($idJournal, $idCategorie, $idadministrateur, $titre, $date ,$extrait, $resume, $contenu, $laune=false, $niveau, $chemin_une,$etat = true){
+    public function insertArticle($idJournal, $idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune=false, $niveau, $chemin_une,$etat = true){
     	$data = array(
 			'idjournal'=>  $idJournal,
 			'idcategorie'=> $idCategorie,
-			'idadministrateur'=> $idadministrateur,
 			'dateparution'=> $date,
 			'titre'=> $titre,
 			'extrait'=> $extrait,
@@ -75,11 +74,10 @@ class ArticlesModel extends CI_Model {
     	);
     	$this->db->insert("article",$data);
     }
-    public function updateArticle($idarticle,$idJournal, $idCategorie, $idadministrateur, $titre, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat=true){
+    public function updateArticle($idarticle,$idJournal, $idCategorie, $titre, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat=true){
         $data = array(
             'idjournal'=>  $idJournal,
             'idcategorie'=> $idCategorie,
-            'idadministrateur'=> $idadministrateur,
             'dateparution'=> $date,
             'titre'=> $titre,
             'extrait'=> $extrait,
@@ -154,19 +152,21 @@ class ArticlesModel extends CI_Model {
             $this->db->like('resume',$resume);
 
         if($date1!=null && $date2!=null)
-            $this->db->where('dateparution BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+            $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         if($date1!=null && $date2 == null)
-            $this->db->where('dateparution',$date1);
+            $this->db->where('datepublication >= ',date('Y-m-d', strtotime($date1)));
+        if($date1==null && $date2 != null)
+            $this->db->where('datepublication <= ',date('Y-m-d', strtotime($date2)));
         if($laune!=null)
             $this->db->where('laune',$laune);
         if($image == false && $rubrique==null) {
             $this->db->where('idmere <> ', 10);
         }
-        //$this->db->order_by('libelle',"ASC");
-        $this->db->order_by('dateparution',$ordre);
+        $this->db->order_by('libelle',"ASC");
+        $this->db->order_by('datepublication',$ordre);
         $article = $this->db->get('detail_article');
-        /*$sql = $this->db->get_compiled_select('detail_article');
-        die($sql);*/
+//        $sql = $this->db->get_compiled_select('detail_article');
+//        die($sql);
         return $article->result();
     }
 

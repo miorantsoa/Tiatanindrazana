@@ -36,7 +36,14 @@ class Articles extends CI_Controller{
             $date = date('Y-m-d');
         }
         $journal = $this->journal->getJournalByDate($date);
-        $this->articlelibrarie->ajoutArticle($journal[0]->idjournal,$this->input->post('rubrique'),null, $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
+        if(count($journal)==0){
+            //$this->session->set_flashdata('erreur',"Veuillez créer un journal");
+            $journal = "";
+        }
+        else{
+            $journal = $journal[0]->idjournal;
+        }
+        $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
         redirect('admin/articles','refresh');
     }
     public function isNewJournal($date){

@@ -36,6 +36,9 @@
                                     <a href="<?= base_url('index.php/admin/editUne/'.$article->idarticle)?>">
                                         <button type="button" class="btn btn-info">La une : <?= $article->laune?></button>
                                     </a>
+                                    <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
+                                        <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
+                                    </a>
                                 </th>
 							</tr>
                             <?php endforeach; ?>

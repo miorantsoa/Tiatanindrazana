@@ -12,7 +12,7 @@ class ArticleLibrarie{
         // Assign the CodeIgniter super-object
         $this->CI =& get_instance();
     }
-    public function ajoutArticle($idJournal, $idCategorie, $idadministrateur, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
+    public function ajoutArticle($idJournal, $idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
         if($niveau == ""){//Si l'on ne renseigne pas le niveau, on recupère le niveau par defaut du rubrique
             $this->CI->load->model('Rubrique_model');
             $rubrique = $this->CI->rubrique_model->getRubriqueById($idCategorie);
@@ -22,7 +22,7 @@ class ArticleLibrarie{
             $idJournal = null;
         }
         $this->CI->load->model('articlesmodel');
-        $this->CI->articlesmodel->insertArticle($idJournal,$idCategorie, $idadministrateur, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat);
+        $this->CI->articlesmodel->insertArticle($idJournal,$idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat);
     }
     public function updateArticle($idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
         $data = null;

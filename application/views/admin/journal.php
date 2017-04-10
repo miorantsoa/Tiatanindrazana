@@ -32,7 +32,7 @@
                                         <th>
                                             <div class="btn-group btn-group-lg" role="group">
                                                 <a href="<?= base_url('index.php/admin/editJournal/'.$journal->idjournal)?>">
-                                                    <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button>
+                                                    <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                                 </a>
                                             </div>
                                         </th>
