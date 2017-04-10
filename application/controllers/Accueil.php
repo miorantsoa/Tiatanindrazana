@@ -513,4 +513,14 @@ class Accueil extends CI_Controller{
         $this->load->view('default/connection',$data);
     }
 
+    public function ajouterkolikoly(){
+        $data = $this->indexData();
+        $this->load->model('typecorruptionmodel');
+        $data['titre'] = "Amoka kolikoly : Tia Tanindrazana";
+        $data['categorieCorruption'] = $this->typecorruptionmodel->getTypeCorruption();
+        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/AjouterKolikoly',$data);
+        $this->load->view('default/templates/footer');
+    }
+
 }

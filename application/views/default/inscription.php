@@ -2,7 +2,7 @@
 
     <div class="row-fluid">
 
-        <h1>fisoratana anarana / Inscription</h1>
+        <h1>Fisoratana anarana / Inscription</h1>
 
         <?php
         $data = array();
@@ -13,54 +13,48 @@
         ?>
 
         <form id="enews-contact-form" method="post" action="#">
-            <h4>Ny momba anao / a propos de vous:</h4>
-            <label>Fahalalam-pomba / civilité</label>
+            <h4>Ny momba anao / à propos de vous:</h4>
+            <label>Fahalalam-pomba / Civilité:</label>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Mr." checked>
-                    Mr.
+                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Mamosea" checked>
+                    Mamosea
                 </label>
             </div>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios2" value="Mrs.">
-                    Mrs.
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios2" value="Mlle.">
-                    Mlle.
+                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios2" value="Ramatoa">
+                    Ramatoa
                 </label>
             </div>
 
-            <label>Anarana / Nom</label>
+            <label>Anarana / Nom:</label>
             <input type="text" name="nomutilisateur" maxlength="80" required/>
-            <label>Fananpiny / Prenom</label>
+            <label>Fananpiny / Prenom(s):</label>
             <input type="text" name="prenomutilisateur" maxlength="80" required/>
-            <label>Daty nahaterahana / date de naissance</label>
+            <label>Daty nahaterahana / Date de naissance:</label>
             <input type="date" name="naissanceutilisateur" maxlength="80" required/>
-            <label>Laharana karapanondro / Numéro CIN</label>
+            <label>Laharana karapanondro / Numéro CIN:</label>
             <input type="text" name="cin" maxlength="80" required/>
-            <label>Daty nazahona karapanondro / Date de livraison CIN</label>
+            <label>Daty nazahona karapanondro / Date de livraison CIN:</label>
             <input type="date" name="datedelivrancecin" required/>
-            <label>Toerana nazahona karapanondro / Lieu d'obtention CIN</label>
+            <label>Toerana nazahona karapanondro / Lieu d'obtention CIN:</label>
             <input type="text" name="lieudelivrancecin" maxlength="100">
-            <label>Sary recto karapanondro / image recto CIN</label>
+            <label>Sary recto karapanondro / Image recto CIN:</label>
             <input id="lienimagerectocin" name="lienimagerectocin" type="file">
-            <label>Sary verso karapanondro / image verso CIN</label>
+            <label>Sary verso karapanondro / Image verso CIN:</label>
             <input id="lienimageversocin" name="lienimageversocin" type="file">
-            <label>Mailaka / E-mail <span class="font-required">*</span></label>
+            <label>Mailaka / E-mail :<span class="font-required">*</span></label>
             <input type="email" name="emailutilisateur" maxlength="225" required/>
             <p></p>
             <div class="sep-border no-margin-top"></div>
             <p></p>
-            <h4>Ny momba ny kaonty / a propos de votre compte:</h4>
-            <label>Anarana fahafantarana / Nom d'utilisateur</label>
+            <h4>Ny momba ny kaonty / à propos de votre compte:</h4>
+            <label>Anarana fahafantarana / Nom d'utilisateur:</label>
             <input type="text" name="identifiant" required/>
-            <label>Tenimiafina / Mot de passe</label>
+            <label>Tenimiafina / Mot de passe:</label>
             <input type="password" name="motdepasse" id="pass1" required>
-            <label>Fanamarinana tenimiafina / Verification mot de passe</label>
+            <label>Fanamarinana tenimiafina / Vérification du mot de passe:</label>
             <input type="password" name="motdepasseverif" id="pass2" onchange="testmotdepass()" required>
             <p id="resulrcomparemdp"></p>
 
@@ -72,21 +66,21 @@
                     document.getElementById("resulrcomparemdp").innerHTML = "le mot de passe " + ret;
                 }
             </script>
-            <label>Sary / photo de profil</label>
+            <label>Sary / Photo de profil:</label>
             <input id="lienimagepdp" name="lienimagepdp" type="file">
 
             <p></p>
             <div class="sep-border no-margin-top"></div>
             <p></p>
-            <h4>Choix de l'offre:</h4>
-            <label>Type Abonnement</label>
+            <h4>Safidy ny tolotra / Choix de l'offre:</h4>
+            <label>Karazany / Type Abonnement:</label>
             <select name="typeabonnement" id="typeabonnement" >
 
                 <?php foreach ($typeabonnement as $typeabonnement):?>
                     <option value="<?=$typeabonnement->idtypeabon?>"><?=$typeabonnement->libelle?></option>
                 <?php endforeach;?>
             </select>
-            <label>duree abonnement</label>
+            <label>durée abonnement:</label>
             <select name="tarifabonnement" id="tarifabonnement" onchange="montantabonnement()">
                 <option value="1">1 mois</option>
                 <option value="3">3 mois</option>
