@@ -19,7 +19,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="titre">Titre<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="titre" name="titre" required="required" class="form-control col-md-7 col-xs-12" value="<?= (count($infoutiles)!=0) ? $infoutiles[0]->titre : ""?>">
+                            <input type="text" id="titre" name="titre" required="required" class="form-control col-md-7 col-xs-12" value="<?= (isset($infoutiles) && count($infoutiles)!=0) ? $infoutiles[0]->titre : ""?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -29,7 +29,7 @@
                             <select name="categorie" id="categorie" class="form-control">
                                 <option value="">Séléctionner une catégorie</option>
                                 <?php foreach ($categorie as $categorie):?>
-                                    <option value="<?= $categorie->idcatbeinfo?>" <?= (count($infoutiles)!=0 && $infoutiles[0]->idcatbeinfo == $categorie->idcatbeinfo) ? "selected" : ""?>><?= $categorie->libelle?></option>
+                                    <option value="<?= $categorie->idcatbeinfo?>" <?= (isset($infoutiles) && count($infoutiles)!=0 && $infoutiles[0]->idcatbeinfo == $categorie->idcatbeinfo) ? "selected" : ""?>><?= $categorie->libelle?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>

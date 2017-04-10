@@ -154,6 +154,7 @@ class Accueil extends CI_Controller{
         }
         $sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $rubrique =$this->rubrique_model->getRubriqueById($id);
+        var_dump($sarisary);
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
             $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
@@ -463,10 +464,10 @@ class Accueil extends CI_Controller{
         $message = "";
         $article = $this->articlesmodel->getById($idarticle)[0];
         if($this->$this->session->userdata('user')){
-            $user = $this->session->userdata('user');
+            $user = $this->session->userdata('user')[0];
             $this->load->model('abonneemodel');
             $this->load->library('globalfunction');
-            if(!$this->globalfunction->isFavorisExit($idarticle,$user->iduser)){
+            if(!$this->globalfunction->isFavorisExit($idarticle,$user->iduutilisateur)){
                 $this->abonneemodel->addFavoris($user->iduser, $idarticle);
                 $message = "Tontosa ny fanampiana favoris nataonao";
             }

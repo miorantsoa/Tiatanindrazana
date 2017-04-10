@@ -67,9 +67,9 @@
                                     <th><?= $info->lien?></th>
                                     <th>
                                         <div class="btn-group" role="group" aria-label="...">
-                                            <a href="<?=base_url('index.php/infoutilecontroller/deleteInfoUtile/'.$info->idbeinfo)?>">
+                                           <!-- <a href="<?/*=base_url('index.php/infoutilecontroller/deleteInfoUtile/'.$info->idbeinfo)*/?>">
                                                 <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
-                                            </a>
+                                            </a>-->
                                             <a href="<?=base_url('index.php/admin/editinfoutile/'.$info->idbeinfo)?>">
                                                 <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button>
                                             </a>

@@ -24,11 +24,11 @@ class JournalLibrary{
     }
     public function isnewJournal($dateJournal){
         $this->CI->load->model('journal');
-        $last_journal = $this->CI->journal->getLastJournal();
+        $last_journal = $this->CI->journal->getJournalByDate($dateJournal);
         if(count($last_journal)!=0){
-            if(strtotime($last_journal[0]->datepublication) == strtotime($dateJournal)){
+            //if(strtotime($last_journal[0]->datepublication) == strtotime($dateJournal)){
                 return false;
-            }
+            //}
         }
         return true;
     }
