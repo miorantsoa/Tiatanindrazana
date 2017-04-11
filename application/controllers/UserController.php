@@ -51,12 +51,12 @@ class UserController extends CI_Controller
             $this->load->model('abonneemodel');
             $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
 
-            $today = date('d-m-y');
+            $today = Date('Y-m-d');
             $moisabonnement = $this->input->post('tarifabonnement');
             $jourabonnement = $moisabonnement * 30;
             $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
-
-            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $finabonnement);
+            $temp = $finabonnement->format('Y-m-d');
+            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
             $date2['statututilisateur'] = 1;
             $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
             redirect('Accueil/Connection');

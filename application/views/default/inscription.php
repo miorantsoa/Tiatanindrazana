@@ -17,8 +17,8 @@
             <label>Fahalalam-pomba / Civilité:</label>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Mamosea" checked>
-                    Mamosea
+                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Ramosea" checked>
+                    Ramosea
                 </label>
             </div>
             <div class="form-check">
