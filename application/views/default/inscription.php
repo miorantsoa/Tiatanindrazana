@@ -82,7 +82,6 @@
             </select>
             <label>durée abonnement:</label>
             <select name="tarifabonnement" id="tarifabonnement" onchange="montantabonnement()">
-                <option value="1">1 mois</option>
                 <option value="3">3 mois</option>
                 <option value="6">6 mois</option>
                 <option value="12">12 mois</option>
