@@ -40,6 +40,7 @@ class JournalController extends CI_Controller {
     public function delete($id){
         $this->load->model('journal');
         $this->journal->deleteJournal($id);
+        redirect('admin/journal');
     }
     public function update(){
         $config = $this->configUpload();

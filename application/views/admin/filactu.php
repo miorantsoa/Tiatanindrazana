@@ -62,11 +62,8 @@
 
                                     <th>
                                         <div class="btn-group" role="group" aria-label="...">
-                                            <a href="<?=base_url('index.php/articles/deleteArticle/'.$filactualite->idfilactualite)?>">
+                                            <a href="<?=base_url('index.php/filactucontroller/delete/'.$filactualite->idfilactualite)?>">
                                                 <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
-                                            </a>
-                                            <a href="<?=base_url('index.php/admin/editArticle/'.$filactualite->idfilactualite)?>">
-                                                <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button>
                                             </a>
                                         </div>
                                     </th>

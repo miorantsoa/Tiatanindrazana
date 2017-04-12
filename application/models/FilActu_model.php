@@ -23,6 +23,11 @@ class FilActu_model extends CI_Model{
 
         $this->db->trans_complete();
     }
+    //public function update($id, $contenu, $)
+    public function delete($id){
+        $this->db->where('idfilactualite',$id);
+        $this->db->delete('filactualite');
+    }
     public function getFilActu(){
         $this->db->order_by('datepublication, heurepublication','desc');
         $filactualite = $this->db->get("filactualite");
@@ -52,7 +57,7 @@ class FilActu_model extends CI_Model{
         $filactualite = $this->db->get("filactualite");
         return  $filactualite->result();
     }
-    public function get($id=null,$contenu=null){
+    public function get($id=null,$contenu=null,$date = null){
         if($id!=null){
             $this->db->where('idfilactualite',$id);
         }

@@ -19,4 +19,22 @@ class FilActuController extends CI_Controller{
         $this->filactu_model->insertFilActu($data);
         redirect('admin/ajoutFilActu','refresh');
     }
+    public function delete($id){
+        $this->load->model('filactu_model');
+        $this->filactu_model->delete($id);
+        redirect('admin/filactu','refresh');
+    }
+    public function edit_fil_actu($id){
+        $this->load->model('filactu_model');
+        $fil_actu = $this->filactu_model->get($id);
+        if($fil_actu!=null && count($fil_actu)!=0) {
+            $data['$fildactu'] =$fil_actu;
+            $this->adminView('ajoutFilActu', $data);
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
+    }
 }
