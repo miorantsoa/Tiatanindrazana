@@ -9,9 +9,9 @@
 
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta property="og:url"           content="http://agile-cliffs-67001.herokuapp.com/" />
+    <meta property="og:url"           content="<?= base_url('accueil')?>" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:title"         content="Tia Tanindrazana" />
     <meta property="og:description"   content="Your description" />
     <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 
@@ -71,8 +71,13 @@
             <li><a href="<?= base_url('accueil/feuilleter_journal')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
-            <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-            <li><a href="" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+            <?php if(!$this->session->userdata('user')){?>
+                <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
+                <li><a href="<?= base_url('logincontroller/deconnect')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+            <?php }
+            else{?>
+                <li><a href="" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko"><i class="fa fa-sign-in"> </i> Hivoaka </a></li>
+            <?php }?>
         </ul>
         <!-- Search Form -->
         <form name="fikarohana" method="post" action="<?= base_url('accueil/recherche_simple')?>" class="form-search pull-right">
