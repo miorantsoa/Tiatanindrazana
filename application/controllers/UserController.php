@@ -44,17 +44,21 @@ class UserController extends CI_Controller
             $lienversocin = 'upload/infouser/' . $data['upload_data']['file_name'];
         }
 
+        $idnewuser = "0";
         /**INSERT INTO `abonnee`(`idabonnement`, `civilite`, `nomutilisateur`, `prenomutilisateur`, `naissanceutilisateur`, `cin`, `datedelivrancecin`, `lieudelivrancecin`, `liencin_recto`, `liencin_verso`, `emailutilisateur`, `identifiant`, `motdepasse`, `statututilisateur`, `imageprofile`) VALUES (**/
          /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
         if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
             $this->load->model('abonneemodel');
-            $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
-            //$data=> array(//
+            $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $this->input->post('nomutilisateur'), $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
 
-  //          )//
-
-       //     $this->load->controller('logincontroller');
-        //    $this->logincontroller->connectlog($this->input->post('emailutilisateur'),$this->input->post('motdepasse'));
+            $today = Date('Y-m-d');
+            $moisabonnement = $this->input->post('tarifabonnement');
+            $jourabonnement = $moisabonnement * 30;
+            $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
+            $temp = $finabonnement->format('Y-m-d');
+            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
+            $date2['statututilisateur'] = 1;
+            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
             redirect('Accueil/Connection');
         }
         else{

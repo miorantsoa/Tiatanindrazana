@@ -17,8 +17,8 @@
             <label>Fahalalam-pomba / Civilité:</label>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Mamosea" checked>
-                    Mamosea
+                    <input class="form-check-input" type="radio" name="civilite" id="exampleRadios1" value="Ramosea" checked>
+                    Ramosea
                 </label>
             </div>
             <div class="form-check">
@@ -82,7 +82,6 @@
             </select>
             <label>durée abonnement:</label>
             <select name="tarifabonnement" id="tarifabonnement" onchange="montantabonnement()">
-                <option value="1">1 mois</option>
                 <option value="3">3 mois</option>
                 <option value="6">6 mois</option>
                 <option value="12">12 mois</option>

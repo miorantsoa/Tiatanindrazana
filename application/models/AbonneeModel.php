@@ -30,7 +30,19 @@ class AbonneeModel extends CI_Model {
             'imageprofile' => $imageprofile,
         );
         $this->db->insert('abonnee',$data);
+        return $this->db->insert_id();
     }
+    /** `idabonnement`, `idtypeabon`, `idutilisateur2`, `datedebutabonnement`, `datefinabonnement` */
+    public function insertAssocitationAbonnement($idtypeabon, $idutilisateur, $datedebutabonnement, $datefinabonnement){
+        $data = array(
+            'idtypeabon' => $idtypeabon,
+            'idutilisateur2' => $idutilisateur,
+            'datedebutabonnement' => $datedebutabonnement,
+            'datefinabonnement' => $datefinabonnement
+        );
+        $this->db->insert('abonnement',$data);
+    }
+
     public function updateUtilisateur($idabonnee,$data){
         $this->db->where('idutilisateur2',$idabonnee);
         $this->db->update('abonnee',$data);
