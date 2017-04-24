@@ -47,14 +47,16 @@
 </div>
 </div>
 <script>
-    $('#datetimepicker').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        formatDate:'Y-m-d'
-    });
-    $('#datetimepicker2').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        formatDate:'Y-m-d'
-    });
+    $(document).ready(function(){
+        $('#datetimepicker').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d'
+        });
+        $('#datetimepicker2').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d'
+        });
+    })
 </script>

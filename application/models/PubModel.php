@@ -33,10 +33,22 @@ class PubModel extends CI_Model{
     public function getPubById($id){
         $this->db->where('idpublicite',$id);
         $publicite= $this->db->get("publicite");
-        return  $publicite>result();
+        return  $publicite->result();
     }
     public function getPubByPosition($position){
         $this->db->where('position',$position);
+        $this->db->where('curdate() BETWEEN datedebutdiffusion and datefindiffusion');
+        $pub = $this->db->get('publicite');
+        return $pub->result();
+    }
+
+    public function delete($id){
+        $this->db->where('idpublicite',$id);
+        $this->db->delete('publicite');
+    }
+    public function getLastPub($position){
+        $this->db->where('position',$position);
+        $this->db->where('datefindiffusion in (select max(datefindiffusion) as datediffusion from publicite)');
         $pub = $this->db->get('publicite');
         return $pub->result();
     }

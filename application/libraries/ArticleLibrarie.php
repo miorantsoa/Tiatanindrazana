@@ -27,6 +27,11 @@ class ArticleLibrarie{
     public function updateArticle($idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
         $data = null;
         //On renseigne seulement les champs qui ont été définie
+        $this->CI->load->model('articlesmodel');
+        $article = $this->CI->articlesmodel->getById($idarticle);
+        if(count($article)!=0){
+            $idJournal = $article[0]->idjournal;
+        }
         if($idJournal!="")
             $data['idjournal'] = $idJournal;
         if($idCategorie!="")
@@ -39,18 +44,23 @@ class ArticleLibrarie{
             $data['resume'] = $resume;
         if($contenu!="")
             $data['contenue'] = $contenu;
-        if(isset($laune))
+        if(isset($laune) && $idJournal != null) {
+            if ($laune == 1) {
+                $une = $this->CI->articlesmodel->getArticlesByJournal($idJournal, true);
+                $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+                $laune = true;
+            }
             $data['laune'] = $laune;
+        }
         if($niveau!="")
             $data['niveau']=$niveau;
         if($date!="")
             $data['dateparution'] = $date;
         if($chemin_une!=null && $chemin_une!="")
             $data['lien_image_une'] = $chemin_une;
-        if($etat!="" && $etat!=null)
+        if(isset($etat))
             $data['etatpublication'] = $etat;
         $this->CI->load->model('articlesmodel');
-        var_dump($idarticle);
         $this->CI->articlesmodel->update($idarticle,$data);
     }
     public  function is_sarisary($id){
@@ -95,7 +105,6 @@ class ArticleLibrarie{
             $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
         }
         else{
-            var_dump($id);
             //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat
             $this->updateArticle($id, null, null, null, null, null, null, null, false, null, null, null);
         }

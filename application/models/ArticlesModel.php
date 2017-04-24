@@ -101,13 +101,21 @@ class ArticlesModel extends CI_Model {
         $this->db->where('idarticle',$idarticle);
         $this->db->delete('article');
     }
-    public function getUne(){
+    public function getUne($publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('laune',1);
         $article = $this->db->get('last_journal');
         return $article->result();
     }
-    public function getListArticle(){
-        $this->db->where('laune<>',1);
+    public function getListArticle($laune = null,$publie=null){
+        if($laune == null){
+            $this->db->where('laune<>',1);
+        }
+        if($publie != null){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idcategorie <> ',11);
         $this->db->where('idcategorie <> ',12);
         $this->db->where('idcategorie <> ',13);
@@ -115,20 +123,47 @@ class ArticlesModel extends CI_Model {
         $articles = $this->db->get('last_journal');
         return $articles->result();
     }
-    public function getSarisary(){
+    public function getSarisary($publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idcategorie',10);
         $sarisary = $this->db->get('article');
         return $sarisary->result();
     }
 
-    public function getById($id){
+    public function getById($id, $publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idarticle',$id);
         $article = $this->db->get('detail_article');
         return $article->result();
     }
+
+    public function get2($titre=null,$date=null, $rubrique=null,$laune=null){
+        if($titre!= null){
+            $this->db->like('titre',$titre);
+        }
+        if($date!= null){
+            $this->db->where('datepublication',$date);
+        }
+        if($rubrique!= null){
+            $this->db->where('idcategorie',$rubrique);
+            $this->db->or_where('idmere',$rubrique);
+        }
+        if($laune!= null){
+            $this->db->where('laune',$laune);
+        }
+        $article = $this->db->get('detail_article');
+        return $article->result();
+    }
     //fonction utilisé pour la recherche
-    public function get($idjournal=null,$titre=null,$rubrique=null,$contenu=null,$resume=null,$date1=null,$date2=null,$laune=false,$limit=null,$start=null,$ordre='DESC',$image=false){
+    public function get($idjournal=null,$titre=null,$rubrique=null,$contenu=null,$resume=null,$date1=null,$date2=null,$laune=false,$limit=null,$start=null,$ordre='DESC',$image=false,$publie=true){
         $this->db->limit($limit,$start);
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         if($idjournal!=null){
             $this->db->where('idjournal',$idjournal);
         }
@@ -170,7 +205,10 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
 
-    public function getByRubrique($idRubrique){
+    public function getByRubrique($idRubrique, $publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idcategorie',$idRubrique);
         $this->db->or_where('idmere',$idRubrique);
         $articles = $this->db->get('article_journal');
@@ -185,7 +223,10 @@ class ArticlesModel extends CI_Model {
         return $articles->result();
     }
 
-    public function getArticlesByJournal($idJournal,$une = false){
+    public function getArticlesByJournal($idJournal,$une = false,$publie = true){
+        if($publie != null){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idjournal',$idJournal);
         $this->db->where('idcategorie <> ',11);
         $this->db->where('idcategorie <> ',12);
@@ -200,7 +241,10 @@ class ArticlesModel extends CI_Model {
         return $articles->result();
     }
     //Ampamoaka ampisehoana eo @ accueil
-    public function getLastAmpamoaka(){
+    public function getLastAmpamoaka($publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idcategorie',12);
         $this->db->order_by('datepublication','DESC');
         $this->db->limit(1);
@@ -208,7 +252,10 @@ class ArticlesModel extends CI_Model {
         return $ampamoaka->result();
     }
     //Sarisary aseho eo @ accueil
-    public function getLastSarisary(){
+    public function getLastSarisary($publie = true){
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
         $this->db->where('idcategorie',11);
         $this->db->order_by('datepublication','DESC');
         $this->db->limit(1);

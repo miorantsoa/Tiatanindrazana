@@ -7,7 +7,7 @@
 
             <!-- Tab Menu -->
             <ul class="nav nav-tabs" id="enewsTabs">
-                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= $last_fil[0]->datepublication?></a></li>
+                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= (count( $last_fil)!=0) ? $last_fil[0]->datepublication : ""?></a></li>
                 <?php echo (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab">'.$fil_actuj2[0]->datepublication.'</a></li>' : ""?>
             </ul>
 
@@ -60,8 +60,6 @@
                         <li><a href="<?= base_url($ampamoaka->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($ampamoaka->lien_image_une)?>" alt="<?=$ampamoaka->titre?>" /></a></li>
                     </ul>
                 </figure>
-
-                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 7, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
             </div>
 
         </div>
@@ -80,25 +78,6 @@
                         <li><a href="<?= base_url($sarisary->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
                     </ul>
                 </figure>
-
-                <div class="meta">By <a href="author.html">mdkiwol</a>&nbsp;&nbsp;|&nbsp;&nbsp;Jan. 7, 2013&nbsp;&nbsp;|&nbsp;&nbsp;<a href="single_video.html">15 comments</a></div>
-            </div>
-
-        </div>
-    </div> <!-- End Widget -->
-
-    <div class="widget clearfix">
-        <div class="sponsors">
-
-            <div class="header">
-                <h4>Sponsors</h4>
-            </div>
-
-            <div class="content">
-                <img src="<?= base_url('assets/default/images/ads/180x180.png')?>" alt="Sponsor 1" />
-                <img src="<?= base_url('assets/default/images/ads/180x180.png')?>" alt="Sponsor 2" />
-                <img src="<?= base_url('assets/default/images/ads/180x180.png')?>" alt="Sponsor 3" />
-                <img src="<?= base_url('assets/default/images/ads/180x180.png')?>" alt="Sponsor 4" />
             </div>
 
         </div>

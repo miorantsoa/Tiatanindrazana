@@ -159,8 +159,7 @@ class UserController extends CI_Controller
         redirect('Accueil/');
     }
 
-    public function configUpload($nomutilisateur,$prenomutilisateur,$detail)
-    {
+    public function configUpload($nomutilisateur,$prenomutilisateur,$detail)    {
         $config['upload_path'] = './upload/infouser/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 8000;
@@ -170,13 +169,12 @@ class UserController extends CI_Controller
         return $config;
     }
 
-    public function addfavoris($idarticle){
+    /*public function addfavoris($idarticle){
         if($this->session->userdata('user')) {
-            $iduser = $this->session->userdata('user')[0]->nomutilisateur;
+            $iduser = $this->session->userdata('user')[0]->idutilisateur2;
             $this->load->model('abonneemodel');
             $this->abonneemodel->addFavoris($iduser,$idarticle);
-
-
+            redirect('accueil/monCompte');
         }
-    }
+    }*/
 }

@@ -43,7 +43,14 @@ class Articles extends CI_Controller{
         else{
             $journal = $journal[0]->idjournal;
         }
-        $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
+        $laune = $this->input->post('laune');
+        if($laune == 1){
+            $une = $this->articlesmodel->getArticlesByJournal($journal,true);
+            $this->articlelibrarie->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+            $laune = true;
+        }
+        else{ $laune = false;}
+        $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$laune,$this->input->post('niveau'),$image,true);
         redirect('admin/articles','refresh');
     }
     public function isNewJournal($date){
@@ -76,11 +83,25 @@ class Articles extends CI_Controller{
             $image = 'upload/'. $data['upload_data']['file_name'];
         }
         //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat
-        $this->articlelibrarie->updateArticle($this->input->post('article'),$this->input->post('journal'),$this->input->post('rubrique'), $this->input->post('titre'), $this->input->post('date') ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),false,$this->input->post('niveau'),$image,true);
+        $this->articlelibrarie->updateArticle($this->input->post('article'),$this->input->post('journal'),$this->input->post('rubrique'), $this->input->post('titre'), $this->input->post('date') ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$this->input->post('laune'),$this->input->post('niveau'),$image,true);
         redirect('admin/articles');
     }
     public function deleteArticle($id){
         $this->articlesmodel->deleteArticle($id);
         redirect('admin/articles');
+    }
+    public function editEtatPublication($id){
+        //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat
+        $article = $this->articlesmodel->getById($id,false);
+        if(count($article)!=0) {
+            $article = $article[0];
+            $this->articlelibrarie->updateArticle($article->idarticle, null, null, null, null, null, null, null, null, null, null, !$article->etatpublication);
+            redirect('admin/articles');
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
     }
 }

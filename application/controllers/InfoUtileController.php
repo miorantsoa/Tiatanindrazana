@@ -72,4 +72,19 @@ class InfoUtileController extends CI_Controller {
         $data['infos'] = $this->infoutilemodel->get();
         $this->adminView('infoutile',$data);
     }
+    public function editEtatPublication($id){
+        $this->load->model('infoutilemodel');
+        $info = $this->infoutilemodel->get($id);
+        if(count($info)!=0) {
+            $info = $info[0];
+            $data['publie'] = !$info->publie;
+            $this->infoutilemodel->update($info->idbeinfo,$data);
+            redirect('admin/infoutile');
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
+    }
 }

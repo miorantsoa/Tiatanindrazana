@@ -77,14 +77,16 @@
 <script type="text/javascript" src="<?= base_url()?>assets/default/js/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="<?= base_url()?>assets/default/js/hash.js"></script>
 <script type="text/javascript">
-    $('#datetimepicker').datetimepicker({
-        timepicker: false,
-        format: 'Y-m-d',
-        formatDate: 'Y-m-d'
-    });
-    $('#datetimepicker2').datetimepicker({
-        timepicker: false,
-        format: 'Y-m-d',
-        formatDate: 'Y-m-d'
-    });
+    $(document).ready(function(){
+        $('#datetimepicker').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d'
+        });
+        $('#datetimepicker2').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d'
+        });
+    })
 </script>

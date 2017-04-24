@@ -21,6 +21,14 @@ class Accueil extends CI_Controller{
         $this->load->model("feuillejournalmodel");
     }
 
+    public function getPub($position){
+        $pub_en_cours = $this->pubmodel->getPubByPosition($position);
+        if(count($pub_en_cours)==0){
+            $pub_en_cours = $this->pubmodel->getLastPub($position);
+        }
+        return $pub_en_cours;
+    }
+
     public function homeView($view,$data = null,$titre=null){
         $this->load->view('default/templates/header.php',$titre);
         $this->load->view('default/'.$view,$data);
@@ -39,17 +47,19 @@ class Accueil extends CI_Controller{
         if(count($this->articlesmodel->getUne())!=0) {
             $data['laune'] = $this->articlesmodel->getUne()[0];
         }
-        $data['articlejournal'] = $this->articlesmodel->getListArticle();
+        $data['articlejournal'] = $this->articlesmodel->getListArticle(null,true);
         if(count($this->articlesmodel->getLastAmpamoaka())) {
             $data['ampamoaka'] = $this->articlesmodel->getLastAmpamoaka()[0];
         }
         if(count($this->articlesmodel->getLastSarisary())!=0) {
             $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         }
-        if(count($this->pubmodel->getPubByPosition(1))!=0) {
-            $data['banniere'] = $this->pubmodel->getPubByPosition(1)[0];
+        if(count($this->getPub(1))!=0) {
+            $data['banniere'] = $this->getPub(1)[0];
         }
-        $data['pub'] = $this->pubmodel->getPubByPosition(2);
+        if(count($this->getPub(2))!=0) {
+            $data['pub'] = $this->getPub(2);
+        }
         $data['fil_actuj2'] = $this->filactu_model->getJ2Fil();
         $data['last_fil'] = $this->filactu_model->getLastFil();
         //var_dump($data['last_fil']);
@@ -154,7 +164,6 @@ class Accueil extends CI_Controller{
         }
         $sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
         $rubrique =$this->rubrique_model->getRubriqueById($id);
-        var_dump($sarisary);
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
             $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
@@ -255,9 +264,10 @@ class Accueil extends CI_Controller{
     /*Info utile*/
     public function info_utile(){
         $this->session->set_userdata('last_page', current_url());
+        //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null,$date = null, $publie = null
         $data = $this->indexData();
         $data['titre'] = "Ilaiko | Info util : Tia Tanindrazana";
-        $data['info_util'] = $this->infoutilemodel->get();
+        $data['info_util'] = $this->infoutilemodel->get(null,null,null,null,null,null,null,null,true);
         $data['categories'] = $this->infoutilemodel->getCategorie(1);
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/info_util',$data);
@@ -266,7 +276,7 @@ class Accueil extends CI_Controller{
 
     public function detail_info_utile($id){
         $data = $this->indexData();
-        $info_util = $this->infoutilemodel->get($id);
+        $info_util = $this->infoutilemodel->get($id,null,null,null,null,null,null,null,true);
         if ($this->session->userdata('user')) {
             if (count($info_util) != 0) {
                 //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
@@ -463,27 +473,32 @@ class Accueil extends CI_Controller{
     public function addFavoris($idarticle){
         $message = "";
         $article = $this->articlesmodel->getById($idarticle)[0];
-        if($this->$this->session->userdata('user')){
+        if($this->session->userdata('user')){
             $user = $this->session->userdata('user')[0];
             $this->load->model('abonneemodel');
             $this->load->library('globalfunction');
-            if(!$this->globalfunction->isFavorisExit($idarticle,$user->iduutilisateur)){
-                $this->abonneemodel->addFavoris($user->iduser, $idarticle);
+            if(!$this->globalfunction->isFavorisExist($idarticle,$user->idutilisateur2)){
+                $this->abonneemodel->addFavoris($user->idutilisateur2, $idarticle);
                 $message = "Tontosa ny fanampiana favoris nataonao";
+                redirect('accueil/monCompte');
             }
             else{
                 $message = "Efa anisan'ny favoris-nao io lahatsoratra io";
             }
+            $data = $this->indexData();
+            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
+            $data['article'] = $article;
+            $data['titre'] =  $article->titre." : Tia Tanindrazana";
+            $this->homeView('detail',$data,$data);
+            $message = "Tsy afaka manao an'io operation io ianao";
+            $data['message'] = $message;
+            //redirection vers la page de l'article
+            $this->homeView('detail',$data,$data);
         }
-        $data = $this->indexData();
-        $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
-        $data['article'] = $article;
-        $data['titre'] =  $article->titre." : Tia Tanindrazana";
-        $this->homeView('detail',$data,$data);
-        $message = "Tsy afaka manao an'io operation io ianao";
-        $data['message'] = $message;
-        //redirection vers la page de l'article
-        $this->homeView('detail',$data,$data);
+        else{
+            $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
+            redirect('accueil');
+        }
     }
     public function monCompte(){
         $data = $this->indexData();

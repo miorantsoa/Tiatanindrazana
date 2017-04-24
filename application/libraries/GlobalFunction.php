@@ -13,10 +13,10 @@ class GlobalFunction{
         $this->CI->load->library('upload');
     }
 
-    public function isFavorisExist($id,$idfavoris){
+    public function isFavorisExist($iduser,$idarticle){
         $this->CI->load->model('abonneemodel');
-        $res = $this->CI->abonneemodel->getFavoris($id,$idfavoris);
-        if($res->num_rows()>0){
+        $res = $this->CI->abonneemodel->getFavoris($iduser,$idarticle);
+        if(count($res)>0){
             return true;
         }
         return false;
@@ -28,7 +28,6 @@ class GlobalFunction{
         $config['upload_path'] = $uploadPath;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['file_name'] = $name;
-        var_dump($config);
         $this->CI->upload->initialize($config);
         $image=array();
         if (!$this->CI->upload->do_upload($inputname)) {

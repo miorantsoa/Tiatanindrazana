@@ -11,12 +11,12 @@
             <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/full/4.jpg"')?>" alt="Image" />
             <div class="head-section-content">
                 <h1><?= $article->titre?></h1>
-                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="blog_posts.html" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#comments" title="View all comments">8 comments</a><a name="fb_share" type="box_count" share_url="http://www.example.com/page.html"></a></p>
+                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?= base_url('accueil/detail_categorie/'.$article->idcategorie)?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a></p>
             </div>
         </figure>
 
         <h5>
-            <a href="<?= base_url('Abonnemodel/addFavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
+            <a href="<?= base_url('accueil/addfavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
         </h5>
         <div class="fb-share-button" data-href="<?=base_url(current_url())?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=base_url(current_url())?>&amp;src=sdkpreparse">Partager</a></div>
         <div class="content">

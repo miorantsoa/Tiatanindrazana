@@ -7,21 +7,6 @@
  */
 
 class PubController extends CI_Controller{
- /**   public function addPub(){
-        $this->load->model('pubmodel');
-        $data = array(
-            'datedebutdiffusion' => $this->input->post('datedebutdiffusion'),
-            'datefindiffusion' => $this->input->post('datefindiffusion'),
-            'alt' => $this->input->post('alt'),
-            'position' => $this->input->post('position'),
-            'lienredirection' => $this->input->post('lienredirection'),
-            'lienimage' => $this->input->post('lienimage')
-
-        );
-        $this->pubmodel->insertPub($data);
-        redirect('admin/ajoutPub','refresh');
-    }
-    **/
     public function addPub(){
         $config = $this->configUpload();
         $this->load->library('upload', $config);
@@ -47,5 +32,10 @@ class PubController extends CI_Controller{
         $config['max_height']    = 1768;
         $config['file_name'] = date('y-m-d').'-'.time('');
         return $config;
+    }
+    public function delete($id){
+        $this->load->model('pubmodel');
+        $this->pubmodel->delete($id);
+        redirect('admin/publicite','refresh');
     }
 }

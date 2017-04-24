@@ -1,7 +1,7 @@
 <div class="right_col" role="main">
 	<div class="page_title">
 		<div class="title_left">
-			<h2>Journal n° <?=$articles[0]->numeroparution ?> du 11 <?=$articles[0]->datepublication ?></h2>
+			<?= (count($articles)!=0) ? '<h2>Journal n° '.$articles[0]->numeroparution.' du 11 '.$articles[0]->datepublication.'</h2>' : ""?>
 		</div>
 	</div>
 	<div class="clearfix"></div>
@@ -33,12 +33,14 @@
                                 <th><img class="img img-thumbnail" src="<?= base_url($article->lien_image_une)?>" alt="Enawo Mandravarava"></th>
                                 <th><?= substr(strip_tags($article->contenue),0,250)?>...</th>
                                 <th>
-                                    <a href="<?= base_url('index.php/admin/editUne/'.$article->idarticle)?>">
-                                        <button type="button" class="btn btn-info">La une : <?= $article->laune?></button>
-                                    </a>
-                                    <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
-                                        <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
-                                    </a>
+                                    <div class="btn btn-group btn-group-lg" role="group">
+                                        <a href="<?= base_url('index.php/admin/editUne/'.$article->idarticle)?>">
+                                            <button type="button" class="btn btn-info btn-xs">La une : <?= $article->laune?></button>
+                                        </a>
+                                        <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
+                                            <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
+                                        </a>
+                                    </div>
                                 </th>
 							</tr>
                             <?php endforeach; ?>

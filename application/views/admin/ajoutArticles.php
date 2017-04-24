@@ -140,6 +140,11 @@
 								<input id="img-une" name="img-une" class="form-control col-md-7 col-xs-12" type="file">
 							</div>
 						</div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-3 col-md-6 col-sm-6 col-xs-12">
+                                <input type="checkbox" name="laune" id="hobby3" value="1" class="flat" /> La une
+                            </div>
+                        </div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Résumé</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
@@ -156,6 +161,7 @@
 						<div class="ln_solid"></div>
 						<div class="form-group">
 						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button class="btn btn-primary" type="reset">Reset</button>
 						<button type="submit" class="btn btn-success">Enregistrer</button>
 						</div>
 						</div>
@@ -180,17 +186,18 @@
         toolbar :'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
         plugins : 'advlist autolink link image lists charmap print preview'
     });
-    $('#parution').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        formatDate:'Y-m-d'
-    });
-    function annuler(){
-        console.log("annul");
-        $('#date').attr('value',"");
-        $('#myModal').modal('hide');
-    }
+
     $(document).ready(function() {
+            $('#parution').datetimepicker({
+                timepicker:false,
+                format:'Y-m-d',
+                formatDate:'Y-m-d'
+            });
+            function annuler(){
+                console.log("annul");
+                $('#date').attr('value',"");
+                $('#myModal').modal('hide');
+            }
         $("#parution").on('change', function (e) {
             var date = $("#parution").val();
             if(date!="") {

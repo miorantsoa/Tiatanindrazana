@@ -58,6 +58,13 @@ class AbonneeModel extends CI_Model {
         $result = $this->db->get('detail_abonnement');
         return $result->result();
     }
+    public function connect_admin($identifiant, $password){
+        $this->db->where('identifiant',$identifiant);
+        $this->db->where('motdepasse',$password);
+        $result = $this->db->get('admin');
+        return $result->result();
+    }
+
     public function getAbonneeById($id){
         $this->db->where('idutilisateur2',$id);
         $abonnee = $this->db->get('abonnee');
@@ -87,14 +94,14 @@ class AbonneeModel extends CI_Model {
         $this->db->where('idarticle',$idarticles);
         $this->db->delete('favoris');
     }
-    public function getFavoris($iduser,$idfavoris){
+    public function getFavoris($iduser,$idarticle){
         $this->db->select('*');
         $this->db->from('favoris');
         $this->db->join('detail_article', 'favoris.idarticle = detail_article.idarticle');
         $this->db->where('idutilisateur',$iduser);
-        if($idfavoris!=null)
-            $this->db->where('idfavoris',$idfavoris);
-        $favoris = $this->db->get('favoris');
+        if($idarticle!=null)
+            $this->db->where('favoris.idarticle',$idarticle);
+        $favoris = $this->db->get();
         return $favoris->result();
     }
     /****!Fin Utilisateur*******/

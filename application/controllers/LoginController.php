@@ -11,7 +11,6 @@ class LoginController extends CI_Controller {
         $pass = $this->input->post('password');
         $this->load->model('abonneemodel');
         $data = $this->abonneemodel->connectUser($email,$pass);
-        var_dump($data);
         if(count($data)!=0){
             /** updateUtilisateur */
             $ran = rand (1,999999);
@@ -28,10 +27,34 @@ class LoginController extends CI_Controller {
         }
     }
 
+    public function connect_admin(){
+        $user_name = $this->input->post('username');
+        $pass = $this->input->post('password');
+        $this->load->model('abonneemodel');
+        $data = $this->abonneemodel->connect_admin($user_name,$pass);
+        if(count($data)!=0){
+            $this->session->set_userdata('admin',array(
+                'username'=>$data[0]->identifiant
+            ));
+            redirect('admin','refresh');
+        }
+        else{
+            $this->session->set_flashdata('erreur',array(
+                'message'=>"Verifier que votre mot de passe et votre identifiant correspond",
+                'identifiant'=>$user_name
+                ));
+            redirect('admin','refresh');
+        }
+    }
+
+    public function deconnect_admin(){
+        $this->session->unset_userdata('admin');
+        redirect('admin');
+    }
+
     public function connectlog($email,$pass){
         $this->load->model('abonneemodel');
         $data = $this->abonneemodel->connectUser($email,$pass);
-        var_dump($data);
         if(count($data)!=0){
             /** updateUtilisateur */
             $ran = rand (1,999999);

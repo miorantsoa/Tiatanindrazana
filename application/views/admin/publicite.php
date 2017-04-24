@@ -51,7 +51,7 @@
                                 <th>position</th>
                                 <th>lien de redirection</th>
                                 <th>image</th>
-                                <th>commentaire</th>
+                                <th>Action</th>
 
                             </tr>
                             </thead>
@@ -64,14 +64,10 @@
                                     <th><?= $publicite->position?></th>
                                     <th><?= $publicite->lienredirection?></th>
                                     <th><img src="<?= base_url($publicite->lienimage)?>" class="img-thumbnail"></th>
-                                    <th><?= $publicite->commentaire?></th>
                                     <th>
                                         <div class="btn-group" role="group" aria-label="...">
-                                            <a href="<?=base_url('index.php/articles/deleteArticle/'.$publicite->idpublicite)?>">
-                                                <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
-                                            </a>
-                                            <a href="<?=base_url('index.php/admin/editArticle/'.$publicite->idpublicite)?>">
-                                                <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button>
+                                            <a href="<?=base_url('index.php/pubcontroller/delete/'.$publicite->idpublicite)?>">
+                                                <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></button>
                                             </a>
                                         </div>
                                     </th>

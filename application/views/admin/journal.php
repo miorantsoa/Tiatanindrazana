@@ -30,9 +30,9 @@
                                         <th><a href="<?= base_url('index.php/admin/detailJournal/'.$journal->idjournal)?>"><?= $journal->datepublication?></a></th>
                                         <th><a href="<?= base_url('index.php/admin/detailJournal/'.$journal->idjournal)?>"><?= $journal->liencouverture ?></a></th>
                                         <th>
-                                            <div class="btn-group btn-group-lg" role="group">
+                                            <div class="btn btn-group btn-group-lg" role="group">
                                                 <a href="<?= base_url('index.php/admin/editJournal/'.$journal->idjournal)?>">
-                                                    <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
+                                                    <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                                 </a>
                                             </div>
                                         </th>

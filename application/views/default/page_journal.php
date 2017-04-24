@@ -7,7 +7,7 @@
 <head>
     <meta name="viewport" content="width = 1050, user-scalable = no" />
     <title><?= $titre?></title>
-    <script type="text/javascript" src="<?= base_url('assets/default/js/jquery.min.1.7.js')?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/default/js/modernizr.2.5.3.min.js')?>"></script>
 </head>
 <body>

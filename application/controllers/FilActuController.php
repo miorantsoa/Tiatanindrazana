@@ -37,4 +37,18 @@ class FilActuController extends CI_Controller{
             $this->load->view('errors/html/error_404',$erreur);
         }
     }
+    public function edit_etat($id){
+        $this->load->model('filactu_model');
+        $fil_actu = $this->filactu_model->get($id);
+        if($fil_actu!=null && count($fil_actu)!=0) {
+            $data['etat'] = !$fil_actu[0]->etat;
+            $this->filactu_model->update($fil_actu[0]->idfilactualite,$data);
+            redirect('admin/filactu','refresh');
+        }
+        else{
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
+        }
+    }
 }

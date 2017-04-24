@@ -11,6 +11,10 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Tous les rubriques</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a href="<?= base_url('admin/ajoutrubrique')?>"><i class="fa fa-plus-circle"></i> Nouveau rubrique</a>
+                            </li>
+                        </ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -18,7 +22,6 @@
 							<thead>
 								<tr>
 									<th>Nom du rubrique</th>
-									<th>Niveau</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -26,8 +29,11 @@
 								<?php foreach ($rubrique as $rub):?>
                                 <tr>
                                     <th><?=$rub->libelle?></th>
-                                    <th><?=$rub->niveau?></th>
-                                    <th></th>
+                                    <th>
+                                        <a href="<?= base_url('index.php/rubrique/delere/'.$rub->idcategorie)?>">
+                                            <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
+                                        </a>
+                                    </th>
                                 </tr>
                                 <?php endforeach;?>
 							</tbody>

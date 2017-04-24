@@ -19,7 +19,7 @@ class InfoUtileModel extends CI_Model {
         $this->db->update('infoutil',$data);
     }
 
-    public function get($id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null){
+    public function get($id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null,$date = null, $publie = null){
         if($id!=null)
             $this->db->where('idbeinfo',$id);
         if($titre!=null && $contenu!=null){
@@ -38,6 +38,12 @@ class InfoUtileModel extends CI_Model {
         if($idcategorie!=null) {
             $this->db->where('idcatbeinfo', $idcategorie);
             $this->db->or_where('idmere', $idcategorie);
+        }
+        if($date!=null){
+            $this->db->where('dernieremaj', $date);
+        }
+        if($publie != null){
+            $this->db->where('publie',$publie);
         }
         $this->db->order_by('dernieremaj',$ordre);
         $infoutil = $this->db->get('detail_info_utile');

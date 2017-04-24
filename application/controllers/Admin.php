@@ -1,19 +1,39 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
+    public function __construct() {
+        parent::__construct();
+    }
 	public function adminView($view,$data = null){
-		$this->load->view('admin/header');
-		$this->load->view('admin/'.$view,$data);
-		$this->load->view('admin/footer');
+        if($this->session->userdata('admin')){
+            $this->load->view('admin/header');
+            $this->load->view('admin/'.$view,$data);
+            $this->load->view('admin/footer');
+        }
+        else{
+            $this->load->view('admin/login');
+        }
 	}
 	public function index(){
-		$this->adminView('index');
+		redirect('admin/articles');
 	}
+
+	public function login(){
+	    $this->load->view('admin/login');
+    }
 	public function articles(){
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getrubrique();
+        $date=$this->input->get('date');
+        $titre=$this->input->get('titre');
+        $rubrique=$this->input->get('rubrique');
 	    $this->load->model('articlesmodel');
-	    $data['articles'] = $this->articlesmodel->getArticles();
+        $data['articles'] = $this->articlesmodel->getListArticle(true);
+	    if($date!=null || $titre!=null || $rubrique!=null){
+            $data['articles'] = $this->articlesmodel->get2($titre,$date,$rubrique);
+        }
 		$this->adminView('articles', $data);
-	}	
+	}
 	public function ajoutArticles(){
         $this->load->model('rubrique_model');
         $data['rubrique'] = $this->rubrique_model->getrubrique();
@@ -21,7 +41,7 @@ class Admin extends CI_Controller {
 	}
 	public function rubrique(){
         $this->load->model('rubrique_model');
-        $data['rubrique'] = $this->rubrique_model->getrubrique();
+        $data['rubrique'] = $this->rubrique_model->getFirstRang();
 		$this->adminView('rubrique',$data);
 	}
 	public function ajoutRubrique(){
@@ -97,7 +117,17 @@ class Admin extends CI_Controller {
     }
     public function infoutile(){
         $this->load->model('infoutilemodel');
-        $data['infos'] = $this->infoutilemodel->get();
+        $data['rubrique'] = $this->infoutilemodel->getCategorie();
+        $date=$this->input->get('date');
+        $titre=$this->input->get('titre');
+        $rubrique=$this->input->get('rubrique');
+        if($date!=null || $titre!=null || $rubrique!=null){
+            //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null,$date = null, $publie = null
+            $data['infos'] = $this->infoutilemodel->get(null,$titre,$rubrique,null,null,null,null,$date);
+        }
+        else{
+            $data['infos'] = $this->infoutilemodel->get();
+        }
         $this->adminView('infoutil',$data);
     }
     public function editInfoutile($id){
@@ -117,7 +147,12 @@ class Admin extends CI_Controller {
     /*info util*/
     public function  filactu(){
         $this->load->model('filactu_model');
-        $data['filactualite'] = $this->filactu_model->getFilActu();
+        if($this->input->get('date')){
+            $data['filactualite'] = $this->filactu_model->getByDate($this->input->get('date'));
+        }
+        else{
+            $data['filactualite'] = $this->filactu_model->getLastFil();
+        }
         $this->adminView('filactu',$data);
     }
 

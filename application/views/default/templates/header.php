@@ -15,36 +15,29 @@
     <meta property="og:description"   content="Your description" />
     <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">
-    <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
-    <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/jquery.modal.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css">
+    <!-- Stylesheets-->
+    <!--<link rel="stylesheet" href="<?/*= base_url('assets/default/css/flexslider.css')*/?>">
+    <link rel="stylesheet" href="<?/*= base_url('assets/default/css/prettyPhoto.css')*/?>">
+    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/jquery.modal.min.css">
+
+    <link rel="stylesheet" href="<?/*= base_url('assets/default/css/bootstrap-responsive.min.css')*/?>">
+    <link rel="stylesheet" type="text/css" href="<?/*= base_url('assets/admin/css/font-awesome.min.css')*/?>">
+
+    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/color.css">
+    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/style.css">
+    <link rel="shortcut icon" href="<?/*= base_url()*/?>/assets/default/images/favicon.ico">
+    <link rel="apple-touch-icon" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon-114x114.png">-->
+    <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
+
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-    <noscript><link rel="stylesheet" href="<?= base_url()?>/assets/default/css/no-js.css"></noscript> <!-- If JavaScript Disabled -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="<?= base_url()?>/assets/default/images/favicon.ico">
-    <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url()?>/assets/default/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url()?>/assets/default/images/apple-touch-icon-114x114.png">
-    <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?= base_url('assets/default/css/app.css')?>">
     <!-- JavaScript -->
     <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
-    <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
-
 </head>
 <body>
 
@@ -73,7 +66,7 @@
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
             <?php if(!$this->session->userdata('user')){?>
                 <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-                <li><a href="<?= base_url('logincontroller/deconnect')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
+                <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
             <?php }
             else{?>
                 <li><a href="" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko"><i class="fa fa-sign-in"> </i> Hivoaka </a></li>
@@ -97,7 +90,7 @@
 
 
         <div class="ads pull-right">
-            <img src="<?php echo  base_url('assets/default/images/kolikoly-bann.jpg')?>" alt="Ads" height="80"/>
+            <img src="<?= (isset($banniere)) ? base_url($banniere->lienimage) : ""?>" alt="<?= (isset($banniere)) ? base_url($banniere->alt) : "Bannière publicitaire"?>" height="80"/>
         </div>
 
     </header> <!-- End Header -->

@@ -16,4 +16,10 @@ class Rubrique extends  CI_Controller{
         $this->rubrique_model->insertRubrique($data);
         redirect('admin/rubrique','refresh');
     }
+
+    public function delete($id){
+        $this->load->model('rubrique_model');
+        $this->rubrique_model->delete($id);
+        redirect('admin/rubrique','refresh');
+    }
 }

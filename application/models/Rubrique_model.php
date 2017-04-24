@@ -53,5 +53,9 @@ class Rubrique_model extends CI_Model{
         $categories = $this->db->get('sous_categorie');
         return $categories->result();
     }
+    public function delete($id){
+        $this->db->where('idcategorie',$id);
+        $this->db->delete('categorie');
+    }
 
 }
