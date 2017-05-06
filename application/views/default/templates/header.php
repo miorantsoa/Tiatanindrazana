@@ -53,6 +53,16 @@
             <a href="<?= base_url('accueil/connection')?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription')?>" class="btn btn-blue">Hisoratra anarana</a>
         </div>
     </div>
+
+    <div id="dialog2" title="Basic dialog" style="display:none;">
+        <div class="modal-header">
+            <h4 class="modal-title">Fampahafantarana</h4>
+        </div>
+        <div class="modal-body">
+            <p><?= $this->session->flashdata('message')?></p>
+        </div>
+    </div>
+
     <div class="container">
 
         <!-- Navigation -->

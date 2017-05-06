@@ -17,9 +17,14 @@
     }(document, 'script', 'facebook-jssdk'));
     $(document).ready(function(){
         var error = "<?=$this->session->flashdata('erreur')?>";
+        var message = "<?=$this->session->flashdata('message')?>";
         if (error) {
             $("#dialog").modal();
             console.log(error);
+        }
+        if(message){
+            $("#dialog2").modal();
+            console.log(message);
         }
         $("input[type=file]").filestyle({
             image: "<?= base_url('assets/default/images/import.png')?>",

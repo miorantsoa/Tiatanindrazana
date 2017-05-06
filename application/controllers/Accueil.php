@@ -30,13 +30,13 @@ class Accueil extends CI_Controller{
     }
 
     public function homeView($view,$data = null,$titre=null){
+        $this->session->set_userdata('last_page', current_url());
         $this->load->view('default/templates/header.php',$titre);
         $this->load->view('default/'.$view,$data);
         $this->load->view('default/templates/sidebar.php',$data);
         $this->load->view('default/templates/footer');
     }
     public function index(){
-        $this->session->set_userdata('last_page', current_url());
         $data = $this->indexData();
         $data['titre'] = "Tonga soa : Tia Tanindrazana";
         $this->homeView('accueil',$data,$data);
@@ -477,23 +477,25 @@ class Accueil extends CI_Controller{
             $user = $this->session->userdata('user')[0];
             $this->load->model('abonneemodel');
             $this->load->library('globalfunction');
-            if(!$this->globalfunction->isFavorisExist($idarticle,$user->idutilisateur2)){
+            if(!$this->globalfunction->isFavorisExist($user->idutilisateur2,$idarticle)){
                 $this->abonneemodel->addFavoris($user->idutilisateur2, $idarticle);
                 $message = "Tontosa ny fanampiana favoris nataonao";
                 redirect('accueil/monCompte');
             }
             else{
                 $message = "Efa anisan'ny favoris-nao io lahatsoratra io";
+                $this->session->set_flashdata('message', $message);
+                redirect($this->session->userdata('last_page'));
             }
-            $data = $this->indexData();
-            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
-            $data['article'] = $article;
-            $data['titre'] =  $article->titre." : Tia Tanindrazana";
-            $this->homeView('detail',$data,$data);
-            $message = "Tsy afaka manao an'io operation io ianao";
-            $data['message'] = $message;
-            //redirection vers la page de l'article
-            $this->homeView('detail',$data,$data);
+//            $data = $this->indexData();
+//            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
+//            $data['article'] = $article;
+//            $data['titre'] =  $article->titre." : Tia Tanindrazana";
+//            $this->homeView('detail',$data,$data);
+//            $message = "Tsy afaka manao an'io operation io ianao";
+//            $data['message'] = $message;
+//            //redirection vers la page de l'article
+//            $this->homeView('detail',$data,$data);
         }
         else{
             $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");

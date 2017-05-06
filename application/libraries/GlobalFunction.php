@@ -19,7 +19,9 @@ class GlobalFunction{
         if(count($res)>0){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
     public function uploadImage($inputname,$destination,$name){
         //$config = $this->configUpload($destination,$name);

@@ -101,6 +101,7 @@ class AbonneeModel extends CI_Model {
         $this->db->where('idutilisateur',$iduser);
         if($idarticle!=null)
             $this->db->where('favoris.idarticle',$idarticle);
+//        var_dump($this->db->get_compiled_select());
         $favoris = $this->db->get();
         return $favoris->result();
     }
