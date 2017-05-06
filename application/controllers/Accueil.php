@@ -474,6 +474,7 @@ class Accueil extends CI_Controller{
         $message = "";
         $article = $this->articlesmodel->getById($idarticle)[0];
         if($this->session->userdata('user')){
+            $this->session->set_userdata('last_page', current_url());
             $user = $this->session->userdata('user')[0];
             $this->load->model('abonneemodel');
             $this->load->library('globalfunction');
@@ -526,7 +527,6 @@ class Accueil extends CI_Controller{
     }
 
     public function connection(){
-        $data = $this->indexData();
         $data['titre'] = "Connection : Tia TAnindrazana";
         $this->load->view('default/connection',$data);
     }

@@ -79,7 +79,7 @@
                 <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
             <?php }
             else{?>
-                <li><a href="" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko"><i class="fa fa-sign-in"> </i> Hivoaka </a></li>
+                <li><a href="<?= base_url('logincontroller/deconnect')?>" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko"><i class="fa fa-sign-in"> </i> Hivoaka </a></li>
             <?php }?>
         </ul>
         <!-- Search Form -->

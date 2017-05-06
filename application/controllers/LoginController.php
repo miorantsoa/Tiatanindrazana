@@ -19,10 +19,9 @@ class LoginController extends CI_Controller {
             $id = $this->session->userdata('user')[0]->idutilisateur2;
             $this->abonneemodel->updateUtilisateur($id,$temp);
 
-            redirect('Accueil/monCompte');
+            redirect($this->session->userdata('last_page'));
         }
         else {
-            var_dump($data);
             redirect('Accueil/connection');
         }
     }
@@ -63,10 +62,9 @@ class LoginController extends CI_Controller {
             $id = $this->session->userdata('user')[0]->idutilisateur2;
             $this->abonneemodel->updateUtilisateur($id,$temp);
 
-            redirect('Accueil/monCompte');
+            redirect($this->session->userdata('last_page'));
         }
         else {
-            var_dump($data);
             redirect('Accueil/connection');
         }
     }
