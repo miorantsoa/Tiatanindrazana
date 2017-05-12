@@ -47,7 +47,9 @@ class ArticleLibrarie{
         if(isset($laune) && $idJournal != null) {
             if ($laune == 1) {
                 $une = $this->CI->articlesmodel->getArticlesByJournal($idJournal, true);
-                $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+                if(count($une)!=0) {
+                    $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+                }
                 $laune = true;
             }
             $data['laune'] = $laune;
@@ -102,7 +104,9 @@ class ArticleLibrarie{
         $une = $this->CI->articlesmodel->getArticlesByJournal($journal->idjournal,true);
         if($article->laune==false) {
             $this->updateArticle($id, null, null, null, null, null, null, null, true, null, null, null);
-            $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+            if(count($une)!=0) {
+                $this->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+            }
         }
         else{
             //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat

@@ -19,6 +19,7 @@ class Accueil extends CI_Controller{
         $this->load->model("infoutilemodel");
         $this->load->model("abonnementmodel");
         $this->load->model("feuillejournalmodel");
+        $this->load->model('abonneemodel');
     }
 
     public function getPub($position){
@@ -454,9 +455,9 @@ class Accueil extends CI_Controller{
         $data['titre'] = "Inscription : Tia Tanindrazana";
         $data['typeabonnement'] = $this->abonnementmodel->getTypeAbonnement();
         $data['tarifabonnement'] = $this->abonnementmodel->getTarifAbonnement();
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/inscription',$data);
-        $this->load->view('default/templates/footer');
+//        $this->load->view('default/templates/header',$data);
+        $this->load->view('default/register',$data);
+//        $this->load->view('default/templates/footer');
     }
     /*Commentaire*/
     public function addCommentaire(){
@@ -476,7 +477,6 @@ class Accueil extends CI_Controller{
         if($this->session->userdata('user')){
             $this->session->set_userdata('last_page', current_url());
             $user = $this->session->userdata('user')[0];
-            $this->load->model('abonneemodel');
             $this->load->library('globalfunction');
             if(!$this->globalfunction->isFavorisExist($user->idutilisateur2,$idarticle)){
                 $this->abonneemodel->addFavoris($user->idutilisateur2, $idarticle);
@@ -500,15 +500,32 @@ class Accueil extends CI_Controller{
         }
         else{
             $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
-            redirect('accueil');
+            redirect($this->session->userdata('last_page'));
         }
     }
+
+    public function supprimerFavs($idarticle){
+        if($this->session->userdata('user')){
+            $user = $this->session->userdata('user')[0];
+            $this->abonneemodel->deleteFavoris($user->idutilisateur2,$idarticle);
+            redirect('accueil/monCompte');
+        }
+        else{
+
+        }
+    }
+
     public function monCompte(){
         $data = $this->indexData();
-        $data['titre'] = "Mon compte : Tia Tanindrazana";
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/monCompte',$data);
-        $this->load->view('default/templates/footer');
+        if($this->session->userdata('user')) {
+            $iduser = $this->session->userdata('user')[0]->idutilisateur2;
+            $favoris = $this->abonneemodel->getFavoris($iduser);
+            $data['favoris'] = $favoris;
+            $data['titre'] = "Mon compte : Tia Tanindrazana";
+//          $this->load->view('default/templates/header',$data);
+            $this->load->view('default/profile', $data);
+//          $this->load->view('default/templates/footer');
+        }
     }
     public function modif_Info_User(){
         $data = $this->indexData();

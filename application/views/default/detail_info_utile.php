@@ -15,7 +15,7 @@
 
             <div class="content">
                 <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($info_utile->contenue,0,1)) ?></span> <?= substr($info_utile->contenue,1)?></p>
-                <?= $info_utile->contenue?>
+                <?= strip_tags($info_utile->contenue)?>
             </div> <!-- End Content -->
 
             <div class="sep-border no-margin-bottom"></div> <!-- Separator -->

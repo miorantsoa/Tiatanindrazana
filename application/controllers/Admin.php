@@ -151,7 +151,7 @@ class Admin extends CI_Controller {
             $data['filactualite'] = $this->filactu_model->getByDate($this->input->get('date'));
         }
         else{
-            $data['filactualite'] = $this->filactu_model->getLastFil();
+            $data['filactualite'] = $this->filactu_model->getLastFilAdmin();
         }
         $this->adminView('filactu',$data);
     }

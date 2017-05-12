@@ -46,7 +46,9 @@ class Articles extends CI_Controller{
         $laune = $this->input->post('laune');
         if($laune == 1){
             $une = $this->articlesmodel->getArticlesByJournal($journal,true);
-            $this->articlelibrarie->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+            if(count($une)!=0) {
+                $this->articlelibrarie->updateArticle($une[0]->idarticle, null, null, null, null, null, null, null, false, null, null, null);
+            }
             $laune = true;
         }
         else{ $laune = false;}

@@ -18,7 +18,7 @@
                     <span class="meta alignleft"> <?= date('H:i',strtotime($fil->heurepublication))?></span>
                 </div>
                 <div class="span10 content pull-right">
-                    <p><?= $fil->contenue?></p>
+                    <p><?= strip_tags($fil->contenue)?></p>
                 </div>
             </div>
             <div class="sep-border"></div> <!-- Separator -->

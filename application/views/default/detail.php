@@ -21,7 +21,7 @@
         <div class="fb-share-button" data-href="<?=base_url(current_url())?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=base_url(current_url())?>&amp;src=sdkpreparse">Partager</a></div>
         <div class="content">
             <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
-           <?= $article->contenue?>
+           <?= strip_tags($article->contenue)?>
         </div> <!-- End Content -->
 
         <div class="sep-border no-margin-bottom"></div> <!-- Separator -->

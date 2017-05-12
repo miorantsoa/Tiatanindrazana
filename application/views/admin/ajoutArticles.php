@@ -142,7 +142,7 @@
 						</div>
                         <div class="form-group">
                             <div class="col-lg-offset-3 col-md-6 col-sm-6 col-xs-12">
-                                <input type="checkbox" name="laune" id="hobby3" value="1" class="flat" /> La une
+                                <input type="checkbox" name="laune" id="hobby3" value="<?= isset($article) ? $article[0]->laune : 1?>"  <?=(isset($article) && $article[0]->laune == 1) ?"checked" : "" ?> class="flat" /> La une
                             </div>
                         </div>
 						<div class="form-group">
@@ -155,7 +155,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="contenu">Contenu<span class="required">*</span>
 							</label>
                             <div>
-                                <textarea name="contenu" id="contenu" rows="10"><?=(isset($article) && $article[0]->resume != "") ? $data->contenue : "" ?></textarea>
+                                <textarea name="contenu" id="contenu" rows="10"><?=(isset($article) && $article[0]->resume != "") ? strip_tags($data->contenue) : "" ?></textarea>
                             </div>
 						</div>
 						<div class="ln_solid"></div>

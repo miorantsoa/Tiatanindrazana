@@ -65,7 +65,7 @@
             </figure>
             <div class="text">
                 <h2><a href="<?= base_url('accueil/detailArticle/'.$article->idarticle)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
-                <p><?= substr($article->contenue,0,250)."...</p>"?></p>
+                <p><?= substr(strip_tags($article->contenue),0,250)."...</p>"?></p>
                 <div class="meta"><a href="author.html">Niseho ny</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= $article->datepublication?>&nbsp;&nbsp;</div>
             </div>
         </div>

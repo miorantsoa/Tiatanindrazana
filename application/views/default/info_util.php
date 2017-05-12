@@ -41,7 +41,7 @@
                 </figure>
                 <div class="content">
                     <h2><a href="<?= base_url('accueil/detail_info_utile/'.$beinfo->idbeinfo)?>" title="<?= $beinfo->titre?>"><?= $beinfo->titre?></a></h2>
-                    <?= substr($beinfo->contenue,0,250)." ..."?>
+                    <?= substr(strip_tags($beinfo->contenue),0,250)." ..."?>
                 </div>
                 <div class="meta">
                     <span class="pull-left"><?= $beinfo->dernieremaj?></span>

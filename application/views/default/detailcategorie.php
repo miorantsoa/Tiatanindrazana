@@ -34,7 +34,7 @@
             </figure>
             <div class="content">
                 <h2><a href="<?= base_url('accueil/detailarticle/'.$article->idarticle)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
-                <?= substr($article->contenue,0,250)." ..."?>
+                <?= substr(strip_tags($article->contenue),0,250)." ..."?>
             </div>
             <div class="meta">
                 <span class="pull-left"><?= $article->datepublication?> | <a href="single_post.html">15 comments</a></span>

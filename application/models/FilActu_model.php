@@ -44,13 +44,13 @@ class FilActu_model extends CI_Model{
     }
 
     public function getLastFilAdmin(){
-        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication) as datepublication from filactualite)');
+        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication) as datepublication from filactualite) ORDER  BY  datepublication, heurepublication DESC ');
         //$fil = $this->db->get();
         return $fil->result();
     }
 
     public function getLastFil(){
-        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication) as datepublication from filactualite WHERE etat = true)');
+        $fil= $this->db->query('select * from filactualite where datepublication in (select max(datepublication) as datepublication from filactualite WHERE etat = true) ORDER  BY  datepublication, heurepublication DESC ');
         //$fil = $this->db->get();
         return $fil->result();
     }

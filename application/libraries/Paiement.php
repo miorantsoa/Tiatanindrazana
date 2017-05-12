@@ -8,11 +8,11 @@ class Paiement {
     private $util;
     private $site_url;
     private $token=null;
-    const URL_AUTH = "http://localhost/ariaryplatform/web/app.php/oauth/v2/token";
-    const URL_PAIEMENT = "http://localhost/ariaryplatform/web/app.php/api/paiements";
-    const URL_RESULTAT = "http://localhost/ariaryplatform/web/app.php/api/resultats";
-    const URL_PAIE =  "http://localhost/ariary2copie/web/app_dev.php/paiement/";
-	const URL_RESULT_PAIE = "http://localhost/ariary2copie/web/app_dev.php/paiement_resultat";
+    const URL_AUTH = "https://pro.ariarynet.com/oauth/v2/token";
+    const URL_PAIEMENT = "https://pro.ariarynet.com/api/paiements";
+    const URL_RESULTAT = "https://pro.ariarynet.com/api/resultats";
+    const URL_PAIE =  "https://moncompte.ariarynet.com/paiement/";
+    const URL_RESULT_PAIE = "https://moncompte.ariarynet.com/paiement_resultat";
 	
     /**
      * Paiement constructor.
@@ -23,12 +23,12 @@ class Paiement {
      * @param $site_url
      * @param Util $util
      */
-    public function __construct($public_key, $private_key, $client_id, $client_secret){
+    public function __construct($params){//$public_key, $private_key, $client_id, $client_secret
         $this->CI = & get_instance();
-        $this->public_key = $public_key;
-        $this->private_key = $private_key;
-        $this->client_id = $client_id;
-        $this->client_secret = $client_secret;
+        $this->public_key = $params['public_key'];
+        $this->private_key = $params['private_key'];
+        $this->client_id = $params['client_id'];
+        $this->client_secret = $params['client_secret'];
         $this->site_url=base_url();
         $this->CI->load->library('util');
     }
@@ -66,6 +66,7 @@ class Paiement {
         $headers=array("Authorization:Bearer ".$this->getAccess());
         $json=$this->CI->util->sendCurl($url,"POST",$headers,$params);
         $error=json_decode($json);
+        var_dump($error);
         if(isset($error->error)){
             throw new Exception($error->error.": ".$error->error_description);
         }
