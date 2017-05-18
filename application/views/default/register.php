@@ -11,7 +11,7 @@
 <body>
 <div class="container-fluid">
 	<div class="col-md-offset-2 col-md-8 panel panel-blue">
-        <div class="col-md-offset-1 col-md-10 ">
+        <div class="col-md-12 ">
             <figure class="logo col-md-12">
                 <a href="<?= base_url()?>"><img src="<?= base_url("assets/default/images/logoTT.png")?>" alt=""></a>
             </figure>
@@ -115,12 +115,68 @@
 
                 <fieldset>
                     <legend>Safidy ny tolotra / Choix de l'offre:</legend>
-                    <div class="form-group">
+                    <div class="">
+                        <div class="row pricing">
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h3><b>Tolotra Gold 3 Volana </b></h3>
+                                    <input type="hidden" name="tarifabonnement">
+                                    <hr>
+                                    <p>Afaka mamaky ny lahatsoratra rehetra</p>
+                                    <hr>
+                                    <p>Fahafahana mijery Ilaiko</p>
+                                    <hr>
+                                    <p>Afaka mamaky mijery lahatsoratra @n'ny gazety an-tsary</p>
+                                    <hr>
+                                    <p><b>27 000 Ar</b>
+                                    <hr>
+                                    <input type="hidden" name="typeabonnement" value="<?= $typeabonnement[0]->idtypeabon?>">
+                                    <button type="submit" onclick="chooseAbonnement(3)" class="btn btn-info btn-block">Hiditra</button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h3><b>Tolotra Gold 6 Volana </b></h3>
+                                    <input type="hidden" name="tarifabonnement">
+                                    <hr>
+                                    <p>Afaka mamaky ny lahatsoratra rehetra</p>
+                                    <hr>
+                                    <p>Fahafahana mijery Ilaiko</p>
+                                    <hr>
+                                    <p>Afaka mamaky mijery lahatsoratra @n'ny gazety an-tsary</p>
+                                    <hr>
+                                    <p><b>38 000 Ar</b></p>
+                                    <input type="hidden" name="typeabonnement" value="<?= $typeabonnement[0]->idtypeabon?>">
+                                    <hr>
+                                    <input type="hidden" name="typeabonnement">
+                                    <button type="submit" onclick="chooseAbonnement(6)" class="btn btn-info btn-block">Hiditra</button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="well">
+                                    <h3><b>Tolotra Gold 12 Volana </b></h3>
+                                    <input type="hidden" name="tarifabonnement">
+                                    <hr>
+                                    <p>Afaka mamaky ny lahatsoratra rehetra</p>
+                                    <hr>
+                                    <p>Fahafahana mijery Ilaiko</p>
+                                    <hr>
+                                    <p>Afaka mijery lahatsoratra @n'ny gazety an-tsary</p>
+                                    <hr>
+                                    <p><b>75 000 Ar</b></p>
+                                    <hr>
+                                    <input type="hidden" name="typeabonnement" value="<?= $typeabonnement[0]->idtypeabon?>">
+                                    <button type="submit" onclick="chooseAbonnement(12)" class="btn btn-info btn-block">Hiditra</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
                         <label>Karazany / Type Abonnement:</label>
                         <select name="typeabonnement" id="typeabonnement" class="form-control" >
-                            <?php foreach ($typeabonnement as $typeabonnement):?>
-                                <option value="<?=$typeabonnement->idtypeabon?>"><?=$typeabonnement->libelle?></option>
-                            <?php endforeach;?>
+                            <?php /*foreach ($typeabonnement as $typeabonnement):*/?>
+                                <option value="<?/*=$typeabonnement->idtypeabon*/?>"><?/*=$typeabonnement->libelle*/?></option>
+                            <?php /*endforeach;*/?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -140,7 +196,7 @@
                             document.getElementById("prix").innerHTML = "Ny sarany io tolotra dia : Ar " + x*y*200*30;
                         }
                     </script>
-                    <button type="submit" name="submit" class="btn btn-info">Hiditra</button>
+                    <button type="submit" name="submit" class="btn btn-info">Hiditra</button>-->
                     <div class="data-status"></div> <!-- data submit status -->
                 </fieldset>
             </form>
@@ -160,7 +216,11 @@
             format:'Y-m-d',
             formatDate:'Y-m-d'
         });
-    })
+    });
+    function chooseAbonnement(mois){
+        $('[name="tarifabonnement"]').val(mois);
+    }
+
 </script>
 <script src="<?= base_url("assets/default/js/bootstrap-filestyle.min.js")?>" type="text/javascript"></script>
 <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>

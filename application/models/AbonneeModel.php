@@ -109,8 +109,28 @@ class AbonneeModel extends CI_Model {
     }
     /****!Fin Utilisateur*******/
 
-    public function getAbonnementUtilisateur($iduser){
-
+    public function getAbonnementUtilisateur($iduser = null,$civilite = null, $nom=null, $prenom= null, $cin = null, $etat = null){
+        if($iduser!=null){
+            $this->db->where('idutilisateur2',$iduser);
+        }
+        if($civilite != null){
+            $this->db->where('civilite',$civilite);
+        }
+        if($nom != null){
+            $this->db->like('nomutilisateur', $nom);
+        }
+        if($prenom != null){
+            $this->db->like('prenomutilisateur', $prenom);
+        }
+        if($cin != null){
+            $this->db->where('cin',$cin);
+        }
+        if($etat!=null){
+            $this->db->where('statututilisateur',$etat);
+        }
+//        var_dump($this->db->get_compiled_select());die();
+        $abonnee = $this->db->get('detail_abonnement');
+        return $abonnee->result();
     }
 
 }

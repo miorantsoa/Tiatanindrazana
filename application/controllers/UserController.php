@@ -10,12 +10,12 @@ class UserController extends CI_Controller
     public function __construct(){
 //        __construct($public_key, $private_key, $client_id, $client_secret)
         parent::__construct();
-        $cle_prive = "ac29335c23478e8c8655f0bc753c7df68147f47d831d90841b";
+       /* $cle_prive = "ac29335c23478e8c8655f0bc753c7df68147f47d831d90841b";
         $cle_public = "3e8b86fb9b5bf31aa6d7faabfeaea653a7eb617a2b11ba672f";
         $CLIEN_ID = "103_4ey89fdgnz40ckwcg0oock4ckc8wwgg0co0kogs808kg40c8kg";
         $CLIENT_SECRET = "53djd2ozp5og0oc8gk4888so444gcckkokg8wo0wssk4kw0w0g";
         $params = array("public_key"=>$cle_public, "private_key"=>$cle_prive, "client_id"=>$CLIEN_ID, "client_secret"=>$CLIENT_SECRET);
-        $this->load->library('paiement',$params);
+        $this->load->library('paiement',$params);*/
     }
 
     public function addUser()    {
@@ -60,16 +60,18 @@ class UserController extends CI_Controller
          /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
         if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
             $this->load->model('abonneemodel');
+            $this->db->trans_start();
             $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $nom, $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
-
+//            var_dump($_REQUEST);die();
             $today = Date('Y-m-d');
             $moisabonnement = $this->input->post('tarifabonnement');
             $jourabonnement = $moisabonnement * 30;
             $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
             $temp = $finabonnement->format('Y-m-d');
             $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
-            $date2['statututilisateur'] = 1;
-            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
+//            $date2['statututilisateur'] = 0;
+//            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
+            $this->db->trans_complete();
 //            redirect('Accueil/Connection');
             $ip = $this->input->ip_address();
 //            $this->paiement->initPaie(1,10,$nom,"Inscription ".$this->input->post('typeabonnement')." Titan",$ip);
@@ -83,12 +85,13 @@ class UserController extends CI_Controller
 
     public function activerCompte($idUtilisateur){
         $data['statututilisateur'] = 1;
+        $this->load->model('abonneemodel');
         $this->abonneemodel->updateUtilisateur($idUtilisateur,$data);
+        redirect('admin/abonnee');
     }
 
 
     public function updateInfoUser(){
-
         if ($this->input->post('civilite')!=""){
             $Data['civilite']=$this->input->post('civilite');
         }

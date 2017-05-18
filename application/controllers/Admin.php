@@ -75,7 +75,19 @@ class Admin extends CI_Controller {
 	}
 
 	public function abonnee(){
-        $this->adminView('abonne');
+        $this->load->model('abonneemodel');
+        $abonnees = array();
+        $nom = $this->input->post('nom');
+        $prenom = $this->input->post('prenom');
+        $cin = $this->input->post('cin');
+        $etat= $this->input->post('etat');
+        $civilite = $this->input->post('civilite');
+//        var_dump($_REQUEST);die();
+        if(count($this->abonneemodel->getAbonnementUtilisateur(null,$civilite,$nom,$prenom,$cin,$etat))!=0){
+            $abonnees = $this->abonneemodel->getAbonnementUtilisateur(null,$civilite,$nom,$prenom,$cin,$etat);
+        }
+        $data['abonnees'] = $abonnees;
+        $this->adminView('abonne',$data);
     }
 	public function editArticle($id){
 	    $this->load->model('articlesmodel');
