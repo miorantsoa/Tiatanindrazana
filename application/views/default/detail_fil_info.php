@@ -10,7 +10,7 @@
 
         <div class="content">
         <div class="header">
-            <h4>Faham-baovao tamin'ny <?= (count($detail_fil)!=0)?$detail_fil[0]->datepublication : ""?></h4>
+            <h4>Faham-baovao tamin'ny <?= (count($detail_fil)!=0)? reformat($detail_fil[0]->datepublication) : ""?></h4>
         </div>
         <?php foreach ($detail_fil as $fil): ?>
             <div class="item">

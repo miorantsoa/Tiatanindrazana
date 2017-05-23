@@ -5,20 +5,20 @@
 
         <div class="breadcrumb clearfix">
             <span class="base">Ato no misy anao</span>
-            <p><a href="<?= base_url('accueilcontroller')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/detail_categorie/'.$article->idcategorie)?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<?= substr($article->titre,0,50)." ..."?></p>
+            <p><a href="<?= base_url('accueil')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/categorie/'.$article->idcategorie.'-'.tag_categorie($article->libelle))?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<?= substr($article->titre,0,50)." ..."?></p>
         </div> <!-- End Breadcrumb -->
         <figure class="head-section">
             <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/full/4.jpg"')?>" alt="Image" />
             <div class="head-section-content">
                 <h1><?= $article->titre?></h1>
-                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?= base_url('accueil/detail_categorie/'.$article->idcategorie)?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a></p>
+                <p class="meta"><?= $article->dateparution?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?= base_url('accueil/categorie/'.$article->idcategorie.'-'.tag_categorie($article->libelle))?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a></p>
             </div>
         </figure>
 
         <h5>
             <a href="<?= base_url('accueil/addfavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
         </h5>
-        <div class="fb-share-button" data-href="<?=base_url(current_url())?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=base_url(current_url())?>&amp;src=sdkpreparse">Partager</a></div>
+        <div class="fb-share-button" data-href="<?=current_url()?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=current_url()?>&amp;src=sdkpreparse">Partager</a></div>
         <div class="content">
             <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
            <?= strip_tags($article->contenue)?>
@@ -37,7 +37,7 @@
             ?>
             <!-- One -->
             <div class="<?= ($count == 1) ? "item span3 no-margin-left" : "item span3"?>">
-                <a href="<?= base_url('accueil/detailArticle/'.$article_lie[$i]->idarticle)?>">
+                <a href="<?= base_url('article/'.$article_lie[$i]->url_tag)?>">
                     <figure class="figure-hover">
                         <img src="<?php echo ($article_lie[$i]->lien_image_une) ? base_url($article_lie[$i]->lien_image_une) : base_url('assets/default/images/content/300/4.jpg')?>" alt="Thumbnail 1" />
                         <div class="figure-hover-masked">

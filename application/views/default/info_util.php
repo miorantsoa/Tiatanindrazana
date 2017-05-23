@@ -1,7 +1,7 @@
 <div id="main" class="portofolio blog-posts image-preloader"">
     <div class="breadcrumb clearfix">
         <span class="base">Ato no misy anao</span>
-        <p><a href="<?= base_url('accueil/info_utile')?>">Ilaiko</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Sokajy: <a href="<?= (count($info_util)!=0) ? base_url('accueil/detail_categorie/'.$info_util[0]->libelle) : "" ?>" title="View articles in Technology"><?= (count($info_util)!=0) ? $info_util[0]->libelle : "" ?></a></p>
+        <p><a href="<?= base_url('accueil/ilaiko')?>">Ilaiko</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Sokajy:  <?= (count($info_util)!=0) ? $info_util[0]->libelle : "" ?></p>
     </div> <!-- End Breadcrumb -->
 
     <div class="margin-top40">
@@ -40,7 +40,7 @@
                     </div>
                 </figure>
                 <div class="content">
-                    <h2><a href="<?= base_url('accueil/detail_info_utile/'.$beinfo->idbeinfo)?>" title="<?= $beinfo->titre?>"><?= $beinfo->titre?></a></h2>
+                    <h2><a href="<?= base_url('ilaiko/'.$beinfo->url_tag)?>" title="<?= $beinfo->titre?>"><?= $beinfo->titre?></a></h2>
                     <?= substr(strip_tags($beinfo->contenue),0,250)." ..."?>
                 </div>
                 <div class="meta">

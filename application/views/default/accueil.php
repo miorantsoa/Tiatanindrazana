@@ -16,7 +16,7 @@
                             <span class="month"><?= date('M',strtotime($laune->datepublication))?></span>
                             </span>
                             </span>
-                            <h3><a href="<?= base_url('accueil/detailArticle/'.$laune->idarticle)?>"><?= $laune->titre?></a></h3>
+                            <h3><a href="<?= base_url('article/'.$laune->url_tag)?>"><?= $laune->titre?></a></h3>
                         </div>
                         <p><?= $laune->resume?>[..]</p>
                     </div>
@@ -42,7 +42,7 @@
         <span class="base"><?= date('d',strtotime($last_fil[0]->datepublication))?><i><?= date('M',strtotime($last_fil[0]->datepublication)) ?></i></span>
         <div class="text-rotator">
             <?php foreach ($last_fil as $fil):?>
-                <div><a href="<?= base_url('accueil/detail_filactu/'.$fil->datepublication)?>" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
+                <div><a href="<?= base_url('accueil/fil-d-actualite/'.$fil->datepublication)?>" title="<?= substr($fil->contenue,0,50)?>"> <?= date('H:i',strtotime($fil->heurepublication))?> <?= substr($fil->contenue,0,100)?>...</a></div>
            <?php endforeach;?>
          </div>
         <?php }?>
@@ -64,9 +64,9 @@
                 </div>
             </figure>
             <div class="text">
-                <h2><a href="<?= base_url('accueil/detailArticle/'.$article->idarticle)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
+                <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
                 <p><?= substr(strip_tags($article->contenue),0,250)."...</p>"?></p>
-                <div class="meta"><a href="author.html">Niseho ny</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= $article->datepublication?>&nbsp;&nbsp;</div>
+                <div class="meta"><a href="author.html">Niseho ny</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= reformat($article->datepublication)?>&nbsp;&nbsp;</div>
             </div>
         </div>
         <?php

@@ -21,12 +21,12 @@
                 </div>
             </figure>
             <div class="content">
-                <h2><a href="<?= base_url('accueil/detailarticle/'.$article->idarticle)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
+                <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
                 <?= substr($article->contenue,0,250)."...</p>"?>
             </div>
             <div class="meta">
                 <span class="pull-left"><?= $article->datepublication?> | <a href="">15 comments</a></span>
-                <span class="pull-right"><a href="<?= base_url('accueil/detailarticle/'.$article->idarticle)?>">Hamaky ny tohiny...</a></span>
+                <span class="pull-right"><a href="<?= base_url('article/'.$article->url_tag)?>">Hamaky ny tohiny...</a></span>
             </div>
         </div>
         <?php endforeach;?>
@@ -36,7 +36,7 @@
                 <?php
                 $nbpage = $this->articlelibrarie->getNbPage(count($all),$nbreponse);
                 for($i = 1; $i<=$nbpage;$i++){?>
-                    <li class="active"><a href="<?= base_url('accueil/recherche_simple/'.$recherche.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$nbreponse))?>"><?= $i?></a></li>
+                    <li class="<?= ($page == $nbpage[$i]) ?"active" : "" ?>"><a href="<?= base_url('accueil/recherche_simple/'.$recherche.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$nbreponse))?>"><?= $i?></a></li>
                 <?php }?>
             </ul>
             <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>

@@ -26,8 +26,8 @@
         <figure class="figure">
             <img src="<?= base_url($last_journal->liencouverture)?>" alt="" class="img-thumbnail">
         </figure>
-        <a href="<?= base_url('accueil/detailjournal/'.$last_journal->idjournal)?>" > <button class="btn btn-blue aligncenter span3 margin-top20">Hamaky</button></a>
-        <p>Gazety nivoaka ny <?= $last_journal->datepublication?></p>
+        <a href="<?= base_url('accueil/archive/'.$last_journal->idjournal.'/'.reformat($last_journal->datepublication))?>" > <button class="btn btn-blue aligncenter span3 margin-top20">Hamaky</button></a>
+        <p>Gazety nivoaka ny <?= reformat($last_journal->datepublication)?></p>
         <?php }?>
     </div>
     <div class="span8 pull-right">
@@ -36,9 +36,9 @@
                 <?php foreach ($archive as $journal):?>
                     <div class="span2 no-margin-left archive">
                         <figure class="figure">
-                            <a href="<?= base_url('accueil/detailjournal/'.$journal->idjournal)?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/archive/'.$journal->idjournal.'/'.reformat($journal->datepublication))?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
                         </figure>
-                        <p class="span2 margin-top20">Gazety ny <?= $journal->datepublication?></p>
+                        <p class="span2 margin-top20">Gazety ny <?= reformat($journal->datepublication)?></p>
                     </div>
                 <?php endforeach;?>
             </div>

@@ -7,8 +7,8 @@
 
             <!-- Tab Menu -->
             <ul class="nav nav-tabs" id="enewsTabs">
-                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= (count( $last_fil)!=0) ? $last_fil[0]->datepublication : ""?></a></li>
-                <?php echo (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab">'.$fil_actuj2[0]->datepublication.'</a></li>' : ""?>
+                <li class="active"><a href="#tab-populars" data-toggle="tab"><?= (count( $last_fil)!=0) ? reformat($last_fil[0]->datepublication) : ""?></a></li>
+                <?php echo (count($fil_actuj2)!=0) ? '<li><a href="#tab-recents" data-toggle="tab">'.reformat($fil_actuj2[0]->datepublication).'</a></li>' : ""?>
             </ul>
 
             <div class="tab-content fil">
@@ -20,7 +20,7 @@
                             <span class="meta alignright"> <?= date('H:i',strtotime($fil->heurepublication))?></span>
                         </div>
                         <div class="span2 content pull-right">
-                            <p><a href="<?= base_url('accueil/detail_filactu/'.$fil->datepublication)?>" title="<?= $fil->extrait?>"><?= $fil->extrait?></a></p>
+                            <p><a href="<?= base_url('accueil/fil-d-actualite/'.$fil->datepublication)?>" title="<?= $fil->extrait?>"><?= $fil->extrait?></a></p>
                         </div>
                     </div>
                     <?php endforeach;?>

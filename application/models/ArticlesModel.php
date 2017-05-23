@@ -196,12 +196,13 @@ class ArticlesModel extends CI_Model {
             $this->db->where('laune',$laune);
         if($image == false && $rubrique==null) {
             $this->db->where('idmere <> ', 10);
+            // $this->db->where('dmere IS NULL');
         }
         $this->db->order_by('libelle',"ASC");
         $this->db->order_by('datepublication',$ordre);
         $article = $this->db->get('detail_article');
-//        $sql = $this->db->get_compiled_select('detail_article');
-//        die($sql);
+        // $sql = $this->db->get_compiled_select('detail_article');
+        // die($sql);
         return $article->result();
     }
 

@@ -96,10 +96,10 @@
         <!-- Navigation -->
         <ul class="nav-menu pull-left">
             <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
-            <li><a href="<?= base_url("accueil/info_utile")?>">Ilaiko</a></li>
+            <li><a href="<?= base_url("accueil/ilaiko")?>">Ilaiko</a></li>
             <li><a href="<?= base_url("accueil/archive")?>">Tahiry</a></li>
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
-            <li><a href="<?= base_url('accueil/feuilleter_journal')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
+            <li><a href="<?= base_url('accueil/hamaky-gazety')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
         <ul class="nav-menu  pull-right" style="margin-left: 10px;">
             <?php if(!$this->session->userdata('user')){?>
@@ -123,12 +123,12 @@
     <header id="header" class="clearfix">
 
         <!-- Logo -->
-        <div class="logo pull-left">
+        <div class="logo pull-left" style="width: 50%;text-align: left;">
             <a href="<?= base_url("accueil")?>"><img src="<?= base_url()?>/assets/default/images/banniere-tia.jpg" alt="Tia Tanindrazana" height="80"/></a>
         </div>
 
 
-        <div class="ads pull-right">
+        <div class="ads pull-right" style="width: 50%; text-align: right;">
             <img src="<?= (isset($banniere)) ? base_url($banniere->lienimage) : ""?>" alt="<?= (isset($banniere)) ? base_url($banniere->alt) : "Bannière publicitaire"?>" height="80"/>
         </div>
 
@@ -137,14 +137,14 @@
     <nav id="main-navigation" class="clearfix">
         <ul>
             <?php foreach($rubriques as $rubrique):?>
-                <li class="<?php echo ($rubrique->libelle == $active) ? "active" : "" ?>"><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$rubrique->idcategorie)?>" ><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
+                <li class="<?php echo ($rubrique->libelle == $active) ? "active" : "" ?>"><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle))?>" ><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
                     <?php if($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)){
                         $souscats = $this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie);
                         ?>
                         <ul>
                             <?php foreach ($souscats as $souscat):?>
-                            <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/list_sarisary/'.$rubrique->idcategorie) : base_url('accueil/detail_categorie/'.$souscat->idcategorie)?>"><?= $souscat->libelle?></a>
-                            <?php endforeach; ?>
+                            <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/categorie/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$souscat->idcategorie.'-'.tag_categorie($souscat->libelle))?>"><?= $souscat->libelle?></a>
+                                <?php endforeach; ?>
                         </ul>
                     <?php }?>
                 </li>

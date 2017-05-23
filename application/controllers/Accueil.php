@@ -120,7 +120,7 @@ class Accueil extends CI_Controller{
         $rubrique =$this->rubrique_model->getRubriqueById($id);
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
-            $per_page = 10;
+            $per_page = 5;
             //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
             $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'));
             $data['results'] = $resultats;
@@ -556,6 +556,15 @@ class Accueil extends CI_Controller{
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/AjouterKolikoly',$data);
         $this->load->view('default/templates/footer');
+    }
+
+    public function add_url_tag(){
+        add_url_tag();
+        echo "Opération effectué";
+    }
+    public function add_url_info(){
+        add_url_tag_ilaiko();
+        echo "Opération effectué";
     }
 
 }

@@ -643,7 +643,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 			
 /* Header */
 
-#header { padding:40px 0px; }
+#header { padding:5px 0px; }
 	
 /* Main Navigation */
 
@@ -664,7 +664,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 			color:#EAEAEA;
 			text-transform:uppercase;
 			line-height:1em;
-			padding:20px 16px;
+			padding:15px 9px;
 			float:left;
 			font-size:14px;
 			border-right:1px solid #2a2a2a;
@@ -3134,4 +3134,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
         margin-top:10px;
     }
 	
+}
+.row-fluid {
+	margin-bottom:50px  !important;
 }

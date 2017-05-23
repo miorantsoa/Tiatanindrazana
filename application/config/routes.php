@@ -50,5 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'accueil';
+$route['article/(.+)/(.+)-(\d+)'] = 'accueil/detailArticle/$3';
+$route['accueil/categorie/(\d+)-(.+)'] = 'accueil/detail_categorie/$1';
+$route['accueil/recherche?cat=(.+)+p=(\d+)+lim=(\d+)+q=(.+)+d1=(.+)&d2=(.+)'] = 'accueil/detail_categorie/$1/$2/$3/$4/$5/$6';
+$route['accueil/sarisary/(\d+)-(.+)'] = 'accueil/list_sarisary/$1';
+$route['accueil/fil-d-actualite/(.+)'] = 'accueil/detail_filactu/$1';
+$route['accueil/archive/(\d+)/(.+)'] = 'accueil/detailjournal/$1';
+$route['accueil/ilaiko'] = 'accueil/info_utile';
+$route['ilaiko/(.+)/(.+)-(\d+)'] = 'accueil/detail_info_utile/$3';
+$route['accueil/hamaky-gazety'] = 'accueil/feuilleter_journal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

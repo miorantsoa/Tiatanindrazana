@@ -2,7 +2,7 @@
 
     <div class="breadcrumb clearfix">
         <span class="base">Ato no misy anao</span>
-        <p><a href="<?= base_url('accueilcontroller')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/list_sarisary/'.$categorie->idcategorie)?>" title="Vaovao rehetra ao amin'ny sokajy <?= $categorie->libelle?>"><?= $categorie->libelle ?></a></p>
+        <p><a href="<?= base_url('accueil')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/sarisary/'.$categorie->idcategorie.'-'.tag_categorie($categorie->libelle))?>" title="Vaovao rehetra ao amin'ny sokajy <?= $categorie->libelle?>"><?= $categorie->libelle ?></a></p>
     </div> <!-- End Breadcrumb -->
 
     <div class="filtre search-page">

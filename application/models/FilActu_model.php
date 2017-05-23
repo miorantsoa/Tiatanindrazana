@@ -90,6 +90,7 @@ class FilActu_model extends CI_Model{
     }
     public function getByDate($date){
         $this->db->where('datepublication',$date);
+        $this->db->order_by('heurepublication','desc');
         $fil = $this->db->get('filactualite');
         return $fil->result();
     }
