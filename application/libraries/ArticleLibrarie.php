@@ -22,7 +22,7 @@ class ArticleLibrarie{
             $idJournal = null;
         }
         $this->CI->load->model('articlesmodel');
-        $this->CI->articlesmodel->insertArticle($idJournal,$idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat);
+        return $this->CI->articlesmodel->insertArticle($idJournal,$idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat);
     }
     public function updateArticle($idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat){
         $data = null;

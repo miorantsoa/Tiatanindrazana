@@ -11,6 +11,14 @@ function get_url_tag($cat,$var,$date,$id){
     return $res;
 }
 
+function add_url_tag_article($cat,$titre, $date, $id){
+    $CI = & get_instance();
+    $CI->load->model('articlesmodel');
+    $url = get_url_tag($cat, $titre, $date, $id);
+    $toUpdate['url_tag'] = $url;
+    $CI->articlesmodel->update($id, $toUpdate);
+}
+
 function add_url_tag(){
     $CI = & get_instance();
     $CI->load->model('articlesmodel');

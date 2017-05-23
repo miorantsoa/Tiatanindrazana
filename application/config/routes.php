@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'accueil';
 $route['article/(.+)/(.+)-(\d+)'] = 'accueil/detailArticle/$3';
 $route['accueil/categorie/(\d+)-(.+)'] = 'accueil/detail_categorie/$1';
-$route['accueil/recherche?cat=(.+)+p=(\d+)+lim=(\d+)+q=(.+)+d1=(.+)&d2=(.+)'] = 'accueil/detail_categorie/$1/$2/$3/$4/$5/$6';
+$route['accueil/recherche/cat/(.+)/page/(\d+)/affiche/(\d+)/query/(.+)/date1/(.+)/date2/(.+)'] = 'accueil/detail_categorie/$1/$2/$3/$4/$5/$6';
 $route['accueil/sarisary/(\d+)-(.+)'] = 'accueil/list_sarisary/$1';
 $route['accueil/fil-d-actualite/(.+)'] = 'accueil/detail_filactu/$1';
 $route['accueil/archive/(\d+)/(.+)'] = 'accueil/detailjournal/$1';

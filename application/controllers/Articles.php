@@ -12,6 +12,7 @@ class Articles extends CI_Controller{
         $this->load->library('journallibrary');
         $this->load->model('journal');
         $this->load->model('articlesmodel');
+        $this->load->model('rubrique_model');
     }
 
     public function addArticle(){
@@ -52,7 +53,10 @@ class Articles extends CI_Controller{
             $laune = true;
         }
         else{ $laune = false;}
-        $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$laune,$this->input->post('niveau'),$image,true);
+        $id = $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$laune,$this->input->post('niveau'),$image,true);
+        $rubrique = $this->rubrique_model->getRubriqueById($this->input->post('rubrique'));
+        add_url_tag_article($rubrique[0]->libelle,$this->input->post('titre'),$date,$id);
+
         redirect('admin/articles','refresh');
     }
     public function isNewJournal($date){

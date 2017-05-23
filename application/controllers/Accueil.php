@@ -112,8 +112,14 @@ class Accueil extends CI_Controller{
         if($date1!=null){
             $date_1 = $date1;
         }
+        if($date_1==null){
+            $date_1 = "2010-01-01";
+        }
         if($date2!=null){
             $date_2 = $date2;
+        }
+        if($date_2==null){
+            $date_2 = "2030-01-01";
         }
 
         $articles =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));

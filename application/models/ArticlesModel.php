@@ -72,7 +72,11 @@ class ArticlesModel extends CI_Model {
 			'niveau'=> $niveau,
 			'lien_image_une'=> $chemin_une
     	);
-    	$this->db->insert("article",$data);
+        $this->db->trans_start();
+        $this->db->insert("article",$data);
+        $insert_id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $insert_id;
     }
     public function updateArticle($idarticle,$idJournal, $idCategorie, $titre, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat=true){
         $data = array(
