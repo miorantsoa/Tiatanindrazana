@@ -18,6 +18,25 @@ class UserController extends CI_Controller
         $this->load->library('paiement',$params);*/
     }
 
+    public function ajout(){
+        $this->load->model('abonneemodel');
+        $data = $this->session->userdata('info_user');
+        $abonnement = $this->session->userdata('abonnement');
+        $numero = $this->input->post('num');
+        $operateur = $this->input->post('mobile');
+        $trans_id = $this->input->post('trans_id');
+        $payement['numero'] = $numero;
+        $payement['trans_id'] = $trans_id;
+        var_dump($data, $abonnement, $abonnement, $operateur,$numero,$trans_id);
+        $this->db->trans_start();
+        $iduser = $this->abonneemodel->insert($data);
+        $payement['idabonnee'] = $iduser;
+        $this->abonneemodel->insertInfoPayement($payement);
+        $this->abonneemodel->insertAssocitationAbonnement($abonnement['tarif'], $iduser, "", "");
+        $this->db->trans_complete();
+        redirect('accueil/connection');
+    }
+
     public function addUser()    {
       /**  var_dump($_FILES); */
         $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
@@ -61,7 +80,7 @@ class UserController extends CI_Controller
         if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
             $this->load->model('abonneemodel');
             $this->db->trans_start();
-            $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $nom, $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), $this->input->post('motdepasse'), '0', $lienpdp);
+            $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $nom, $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), sha1($this->input->post('motdepasse')), '0', $lienpdp);
 //            var_dump($_REQUEST);die();
             $today = Date('Y-m-d');
             $moisabonnement = $this->input->post('tarifabonnement');
@@ -86,7 +105,20 @@ class UserController extends CI_Controller
     public function activerCompte($idUtilisateur){
         $data['statututilisateur'] = 1;
         $this->load->model('abonneemodel');
+        $this->load->model('abonnementmodel');
+        $abonnee = $this->abonneemodel->getInfoPayementAbonnee($idUtilisateur);
+        $today = Date('Y-m-d');
+        $moisabonnement = $abonnee[0]->durreeabonnement;
+        $jourabonnement = $moisabonnement * 30;
+        $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
+        $temp = $finabonnement->format('Y-m-d');
+        $abo['datedebutabonnement'] = $today;
+        $abo['datefinabonnement'] = $temp;
+        $this->db->trans_start();
         $this->abonneemodel->updateUtilisateur($idUtilisateur,$data);
+        $this->abonnementmodel->update($abonnee[0]->idabonnement,$abo);
+        $this->db->trans_complete();
+        send_confirmation($idUtilisateur);
         redirect('admin/abonnee');
     }
 
@@ -174,7 +206,7 @@ class UserController extends CI_Controller
 
     public function modifiermotdepasse(){
         $Data = array(
-          'motdepasse'=>  $this->input->post('motdepasse')
+          'motdepasse'=>  sha1($this->input->post('motdepasse'))
         );
         $id = $this->session->userdata('user')[0]->idutilisateur2;
         $this->load->model('abonneemodel');

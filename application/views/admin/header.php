@@ -21,6 +21,7 @@
      <link rel="stylesheet" type="text/css" href="<?/*= base_url('assets/admin/css/responsive.bootstrap.min.css')*/?>">
      <link rel="stylesheet" type="text/css" href="<?/*= base_url('assets/admin/css/scroller.bootstrap.min.css')*/?>">
     <link href="<?/*= base_url('assets/admin/css/fileinput.min.css')*/?>" media="all" rel="stylesheet" type="text/css" /-->
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/app.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/admin/themes/explorer/theme.css')?>">
     <link href="<?= base_url('assets/admin/css/fileinput.min.css')?>" media="all" rel="stylesheet" type="text/css" >
     <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
@@ -48,6 +49,7 @@
                     <ul class="nav child_menu">
                     	<li><a href="<?= base_url('index.php/admin/journal')?>">Tous les journaux</a></li>
                         <li><a href="<?= base_url('index.php/admin/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
+                        <li><a href="<?= base_url('admin/feuillejournal')?>"><i class="fa fa-sheet"></i>Feuilles journal</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Articles <span class="fa fa-chevron-down"></span></a>

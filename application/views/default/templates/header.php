@@ -143,7 +143,7 @@
                         ?>
                         <ul>
                             <?php foreach ($souscats as $souscat):?>
-                            <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/categorie/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$souscat->idcategorie.'-'.tag_categorie($souscat->libelle))?>"><?= $souscat->libelle?></a>
+                            <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$souscat->idcategorie.'-'.tag_categorie($souscat->libelle))?>"><?= $souscat->libelle?></a>
                                 <?php endforeach; ?>
                         </ul>
                     <?php }?>

@@ -12,6 +12,15 @@ class AbonneeModel extends CI_Model {
         parent::__construct();
     }
 
+    public function insert($data){
+        $this->db->insert('abonnee',$data);
+        return $this->db->insert_id();
+    }
+
+    public function insertInfoPayement($data){
+        $this->db->insert('info_payement',$data);
+    }
+
     public function insertUtilisateur($civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile){
         $data = array(
             'civilite' => $civilite,
@@ -130,6 +139,35 @@ class AbonneeModel extends CI_Model {
         }
 //        var_dump($this->db->get_compiled_select());die();
         $abonnee = $this->db->get('detail_abonnement');
+        return $abonnee->result();
+    }
+
+    public function getInfoPayementAbonnee($iduser = null, $civilite = null, $nom = null, $prenom = null, $cin = null, $etat= null){
+        $this->db->select('numero, trans_id, abonnee.*,abonnement.idabonnement, abonnement.idtypeabon,abonnement.datedebutabonnement, abonnement.datefinabonnement,typeabonnement.*,tarifabonnement.prixabonnement,tarifabonnement.durreeabonnement');
+        $this->db->from('abonnee');
+        $this->db->join("info_payement","abonnee.idutilisateur2 = info_payement.idabonnee");
+        $this->db->join("abonnement","abonnee.idutilisateur2 = abonnement.idutilisateur2");
+        $this->db->join("tarifabonnement","tarifabonnement.idtarif = abonnement.idtypeabon");
+        $this->db->join("typeabonnement","typeabonnement.idtypeabon = tarifabonnement.idtypeabon");
+        if($iduser!=null){
+            $this->db->where('abonnee.idutilisateur2',$iduser);
+        }
+        if($civilite != null){
+            $this->db->where('civilite',$civilite);
+        }
+        if($nom != null){
+            $this->db->like('nomutilisateur', $nom);
+        }
+        if($prenom != null){
+            $this->db->like('prenomutilisateur', $prenom);
+        }
+        if($cin != null){
+            $this->db->where('cin',$cin);
+        }
+        if($etat!=null){
+            $this->db->where('statututilisateur',$etat);
+        }
+        $abonnee = $this->db->get();
         return $abonnee->result();
     }
 

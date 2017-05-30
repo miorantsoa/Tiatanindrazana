@@ -1,0 +1,8 @@
+.box-image img{
+    min-height: 300px;
+    max-height: 400px;
+    overflow: hidden;
+}
+.box-image {
+    margin-bottom: 20px;
+}

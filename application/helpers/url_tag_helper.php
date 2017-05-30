@@ -19,6 +19,14 @@ function add_url_tag_article($cat,$titre, $date, $id){
     $CI->articlesmodel->update($id, $toUpdate);
 }
 
+function add_url_tag_info($cat, $titre, $id){
+    $CI = & get_instance();
+    $CI->load->model('infoutilemodel');
+    $url = get_url_tag($cat, $titre, '', $id);
+    $toUpdate['url_tag'] = $url;
+    $CI->infoutilemodel->update($id, $toUpdate);
+}
+
 function add_url_tag(){
     $CI = & get_instance();
     $CI->load->model('articlesmodel');
@@ -34,7 +42,7 @@ function add_url_tag(){
 }
 
 function add_url_tag_ilaiko(){
-     $CI = & get_instance();
+    $CI = & get_instance();
     $CI->load->model('infoutilemodel');
     $ilaiko= $CI->infoutilemodel->get();
     if(count($ilaiko)!=0){

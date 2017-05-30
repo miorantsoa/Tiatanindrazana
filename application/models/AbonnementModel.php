@@ -19,9 +19,14 @@ class AbonnementModel extends CI_Model{
             'contenue' => $dataTable['contenue']
         );
         $this->db->trans_start();
-        $this->db->insert("filactualite",$data);
+        $this->db->insert("typeabonnement",$data);
 
         $this->db->trans_complete();
+    }
+
+    public function update($id, $data){
+        $this->db->where('idabonnement',$id);
+        $this->db->update('abonnement',$data);
     }
     public function getTypeAbonnement(){
         $typeabonnement = $this->db->get("typeabonnement");

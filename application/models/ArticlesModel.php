@@ -165,6 +165,9 @@ class ArticlesModel extends CI_Model {
     //fonction utilisé pour la recherche
     public function get($idjournal=null,$titre=null,$rubrique=null,$contenu=null,$resume=null,$date1=null,$date2=null,$laune=false,$limit=null,$start=null,$ordre='DESC',$image=false,$publie=true){
         $this->db->limit($limit,$start);
+        if($ordre == null){
+            $ordre = "DESC";
+        }
         if($publie == true){
             $this->db->where('etatpublication',true);
         }
@@ -205,8 +208,9 @@ class ArticlesModel extends CI_Model {
         $this->db->order_by('libelle',"ASC");
         $this->db->order_by('datepublication',$ordre);
         $article = $this->db->get('detail_article');
-        // $sql = $this->db->get_compiled_select('detail_article');
-        // die($sql);
+//        var_dump($ordre);
+//         $sql = $this->db->get_compiled_select('detail_article');
+//         die($sql);
         return $article->result();
     }
 

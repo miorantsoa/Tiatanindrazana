@@ -90,7 +90,28 @@ class JournalController extends CI_Controller {
         else{
             $data['message'] = "Une erreur est survenu pendant l'upload";
         }
-        redirect('admin/ajoutFeuilleJournal');
+        redirect('admin/feuillejournal');
+    }
+
+    public function deleteFeuille($id){
+        $this->load->model('feuillejournalmodel');
+        $this->feuillejournalmodel->delete($id);
+        redirect('admin/feuillejournal');
+    }
+
+    public function editImage(){
+        $this->load->model('feuillejournalmodel');
+        $this->load->library('globalfunction');
+        $id = $this->input->post('idimage');
+        var_dump($_FILES);
+        $feuille = $this->feuillejournalmodel->getSingleImage($id);
+        $image = $this->globalfunction->uploadImage('image','upload/journal',substr($feuille[0]->nommedia,0,20).rand(0,9));
+        var_dump($image);
+        var_dump($feuille);
+        $data['cheminmedia'] = $image['path'];
+        $data['nommedia'] = $image['name'];
+        $this->feuillejournalmodel->editImage($id,$data);
+        redirect('admin/feuillejournal');
     }
     /*Feuille journal*/
 }

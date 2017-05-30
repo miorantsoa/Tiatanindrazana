@@ -12,6 +12,7 @@
 class InfoUtileModel extends CI_Model {
     public function insert($data){
         $this->db->insert('infoutil',$data);
+        return $this->db->insert_id();
     }
 
     public function update($id,$data){
@@ -54,7 +55,11 @@ class InfoUtileModel extends CI_Model {
         $this->db->where('idbeinfo',$id);
         $this->db->delete('infoutil');
     }
-    public function getCategorie($niveau = null){//Selection de tout les rubriques mères
+
+    public function getCategorie($id=null,$niveau = null){//Selection de tout les rubriques mères
+        if($id!=null){
+            $this->db->where('idcatbeinfo',$id);
+        }
         if($niveau!=null){
             $this->db->where('niveau',$niveau);
         }

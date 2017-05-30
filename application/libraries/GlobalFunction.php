@@ -34,6 +34,7 @@ class GlobalFunction{
         $image=array();
         if (!$this->CI->upload->do_upload($inputname)) {
             $error = array('error' => $this->CI->upload->display_errors());
+            var_dump($error);
         }
         else {
             $data = array('upload_data' => $this->CI->upload->data());

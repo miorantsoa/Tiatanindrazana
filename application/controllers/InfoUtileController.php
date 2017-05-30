@@ -20,7 +20,6 @@ class InfoUtileController extends CI_Controller {
         $config = $this->configUpload();
         $this->load->library('upload',$config);
         $photo = null;
-        var_dump($_POST);
         if (!$this->upload->do_upload('photo')) {
             $error = array('error' => $this->upload->display_errors());
         }
@@ -45,7 +44,9 @@ class InfoUtileController extends CI_Controller {
         $data['copyrightphoto'] = $this->input->post('copyrightphoto');
         $data['dernieremaj'] = date('Y-m-d');
         $data['lien'] = $this->input->post('lien');
-        $this->infoutilemodel->insert($data);
+        $id = $this->infoutilemodel->insert($data);
+        $rubrique = $this->infoutilemodel->getCategorie($this->input->post('categorie'));
+        add_url_tag_info($rubrique[0]->libelle,$this->input->post('titre'),$id);
         redirect('admin/ajoutInfoUtile');
     }
     public function updateInfoUtile(){

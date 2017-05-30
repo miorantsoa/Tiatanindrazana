@@ -83,11 +83,20 @@ class Admin extends CI_Controller {
         $etat= $this->input->post('etat');
         $civilite = $this->input->post('civilite');
 //        var_dump($_REQUEST);die();
-        if(count($this->abonneemodel->getAbonnementUtilisateur(null,$civilite,$nom,$prenom,$cin,$etat))!=0){
-            $abonnees = $this->abonneemodel->getAbonnementUtilisateur(null,$civilite,$nom,$prenom,$cin,$etat);
+        if(count($this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat))!=0){
+            $abonnees = $this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat);
         }
         $data['abonnees'] = $abonnees;
         $this->adminView('abonne',$data);
+    }
+
+    public function info_abonnee($id){
+        $this->load->model('abonneemodel');
+        $abonnee = $this->abonneemodel->getInfoPayementAbonnee($id);
+        if(count($abonnee)!=0){
+            $data['abonnees'] = $abonnee;
+            $this->adminView('info_utilisateur',$data);
+        }
     }
 	public function editArticle($id){
 	    $this->load->model('articlesmodel');
@@ -177,6 +186,24 @@ class Admin extends CI_Controller {
     /*Feuille journal*/
     public function ajoutFeuilleJournal(){
         $this->adminView('ajoutpagejournal');
+    }
+
+    public function feuilleJournal(){
+        $date = $this->input->get('date');
+        $this->load->model('feuillejournalmodel');
+        $feuille_journal = $this->feuillejournalmodel->getLastJournal();
+        if ($date != null){
+            $feuille_journal = $this->feuillejournalmodel->getDetail(null,$date);
+        }
+        if (count($feuille_journal) != 0) {
+            $data['journals'] = $feuille_journal;
+            $this->adminView('feuilleJournal', $data);
+        }
+    }
+
+    public function editSingleImage($id){
+        $data['id'] = $id;
+        $this->adminView('editFeuille', $data);
     }
     /*Feuille journal*/
 

@@ -10,18 +10,26 @@ class LoginController extends CI_Controller {
         $email = $this->input->post('email');
         $pass = $this->input->post('password');
         $this->load->model('abonneemodel');
-        $data = $this->abonneemodel->connectUser($email,$pass);
+        $data = $this->abonneemodel->connectUser($email,sha1($pass));
         if(count($data)!=0){
             /** updateUtilisateur */
-            $ran = rand (1,999999);
-            $temp['idsession']=$ran;
-            $this->session->set_userdata('user',$data);
-            $id = $this->session->userdata('user')[0]->idutilisateur2;
-            $this->abonneemodel->updateUtilisateur($id,$temp);
+            $userValid = verifierAbonnement($data[0]->idutilisateur2);
+            if($userValid) {
+                $ran = rand(1, 999999);
+                $temp['idsession'] = $ran;
+                $this->session->set_userdata('user', $data);
+                $id = $this->session->userdata('user')[0]->idutilisateur2;
+                $this->abonneemodel->updateUtilisateur($id, $temp);
 
-            redirect($this->session->userdata('last_page'));
+                redirect($this->session->userdata('last_page'));
+            }
+            else{
+                $this->session->set_flashdata('message',"Tapitra ny fe-potoana ahafahanao mampiasa ny tolotra");
+                redirect('Accueil/connection');
+            }
         }
         else {
+            $this->session->set_flashdata('message',"Mbola tsy mandeha io kaonty io, na misy diso ny mailaka sy teny miafina nampidirinao");
             redirect('Accueil/connection');
         }
     }

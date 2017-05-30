@@ -346,6 +346,7 @@ class Accueil extends CI_Controller{
     public function detail_filactu($date=null){
         $data = $this->indexData();
         $interval = date_diff(date_create(($date)),date_create(date('Y-m-d')))->format('%a');
+        $this->session->set_userdata('last_page', current_url());
         if($this->session->userdata('user') || $interval >= 2) {
             if ($date != null) {
                 $fil_actu = $this->filactu_model->getByDate($date);
@@ -523,6 +524,7 @@ class Accueil extends CI_Controller{
 
     public function monCompte(){
         $data = $this->indexData();
+        $this->session->set_userdata('last_page', current_url());
         if($this->session->userdata('user')) {
             $iduser = $this->session->userdata('user')[0]->idutilisateur2;
             $favoris = $this->abonneemodel->getFavoris($iduser);
@@ -531,6 +533,9 @@ class Accueil extends CI_Controller{
 //          $this->load->view('default/templates/header',$data);
             $this->load->view('default/profile', $data);
 //          $this->load->view('default/templates/footer');
+        }
+        else{
+            redirect('admin/connection');
         }
     }
     public function modif_Info_User(){
@@ -550,8 +555,46 @@ class Accueil extends CI_Controller{
     }
 
     public function connection(){
-        $data['titre'] = "Connection : Tia TAnindrazana";
+        $data['titre'] = "Connection : Tia Tanindrazana";
         $this->load->view('default/connection',$data);
+    }
+
+
+    public function payement(){
+        $data = array();
+        $this->load->model('abonnementmodel');
+        $data['civilite'] = $this->input->post('civilite');
+        $data['nomutilisateur'] = $this->input->post('nomutilisateur');
+        $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
+        $data['naissanceutilisateur'] =  $this->input->post('naissanceutilisateur');
+        $data['cin'] = $this->input->post('cin');
+        $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
+        $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
+        $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
+        $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
+        $data['emailutilisateur'] = $this->input->post('emailutilisateur');
+        $data['identifiant'] = $this->input->post('identifiant');
+        $data['motdepasse'] = sha1($this->input->post('motdepasse'));
+        $data['statututilisateur'] = 0;
+        $data['imageprofile'] = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')['path'];
+        $abonnement = array();
+        $abonnement['type']=$this->input->post('typeabonnement');
+        $abonnement['debut'] = Date('Y-m-d');
+        $abonnement['tarif'] = $this->input->post('idtarif');
+        $moisabonnement = $this->input->post('tarifabonnement');
+        $jourabonnement = $moisabonnement * 30;
+        $finabonnement = new DateTime($abonnement['debut'].'+'.$jourabonnement.' day');
+        $abonnement['fin'] = $finabonnement->format('Y-m-d');
+        $infoabonnement = $this->abonnementmodel->getTarifAbonnementById($this->input->post('idtarif'));
+        $abo = array();
+        if(count($infoabonnement)!=0){
+            $abo['duree'] = $infoabonnement[0]->durreeabonnement;
+            $abo['montant'] = $infoabonnement[0]->prixabonnement;
+        }
+        $this->session->set_userdata('info_user',$data);
+        $this->session->set_userdata('abonnement',$abonnement);
+//        var_dump($data, $abonnement,$abo);
+        $this->load->view('default/payement',$abo);
     }
 
     public function ajouterkolikoly(){
@@ -570,6 +613,16 @@ class Accueil extends CI_Controller{
     }
     public function add_url_info(){
         add_url_tag_ilaiko();
+        echo "Opération effectué";
+    }
+
+    public function send_mail(){
+        $message = "<p>Bonjour ,</p>";
+        $message .= "<p>Votre compte vient d'être activé</p>";
+        $message .="<p>Voici vos information de connexion : </p>";
+        $message .="<p>Email : </p>";
+        $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
+        send("miorantsoaRak@gmail.com","Confirmation Abonnement",$message);
         echo "Opération effectué";
     }
 

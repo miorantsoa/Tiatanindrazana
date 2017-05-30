@@ -45,8 +45,14 @@ class FeuilleJournalModel extends CI_Model {
         $journal = $this->db->get('couverture_feuille');
         return $journal->result();
     }
-    public function getDetail($id){
-        $this->db->where('idfeuille_journal',$id);
+    public function getDetail($id = null, $date = null){
+        if($id!=null) {
+            $this->db->where('idfeuille_journal', $id);
+        }
+        if($date != null){
+            $this->db->where('dateparution',date('Y-m-d', strtotime($date)));
+        }
+        $this->db->order_by('nommedia','asc');
         $detail = $this->db->get('detail_feuille_journal');
         return $detail->result();
     }
@@ -55,5 +61,31 @@ class FeuilleJournalModel extends CI_Model {
         $this->db->limit(1);
         $last = $this->db->get('couverture_feuille');
         return $last->result();
+    }
+
+    public function getLastJournal(){
+        $this->db->order_by('dateparution','desc');
+        $this->db->limit(1);
+        $last = $this->db->get('detail_feuille_journal');
+        return $last->result();
+    }
+    public function delete($id){
+        $this->db->trans_start();
+        $this->db->where('idmedia',$id);
+        $this->db->delete('assoc_feuille_image');
+        $this->db->where('idmedia',$id);
+        $this->db->delete('media');
+        $this->db->trans_complete();
+    }
+
+    public function editImage($id,$data){
+        $this->db->where('idmedia',$id);
+        $this->db->update('media',$data);
+    }
+
+    public function getSingleImage($idmedia){
+        $this->db->where('idmedia',$idmedia);
+        $rep = $this->db->get('media');
+        return $rep->result();
     }
 }

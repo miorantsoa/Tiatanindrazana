@@ -84,6 +84,7 @@
                                     <th>CIN</th>
                                     <th>Email</th>
                                     <th>Etat du compte</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,6 +97,7 @@
                                     <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
                                     <td><?= ($abonnee->statututilisateur == 1) ? "Actif" : "Désactivé : <a class='btn btn-info btn-xs' href='".base_url()."usercontroller/activerCompte/".$abonnee->idutilisateur2."'>Activé?</a>"?></td>
+                                    <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>
