@@ -76,7 +76,7 @@ class Accueil extends CI_Controller{
         $articles = $this->articlesmodel->getById($id);
         $interval = date_diff(date_create(($articles[0]->datepublication)),date_create(date('Y-m-d')))->format('%a');
         if (count($articles) != 0) {
-            if($this->session->userdata('user') || $interval >=2 || $articles[0]->niveau <= 1) {
+            if($this->session->userdata('user') || $interval >=2 || $articles[0]->niveau <= 1 || $articles[0]->laune==true) {
                     $article = $articles[0];
                     $comment = $this->commentairemodel->get(null, $id);
                     $data['commentaire'] = $comment;
@@ -275,7 +275,7 @@ class Accueil extends CI_Controller{
         $data = $this->indexData();
         $data['titre'] = "Ilaiko | Info util : Tia Tanindrazana";
         $data['info_util'] = $this->infoutilemodel->get(null,null,null,null,null,null,null,null,true);
-        $data['categories'] = $this->infoutilemodel->getCategorie(1);
+        $data['categories'] = $this->infoutilemodel->getCategorie();
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/info_util',$data);
         $this->load->view('default/templates/footer');
@@ -380,8 +380,8 @@ class Accueil extends CI_Controller{
     }
     public function detailjournal($id){
         $data = $this->indexData();
-        $gazety = $this->articlesmodel->getArticlesByJournal($id,false);//Tous les articles sauf la une
-        $une = $this->articlesmodel->getArticlesByJournal($id,true);//La une
+        $gazety = $this->articlesmodel->get($id,null,null,null,null,null,null,false,null,null,'DESC',false,true);//Tous les articles sauf la une
+        $une = $this->articlesmodel->get($id,null,null,null,null,null,null,true,null,null,'DESC',false,true);//La une
         if(count($gazety)!=0){
             if(count($une)!=0){
                 $data['laune'] = $une[0];
@@ -560,23 +560,25 @@ class Accueil extends CI_Controller{
     }
 
 
-    public function payement(){
+    public function payement($renew = false){
         $data = array();
         $this->load->model('abonnementmodel');
-        $data['civilite'] = $this->input->post('civilite');
-        $data['nomutilisateur'] = $this->input->post('nomutilisateur');
-        $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
-        $data['naissanceutilisateur'] =  $this->input->post('naissanceutilisateur');
-        $data['cin'] = $this->input->post('cin');
-        $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
-        $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
-        $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
-        $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
-        $data['emailutilisateur'] = $this->input->post('emailutilisateur');
-        $data['identifiant'] = $this->input->post('identifiant');
-        $data['motdepasse'] = sha1($this->input->post('motdepasse'));
-        $data['statututilisateur'] = 0;
-        $data['imageprofile'] = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')['path'];
+        if(!$renew){
+            $data['civilite'] = $this->input->post('civilite');
+            $data['nomutilisateur'] = $this->input->post('nomutilisateur');
+            $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
+            $data['naissanceutilisateur'] =  $this->input->post('naissanceutilisateur');
+            $data['cin'] = $this->input->post('cin');
+            $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
+            $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
+            $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
+            $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
+            $data['emailutilisateur'] = $this->input->post('emailutilisateur');
+            $data['identifiant'] = $this->input->post('identifiant');
+            $data['motdepasse'] = sha1($this->input->post('motdepasse'));
+            $data['statututilisateur'] = 0;
+            $data['imageprofile'] = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')['path'];
+        }
         $abonnement = array();
         $abonnement['type']=$this->input->post('typeabonnement');
         $abonnement['debut'] = Date('Y-m-d');
@@ -593,8 +595,21 @@ class Accueil extends CI_Controller{
         }
         $this->session->set_userdata('info_user',$data);
         $this->session->set_userdata('abonnement',$abonnement);
-//        var_dump($data, $abonnement,$abo);
         $this->load->view('default/payement',$abo);
+    }
+
+    public function choixTarif($iduser){
+        $abonnee = $this->abonneemodel->getInfoPayementAbonnee($iduser);
+        if(count($abonnee)!=0 && $abonnee[0]->statututilisateur != 1){
+            $this->session->set_userdata('iduser',$iduser);
+            $data['typeabonnement'] = $this->abonnementmodel->getTypeAbonnement();
+            $data['tarifabonnement'] = $this->abonnementmodel->getTarifAbonnement();
+            $this->load->view('default/choixtarif',$data);
+        }
+        else if(count($abonnee)!=0 && $abonnee[0]->statututilisateur == 1){
+            $this->session->set_flashdata('message','Andraso ho tapitra ny tolotra nosafidianao mba hahafahanao manavao indray');
+            redirect('accueil');
+        }
     }
 
     public function ajouterkolikoly(){

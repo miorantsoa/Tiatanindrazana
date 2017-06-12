@@ -1,11 +1,11 @@
-<div class="row-fluid">
+<div class="row-fluid white-bg">
 <div id="main" class="span8 single single-post image-preloader">
 
     <div class="row-fluid">
 
         <div class="breadcrumb clearfix">
             <span class="base">Ato no misy anao</span>
-            <p><a href="<?= base_url('accueil')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/categorie/'.$article->idcategorie.'-'.tag_categorie($article->libelle))?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<?= substr($article->titre,0,50)." ..."?></p>
+            <p><a href="<?= base_url('accueil')?>">Fandraisana</a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<a href="<?= base_url('accueil/categorie/'.$article->idcategorie.'-'.tag_categorie($article->libelle))?>" title="Vaovao rehetra ao amin'ny sokajy <?= $article->libelle?>"><?= $article->libelle ?></a>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;<?= substr($article->titre,0,40)." ..."?></p>
         </div> <!-- End Breadcrumb -->
         <figure class="head-section">
             <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/full/4.jpg"')?>" alt="Image" />
@@ -15,12 +15,10 @@
             </div>
         </figure>
 
-        <h5>
-            <a href="<?= base_url('accueil/addfavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
-        </h5>
+        <a href="<?= base_url('accueil/addfavoris/'.$article->idarticle)?>" title="View author profile page">Ajouter favoris</a>
         <div class="fb-share-button" data-href="<?=current_url()?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=current_url()?>&amp;src=sdkpreparse">Partager</a></div>
         <div class="content">
-            <p><span class="dropcaps dropcaps-circle dropcaps-green"><?= strtoupper(substr($article->resume,0,1)) ?></span> <?= substr($article->resume,1)?></p>
+            <p><?= $article->resume?></p>
            <?= strip_tags($article->contenue)?>
         </div> <!-- End Content -->
 

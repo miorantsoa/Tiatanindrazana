@@ -225,7 +225,7 @@
                     <script>
                         function testancienmotdepass() {
                             var pass1 = document.getElementById("ancienmdp").value;
-                            var pass2 = <?php echo($this->session->userdata('user')[0]->motdepasse)?>;
+                            var pass2 = '<?php echo($this->session->userdata('user')[0]->motdepasse)?>';
                             var ret  = (pass1 == pass2)? "correspond avec le votre":"ne correspond pas avec le votre";
                             document.getElementById("testancienmdp").innerHTML = "le mot de passe " + ret;
                         }

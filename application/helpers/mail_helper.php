@@ -37,3 +37,20 @@ function send_confirmation($id_user){
         send($to,$sujet, $message);
     }
 }
+
+function send_fin_abonnement($id_user){
+    $CI = & get_instance();
+    $CI->load->model('abonneemodel');
+    $abonnee = $CI->abonneemodel->getAbonneeById($id_user);
+    if(count($abonnee)!=0){
+        $nom = $abonnee[0]->nomutilisateur;
+        $prenom = $abonnee[0]->prenomutilisateur;
+        $to = $abonnee[0]->emailutilisateur;
+        $sujet = "Fin abonnement";
+        $message = "<p>Bonjour ".$nom." ".$prenom.",</p>";
+        $message .= "<p>Votre abonnement compte Tia tanindrazana a expiré, et votre compte à été désactivé.</p>";
+        $message .="<p>Si vous voulez renouveler votre abonnement , veuillez suivre <a href='".base_url('accueil/choixTarif/'.$id_user)."'>ce lien</a></p>";
+        $message .="<p>Merci de votre fidélité</p>";
+        send($to,$sujet, $message);
+    }
+}

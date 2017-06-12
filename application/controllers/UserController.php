@@ -29,12 +29,21 @@ class UserController extends CI_Controller
         $payement['trans_id'] = $trans_id;
         var_dump($data, $abonnement, $abonnement, $operateur,$numero,$trans_id);
         $this->db->trans_start();
-        $iduser = $this->abonneemodel->insert($data);
+        $iduser = $this->session->userdata('iduser');
+        if($data){
+            $iduser = $this->abonneemodel->insert($data);
+            $this->abonneemodel->insertAssocitationAbonnement($abonnement['tarif'], $iduser, "", "");
+        }
         $payement['idabonnee'] = $iduser;
         $this->abonneemodel->insertInfoPayement($payement);
-        $this->abonneemodel->insertAssocitationAbonnement($abonnement['tarif'], $iduser, "", "");
+        if(!$data) {
+            $abo['datedebutabonnement'] = "";
+            $abo['datefinabonnement'] = "";
+            $this->abonneemodel->updateAssocAbonnement( $iduser,$abo);
+        }
         $this->db->trans_complete();
-        redirect('accueil/connection');
+        $this->session->set_flashdata('message','Voaray ny fangatahanao hiditra ho mpikambana. Hahavoaray mailaka ianao rehefa voadinika sy ara-dalana tsara ny mombamomba anao.');
+        redirect('accueil');
     }
 
     public function addUser()    {
@@ -117,9 +126,29 @@ class UserController extends CI_Controller
         $this->db->trans_start();
         $this->abonneemodel->updateUtilisateur($idUtilisateur,$data);
         $this->abonnementmodel->update($abonnee[0]->idabonnement,$abo);
+        $this->insert_activation($idUtilisateur);
         $this->db->trans_complete();
         send_confirmation($idUtilisateur);
         redirect('admin/abonnee');
+    }
+
+    
+    public function insert_activation($idabonnee){
+        $admin = $this->session->userdata('admin');
+        if($admin) {
+            $this->load->model('adminmodel');
+            $data['idadmin'] = $admin['admin']->idadministrateur;
+            $data['dateactivation'] = date('Y-m-d');
+            $data['idabonnee'] = $idabonnee;
+            $this->adminmodel->save_activation($data);
+        }
+        else{
+            $this->session->set_flashdata('erreur',array(
+                'message'=>"Veuillez vous connecter d'abord",
+            ));
+            redirect('admin','refresh');
+        }
+
     }
 
 
@@ -145,34 +174,15 @@ class UserController extends CI_Controller
         if ($this->input->post('lieudelivrancecin')!=""){
             $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
         }
-            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
-            $this->load->library('upload', $config);
-            $liencinrecto = null;
-            if (!$this->upload->do_upload('liencin_recto')) {
-                $error = array('error' => $this->upload->display_errors());
-                var_dump($error);
-            }
-            else {
-                $data = array('upload_data' => $this->upload->data());
-                $liencinrecto = 'upload/infouser/' . $data['upload_data']['file_name'];
-            }
-            if ($liencinrecto!=null) {
-                $Data['liencin_recto'] = $liencinrecto;
-            }
+        $liencinrecto = uploadImage('lienimagerectocin','upload/infouser','recto-cin-'.$this->input->post('identifiant'));
+        if ($liencinrecto!=null) {
+            $Data['liencin_recto'] = $liencinrecto['path'];
+        }
 
-            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
-            $this->load->library('upload', $config);
-            $lienverso = null;
-            if (!$this->upload->do_upload('liencin_verso')) {
-                $error = array('error' => $this->upload->display_errors());
-                var_dump($error);
-            }
-            else {
-                $data = array('upload_data' => $this->upload->data());
-                $lienverso = 'upload/infouser/' . $data['upload_data']['file_name'];
-            }
-            if($lienverso!=null){
-            $Data['liencin_verso']=$lienverso;
+        $lienverso = uploadImage('lienimageversocin','upload/infouser','verso-cin-'.$this->input->post('identifiant'));
+
+        if($lienverso!=null){
+            $Data['liencin_verso']=$lienverso['path'];
         }
         if ($this->input->post('emailutilisateur')!=""){
             $Data['emailutilisateur']=$this->input->post('emailutilisateur');
@@ -181,27 +191,17 @@ class UserController extends CI_Controller
             $Data['identifiant']=$this->input->post('identifiant');
         }
 
-            $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
-            $this->load->library('upload', $config);
-            $lienprofile = null;
-            if (!$this->upload->do_upload('imageprofile')) {
-                $error = array('error' => $this->upload->display_errors());
-                var_dump($error);
-            }
-            else {
-                $data = array('upload_data' => $this->upload->data());
-                $lienprofile = 'upload/infouser/' . $data['upload_data']['file_name'];
-            }
-            if($lienprofile!=null){
-            $Data['imageprofile']=$lienprofile;
-        }
+        $lienprofile = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant'));
+
+        if($lienprofile!=null){
+            $Data['imageprofile']=$lienprofile['path'];
+        };
         $this->load->model('abonneemodel');
         $id = $this->session->userdata('user')[0]->idutilisateur2;
         $this->abonneemodel->updateUtilisateur($id,$Data);
         $temp = $this->abonneemodel->getAbonneeAbonnementById($id);
         $this->session->set_userdata('user',$temp);
         redirect('Accueil/monCompte');
-
     }
 
     public function modifiermotdepasse(){

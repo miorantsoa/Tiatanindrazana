@@ -72,8 +72,9 @@
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Abonnées<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/abonnee')?>">Liste des abonnées</a></li>
-                        <li><a href="">Rechercher</a></li>
+                        <li><a href="<?= base_url('index.php/admin/abonnee')?>">Abonnée en attente</a></li>
+                        <li><a href="<?= base_url('index.php/admin/utilisateur_active')?>">Abonnée activé</a></li>
+                        <li><a href="<?= base_url('index.php/admin/utilisateur_expire')?>">Abonnement expiré</a></li>
                       </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>

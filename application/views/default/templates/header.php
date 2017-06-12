@@ -38,10 +38,10 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?/*= base_url('assets/default/css/app.css')*/?>">-->
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/flexslider.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/prettyPhoto.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/jquery.modal.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">

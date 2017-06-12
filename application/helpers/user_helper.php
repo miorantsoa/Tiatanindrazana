@@ -8,20 +8,36 @@
 function verifierAbonnement($idUtilisateur){
     $CI = & get_instance();
     $CI->load->model('abonneemodel');
+    $CI->load->model('adminmodel');
     $utilisateur = $CI->abonneemodel->getAbonneeAbonnementById($idUtilisateur);
     if(count($utilisateur)!=0) {
         $fin_abonnement = $utilisateur[0]->datefinabonnement;
         $date_fin = date_create($fin_abonnement);
         $date_now = new DateTime();
         if($date_fin < $date_now){
-            $data['statututilisateur'] = 0;
-            $CI->abonneemodel->updateUtilisateur($idUtilisateur,$data);
+            fin_abonnement($idUtilisateur, $CI);
             return false;
         }
         return true;
     }
 }
- function uploadImage($inputname,$destination,$name){
+
+/**
+ * @param $idUtilisateur iduser
+ * @param $CI
+ */
+function fin_abonnement($idUtilisateur, $CI){
+    $data['statututilisateur'] = 0;
+    $fin['idabonnee'] = $idUtilisateur;
+    $CI->db->trans_start();
+    $CI->adminmodel->delete_activation($idUtilisateur);
+    $CI->abonneemodel->updateUtilisateur($idUtilisateur, $data);
+    $CI->adminmodel->save_fin_abonnement($fin);
+    $CI->db->trans_complete();
+    send_fin_abonnement($idUtilisateur);
+}
+
+function uploadImage($inputname,$destination,$name){
      $CI = & get_instance();
      $CI->load->library('upload');
     //$config = $this->configUpload($destination,$name);

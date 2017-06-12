@@ -36,39 +36,11 @@
                         <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
                     </div>
                     <?php endforeach;?>
-                    <?php foreach ($gazety as $item):?>
-                        <div class="span2  archive">
-                            <figure class="figure">
-                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
-                            </figure>
-                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
+                    <?php if(!$gazety){?>
+                        <div class="grey">
+                            <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
                         </div>
-                    <?php endforeach;?>
-                    <?php foreach ($gazety as $item):?>
-                        <div class="span2  archive">
-                            <figure class="figure">
-                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
-                            </figure>
-                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
-                        </div>
-                    <?php endforeach;?>
-                    <?php foreach ($gazety as $item):?>
-                        <div class="span2  archive">
-                            <figure class="figure">
-                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
-                            </figure>
-                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
-                        </div>
-                    <?php endforeach;?>
-                    <?php foreach ($gazety as $item):?>
-                        <div class="span2  archive">
-                            <figure class="figure">
-                                <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
-                            </figure>
-                            <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
-                        </div>
-                    <?php endforeach;?>
-
+                    <?php }?>
                 </div>
             </div>
         </div>

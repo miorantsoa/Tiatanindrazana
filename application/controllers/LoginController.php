@@ -41,7 +41,8 @@ class LoginController extends CI_Controller {
         $data = $this->abonneemodel->connect_admin($user_name,$pass);
         if(count($data)!=0){
             $this->session->set_userdata('admin',array(
-                'username'=>$data[0]->identifiant
+                'username'=>$data[0]->identifiant,
+                'admin' => $data[0]
             ));
             redirect('admin','refresh');
         }

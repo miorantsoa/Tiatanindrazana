@@ -80,9 +80,28 @@
                                 <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
                                 <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                 </a>
-                                <a href="<?=base_url('index.php/articles/deleteArticle/'.$article->idarticle)?>">
-                                    <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
-                                </a>
+
+                                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Suppression</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Etes-vous sur de vouloir supprimer cet article?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="javascript:redirect('<?=base_url('index.php/articles/deleteArticle/'.$article->idarticle)?>')">Supprimer</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+<!--                                </a>-->
                             </div>
                         </th>
                     </tr>

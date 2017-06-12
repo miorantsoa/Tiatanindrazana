@@ -48,6 +48,7 @@
 }
 
 body {
+	background: url("../images/bg-repeat.png");
 	font-family:Arial, Helvetica, sans-serif;
 	color:#5a5a5a;
 	font-size:14px;
@@ -1148,7 +1149,8 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 }
 .post { margin-bottom:20px;}
 	.post figure { position:relative;
-		height:200px;
+		background: #fff;
+		max-height:200px;
 		overflow: hidden;
 	}
 		.post figure .cat-name {
@@ -1176,6 +1178,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 	.post .text {
 		padding:10px 20px 20px;
 		border:1px solid #dadada;
+		background: #fff;
 	}
 		.post .text h2 {
 			font-size:18px;
@@ -2110,7 +2113,10 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 
 /* ========================= 5. Sidebar Section ========================= */
 
-.widget { margin-bottom:40px; }
+.widget { margin-bottom:40px;
+	background: #ffffff;
+	/*border: 1px solid #e1e1e3;*/
+}
 
 	#main.single .header, #main.page .header, .widget .header {
 		background:#F0F0F0 url(../images/border-header.png) repeat;
@@ -3137,4 +3143,16 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 }
 .row-fluid {
 	margin-bottom:50px  !important;
+}
+.white-bg{
+	background: #fff;
+	padding: 5px 5px 0 5px;
+}
+
+.grey{
+	background: #f9f9f9;
+	text-align: center;
+}
+.grey img{
+	display: inline-block;
 }

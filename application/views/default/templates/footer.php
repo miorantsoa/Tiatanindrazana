@@ -52,6 +52,6 @@
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.isotope.min.js' ></script>
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/jquery.hoverdir.js'  ></script>
 <script type='text/javascript' src='<?= base_url()?>/assets/default/js/modernizr.custom.js' ></script>
-<script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js" ></script>
 <script src="<?= base_url('assets/default/js/jquery.filestyle.min.js')?>" type="text/javascript" ></script>
+<script type="text/javascript" src="<?= base_url()?>/assets/default/js/main.js" ></script>
 </body>
