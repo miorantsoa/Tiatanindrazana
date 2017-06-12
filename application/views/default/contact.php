@@ -3,23 +3,21 @@
     <div class="row-fluid">
 
         <h1>Hitafa aminay</h1>
-        <p>Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci, a laoreet libero vehicula ac. Duis tempor rhoncus quam, at blandit nulla egestas vitae. Required fields are marked *</p>
 
-        <form id="enews-contact-form" method="post" action="#">
-
-            <label>Anarana / Nom</label>
-            <input type="text" name="name" maxlength="80" />
-            <label>Mailaka / E-mail <span class="font-required">*</span></label>
-            <input type="text" name="email" maxlength="225" />
-            <label>Antony / Sujet</label>
-            <input type="text" name="subject" />
-            <label>Hafatra / Message <span class="font-required">*</span></label>
-            <textarea name="message"></textarea>
-            <input type="submit" name="submit" value="Envoyer" class="btn btn-blue" />
-
-            <div class="data-status"></div> <!-- data submit status -->
-
-        </form>
+            <label>Tonian'ny fanoratana </label>
+            <p>RANAIVOSOA Tahiry Tiana 033 15 300 91</p>
+        <br>
+            <label>Politika</label>
+            <p>034 07 031 89 / 033 24 772 87</p>
+        <br>
+            <label>Toekarena</label>
+            <p>034 96 972 77</p>
+        <br>
+            <label>Sosialy</label>
+            <p>034 14 377 41 / 033 15 300 87</p>
+        <br>
+            <label>Fanatanjahantena</label>
+            <p>034 14 928 77 / 033 11 928 77</p>
 
     </div> <!-- End Row-Fluid -->
 </div>

@@ -24,7 +24,8 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Heure de publication <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($fildactu)) ? $fildactu[0]->heurepublication : time('hour(:)minute')?>">
+
+                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($fildactu)) ? $fildactu[0]->heurepublication : date('h:i')?>">
                             </div>
                         </div>
                         <!--<div class="form-group">
