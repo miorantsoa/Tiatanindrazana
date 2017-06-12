@@ -47,4 +47,13 @@ class CoruptionModel extends CI_Model {
         $this->db->insert('media',$data);
         return $this->db->insert_id();
     }
+    public function getCorruption(){
+        $detail_corruption = $this->db->get("detail_corruption");
+        return  $detail_corruption->result();
+    }
+    public function getCorruptionById($id){
+        $this->db->where('idcorruption',$id);
+        $categoriecorruption = $this->db->get("detail_corruption");
+        return  $categoriecorruption->result();
+    }
 }
