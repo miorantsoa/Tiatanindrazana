@@ -57,9 +57,6 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="prenom" placeholder="Prenom">
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="cin" placeholder="CIN">
-                                </div>
                                 <button type="submit" class="btn btn-info">Filtrer</button>
                             </form>
                         </div>
@@ -70,8 +67,7 @@
                             <tr>
                                 <th>Civilité</th>
                                 <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Activé par</th>
+                                <th>Prenom</th
                                 <th>Date Fin Abonnement</th>
                                 <th></th>
                             </tr>
@@ -82,7 +78,6 @@
                                     <td><?= $abonnee->civilite?></td>
                                     <td><?= $abonnee->nomutilisateur?></td>
                                     <td><?= $abonnee->prenomutilisateur?></td>
-                                    <td><?= $abonnee->nom.' '.$abonnee->prenom?></td>
                                     <td><?= reformat($abonnee->datefinabonnement)?></td>
                                     <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
                                 </tr>

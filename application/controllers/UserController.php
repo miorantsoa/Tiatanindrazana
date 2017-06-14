@@ -19,31 +19,38 @@ class UserController extends CI_Controller
     }
 
     public function ajout(){
-        $this->load->model('abonneemodel');
-        $data = $this->session->userdata('info_user');
-        $abonnement = $this->session->userdata('abonnement');
-        $numero = $this->input->post('num');
-        $operateur = $this->input->post('mobile');
-        $trans_id = $this->input->post('trans_id');
-        $payement['numero'] = $numero;
-        $payement['trans_id'] = $trans_id;
-        var_dump($data, $abonnement, $abonnement, $operateur,$numero,$trans_id);
-        $this->db->trans_start();
-        $iduser = $this->session->userdata('iduser');
-        if($data){
-            $iduser = $this->abonneemodel->insert($data);
-            $this->abonneemodel->insertAssocitationAbonnement($abonnement['tarif'], $iduser, "", "");
+        try {
+            $this->load->model('abonneemodel');
+            $data = $this->session->userdata('info_user');
+            $abonnement = $this->session->userdata('abonnement');
+            $numero = $this->input->post('num');
+            $operateur = $this->input->post('mobile');
+            $trans_id = $this->input->post('trans_id');
+            $payement['numero'] = $numero;
+            $payement['trans_id'] = $trans_id;
+            var_dump($data, $abonnement, $abonnement, $operateur, $numero, $trans_id);
+            $this->db->trans_start();
+            $iduser = $this->session->userdata('iduser');
+            if ($data) {
+                $iduser = $this->abonneemodel->insert($data);
+                $this->abonneemodel->insertAssocitationAbonnement($abonnement['tarif'], $iduser, "", "");
+            }
+            $payement['idabonnee'] = $iduser;
+            $this->abonneemodel->insertInfoPayement($payement);
+            if (!$data) {
+                $this->load->model('adminmodel');
+                $abo['datedebutabonnement'] = "";
+                $abo['datefinabonnement'] = "";
+                $this->adminmodel->delete_from_expire($iduser);
+                $this->abonneemodel->updateAssocAbonnement($iduser, $abo);
+            }
+            $this->db->trans_complete();
+            $this->session->set_flashdata('message', 'Voaray ny fangatahanao hiditra ho mpikambana. Hahavoaray mailaka ianao rehefa voadinika sy ara-dalana tsara ny mombamomba anao.');
+            redirect('accueil');
         }
-        $payement['idabonnee'] = $iduser;
-        $this->abonneemodel->insertInfoPayement($payement);
-        if(!$data) {
-            $abo['datedebutabonnement'] = "";
-            $abo['datefinabonnement'] = "";
-            $this->abonneemodel->updateAssocAbonnement( $iduser,$abo);
+        catch(Exception $exceptione){
+            var_dump($exceptione);
         }
-        $this->db->trans_complete();
-        $this->session->set_flashdata('message','Voaray ny fangatahanao hiditra ho mpikambana. Hahavoaray mailaka ianao rehefa voadinika sy ara-dalana tsara ny mombamomba anao.');
-        redirect('accueil');
     }
 
     public function addUser()    {
@@ -108,6 +115,11 @@ class UserController extends CI_Controller
         else{
             var_dump($this->input->post('motdepasse'));
         }
+    }
+
+    public function desactiver_compte($id){
+        desactiver_compte($id);
+        redirect('admin/abonnee');
     }
 
 

@@ -564,6 +564,7 @@ class Accueil extends CI_Controller{
         $data = array();
         $this->load->model('abonnementmodel');
         if(!$renew){
+            $test_email = $this->abonneemodel->getUserByEmail($this->input->post('emailutilisateur'));
             $data['civilite'] = $this->input->post('civilite');
             $data['nomutilisateur'] = $this->input->post('nomutilisateur');
             $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
@@ -571,13 +572,23 @@ class Accueil extends CI_Controller{
             $data['cin'] = $this->input->post('cin');
             $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
             $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
-            $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
-            $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
             $data['emailutilisateur'] = $this->input->post('emailutilisateur');
             $data['identifiant'] = $this->input->post('identifiant');
             $data['motdepasse'] = sha1($this->input->post('motdepasse'));
             $data['statututilisateur'] = 0;
-            $data['imageprofile'] = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')['path'];
+            if(count($test_email)!=0){
+                $this->session->set_flashdata('info_abonnee',array('user'=>$data,'message'=>"Efa misy mampiasa ny adiresy mailaka nosafidinao"));
+                redirect('accueil/inscription');
+            }
+            if(uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')) {
+                $data['imageprofile'] = uploadImage('lienimagepdp', 'upload/infouser', $this->input->post('identifiant') . '-' . 'profile')['path'];
+            }
+            if(uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')) {
+                $data['liencin_recto'] = uploadImage('lienimagerectocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'rectocin')['path'];
+            }
+            if(uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')) {
+                $data['liencin_verso'] = uploadImage('lienimageversocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'versocin')['path'];
+            }
         }
         $abonnement = array();
         $abonnement['type']=$this->input->post('typeabonnement');
@@ -638,6 +649,28 @@ class Accueil extends CI_Controller{
         $message .="<p>Email : </p>";
         $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
         send("miorantsoaRak@gmail.com","Confirmation Abonnement",$message);
+        echo "Opération effectué";
+    }
+
+    public function add_email_contraint(){
+        $this->db->trans_begin();
+        /*$this->db->query('
+        CREATE TABLE abonnement_expire
+        (
+            id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            idabonnee INT NOT NULL,
+            CONSTRAINT abonnement_expire_abonnee_idutilisateur2_fk FOREIGN KEY (idabonnee) REFERENCES abonnee (idutilisateur2)
+        );
+        CREATE UNIQUE INDEX abonnement_expire_id_uindex ON abonnement_expire (id);
+        CREATE UNIQUE INDEX abonnement_expire_idabonnee_uindex ON abonnement_expire (idabonnee);
+        ');*/
+        $this->db->query('delete from  abonnement');
+        $this->db->query('delete from activation_compte');
+        $this->db->query('delete from abonnement_expire');
+        $this->db->query('delete from  favoris');
+        $this->db->query('delete from  abonnee');
+//        $this->db->query('CREATE UNIQUE INDEX abonnee_emailutilisateur_uindex ON abonnee (emailutilisateur)');
+        $this->db->trans_commit();
         echo "Opération effectué";
     }
 

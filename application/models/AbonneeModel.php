@@ -61,6 +61,12 @@ class AbonneeModel extends CI_Model {
         $this->db->update('abonnee',$data);
     }
 
+    public function getUserByEmail($email){
+        $this->db->where('emailutilisateur',$email);
+        $res = $this->db->get('abonnee');
+        return $res->result();
+    }
+
     public function getAbonnees(){
         $abonnees = $this->db->get('abonnee');
         return $abonnees->result();

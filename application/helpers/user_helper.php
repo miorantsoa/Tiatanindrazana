@@ -8,7 +8,6 @@
 function verifierAbonnement($idUtilisateur){
     $CI = & get_instance();
     $CI->load->model('abonneemodel');
-    $CI->load->model('adminmodel');
     $utilisateur = $CI->abonneemodel->getAbonneeAbonnementById($idUtilisateur);
     if(count($utilisateur)!=0) {
         $fin_abonnement = $utilisateur[0]->datefinabonnement;
@@ -27,6 +26,7 @@ function verifierAbonnement($idUtilisateur){
  * @param $CI
  */
 function fin_abonnement($idUtilisateur, $CI){
+    $CI->load->model('adminmodel');
     $data['statututilisateur'] = 0;
     $fin['idabonnee'] = $idUtilisateur;
     $CI->db->trans_start();
@@ -35,6 +35,17 @@ function fin_abonnement($idUtilisateur, $CI){
     $CI->adminmodel->save_fin_abonnement($fin);
     $CI->db->trans_complete();
     send_fin_abonnement($idUtilisateur);
+}
+
+function desactiver_compte($id){
+    $CI = & get_instance();
+    $CI->load->model('abonneemodel');
+    $CI->load->model('adminmodel');
+    $data['statututilisateur'] = 0;
+    $CI->db->trans_start();
+    $CI->adminmodel->delete_activation($id);
+    $CI->abonneemodel->updateUtilisateur($id, $data);
+    $CI->db->trans_complete();
 }
 
 function uploadImage($inputname,$destination,$name){
@@ -50,7 +61,6 @@ function uploadImage($inputname,$destination,$name){
     $image=array();
     if (!$CI->upload->do_upload($inputname)) {
         $error = array('error' =>$CI->upload->display_errors());
-        var_dump($error);
     }
     else {
         $data = array('upload_data' => $CI->upload->data());
