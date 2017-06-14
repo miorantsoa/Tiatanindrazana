@@ -16,7 +16,7 @@ class KolikolyController extends CI_Controller {
 
 
         /** INSERT INTO `corruption`(`idcorruption`, `idcatcorruption`, `datedenonciation`, `datefait`, `nomdenonciateur`, `adressedenonciateur`, `telephonedenonciateur`, `emaildenonciateur`, `sujet`, `contenue`, `lieu`) */
-        $idcoruption = $this->coruptionmodel->insertCoruption($this->input->post(`typeabonnement`), $this->input->post('datedenonciation'), $this->input->post(`datedenonciation`), $this->input->post(`nomdenonciateur`), $this->input->post(`adressedenonciateur`), $this->input->post(`telephonedenonciateur`), $this->input->post(`emaildenonciateur`), $this->input->post(`sujet`), $this->input->post(`contenue`), $this->input->post(`lieu`));
+        $idcoruption = $this->coruptionmodel->insertCoruption($this->input->post(`typecorruption`), $this->input->post('datedenonciation'), $this->input->post(`datedenonciation`), $this->input->post(`nomdenonciateur`), $this->input->post(`adressedenonciateur`), $this->input->post(`telephonedenonciateur`), $this->input->post(`emaildenonciateur`), $this->input->post(`sujet`), $this->input->post(`contenue`), $this->input->post(`lieu`));
 
         $idmedia = "";
         if (!$this->upload->do_upload('media')) {

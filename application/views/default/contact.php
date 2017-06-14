@@ -2,22 +2,43 @@
 
     <div class="row-fluid">
 
+        <div class="header">
         <h1>Hitafa aminay</h1>
+        </div>
 
-            <label>Tonian'ny fanoratana </label>
-            <p>RANAIVOSOA Tahiry Tiana 033 15 300 91</p>
+        <div class="header">
+            <h3>Tonian'ny fanoratana </h3>
+        </div>
+        <div class="content">
+            <p>RANAIVOSOA Tahiry Tiana <span class="label label-success">+261 33 15 300 91</span></p>
+        </div>
+            <br>
+        <div class="header">
+            <h3>Politika</h3>
+        </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 07 031 89</span> / <span class="label label-success">+261 33 24 772 87</span></p>
+        </div>
         <br>
-            <label>Politika</label>
-            <p>034 07 031 89 / 033 24 772 87</p>
+        <div class="header">
+            <h3>Toekarena</h3>
+            </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 96 972 77</span></p>
+        </div>
         <br>
-            <label>Toekarena</label>
-            <p>034 96 972 77</p>
+        <div class="header">
+            <h3>Sosialy</h3>
+        </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 14 377 41</span> / <span class="label label-success">+261 33 15 300 87</span></p>
+        </div>
         <br>
-            <label>Sosialy</label>
-            <p>034 14 377 41 / 033 15 300 87</p>
-        <br>
-            <label>Fanatanjahantena</label>
-            <p>034 14 928 77 / 033 11 928 77</p>
-
+        <div class="header">
+            <h3>Fanatanjahantena</h3>
+        </div>
+        <div class="header">
+            <p><span class="label label-success">+261 34 14 928 77</span> / <span class="label label-success">+261 33 11 928 77</span></p>
+        </div>
     </div> <!-- End Row-Fluid -->
 </div>

@@ -2,8 +2,9 @@
 
     <div class="row-fluid">
 
-        <h1>fisoratana anarana / Inscription</h1>
-
+        <div class="header">
+        <h2>fisoratana anarana / Inscription</h2>
+        </div>
         <?php
         $data = array();
 
@@ -13,9 +14,9 @@
         ?>
 
         <form id="enews-contact-form" method="post" action="#">
-            <h4>Ny momba anao / a propos de vous:</h4>
-            <label>Type Abonnement</label>
-            <select name="typeabonnement" id="typeabonnement" >
+            <h4>Hamoaka kolikoly / Inserer corruption:</h4>
+            <label>Sokajy kolikoly / Type Corruption</label>
+            <select name="typecorruption" id="typecorruption" >
 
                 <?php foreach ($categorieCorruption as $categorieCorruption):?>
                     <option value="<?=$categorieCorruption->idcatcorruption?>"><?=$categorieCorruption->libelle?></option>
