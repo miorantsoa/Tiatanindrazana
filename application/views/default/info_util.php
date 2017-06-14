@@ -80,21 +80,15 @@
             </div>
             <div class="filtre search-page">
                 <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_info_utile')?>">
-                    <input type="date" name="date1" title="Daty niatombohaha">
-                    <input type="date" name="date2" title="Daty niafarana">
+                    <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
+                    <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
                 </form>
             </div>
         <div class="sep-border margin-bottom20"></div> <!-- Separator -->
-
-        <h4>Tsy nisy valiny ny fantina nataonao</h4>
-        <p class="label label-important">Avereno indray ny fikarohana ka manandrama teny vaovao.</p><br><br>
-        <p>You might want to consider some of our suggestions to get better results:</p>
-        <ul>
-            <li>Check your spelling.</li>
-            <li>Try a similar keyword, for example: tablet instead of laptop.</li>
-            <li>Try using more than one keyword.</li>
-        </ul>
+            <div class="grey">
+                <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
+            </div>
         <?php }?>
     </div> <!-- End Margin-Top40 -->
 </div> <!-- End Main -->

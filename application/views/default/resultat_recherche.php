@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row-fluid white-bg">
 <div id="main" class="span8 blog-posts search-page image-preloader">
     <div class="row-fluid">
         <?php if(count($articles)!=0){?>
@@ -22,7 +22,7 @@
             </figure>
             <div class="content">
                 <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
-                <?= substr($article->contenue,0,250)."...</p>"?>
+                <?= ($article->extrait)."...</p>"?>
             </div>
             <div class="meta">
                 <span class="pull-left"><?= $article->datepublication?> | <a href="">15 comments</a></span>
@@ -48,18 +48,9 @@
                 <input type="text" name="search" value="<?= $recherche?>" />
                 <input type="submit" name="submit" value="Karohy" class="btn btn-blue" />
             </form>
-            <p class="search-info">Valiny 0 amin'ny <i>0</i></p>
-
-            <div class="sep-border margin-bottom20"></div> <!-- Separator -->
-
-            <h4>Tsy misy valiny ny fikarohana "<span class="font-required"><?= $recherche?></span>" nataonao</h4>
-            <p class="label label-important">Avereno indray ny fikarohana ka manandrama teny vaovao.</p><br><br>
-            <p>You might want to consider some of our suggestions to get better results:</p>
-            <ul>
-                <li>Check your spelling.</li>
-                <li>Try a similar keyword, for example: tablet instead of laptop.</li>
-                <li>Try using more than one keyword.</li>
-            </ul>
+            <div class="grey">
+                <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
+            </div>
         <?php }?>
     </div> <!-- End Row-Fluid -->
 </div> <!-- End Main -->

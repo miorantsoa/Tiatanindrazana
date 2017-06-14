@@ -9,7 +9,11 @@
         <!-- /footer content -->
       </div>
     </div>
-
+    <script>
+        function redirect(url){
+            window.location.href = url;
+        }
+    </script>
     <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
     <!-- Bootstrap -->
     <script src="<?= base_url('assets/admin/js/bootstrap.min.js')?>"></script>

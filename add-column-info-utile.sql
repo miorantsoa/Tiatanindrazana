@@ -1,1 +1,0 @@
-ALTER TABLE titan.infoutil ADD url_tag VARCHAR(200) NULL after titre;

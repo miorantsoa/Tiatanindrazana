@@ -32,41 +32,49 @@ class FeuilleJournalModel extends CI_Model {
         return $this->db->insert_id();
     }
     public function get($idfeuille=null,$date1=null,$date2=null,$limit=null,$start=null,$order="desc"){
+        $this->create_query();
         $this->db->limit($limit,$start);
         if($idfeuille!=null)
-            $this->db->where('idfeuille_journal',$idfeuille);
+            $this->db->where('feuille_journal.idfeuille_journal',$idfeuille);
         if($date1!=null && $date2!=null)
             $this->db->where('dateparution BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
         if($date1!=null && $date2 == null)
             $this->db->where('dateparution >= ',date('Y-m-d', strtotime($date1)));
         if($date1==null && $date2 != null)
             $this->db->where('dateparution <= ',date('Y-m-d', strtotime($date2)));
+        $this->db->group_by('dateparution,assoc_feuille_image.idfeuille_journal');
         $this->db->order_by('dateparution',$order);
-        $journal = $this->db->get('couverture_feuille');
+        $this->db->order_by('nommedia');
+        $journal = $this->db->get();
         return $journal->result();
     }
     public function getDetail($id = null, $date = null){
+        $this->create_query();
         if($id!=null) {
-            $this->db->where('idfeuille_journal', $id);
+            $this->db->where('feuille_journal.idfeuille_journal', $id);
         }
         if($date != null){
             $this->db->where('dateparution',date('Y-m-d', strtotime($date)));
         }
         $this->db->order_by('nommedia','asc');
-        $detail = $this->db->get('detail_feuille_journal');
+        $detail = $this->db->get();
         return $detail->result();
     }
     public function getLast(){
+        $this->create_query();
         $this->db->order_by('dateparution','desc');
         $this->db->limit(1);
-        $last = $this->db->get('couverture_feuille');
+        $this->db->group_by('dateparution,assoc_feuille_image.idfeuille_journal');
+        $this->db->order_by('nommedia');
+        $last = $this->db->get();
         return $last->result();
     }
 
     public function getLastJournal(){
+        $this->create_query();
+        $this->db->where('dateparution = (select max(dateparution) from feuille_journal)');
         $this->db->order_by('dateparution','desc');
-        $this->db->limit(1);
-        $last = $this->db->get('detail_feuille_journal');
+        $last = $this->db->get();
         return $last->result();
     }
     public function delete($id){
@@ -87,5 +95,12 @@ class FeuilleJournalModel extends CI_Model {
         $this->db->where('idmedia',$idmedia);
         $rep = $this->db->get('media');
         return $rep->result();
+    }
+
+    public function create_query(){
+        $this->db->select('*');
+        $this->db->from('feuille_journal');
+        $this->db->join('assoc_feuille_image','feuille_journal.idfeuille_journal = assoc_feuille_image.idfeuille_journal');
+        $this->db->join('media','assoc_feuille_image.idmedia = media.idmedia');
     }
 }

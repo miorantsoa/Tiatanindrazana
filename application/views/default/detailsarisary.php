@@ -23,7 +23,7 @@
             <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
         </form>
     </div>
-    <div class="margin-top40">
+    <div class="margin-top40 grey">
         <ul class="portofolio-filter">
             <li><a href="#" class="current active" data-filter="*">Sarisary rehetra</a></li>
             <?php foreach ($sous_rubrique as $rubrique):?>
@@ -48,6 +48,11 @@
             </div>
             <?php endforeach;?>
         </div> <!-- End Portofolio-Items -->
+        <?php if(!$sarisary){?>
+            <div class="grey">
+                <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
+            </div>
+        <?php }?>
 
     </div> <!-- End Margin-Top40 -->
 </div> <!-- End Main -->

@@ -80,8 +80,8 @@ class Admin extends CI_Controller {
         $nom = $this->input->post('nom');
         $prenom = $this->input->post('prenom');
         $cin = $this->input->post('cin');
-        $etat= $this->input->post('etat');
         $civilite = $this->input->post('civilite');
+        $etat = -1;
 //        var_dump($_REQUEST);die();
         if(count($this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat))!=0){
             $abonnees = $this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat);
@@ -90,13 +90,54 @@ class Admin extends CI_Controller {
         $this->adminView('abonne',$data);
     }
 
+    public function utilisateur_active(){
+	    $admin = $this->session->userdata('admin');
+        $this->load->model('adminmodel');
+        $nom = $this->input->post('nom');
+        $prenom = $this->input->post('prenom');
+        $cin = $this->input->post('cin');
+        $etat= $this->input->post('etat');
+        $civilite = $this->input->post('civilite');
+        $date1 = $this->input->post('date1');
+        $date2 = $this->input->post('date2');
+        $abonnees = array();
+        if(count($this->adminmodel->getListActivation(null, null, $civilite,$nom, $prenom, $cin , $date1, $date2))!=0) {
+            $abonnees = $this->adminmodel->getListActivation(null, null, $civilite, $nom, $prenom, $cin, $date1, $date2);
+        }
+        $data['abonnees'] = $abonnees;
+        $this->adminView('abonneeactive', $data);
+    }
+
+    public function utilisateur_expire(){
+        $admin = $this->session->userdata('admin');
+        $this->load->model('adminmodel');
+        $nom = $this->input->post('nom');
+        $prenom = $this->input->post('prenom');
+        $cin = $this->input->post('cin');
+        $etat= $this->input->post('etat');
+        $civilite = $this->input->post('civilite');
+        $date1 = $this->input->post('date1');
+        $date2 = $this->input->post('date2');
+        $abonnees = array();
+        if(count($this->adminmodel->getListExpire(null, $civilite,$nom, $prenom, $cin , $date1, $date2))!=0) {
+            $abonnees = $this->adminmodel->getListExpire(null, $civilite, $nom, $prenom, $cin, $date1, $date2);
+        }
+        $data['abonnees'] = $abonnees;
+        $this->adminView('abonnementfin', $data);
+    }
+
     public function info_abonnee($id){
         $this->load->model('abonneemodel');
-        $abonnee = $this->abonneemodel->getInfoPayementAbonnee($id);
+        $abonnee = $this->abonneemodel->getInfoPayementAbonnee($id, null, null,  null, null, null);
         if(count($abonnee)!=0){
             $data['abonnees'] = $abonnee;
             $this->adminView('info_utilisateur',$data);
         }
+//        else{
+//            $abonnee = $this->abonneemodel->getAbonnementUtilisateur($id);
+//            $data['abonnees'] = $abonnee;
+//            $this->adminView('info_utilisateur',$data);
+//        }
     }
 	public function editArticle($id){
 	    $this->load->model('articlesmodel');

@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <label for="">Couverture <span class="required">*</span></label>
-                                <input type="file" name="couverture" id="couverture" class="form-control" required>
+                                <input type="file"  onchange="javascript:checkFile(this)" name="couverture" id="couverture" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -178,16 +178,26 @@
         // General options
         them:'modern',
         selector: 'textarea#contenu',
+        invalid_elements : 'style',
         plugins: [
             'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
             'save table contextmenu directionality emoticons template paste textcolor'
         ],
         toolbar :'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
-        plugins : 'advlist autolink link image lists charmap print preview'
     });
 
+
     $(document).ready(function() {
+            var uploadField = document.getElementById("img-une");
+
+            uploadField.onchange = function() {
+                alert(this.files[0].size);
+                if(this.files[0].size > 307200){
+                    alert("Fichier trop grand, pensez à reduire la taille");
+                    this.value = "";
+                };
+            };
             $('#parution').datetimepicker({
                 timepicker:false,
                 format:'Y-m-d',

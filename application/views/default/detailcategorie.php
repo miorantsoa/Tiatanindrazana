@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row-fluid white-bg">
     <div id="main" class="span8 blog-posts image-preloader">
         <div class="row-fluid">
             <div class="breadcrumb clearfix">
@@ -34,14 +34,19 @@
                     </figure>
                     <div class="content">
                         <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
-                        <?= substr(strip_tags($article->contenue),0,250)." ..."?>
+                        <?= $article->extrait." ..."?>
                     </div>
                     <div class="meta">
                         <span class="pull-left"><?= reformat($article->datepublication)?></span>
                         <span class="pull-right"><a href="<?= base_url('article/'.$article->url_tag)?>">Hamaky ny tohiny...</a></span>
                     </div>
                 </div>
-            <?php endforeach;?>
+            <?php endforeach;
+            if(!$results){?>
+                <div class="grey">
+                    <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
+                </div>
+            <?php }?>
             <nav class="nav-pagination">
                 <ul>
                     <?php

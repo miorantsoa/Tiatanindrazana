@@ -1,0 +1,19 @@
+Admin :
+ajout article : ajout recherche date, contenu, rubrique
+ajout toggle publié articles -> modification controller et articles modele (get, getListArticles, getAmpamoaka, getSarisary)
+fichier : Admin.php, ArticlesModel, Articles, articles.php
+ajout checkbox une et modification toggle etat
+fichier : ajoutArticles.php, Articles(fonction editEtat), articles.php
+fil_actualite : ajout colonne etat dans la base de données, ajout toggle publié, ajout recherche par date
+fichier : fil_actu, filactu_model, fil_actucontroller
+Info_utile :
+recherche admin :
+ajout colonne publie
+addfavoris
+
+Ts mbola vita : interface profile utilisateur - consulter favoris
+
+Rotation pub :
+Modification fonction getPub by position : Pubmodel
+Modification header.php
+Modification Accueil.php

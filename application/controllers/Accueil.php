@@ -626,13 +626,4 @@ class Accueil extends CI_Controller{
         echo "Opération effectué";
     }
 
-    public function kolikoly(){
-        $data = $this->indexData();
-        $this->load->model('coruptionmodel');
-        $data['titre'] = "Ireo kolikoly nozaraina : Tia Tanindrazana";
-        $data['categorieCorruption'] = $this->coruptionmodel->getCorruption();
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/Kolikoly',$data);
-        $this->load->view('default/templates/footer');
-    }
 }

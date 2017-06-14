@@ -21,6 +21,7 @@ class InfoUtileModel extends CI_Model {
     }
 
     public function get($id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null,$date = null, $publie = null){
+        $this->create_query();
         if($id!=null)
             $this->db->where('idbeinfo',$id);
         if($titre!=null && $contenu!=null){
@@ -37,8 +38,8 @@ class InfoUtileModel extends CI_Model {
             $this->db->where('dernieremaj',$date1);
         }
         if($idcategorie!=null) {
-            $this->db->where('idcatbeinfo', $idcategorie);
-            $this->db->or_where('idmere', $idcategorie);
+            $this->db->where('infoutil.idcatbeinfo', $idcategorie);
+            $this->db->or_where('assoc_cat_souscat.idcatbeinfo', $idcategorie);
         }
         if($date!=null){
             $this->db->where('dernieremaj', $date);
@@ -47,7 +48,7 @@ class InfoUtileModel extends CI_Model {
             $this->db->where('publie',$publie);
         }
         $this->db->order_by('dernieremaj',$ordre);
-        $infoutil = $this->db->get('detail_info_utile');
+        $infoutil = $this->db->get();
         return $infoutil->result();
     }
 
@@ -70,6 +71,12 @@ class InfoUtileModel extends CI_Model {
         $this->db->where('idmere',$id);
         $categorie = $this->db->get('info_utile_categorie');
         return $categorie->result();
+    }
+    public function create_query(){
+       $this->db->select('infoutil.*,categorieinfoutile.libelle, categorieinfoutile.idcatbeinfo, assoc_cat_souscat.idcatbeinfo as catmere');
+       $this->db->from('infoutil');
+       $this->db->join('categorieinfoutile','infoutil.idcatbeinfo = categorieinfoutile.idcatbeinfo');
+       $this->db->join('assoc_cat_souscat','categorieinfoutile.idcatbeinfo = assoc_cat_souscat.cat_idcatbeinfo','left');
     }
 
 }
