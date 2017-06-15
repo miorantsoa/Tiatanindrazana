@@ -14,6 +14,7 @@
         ?>
 
         <form id="enews-contact-form" method="post" action="#">
+            <input type="text" name="test">
             <h4>Hamoaka kolikoly / Inserer corruption:</h4>
             <label>Sokajy kolikoly / Type Corruption</label>
             <select name="typecorruption" id="typecorruption" >
