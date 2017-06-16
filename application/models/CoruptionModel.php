@@ -26,16 +26,16 @@ class CoruptionModel extends CI_Model {
         );
         $this->db->trans_start();
         $this->db->insert("corruption",$data);
-
+        $id = $this->db->insert_id();
         $this->db->trans_complete();
-        return $this->db->insert_id();
+        return $id;
     }
     public function insertAssoc($idcorruption,$idmedia){
         $data = array(
-            'idfeuille_journal' => $idcorruption,
+            'idcorruption' => $idcorruption,
             'idmedia' => $idmedia
         );
-        $this->db->insert('fichiercorruption',$data);
+        $this->db->insert('assoc_media_corruption',$data);
     }
     public function insertMedias($type,$nommedia,$cheminmedia,$creditmedia,$alt){
         $data = array();
