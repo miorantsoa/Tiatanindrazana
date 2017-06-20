@@ -11,25 +11,29 @@ class SondageController extends CI_Controller
     public function addSondage(){
         $this->load->model('sondage_model');
         //`idsondage`, `reponse`, `datepublication`
-        $datedujour = date('Y-m-d');
-        $this->sondage_model->insertFilActu($this->input->post('idsondage'),$this->input->post('reponse'),$datedujour);
+
+        var_dump($this->input->post('question'));
+        var_dump($this->input->post('dateparution'));
+        $this->sondage_model->insertSondage($this->input->post('question'),$this->input->post('dateparution'));
         redirect('admin/listesondage','refresh');
     }
     public function updateSondage(){
         $this->load->model('sondage_model');
         //`idsondage`, `reponse`, `datepublication`
         $datedujour = date('Y-m-d');
+        var_dump($this->input->post('question'));
+        var_dump($this->input->post('dateparution'));
+        var_dump($this->input->post('idsondage'));
         $data = array(
-            'idsondage' => $this->input->post('idsondage'),
-            'reponse' => $this->input->post('reponse'),
-            'datepublication'=> $this->input->post('datepublication')
+            'question' => $this->input->post('question'),
+            'dateparution'=> $this->input->post('dateparution')
         );
         $this->sondage_model->update($this->input->post('idsondage'),$data);
         redirect('admin/listesondage','refresh');
     }
-    public function deleteSondage(){
+    public function deleteSondage($id){
         $this->load->model('sondage_model');
-        $this->sondage_model->delete($this->input->post('idsondage'));
+        $this->sondage_model->delete($id);
         redirect('admin/listesondage','refresh');
     }
 

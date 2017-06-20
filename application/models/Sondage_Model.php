@@ -37,6 +37,11 @@ class Sondage_Model extends CI_Model
         $this->db->delete('sondage');
     }
 
+    public function get($id){
+        $this->db->where('idsondage',$id);
+        $res = $this->db->get('sondage');
+        return $res->result();
+    }
     public function update($id,$data){
         $this->db->where('idsondage',$id);
         $this->db->update('sondage',$data);
@@ -62,7 +67,7 @@ class Sondage_Model extends CI_Model
         return $corruption->result();
     }
  **/
-    public function get($publie = null){
+    public function get2($publie = null){
         if($publie != null){
             $this->db->where('etat',true);
         }
