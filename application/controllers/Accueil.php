@@ -63,6 +63,8 @@ class Accueil extends CI_Controller{
         }
         $data['fil_actuj2'] = $this->filactu_model->getJ2Fil();
         $data['last_fil'] = $this->filactu_model->getLastFil();
+        $this->load->model('sondage_model');
+        $data['sondage'] = $this->sondage_model->getLastSondage();
         //var_dump($data['last_fil']);
         $data['active'] = "";
         return $data;
