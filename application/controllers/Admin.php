@@ -317,4 +317,20 @@ class Admin extends CI_Controller {
     }
     /*Feuille journal*/
 
+    public function addsondage(){
+        $this->adminView('addsondage');
+    }
+
+    public function updateSondage($id)
+    {
+        $this->load->model('sondage_model');
+        $data['modif'] = $this->sondage_model->get($id);
+        $data['id'] = $id;
+        $this->adminView('addsondage',$data);
+    }
+    public function listesondage(){
+        $this->load->model('sondage_model');
+        $data['sondage'] = $this->sondage_model->getsondagesimple();
+        $this->adminView('listesondage', $data);
+    }
 }

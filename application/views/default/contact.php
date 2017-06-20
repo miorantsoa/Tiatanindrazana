@@ -2,24 +2,43 @@
 
     <div class="row-fluid">
 
+        <div class="header">
         <h1>Hitafa aminay</h1>
-        <p>Aenean dictum pharetra nibh, sodales luctus felis aliquet at. Nulla vulputate venenatis orci, a laoreet libero vehicula ac. Duis tempor rhoncus quam, at blandit nulla egestas vitae. Required fields are marked *</p>
+        </div>
 
-        <form id="enews-contact-form" method="post" action="#">
-
-            <label>Anarana / Nom</label>
-            <input type="text" name="name" maxlength="80" />
-            <label>Mailaka / E-mail <span class="font-required">*</span></label>
-            <input type="text" name="email" maxlength="225" />
-            <label>Antony / Sujet</label>
-            <input type="text" name="subject" />
-            <label>Hafatra / Message <span class="font-required">*</span></label>
-            <textarea name="message"></textarea>
-            <input type="submit" name="submit" value="Envoyer" class="btn btn-blue" />
-
-            <div class="data-status"></div> <!-- data submit status -->
-
-        </form>
-
+        <div class="header">
+            <h3>Tonian'ny fanoratana </h3>
+        </div>
+        <div class="content">
+            <p>RANAIVOSOA Tahiry Tiana <span class="label label-success">+261 33 15 300 91</span></p>
+        </div>
+            <br>
+        <div class="header">
+            <h3>Politika</h3>
+        </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 07 031 89</span> / <span class="label label-success">+261 33 24 772 87</span></p>
+        </div>
+        <br>
+        <div class="header">
+            <h3>Toekarena</h3>
+            </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 96 972 77</span></p>
+        </div>
+        <br>
+        <div class="header">
+            <h3>Sosialy</h3>
+        </div>
+        <div class="content">
+            <p><span class="label label-success">+261 34 14 377 41</span> / <span class="label label-success">+261 33 15 300 87</span></p>
+        </div>
+        <br>
+        <div class="header">
+            <h3>Fanatanjahantena</h3>
+        </div>
+        <div class="header">
+            <p><span class="label label-success">+261 34 14 928 77</span> / <span class="label label-success">+261 33 11 928 77</span></p>
+        </div>
     </div> <!-- End Row-Fluid -->
 </div>

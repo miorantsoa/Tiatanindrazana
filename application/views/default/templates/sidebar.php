@@ -26,6 +26,24 @@
                     <?php endforeach;?>
                 </div> <!-- End Populars -->
 
+                <div class="widget clearfix">
+                    <div class="best-picture">
+
+                        <div class="header">
+                            <h4>Sarisary zaritena</h4>
+                        </div>
+
+                        <div class="content">
+                            <!-- Photo Galleries -->
+                            <figure class="flexslider loading">
+                                <ul class="slides">
+                                    <li><a href="<?= base_url($sarisary->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
+                                </ul>
+                            </figure>
+                        </div>
+
+                    </div>
+                </div> <!-- End Widget -->
                 <div class="tab-pane" id="tab-recents">
 
                     <?php
@@ -46,6 +64,50 @@
 
         </div> <!-- End Enews-Tab -->
     </div> <!-- End Widget -->
+    <!--test-->
+    <div class="widget clearfix">
+        <div class="best-picture">
+
+            <div class="header">
+                <h4>Fanadihadiana</h4>
+            </div>
+
+            <div class="content">
+                <div align="center">
+                <p><a href="single_photo.html" title="View permalink House in The Woods"><?= $sondage[0]->question?></a></p>
+                </div>
+                <!-- Photo Galleries -->
+                <?php
+                $data = array();
+
+                $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
+                $lien_action  ='sondagecontroller/vote';
+                echo form_open_multipart($lien_action,$attributes);
+                ?>
+                <form id="demo-form2" class="form-horizontal form-label-left" method="post">
+                    <input type="hidden" name="idsondage" value="<?= $sondage[0]->idsondage?>">
+                    <div class="radio">
+                        <label><input type="radio" name="idreponse" value="1">Eny</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="idreponse" value="2">Tsia</label>
+                    </div>
+                    <div class="radio disabled">
+                        <label><input type="radio" name="idreponse" value="3">tsy manan-kevitra</label>
+                    </div>
+
+                    <div align="center">
+                    <input type="submit" name="submit" value="manaiky" class="btn btn-green" />
+                    </div>
+                </form>
+
+
+                <div class="meta">&nbsp;&nbsp;|&nbsp;&nbsp;valiny:&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">15 eny</a>|<a href="#">15 tsia</a>|<a href="#">15 tsy manakevitra</a></div>
+            </div>
+
+        </div>
+    </div> <!-- End Widget -->
+    <!--endtest-->
     <div class="widget clearfix">
         <div class="best-picture">
 

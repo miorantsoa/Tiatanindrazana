@@ -89,6 +89,13 @@
                           <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister</a></li>
                       </ul>
                   </li>
+                    <li><a><i class="fa fa-newspaper-o"></i> Sondage <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?= base_url('index.php/admin/listesondage')?>">Tous les sondages</a></li>
+                            <li><a href="<?= base_url('index.php/admin/resultatsondage')?>">Resultats sondage</a></li>
+                            <li><a href="<?= base_url('index.php/admin/addsondage')?>">Ajouter sondage</a></li>
+                        </ul>
+                    </li>
                 </ul>
               </div>
             </div>

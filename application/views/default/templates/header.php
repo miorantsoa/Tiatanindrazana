@@ -58,9 +58,9 @@
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="<?= base_url()?>/assets/default/images/favicon.ico">
-    <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url()?>/assets/default/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url()?>/assets/default/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
     <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
 
     <!-- JavaScript -->
