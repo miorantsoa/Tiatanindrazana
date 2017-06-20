@@ -15,13 +15,23 @@ class Admin extends CI_Controller {
         }
 	}
 	public function index(){
-		redirect('admin/articles');
+        $this->load->model('articlesmodel');
+        $this->load->model('rubrique_model');
+        $this->load->model('abonneemodel');
+        $this->load->model('adminmodel');
+	    $data['new_user'] =count($this->abonneemodel->getInfoPayementAbonnee(null,null,null,null,null,-1));
+        $data['user'] = count($this->adminmodel->getListActivation());
+        $data['articles'] = count($this->articlesmodel->get2());
+        $data['top_cat'] = $this->articlesmodel->getMaxCat()[0]->max;
+        $data['top_cat_des'] = $this->articlesmodel->getMaxCat()[0]->libelle;
+        $data['top_cat_id'] = $this->articlesmodel->getMaxCat()[0]->idcat;
+		$this->adminView('index',$data);
 	}
 
 	public function login(){
 	    $this->load->view('admin/login');
     }
-	public function articles(){
+	/*public function articles(){
         $this->load->model('rubrique_model');
         $data['rubrique'] = $this->rubrique_model->getrubrique();
         $date=$this->input->get('date');
@@ -33,7 +43,66 @@ class Admin extends CI_Controller {
             $data['articles'] = $this->articlesmodel->get2($titre,$date,$rubrique);
         }
 		$this->adminView('articles', $data);
-	}
+	}*/
+
+    public function articles($id=null,$page = 1,$limit = 0,$_titre=null,$_date=null, $_ordre = null){
+        $this->load->model('articlesmodel');
+        $this->load->model('rubrique_model');
+        $this->load->library("articlelibrarie");
+        $data['rubrique'] = $this->rubrique_model->getrubrique();
+        $date=$this->input->get('date');
+        $titre=$this->input->get('titre');
+        $ordre = $this->input->get('ordre');
+        if($_ordre){
+            $ordre = $_ordre;
+        }
+        if($_titre!=null){
+            $titre = $_titre;
+        }
+        if($titre == "-"){
+            $titre = null;
+        }
+        if($_date){
+            $date = $_date;
+        }
+        if($id ){
+            $rubrique = $id;
+        }
+        else{
+            $rubrique=$this->input->get('rubrique');
+        }
+        if($rubrique == '-'){
+            $rubrique = null;
+        }
+        $articles = array();
+        if($date == null && $titre == null && $rubrique == null){
+            $articles = $this->articlesmodel->getListArticle(true);
+            $date = $articles[0]->datepublication;
+        }
+        else {
+            $articles = $this->articlesmodel->get2($titre, $date, $rubrique);
+        }
+        $per_page = 5;
+        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
+        $resultats = $this->articlesmodel->get2($titre,$date,$rubrique, $per_page, $limit, $ordre);
+        $data['results'] = $resultats;
+        $data['limit'] = $limit;
+        //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
+        $data['per_page'] = $per_page;
+        $data['articles'] = $articles;
+        $data['nbreponse'] = $per_page;
+        $data['categorie'] = $rubrique;
+        $data['page'] = $page;
+        $data['filtre'] = array(
+            "query" => $titre,
+            "date" => $date,
+            "ordre"=>$ordre
+        );
+        $this->adminView('articles', $data);
+    }
+
+
+
 	public function ajoutArticles(){
         $this->load->model('rubrique_model');
         $data['rubrique'] = $this->rubrique_model->getrubrique();

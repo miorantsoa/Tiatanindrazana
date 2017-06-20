@@ -23,20 +23,28 @@
                 <div class="col-md-4">
                     <form action="<?= base_url('admin/articles')?>" method="get">
                         <div class="form-group has-feedback">
-                            <input type="text" name="date" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution">
+                            <input type="text" name="date" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution" value="<?= ($filtre && $filtre['date']) ? $filtre['date'] : ""?>">
                             <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                         </div>
                         <div class="form-group">
                             <label for="titre">Titre</label>
-                            <input type="text" class="form-control" name="titre" placeholder="Titre">
+                            <input type="text" class="form-control" name="titre" placeholder="Titre" value="<?= ($filtre['query']) ? $filtre['query'] : ""?>">
                         </div>
                         <div class="form-group">
                             <label for="date">Rubrique</label>
                             <select name="rubrique" id="" class="form-control">
                                 <option value="">Choix rubrique</option>
                                 <?php foreach ($rubrique as $item):?>
-                                    <option value="<?= $item->idcategorie?>"><?= $item->libelle?></option>
+                                    <option value="<?= $item->idcategorie?>" <?= ($categorie && $categorie == $item->idcategorie) ? "selected" : ""?>><?= $item->libelle?></option>
                                 <?php endforeach;?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Ordre d'apparition</label>
+                            <select name="ordre" id="ordre" class="form-control">
+                                <option value="">Ordre d'apparition</option>
+                                <option value="DESC" <?= ($filtre['ordre'] && $filtre['ordre'] == "DESC") ? "selected" : ""?>>Descendant</option>
+                                <option value="ASC" <?= ($filtre['ordre'] && $filtre['ordre'] == "ASC") ? "selected" : ""?>>Ascendant</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-info">Filtrer</button>
@@ -44,7 +52,7 @@
                 </div>
             </div>
           <div class="x_content">
-            <table id="datatable" class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered">
               <thead>
                 <tr>
                   <th>Titre</th>
@@ -58,7 +66,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($articles as $article):?>
+                <?php foreach ($results as $article):?>
                     <tr>
                         <th><?= $article->titre?></th>
                         <th><?= $article->dateparution?></th>
@@ -108,6 +116,33 @@
                 <?php endforeach;?>
               </tbody>
             </table>
+              <?php
+              $nbpage = $this->articlelibrarie->getNbPage(count($articles),$nbreponse);
+              $query = $filtre['query'];
+              if($query == null){
+                  $query = "-";
+              }
+              if($filtre && $filtre['ordre']==null){
+                  $filtre['ordre'] = "DESC";
+              }
+              if($categorie == null){
+                  $categorie = "-";
+              }
+              if($nbpage >1){?>
+              <ul class="pagination">
+                  <?php
+                  for($i = 1; $i<=$nbpage;$i++){?>
+                      <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('admin/articles/'.$categorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date'].'/'.$filtre['ordre']?>"><?= $i?></a></li>
+                  <?php }?>
+                <!--  <li><a href="#">&laquo;</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">&raquo;</a></li>-->
+              </ul>
+              <?php }?>
           </div>
         </div>
     </div>
