@@ -9,15 +9,16 @@
 				<div class="x_content">
                     <?php
                     $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-                    $lien_action  = (isset($fildactu)) ? 'filactucontroller/addFilActu' : 'filactucontroller/addFilActu';
+                    $lien_action  = (isset($modif)) ? 'filactucontroller/updateFilActu' : 'filactucontroller/addFilActu';
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <input type="hidden" name="idfilactu" value="<?= $id ?>">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="date" name="datepublication" id="date" class="form-control" value="<?=(isset($fildactu)) ? $fildactu[0]->datepublication : date('Y-m-d')?>">
+                                <input type="date" name="datepublication" id="date" class="form-control" value="<?=(isset($modif)) ? $modif[0]->datepublication : date('Y-m-d')?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -25,7 +26,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($fildactu)) ? $fildactu[0]->heurepublication : date('h:i')?>">
+                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : date('h:i')?>">
                             </div>
                         </div>
                         <!--<div class="form-group">
@@ -39,7 +40,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Contenu du fil d'actualité <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea name="contenue" placeholder="Entrer le cotenu..." id="fil" class="form-control"></textarea>
+                                <textarea name="contenue" placeholder="Entrer le cotenu..." id="fil" class="form-control"><?=(isset($modif)) ? $modif[0]->contenue : null?></textarea>
                             </div>
                         </div>
 

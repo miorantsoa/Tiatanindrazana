@@ -48,26 +48,26 @@
                   <li><a><i class="fa fa-edit"></i>Journal<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     	<li><a href="<?= base_url('index.php/admin/journal')?>">Tous les journaux</a></li>
-                        <li><a href="<?= base_url('index.php/admin/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
                         <li><a href="<?= base_url('admin/feuillejournal')?>"><i class="fa fa-sheet"></i>Feuilles journal</a></li>
+                        <li><a href="<?= base_url('index.php/admin/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Articles <span class="fa fa-chevron-down"></span></a>
                   	<ul class="nav child_menu">
+                        <li><a href="<?= base_url('index.php/admin/articles')?>">Tous les articles</a></li>
                     	<li><a href="<?= base_url('index.php/admin/ajoutArticles')?>">Créer un article</a></li>
-                    	<li><a href="<?= base_url('index.php/admin/articles')?>">Tous les articles</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i>Rubrique<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        <li><a href="<?= base_url('index.php/admin/rubrique')?>">Tous les rubriques</a></li>
                       	<li><a href="<?= base_url('index.php/admin/ajoutRubrique')?>">Créer un rubrique</a></li>
-                    	   <li><a href="<?= base_url('index.php/admin/rubrique')?>">Tous les rubriques</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-rss"></i>Fil d'actualités<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= base_url('index.php/admin/ajoutFilActu')?>">Ajouter</a></li>
-                      <li><a href="<?= base_url('index.php/admin/filactu')?>">Lister</a></li>
+                        <li><a href="<?= base_url('index.php/admin/filactu')?>">Lister Fil d'actualités</a></li>
+                      <li><a href="<?= base_url('index.php/admin/ajoutFilActu')?>">Ajouter Fil d'actualité</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Abonnées<span class="fa fa-chevron-down"></span></a>
@@ -79,14 +79,14 @@
                   </li>
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter</a></li>
-                        <li><a href="<?= base_url('index.php/admin/publicite')?>">Lister</a></li>
+                         <li><a href="<?= base_url('index.php/admin/publicite')?>">Lister publicité</a></li>
+                        <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter publicité</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-lightbulb-o"></i>Info Utile|Ilaiko <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                          <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter</a></li>
-                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister</a></li>
+                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister info Utile|Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter info Utile|Ilaiko</a></li>
                       </ul>
                   </li>
                     <li><a><i class="fa fa-newspaper-o"></i> Sondage <span class="fa fa-chevron-down"></span></a>

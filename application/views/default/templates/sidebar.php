@@ -93,16 +93,14 @@
                         <label><input type="radio" name="idreponse" value="2">Tsia</label>
                     </div>
                     <div class="radio disabled">
-                        <label><input type="radio" name="idreponse" value="3">tsy manan-kevitra</label>
+                        <label><input type="radio" name="idreponse" value="3">tsy maneo hevitra</label>
                     </div>
 
                     <div align="center">
                     <input type="submit" name="submit" value="manaiky" class="btn btn-green" />
                     </div>
                 </form>
-
-
-                <div class="meta">&nbsp;&nbsp;|&nbsp;&nbsp;valiny:&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">15 eny</a>|<a href="#">15 tsia</a>|<a href="#">15 tsy manakevitra</a></div>
+                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?=$rvote['eny']?>% eny</a>| <a href="#"><?=$rvote['tsia']?>% tsia</a>| <a href="#"><?=$rvote['tsymanana']?>% tsy maneo hevitra</a></div>
             </div>
 
         </div>

@@ -19,6 +19,18 @@ class FilActuController extends CI_Controller{
         $this->filactu_model->insertFilActu($data);
         redirect('admin/ajoutFilActu','refresh');
     }
+    public function updateFilActu(){
+        $this->load->model('filactu_model');
+        $data = array(
+            'datepublication' => $this->input->post('datepublication'),
+            'heurepublication' => $this->input->post('heurepublication'),
+            'extrait' => substr($this->input->post('contenue'),0,150)."...",
+            'contenue' => $this->input->post('contenue')
+
+        );
+        $this->filactu_model->update($this->input->post('idfilactu'),$data);
+        redirect('admin/filactu','refresh');
+    }
     public function delete($id){
         $this->load->model('filactu_model');
         $this->filactu_model->delete($id);
