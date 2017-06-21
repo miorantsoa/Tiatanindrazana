@@ -100,7 +100,7 @@
                     <input type="submit" name="submit" value="manaiky" class="btn btn-green" <?= isset($sondage) ? null :'disabled' ?>/>
                     </div>
                 </form>
-                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? $rvote['0'] : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? $rvote['1'] : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? $rvote['2'] : 0?>% tsy maneo hevitra</a></div>
+                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy maneo hevitra</a></div>
             </div>
 
         </div>
