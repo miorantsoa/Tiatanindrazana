@@ -42,6 +42,6 @@ class SondageController extends CI_Controller
         var_dump($this->input->post('idsondage'));
         var_dump($this->input->post('idreponse'));
         $this->sondage_model->vote($this->input->post('idsondage'),$this->input->post('idreponse'));
-      //  redirect();
+        redirect('accuil','refresh');
     }
 }

@@ -38,7 +38,8 @@
                                 <th>Heure de publication</th>
                                 <th>Contenue</th>
                                 <th>Etat publication</th>
-                                <th>Action</th>
+                                <th>modifier</th>
+                                <th>supprimer</th>
 
                             </tr>
                             </thead>
@@ -56,10 +57,18 @@
 
                                     <th>
                                         <div class="btn-group" role="group" aria-label="...">
+                                            <a href="<?=base_url('index.php/admin/updatefilactu/'.$filactualite->idfilactualite)?>">
+                                                <button type="button" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-pencil"></i> Modillier</button>
+                                            </a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" role="group" aria-label="...">
                                             <a href="<?=base_url('index.php/filactucontroller/delete/'.$filactualite->idfilactualite)?>">
                                                 <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
                                             </a>
                                         </div>
+
                                     </th>
                                 </tr>
                             <?php endforeach;?>

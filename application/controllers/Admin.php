@@ -264,4 +264,11 @@ class Admin extends CI_Controller {
         $data['sondage'] = $this->sondage_model->getsondagesimple();
         $this->adminView('listesondage', $data);
     }
+    public function updatefilactu($id)
+    {
+        $this->load->model('filactu_model');
+        $data['modif'] = $this->filactu_model->getFilActuById($id);
+        $data['id'] = $id;
+        $this->adminView('ajoutfilactu',$data);
+    }
 }

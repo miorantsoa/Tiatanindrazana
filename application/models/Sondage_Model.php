@@ -80,6 +80,13 @@ class Sondage_Model extends CI_Model
         //$fil = $this->db->get();
         return $fil->result();
     }
+
+    public function getvotebyidsondage($idsondage){
+        $requet = "SELECT idreponse,COUNT(idreponse) as nbrvote FROM `reponse_sondage` WHERE idsondage= ".$idsondage." GROUP BY idreponse";
+        $vote= $this->db->query($requet);
+        return $vote->result();
+    }
+
     public function gettypereponse(){
         $filactualite = $this->db->get("reponse");
         return  $filactualite->result();

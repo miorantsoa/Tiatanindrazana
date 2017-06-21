@@ -65,10 +65,22 @@ class Accueil extends CI_Controller{
         $data['last_fil'] = $this->filactu_model->getLastFil();
         $this->load->model('sondage_model');
         $data['sondage'] = $this->sondage_model->getLastSondage();
+        $data['rvote'] = $this->resultvote($this->sondage_model->getvotebyidsondage(2));
+
         //var_dump($data['last_fil']);
         $data['active'] = "";
         return $data;
     }
+    public function resultvote($vote){
+        $totalvote = $vote[0]->nbrvote+$vote[1]->nbrvote+$vote[2]->nbrvote;
+        $ret = array(
+            'eny' => $vote[0]->nbrvote*100/$totalvote,
+            'tsia' => $vote[1]->nbrvote*100/$totalvote,
+            'tsymanana' => $vote[2]->nbrvote*100/$totalvote
+        );
+        return $ret;
+    }
+
     public function detailArticle($id){
         $this->load->model('articlesmodel');
         $this->load->model('commentairemodel');
