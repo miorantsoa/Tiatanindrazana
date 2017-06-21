@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <head>
     <title><?= $titre?></title>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="og:url"           content="<?= base_url('accueil')?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Tia Tanindrazana" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
@@ -99,6 +107,7 @@
                         </div>
                         <div class="article">
                             <h2><?= $favori->titre?></h2>
+                            <div class="fb-share-button" data-href="<?= base_url($favori->url_tag)?>" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url($favori->url_tag)?>&amp;src=sdkpreparse" >Partager</a></div>
                             <p><?= substr(strip_tags($favori->contenue),0,250)." ..."?></p>
                             <a href="<?= base_url('accueil/detailarticle/'.$favori->idarticle)?>" class="btn btn-info"><i class="fa fa-eye"></i> Hamaky</a>
                             <a href="<?= base_url('accueil/supprimerFavs/'.$favori->idarticle)?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hamafa</a>
@@ -254,7 +263,21 @@
         <p class="pull-left">Copyright 2010 - <?= date('Y')?> Tia Tanindrazana</p
     </div> <!-- End Container -->
 </div> <!-- End Footer -->
+<div id="fb-root"></div>
 <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    function changeFBMeta(title,url,description,img){
+        $("meta[property='og\\:title']").attr("content", title);
+        $("meta[property='og\\:url']").attr("content", url);
+        $("meta[property='og\\:description']").attr("content", description);
+        $("meta[property='og\\:image']").attr("content", img);
+    }
     $(document).ready(function () {
         $('#datetnaissance').datetimepicker({
             timepicker:false,

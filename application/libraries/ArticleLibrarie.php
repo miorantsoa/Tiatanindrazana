@@ -82,8 +82,13 @@ class ArticleLibrarie{
         if($reponseSize <= $nbReponse)
             return 1;
         else{
-           return round(($reponseSize / $nbReponse),0,PHP_ROUND_HALF_UP);
-
+            $float =$reponseSize / $nbReponse;
+            $pages = $float;
+            if(substr($float, strpos($float, '.')+1)){
+                $pages = intval($float) + 1;
+            }
+//            return round(($reponseSize /
+            return $pages;
         }
     }
     public function getLimit($page,$per_page){

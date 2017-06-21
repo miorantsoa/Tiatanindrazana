@@ -40,18 +40,22 @@ class Journal extends CI_Model{
     }
     public function get($id,$numparution,$date1,$date2,$ordre = 'DESC',$titre=null,$limit=null,$start=null){//utiliser pour recherche avancé dans le journal
         $this->db->limit($limit,$start);
+        if($ordre == null){
+            $ordre = "DESC";
+        }
         if($id!=null){
             $this->db->where('idjournal',$id);
         }
         if($titre!=null){
-            $this->db->where("idjournal in (select idjournal from detail_article where titre like '%".$titre."%')");
+            $this->db->where("idjournal in (select idjournal from article where titre like '%".$titre."%')");
         }
         if($numparution!=null)
             $this->db->where('numeroparution',$numparution);
 
-        /*if($date1!=null && $date2 == null)
-            $date2 = date();
-            $this->db->where('datepublication < ',$date1);*/
+        if($date1!=null && $date2 == null)
+            $this->db->where('datepublication >= ',date('Y-m-d', strtotime($date1)));
+        if($date1==null && $date2 != null)
+            $this->db->where('datepublication <= ',date('Y-m-d', strtotime($date2)));
 
         if($date1!=null && $date2!=null)
             $this->db->where('datepublication BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');

@@ -208,8 +208,12 @@ class ArticlesModel extends CI_Model {
      * @param null $laune
      * @return mixed
      */
-    public function get2($titre=null, $date=null, $rubrique=null, $laune=null){
+    public function get2($titre=null, $date=null, $rubrique=null,$limit=null, $start=null, $ordre='DESC', $laune=null){
         $this->requete_article();
+        $this->db->limit($limit,$start);
+        if($ordre == null){
+            $ordre = "DESC";
+        }
         if($titre!= null){
             $this->db->like('titre',$titre);
         }
@@ -223,8 +227,22 @@ class ArticlesModel extends CI_Model {
         if($laune!= null){
             $this->db->where('laune',$laune);
         }
+        $this->db->order_by('datepublication',$ordre);
+//        $q = $this->db->get_compiled_select();
+//        echo $q; die();
         $article = $this->db->get();
         return $article->result();
+    }
+
+    public function getMaxCat(){
+        $this->db->select('count(article.idcategorie) as max, libelle, categorie.idcategorie as idcat');
+        $this->db->from('article');
+        $this->db->join('categorie', 'article.idcategorie = categorie.idcategorie');
+        $this->db->order_by('count(article.idcategorie)', "desc");
+        $this->db->group_by('categorie.libelle');
+        $this->db->limit(1);
+        $res = $this->db->get();
+        return $res->result();
     }
     //fonction utilisé pour la recherche
     /**
@@ -290,7 +308,6 @@ class ArticlesModel extends CI_Model {
             $this->db->where('isnull(assoc_sous_categorie.idcategorie1) or `assoc_sous_categorie`.`idcategorie1` <> 10 ');
             // $this->db->where('dmere IS NULL');
         }
-        $this->db->order_by('libelle',"DESC");
         $this->db->order_by('datepublication',$ordre);
         $article = $this->db->get();
        /* var_dump($ordre);

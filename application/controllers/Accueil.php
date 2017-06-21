@@ -248,7 +248,7 @@ class Accueil extends CI_Controller{
         if($date2!=null){
             $date_2 = $date2;
         }
-        if(strtotime($date_1)> strtotime($date_2)){
+        if($date_2 != null && strtotime($date_1)> strtotime($date_2)){
             $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
             $date_2 =  "";
             $date_1 = "";
@@ -264,7 +264,7 @@ class Accueil extends CI_Controller{
         $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
         $data['last'] = $this->feuillejournalmodel->getLast();
         //$idfeuille=null,$date1="",$date2="",$limit=null,$start=null,$order="desc"
-        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date2,null,null,$ordre);
+        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date_2,null,null,$ordre);
         $data['gazety'] = $gazety;
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/feuilleter_journal',$data);
@@ -455,8 +455,6 @@ class Accueil extends CI_Controller{
         if($date2!=null){
             $date_2 = $date2;
         }
-        $date_1 = $this->input->post('date1');
-        $date_2 = $this->input->post('date2');
         if($date1!=null){
             $date_1 = $date1;
         }
