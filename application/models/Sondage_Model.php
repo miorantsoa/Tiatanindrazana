@@ -77,7 +77,6 @@ class Sondage_Model extends CI_Model
     }
     public function getLastSondage(){
         $fil= $this->db->query('select * from sondage where dateparution in (select max(dateparution) as dateparution from sondage) ORDER  BY  dateparution DESC ');
-        //$fil = $this->db->get();
         return $fil->result();
     }
 

@@ -74,7 +74,7 @@
 
             <div class="content">
                 <div align="center">
-                <p><a href="single_photo.html" title="View permalink House in The Woods"><?= isset($sondage) ? $sondage[0]->question : 'mbola tsy misy fanadihadina azo aseo'?></a></p>
+                <p><a href="single_photo.html" title="View permalink House in The Woods"><?=count($sondage)!=0 ? $sondage[0]->question : 'mbola tsy misy fanadiahana' ?></a></p>
                 </div>
                 <!-- Photo Galleries -->
                 <?php
@@ -85,7 +85,7 @@
                 echo form_open_multipart($lien_action,$attributes);
                 ?>
                 <form id="demo-form2" class="form-horizontal form-label-left" method="post">
-                    <input type="hidden" name="idsondage" value="<?= isset($sondage) ? $sondage[0]->idsondage : null ?>">
+                    <input type="hidden" name="idsondage" value="<?=count($sondage)!=0 ? $sondage[0]->idsondage : null ?>">
                     <div class="radio">
                         <label><input type="radio" name="idreponse" value="1">Eny</label>
                     </div>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div align="center">
-                    <input type="submit" name="submit" value="manaiky" class="btn btn-green" <?= isset($sondage) ? null :'disabled' ?>/>
+                    <input type="submit" name="submit" value="manaiky" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
                     </div>
                 </form>
                 <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy maneo hevitra</a></div>

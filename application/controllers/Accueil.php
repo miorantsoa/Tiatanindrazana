@@ -66,7 +66,11 @@ class Accueil extends CI_Controller{
         $this->load->model('sondage_model');
         $temp = $this->sondage_model->getLastSondage();
         $data['sondage'] = $temp;
-        $data['rvote'] = $this->resultvote($this->sondage_model->getvotebyidsondage($temp[0]->idsondage));
+        $temp1 = null;
+        if($temp!= null) {
+            $temp1 = $this->resultvote($this->sondage_model->getvotebyidsondage($temp[0]->idsondage));
+        }
+        $data['rvote'] = $temp1;
 
         //var_dump($data['last_fil']);
         $data['active'] = "";
