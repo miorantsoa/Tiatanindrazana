@@ -78,7 +78,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <p>Numero de utilisé pour le payement : <?= $abonnees[0]->numero?></p>
+                                    <p>Numero de telephone utilisé pour le payement : <?= $abonnees[0]->numero?></p>
                                     <p>Numero de transaction : <?= $abonnees[0]->trans_id?></p>
                                 </div>
                             </div>
