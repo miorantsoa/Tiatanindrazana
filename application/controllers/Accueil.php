@@ -73,14 +73,33 @@ class Accueil extends CI_Controller{
         return $data;
     }
     public function resultvote($vote){
-        $totalvote = $vote[0]->nbrvote+$vote[1]->nbrvote+$vote[2]->nbrvote;
+    //    var_dump($vote);
+        $totalvote = 0;
+        foreach ($vote as $votet) :
+            $totalvote = $totalvote + $votet->nbrvote;
+        endforeach;
         $ret = array(
-            'eny' => $vote[0]->nbrvote*100/$totalvote,
-            'tsia' => $vote[1]->nbrvote*100/$totalvote,
-            'tsymanana' => $vote[2]->nbrvote*100/$totalvote
+            '0' => 0,
+            '1' => 0,
+            '2' => 0
         );
-        return $ret;
-    }
+     //   var_dump($vote);
+        foreach ($vote as $votep) :
+            if(1 == $votep->idreponse) {
+                $ret['0'] = $votep->nbrvote * 100 / $totalvote;
+
+            }
+            if(2 == $votep->idreponse) {
+                $ret['1'] = $votep->nbrvote * 100 / $totalvote;
+
+            }
+            if(3 == $votep->idreponse) {
+                $ret['2'] = $votep->nbrvote * 100 / $totalvote;
+
+            }
+        endforeach;
+            return $ret;
+        }
 
     public function detailArticle($id){
         $this->load->model('articlesmodel');
