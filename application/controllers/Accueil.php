@@ -658,7 +658,13 @@ class Accueil extends CI_Controller{
         $message .="<p>Voici vos information de connexion : </p>";
         $message .="<p>Email : </p>";
         $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
-        send("miorantsoaRak@gmail.com","Confirmation Abonnement",$message);
+        $message .="<p>Pour acceder a votre compte veuiller vous connecter sur:</p>";
+        $message .="<p>http://www.tiatanindrazana.com/v2/accueil/connection</p>";
+        $message .="<p>-------------------------------</p>";
+        $message .="<p>Cordialement</p>";
+        $message .="<p>siege Vidy varotra soanerana</p>";
+
+        send("tiatanindrazanasite@gmail.com","Confirmation Abonnement",$message);
         echo "Opération effectué";
     }
 

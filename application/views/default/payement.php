@@ -18,6 +18,22 @@
             <p>Tolotra Gold <?= $duree?> volana</p>
             <p>Vidin'ny Tolotra  : <?= $montant?> Ar</p>
         </div>
+        <div class="panel-body">
+            <h3>Mvola (telma):</h3>
+            <p>0 34 63 705 72</p>
+            <h3>Airtel monney:</h3>
+            <p>0 33 03 888 56</p>
+            <h3>Orange money:</h3>
+            <p>0 32 86 933 16</p>
+        </div>
+        <div class="panel-body">
+            <h3>Raha misy ny olana aminy fidiranao ho mpikanbana eto aminay dia azo antsoina avy antrainy ireto laharana ireto:</h3>
+            <br>
+            <p>0 34 20 300 24</p>
+            <br>
+            <p>0 34 03 888 56</p>
+
+        </div>
     </div>
     <form action="<?= base_url('usercontroller/ajout')?>" method="post">
     <div class="col-md-offset-2 col-md-8 panel">
