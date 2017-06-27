@@ -4,7 +4,7 @@
 	<title>Hisoratra anarana : Tia Tanindrazana</title>
     <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url("assets/default/css/bootstrap-filestyle.min.css")?>">
-    <link rel="stylesheet" href="<?= base_url("assets/login/css/bootstrap.min.css")?>">
+    <link rel="stylesheet" href="<?= base_url("assets/admin/css/bootstrap.min.css")?>">
     <link rel="stylesheet" href="<?= base_url("assets/default/css/custom-register.css")?>">
     <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
     <script src="<?= base_url('assets/default/js/parsley.min.js')?>"></script>
