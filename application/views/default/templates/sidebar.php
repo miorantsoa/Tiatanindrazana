@@ -79,7 +79,7 @@
                     </div>
 
                     <div align="center">
-                    <input type="submit" name="submit" value="Halefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
+                    <input type="submit" name="submit" value="alefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
                     </div>
                 </form>
                 <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy naneo hevitra</a></div>

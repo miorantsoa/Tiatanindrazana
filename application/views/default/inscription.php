@@ -75,6 +75,7 @@
             <h4>Safidy ny tolotra / Choix de l'offre:</h4>
             <label>Karazany / Type Abonnement:</label>
             <select name="typeabonnement" id="typeabonnement" >
+                <?php var_dump($typeabonnement)?>
 
                 <?php foreach ($typeabonnement as $typeabonnement):?>
                     <option value="<?=$typeabonnement->idtypeabon?>"><?=$typeabonnement->libelle?></option>

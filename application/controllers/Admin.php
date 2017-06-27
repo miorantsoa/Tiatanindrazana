@@ -356,4 +356,7 @@ class Admin extends CI_Controller {
         $data['id'] = $id;
         $this->adminView('addcatilaiko',$data);
     }
+    public function  ajouterabonnee(){
+        $this->adminView('addabonee');
+    }
 }

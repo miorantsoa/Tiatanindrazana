@@ -2,7 +2,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Abonnée</h3>
+                <h3>Liste abonnées en attente</h3>
             </div>
 
             <div class="title_right">
@@ -23,7 +23,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Liste des abonnées</h2>
+                        <h2>Liste des abonnées en attente</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -83,7 +83,7 @@
                                     <th>Date de naissance</th>
                                     <th>CIN</th>
                                     <th>Email</th>
-                                    <th>Etat du compte</th>
+                                    <th>detail</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -96,7 +96,6 @@
                                     <td><?= $abonnee->naissanceutilisateur?></td>
                                     <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
-                                    <td><?= ($abonnee->statututilisateur == 1) ? "Actif" : "Désactivé : <a class='btn btn-info btn-xs' href='".base_url()."usercontroller/activerCompte/".$abonnee->idutilisateur2."'>Activé?</a>"?></td>
                                     <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
                                 </tr>
                             <?php endforeach;?>
