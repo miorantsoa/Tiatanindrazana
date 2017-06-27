@@ -53,6 +53,15 @@ class UserController extends CI_Controller
         }
     }
 
+    public function verifierMail(){
+        $email = $_GET['email'];
+        $this->load->model('abonneemodel');
+        $user = $this->abonneemodel->getUserByEmail(trim($email));
+        if(count($user)!=0){
+            die(header("HTTP/1.0 404 Not Found"));
+        }
+        echo "success";
+    }
     public function addUser()    {
       /**  var_dump($_FILES); */
         $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");

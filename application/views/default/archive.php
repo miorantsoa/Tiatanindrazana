@@ -5,7 +5,7 @@
 </div> <!-- End Breadcrumb -->
 <div class="margin-top40">
     <div class="filtre search-page">
-        <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_journal')?>">
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/archive')?>">
             <span class="tile_header">Tahiry</span>
             <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
             <select name="ordre" id="ordre">
@@ -15,7 +15,7 @@
             </select>
             <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
         </form>
-        <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_journal')?>">
+        <form name="fikarohana" method="post" action="<?= base_url('accueil/archive')?>">
             <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
             <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
             <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
@@ -41,6 +41,22 @@
                         <p class="span2 margin-top20">Gazety ny <?= reformat($journal->datepublication)?></p>
                     </div>
                 <?php endforeach;?>
+                <nav class="nav-pagination">
+                    <ul>
+                        <?php
+                        $nbpage = $this->articlelibrarie->getNbPage(count($total),$nbreponse);
+                        $query = $filtre['query'];
+                        if($query == null){
+                            $query = "-";
+                        }
+                        if($nbpage >1){
+                        for($i = 1; $i<=$nbpage;$i++){?>
+                            <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('accueil/archive/'.$query.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$nbreponse)).'/'.$filtre['date_1'].'/'.$filtre['date_2']?>"><?= $i?></a></li>
+                        <?php }?>
+                    </ul>
+                    <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
+                    <?php }?>
+                </nav> <!-- End Nav-Pagination -->
             </div>
         </div>
     </div>

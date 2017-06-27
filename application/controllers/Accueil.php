@@ -401,21 +401,21 @@ class Accueil extends CI_Controller{
     }
 
     
-    public function archive($q = null ,$date1 = null, $date2 = null, $numparution = null){
-        
-        $data = $this->indexData();
-        //$id,$numparution,$date1,$date2
-        $data['titre'] = "Archive : Tia Tanindrazana";
-        $journal = $this->journal->get(null,$numparution,$date1,$date2);
-        $last_journal = $this->journal->getLastJournal();
-        if(count($last_journal)!=0){
-            $data['last_journal'] = $last_journal[0];
-        }
-        $data['archive'] = $journal;
-        $this->load->view('default/templates/header',$data);
-        $this->load->view('default/archive',$data);
-        $this->load->view('default/templates/footer');
-    }
+//    public function archive($q = null ,$date1 = null, $date2 = null, $limit = null , $numparution = null){
+//
+//        $data = $this->indexData();
+//        //$id,$numparution,$date1,$date2
+//        $data['titre'] = "Archive : Tia Tanindrazana";
+//        $journal = $this->journal->get(null,$numparution,$date1,$date2);
+//        $last_journal = $this->journal->getLastJournal();
+//        if(count($last_journal)!=0){
+//            $data['last_journal'] = $last_journal[0];
+//        }
+//        $data['archive'] = $journal;
+//        $this->load->view('default/templates/header',$data);
+//        $this->load->view('default/archive',$data);
+//        $this->load->view('default/templates/footer');
+//    }
     public function detailjournal($id){
         $data = $this->indexData();
         $gazety = $this->articlesmodel->getArticlesByJournal($id,false);//Tous les articles sauf la une
@@ -441,9 +441,9 @@ class Accueil extends CI_Controller{
         }
 
     }
-    public function filtre_journal($q = null, $page = 1,$limit = 0,$date1=null,$date2=null){
+    public function archive($q = null, $page = 1,$limit = 0,$date1=null,$date2=null){
         $data = $this->indexData();
-        $per_page = 10;
+        $per_page = 12;
         $query = $this->input->post('recherche');
         if($q!=null){
             $query = $q;
@@ -467,11 +467,19 @@ class Accueil extends CI_Controller{
         }
         $ordre = $this->input->post('ordre');
         $data['titre'] = "Archive : Tia Tanindrazana";
+        $data['total'] = $this->journal->get(null,null,$date_1,$date_2,$ordre,$query);
         $journal = $this->journal->get(null,null,$date_1,$date_2,$ordre,$query,$per_page,$limit);
         $last_journal = $this->journal->getLastJournal();
         if(count($last_journal)!=0){
             $data['last_journal'] = $last_journal[0];
         }
+        $data['page'] = $page;
+        $data['nbreponse'] = $per_page;
+        $data['filtre'] = array(
+            "query" => $query,
+            "date_1" => $date_1,
+            "date_2" => $date_2
+        );
         $data['archive'] = $journal;
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/archive',$data);
@@ -670,6 +678,15 @@ class Accueil extends CI_Controller{
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/Kolikoly',$data);
         $this->load->view('default/templates/footer');
+    }
+
+    public function updateTarif(){
+        $this->db->trans_start();
+        $this->db->query('update tarifabonnement set prixabonnement =15000 where durreeabonnement = 3');
+        $this->db->query('update tarifabonnement set prixabonnement =32500 where durreeabonnement = 6');
+        $this->db->query('update tarifabonnement set prixabonnement =60000 where durreeabonnement = 12');
+        $this->db->trans_complete();
+        echo "Opération effecué";
     }
 
 }

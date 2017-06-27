@@ -139,6 +139,14 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input id="img-une" name="img-une" class="form-control col-md-7 col-xs-12" type="file">
 							</div>
+                            <div class="col-md-offset-4 col-md-4">
+                                <?php if($article && $article[0]->lien_image_une!=null){?>
+                                    <img src="<?= base_url($article[0]->lien_image_une)?>" class="img img-thumbnail" id="thumbs"/>
+                                <?php }
+                                else{?>
+                                    <img src="" id="thumbs" class="img img-thumbnail" hidden/>
+                                <?php }?>
+                            </div>
 						</div>
                         <div class="form-group">
                             <div class="col-lg-offset-3 col-md-6 col-sm-6 col-xs-12">
@@ -189,6 +197,25 @@
 
 
     $(document).ready(function() {
+
+            window.URL = window.URL || window.webkitURL;
+
+           //Aperçu de l'image séléctionné
+
+           $("#img-une").on('change', function () {
+               var file = $(this)[0].files;
+               if (file.length > 0) {
+                   image = file[0];
+                   $("#thumbs").show();
+                   $img = $("#thumbs");
+                   $("#thumbs").attr('src', window.URL.createObjectURL(image));
+                   $("#thumbs").onload = function () {
+                       window.URL.revokeObjectURL(this.src);
+                   }
+               }
+
+           });
+           
             var uploadField = document.getElementById("img-une");
 
             uploadField.onchange = function() {

@@ -69,3 +69,8 @@ function uploadImage($inputname,$destination,$name){
     }
     return $image;
 }
+
+function getExtrait($paragraphe){
+    $split = preg_split("/[.]+/",$paragraphe);
+    return $split[0];
+}

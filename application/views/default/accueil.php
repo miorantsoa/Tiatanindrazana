@@ -66,8 +66,8 @@
             </figure>
             <div class="text">
                 <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
-                <p><?= ($article->extrait)."...</p>"?></p>
-                <div class="meta"><a href="author.html">Niseho ny</a>&nbsp;&nbsp;|&nbsp;&nbsp;<?= reformat($article->datepublication)?>&nbsp;&nbsp;</div>
+                <p><?= getExtrait($article->extrait)."...</p>"?></p>
+                <div class="meta">Niseho ny&nbsp;&nbsp;|&nbsp;&nbsp;<?= reformat($article->datepublication)?>&nbsp;&nbsp;</div>
             </div>
         </div>
         <?php

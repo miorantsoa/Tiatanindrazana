@@ -15,21 +15,9 @@
                         <option value="<?= $category->idcatbeinfo?>"><?= $category->libelle?></option>
                     <?php endforeach;?>
                 </select>
-                <select name="ordre" id="ordre">
-                    <option value="">Fantina amin'ny daty</option>
-                    <option value="DESC">Daty midina</option>
-                    <option value="ASC">Daty miakatra</option>
-                </select>
                 <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
             </form>
         </div>
-            <div class="filtre search-page">
-                <form name="fikarohana" method="post" action="<?= base_url('accueil/filtre_info_utile')?>">
-                    <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
-                    <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
-                    <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
-                </form>
-            </div>
         <?php foreach ($info_util as $beinfo):?>
             <!-- Four -->
             <div class="post clearfix">
