@@ -125,7 +125,69 @@ class UserController extends CI_Controller
             var_dump($this->input->post('motdepasse'));
         }
     }
+    public function addUserback()    {
+          var_dump($_FILES);
+        $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
+        $this->load->library('upload', $config);
+        $lienpdp = null;
+        $lienrectocin =null;
+        $lienversocin = null;
+        $nom = $this->input->post('nomutilisateur');
+        if (!$this->upload->do_upload('lienimagepdp')) {
+            $error = array('error' => $this->upload->display_errors());
+            var_dump($error);
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $lienpdp = 'upload/infouser/' . $data['upload_data']['file_name'];
+        }
+        $config1 = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"rectocin");
+        $this->load->library('upload', $config1);
+        if (!$this->upload->do_upload('lienimagerectocin')) {
+            $error = array('error' => $this->upload->display_errors());
+            var_dump($error);
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $lienrectocin = 'upload/infouser/' . $data['upload_data']['file_name'];
+        }
+        $config2 = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"versocin");
+        $this->load->library('upload', $config2);
+        if (!$this->upload->do_upload('lienimageversocin')) {
+            $error = array('error' => $this->upload->display_errors());
+            var_dump($error);
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            $lienversocin = 'upload/infouser/' . $data['upload_data']['file_name'];
+        }
 
+        $idnewuser = "0";
+        /**INSERT INTO `abonnee`(`idabonnement`, `civilite`, `nomutilisateur`, `prenomutilisateur`, `naissanceutilisateur`, `cin`, `datedelivrancecin`, `lieudelivrancecin`, `liencin_recto`, `liencin_verso`, `emailutilisateur`, `identifiant`, `motdepasse`, `statututilisateur`, `imageprofile`) VALUES (**/
+        /**    $civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile **/
+        if($this->input->post('motdepasse') == $this->input->post('motdepasseverif')) {
+            $this->load->model('abonneemodel');
+            $this->db->trans_start();
+            $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $nom, $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), sha1($this->input->post('motdepasse')), '0', $lienpdp);
+//            var_dump($_REQUEST);die();
+            $today = Date('Y-m-d');
+            $moisabonnement = $this->input->post('tarifabonnement');
+            $jourabonnement = $moisabonnement * 30;
+            $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
+            $temp = $finabonnement->format('Y-m-d');
+            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
+//            $date2['statututilisateur'] = 0;
+//            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
+            $this->db->trans_complete();
+//            redirect('Accueil/Connection');
+            $ip = $this->input->ip_address();
+//            $this->paiement->initPaie(1,10,$nom,"Inscription ".$this->input->post('typeabonnement')." Titan",$ip);
+            redirect('admin/abonnee');
+        }
+        else{
+            var_dump($this->input->post('motdepasse'));
+        }
+    }
     public function desactiver_compte($id){
         desactiver_compte($id);
         redirect('admin/abonnee');

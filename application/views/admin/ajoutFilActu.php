@@ -13,7 +13,7 @@
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                        <input type="hidden" name="idfilactu" value="<?= $id ?>">
+                        <input type="hidden" name="idfilactu" value="<?=(isset($id)) ? $id : null ?>">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
                             </label>
@@ -26,7 +26,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : date('h:i')?>">
+                                <input type="time" name="heurepublication" placeholder="HH:MM" id="fil" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : date('h:m')?>">
                             </div>
                         </div>
                         <!--<div class="form-group">

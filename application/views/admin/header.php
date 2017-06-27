@@ -75,6 +75,8 @@
                         <li><a href="<?= base_url('index.php/admin/abonnee')?>">Abonnée en attente</a></li>
                         <li><a href="<?= base_url('index.php/admin/utilisateur_active')?>">Abonnée activé</a></li>
                         <li><a href="<?= base_url('index.php/admin/utilisateur_expire')?>">Abonnement expiré</a></li>
+                        <li><a href="<?= base_url('index.php/admin/ajouterabonnee')?>">Ajouter nouvelle abonnee</a></li>
+
                       </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>
@@ -83,10 +85,13 @@
                         <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter publicité</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-lightbulb-o"></i>Info Utile|Ilaiko <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-lightbulb-o"></i>Info Utile / Ilaiko <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister info Utile|Ilaiko</a></li>
-                          <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter info Utile|Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister info Utile / Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter info Utile / Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/admin/listecategorieutil')?>">Lister categorie</a></li>
+                          <li><a href="<?= base_url('index.php/admin/addcategorieilaiko')?>">Ajouter categorie</a></li>
+
                       </ul>
                   </li>
                     <li><a><i class="fa fa-newspaper-o"></i> Sondage <span class="fa fa-chevron-down"></span></a>

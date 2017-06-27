@@ -338,6 +338,25 @@ class Admin extends CI_Controller {
         $this->load->model('filactu_model');
         $data['modif'] = $this->filactu_model->getFilActuById($id);
         $data['id'] = $id;
-        $this->adminView('ajoutfilactu',$data);
+        $this->adminView('ajoutFilActu',$data);
+    }
+    public function addcategorieilaiko(){
+        $this->adminView('addcatilaiko');
+    }
+    public function listecategorieutil(){
+        $this->load->model('categorieutilmodel');
+        $data['listecat'] = $this->categorieutilmodel->get();
+        $this->adminView('listecategorieutil',$data);
+    }
+    //updatecateultil
+    public function updatecateultil($id)
+    {
+        $this->load->model('categorieutilmodel');
+        $data['modif'] = $this->categorieutilmodel->getcategorieinfoutileById($id);
+        $data['id'] = $id;
+        $this->adminView('addcatilaiko',$data);
+    }
+    public function  ajouterabonnee(){
+        $this->adminView('addabonee');
     }
 }

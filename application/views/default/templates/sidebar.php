@@ -26,24 +26,6 @@
                     <?php endforeach;?>
                 </div> <!-- End Populars -->
 
-                <div class="widget clearfix">
-                    <div class="best-picture">
-
-                        <div class="header">
-                            <h4>Sarisary zaritena</h4>
-                        </div>
-
-                        <div class="content">
-                            <!-- Photo Galleries -->
-                            <figure class="flexslider loading">
-                                <ul class="slides">
-                                    <li><a href="<?= base_url($sarisary->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
-                                </ul>
-                            </figure>
-                        </div>
-
-                    </div>
-                </div> <!-- End Widget -->
                 <div class="tab-pane" id="tab-recents">
 
                     <?php
@@ -97,10 +79,10 @@
                     </div>
 
                     <div align="center">
-                    <input type="submit" name="submit" value="manaiky" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
+                    <input type="submit" name="submit" value="alefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
                     </div>
                 </form>
-                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy maneo hevitra</a></div>
+                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy naneo hevitra</a></div>
             </div>
 
         </div>
