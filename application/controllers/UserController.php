@@ -125,8 +125,7 @@ class UserController extends CI_Controller
             var_dump($this->input->post('motdepasse'));
         }
     }
-    public function addUserback()    {
-          var_dump($_FILES);
+    public function addUserback(){
         $config = $this->configUpload($this->input->post('nomutilisateur'),$this->input->post('prenomutilisateur'),"pdp");
         $this->load->library('upload', $config);
         $lienpdp = null;
@@ -169,19 +168,15 @@ class UserController extends CI_Controller
             $this->load->model('abonneemodel');
             $this->db->trans_start();
             $idnewuser = $this->abonneemodel->insertUtilisateur($this->input->post('civilite'), $nom, $this->input->post('prenomutilisateur'), $this->input->post('naissanceutilisateur'), $this->input->post('cin'), $this->input->post('datedelivrancecin'), $this->input->post('lieudelivrancecin'), $lienrectocin, $lienversocin, $this->input->post('emailutilisateur'), $this->input->post('identifiant'), sha1($this->input->post('motdepasse')), '0', $lienpdp);
-//            var_dump($_REQUEST);die();
             $today = Date('Y-m-d');
             $moisabonnement = $this->input->post('tarifabonnement');
             $jourabonnement = $moisabonnement * 30;
             $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
             $temp = $finabonnement->format('Y-m-d');
             $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
-//            $date2['statututilisateur'] = 0;
-//            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
+            $payement['idabonnee'] = $idnewuser;
+            $this->abonneemodel->insertInfoPayement($payement);
             $this->db->trans_complete();
-//            redirect('Accueil/Connection');
-            $ip = $this->input->ip_address();
-//            $this->paiement->initPaie(1,10,$nom,"Inscription ".$this->input->post('typeabonnement')." Titan",$ip);
             redirect('admin/abonnee');
         }
         else{
@@ -190,6 +185,11 @@ class UserController extends CI_Controller
     }
     public function desactiver_compte($id){
         desactiver_compte($id);
+        redirect('admin/abonnee');
+    }
+
+    public function delete_compte_vide($id){
+        delete_compte_vide($id);
         redirect('admin/abonnee');
     }
 

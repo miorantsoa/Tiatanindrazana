@@ -48,6 +48,17 @@ function desactiver_compte($id){
     $CI->db->trans_complete();
 }
 
+function delete_compte_vide($id){
+    $CI = & get_instance();
+    $CI->load->model('abonneemodel');
+    $CI->load->model('abonnementmodel');
+    $CI->load->model('adminmodel');
+    $CI->db->trans_start();
+    $CI->abonneemodel->delete_paiement($id);
+    $CI->abonneemodel->delete_abonnee($id);
+    $CI->db->trans_complete();
+}
+
 function uploadImage($inputname,$destination,$name){
      $CI = & get_instance();
      $CI->load->library('upload');

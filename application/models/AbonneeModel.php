@@ -17,10 +17,19 @@ class AbonneeModel extends CI_Model {
         return $this->db->insert_id();
     }
 
+    public function delete_abonnee($id){
+        $this->db->where('idutilisateur2',$id);
+        $this->db->delete('abonnee');
+    }
+
     public function insertInfoPayement($data){
         $this->db->insert('info_payement',$data);
     }
 
+    public function delete_paiement($id){
+        $this->db->where('idabonnee',$id);
+        $this->db->delete('info_payement');
+    }
     public function insertUtilisateur($civilite,$nom,$prenom,$datenaissance,$cin,$dateCin,$lieuCin,$rectoCin,$versoCin,$email,$identifiant,$password,$statuulisateur,$imageprofile){
         $data = array(
             'civilite' => $civilite,

@@ -9,13 +9,13 @@
                 <div class="x_content">
                     <?php
                     $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-                    $lien_action  = (isset($modif)) ? 'filactucontroller/updateFilActu' : 'usercontroller/addUserback';
+                    $lien_action  = (isset($modif)) ? 'usercontroller/addUserback' : 'usercontroller/addUserback';
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <input type="hidden" name="idabonnee" value="<?=(isset($id)) ? $id : null ?>">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Civilte : <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Civilite : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-check">

@@ -23,7 +23,10 @@ class AbonnementModel extends CI_Model{
 
         $this->db->trans_complete();
     }
-
+    public function delete_abonnement($id){
+        $this->db->where('idutilisateur2',$id);
+        $this->db->delete('abonnement');
+    }
     public function update($id, $data){
         $this->db->where('idabonnement',$id);
         $this->db->update('abonnement',$data);

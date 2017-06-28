@@ -51,7 +51,7 @@
                                     <div class="">
                                         <?= ($abonnees[0]->statututilisateur==0) ? "Non actif" : "Actif"?>
                                     </div>
-                                    <a href="<?= ($abonnees[0]->statututilisateur==0) ? base_url('usercontroller/activerCompte/'.$abonnees[0]->idutilisateur2) : ""?>" class="btn btn-info pull-right"><?= ($abonnees[0]->statututilisateur==0) ? "Activer" : "Désactiver"?></a>
+                                    <a href="<?= ($abonnees[0]->statututilisateur==0) ? base_url('usercontroller/activerCompte/'.$abonnees[0]->idutilisateur2) : base_url('usercontroller/desactiver_compte/'.$abonnees[0]->idutilisateur2)?>" class="btn btn-info pull-right"><?= ($abonnees[0]->statututilisateur==0) ? "Activer" : "Désactiver"?></a>
                                 </div>
                             </div>
                         </div>

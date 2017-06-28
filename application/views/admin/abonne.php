@@ -97,6 +97,28 @@
                                     <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
                                     <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Suppression</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Etes-vous sûr de vouloir supprimer cet abonnnée ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="javascript:redirect('<?=base_url('usercontroller/delete_compte_vide/'.$abonnee->idutilisateur2)?>')">Supprimer</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>
