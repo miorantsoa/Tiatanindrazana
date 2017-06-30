@@ -7,8 +7,8 @@
     <meta property="og:url"           content="<?= current_url()?>" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="<?= $titre?>" />
-    <meta property="og:description"   content="<?= ($article) ? $article->extrait : "Tonga soa eto amin'ny tranon-kalan'ny Gazety Tia tanindrazana"?>" />
-    <meta property="og:image"         content="<?= ($article) ? base_url($article->lien_image_une) : ""?>" />
+    <meta property="og:description"   content="<?= (isset($article)) ? $article->extrait : "Tonga soa eto amin'ny tranon-kalan'ny Gazety Tia tanindrazana"?>" />
+    <meta property="og:image"         content="<?= (isset($article)) ? base_url($article->lien_image_une) : ""?>" />
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">

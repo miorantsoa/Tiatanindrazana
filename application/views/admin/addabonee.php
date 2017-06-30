@@ -53,7 +53,6 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Date de naissance : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-
                                 <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
                             </div>
                         </div>

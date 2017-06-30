@@ -185,7 +185,7 @@ class AbonneeModel extends CI_Model {
         return $abonnee->result();
     }
 
-    public function getInfoPayementAbonnee($iduser = null, $civilite = null, $nom = null, $prenom = null, $cin = null, $etat= null){
+    public function getInfoPayementAbonnee($iduser = null, $civilite = null, $nom = null, $prenom = null, $cin = null, $etat= null, $date1=null, $date2=null){
         $this->create_query();
         if($iduser!=null){
             $this->db->where('abonnee.idutilisateur2',$iduser);
@@ -205,6 +205,12 @@ class AbonneeModel extends CI_Model {
         if($etat!= null && $etat!=-1){
             $this->db->where('statututilisateur',$etat);
         }
+        if($date1!=null && $date2!=null)
+            $this->db->where('abonnement.datedebutabonnement BETWEEN "'. date('Y-m-d', strtotime($date1)). '" and "'. date('Y-m-d', strtotime($date2)).'"');
+        if($date1!=null && $date2 == null)
+            $this->db->where('abonnement.datedebutabonnement >= ',date('Y-m-d', strtotime($date1)));
+        if($date1==null && $date2 != null)
+            $this->db->where('abonnement.datedebutabonnement <= ',date('Y-m-d', strtotime($date2)));
         if ($etat == -1){
             $this->db->where('statututilisateur',false);
         }

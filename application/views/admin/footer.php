@@ -10,6 +10,18 @@
       </div>
     </div>
     <script>
+        $(document).ready(function () {
+            $('#datetimepicker').datetimepicker({
+                timepicker:false,
+                format:'Y-m-d',
+                formatDate:'Y-m-d',
+            });
+            $('#datetimepicker2').datetimepicker({
+                timepicker:false,
+                format:'Y-m-d',
+                formatDate:'Y-m-d',
+            });
+        })
         function redirect(url){
             window.location.href = url;
         }

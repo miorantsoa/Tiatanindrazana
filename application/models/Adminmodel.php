@@ -92,6 +92,7 @@ class Adminmodel extends CI_Model{
             $this->db->where('activation_compte.dateactivation <= ',date('Y-m-d', strtotime($date2)));
         $this->db->where('statututilisateur',true);
         $this->db->order_by('dateactivation','desc');
+//        die($this->db->get_compiled_select());
         $reponses = $this->db->get();
         return $reponses->result();
     }

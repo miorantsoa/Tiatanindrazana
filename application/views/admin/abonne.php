@@ -61,13 +61,14 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="cin" placeholder="CIN">
                                 </div>
-                                <div class="form-group">
-                                    <label for="etat">Rubrique</label>
-                                    <select name="etat" id="" class="form-control">
-                                        <option value="">Etat du compte</option>
-                                        <option value="1">Activé</option>
-                                        <option value="0">Désactivé</option>
-                                    </select>
+                                <label for="">Date d'inscription</label>
+                                <div class="form-group has-feedback">
+                                    <input type="text" name="date1" class="form-control has-feedback-right" id="datetimepicker" placeholder="Debut">
+                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Fin" class="form-control has-feedback-right"/>
+                                    <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
                                 </div>
                                 <button type="submit" class="btn btn-info">Filtrer</button>
                             </form>

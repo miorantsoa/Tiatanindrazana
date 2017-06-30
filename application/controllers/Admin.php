@@ -151,9 +151,10 @@ class Admin extends CI_Controller {
         $cin = $this->input->post('cin');
         $civilite = $this->input->post('civilite');
         $etat = -1;
-//        var_dump($_REQUEST);die();
-        if(count($this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat))!=0){
-            $abonnees = $this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat);
+        $date1 = $this->input->post('date1');
+        $date2 = $this->input->post('date2');
+        if(count($this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat, $date1))!=0){
+            $abonnees = $this->abonneemodel->getInfoPayementAbonnee(null,$civilite,$nom,$prenom,$cin,$etat, $date2);
         }
         $data['abonnees'] = $abonnees;
         $this->adminView('abonne',$data);
@@ -202,11 +203,6 @@ class Admin extends CI_Controller {
             $data['abonnees'] = $abonnee;
             $this->adminView('info_utilisateur',$data);
         }
-//        else{
-//            $abonnee = $this->abonneemodel->getAbonnementUtilisateur($id);
-//            $data['abonnees'] = $abonnee;
-//            $this->adminView('info_utilisateur',$data);
-//        }
     }
 	public function editArticle($id){
 	    $this->load->model('articlesmodel');
