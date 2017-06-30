@@ -41,6 +41,18 @@
                             <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
                         </div>
                     <?php }?>
+                    <nav class="nav-pagination">
+                        <ul>
+                            <?php
+                            $nbpage = $this->articlelibrarie->getNbPage(count($total),$per_page);
+                            if($nbpage >1){
+                            for($i = 1; $i<=$nbpage;$i++){?>
+                                <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('accueil/feuilleter_journal/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$filtre['date1'].'/'.$filtre['date2']?>"><?= $i?></a></li>
+                            <?php }?>
+                        </ul>
+                        <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>
+                        <?php }?>
+                    </nav> <!-- End Nav-Pagination -->
                 </div>
             </div>
         </div>

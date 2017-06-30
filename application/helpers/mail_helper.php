@@ -6,7 +6,7 @@
  * Time: 10:43
  */
 function send($to,$sujet,$message){
-    $from = "miorantsoa.apsesame2013@gmail.com";
+    $from = "noreply@tiatanindrazana.com";
     $CI = & get_instance();
     $config = Array(
         'mailtype'  => 'html',
@@ -34,6 +34,11 @@ function send_confirmation($id_user){
         $message .="<p>Voici vos information de connexion : </p>";
         $message .="<p>Email : ".$to."</p>";
         $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
+        $message .="<p>Pour acceder a votre compte veuiller vous rendre sur:</p>";
+        $message .="<p><a href='<?= base_url('accueil/connection')?>'>http://www.tiatanindrazana.com/v2/accueil/connection</a></p>";
+        $message .="<p>-------------------------------</p>";
+        $message .="<p>Cordialement</p>";
+        $message .="<p>Siege Vidy varotra Soanerana</p>";
         send($to,$sujet, $message);
     }
 }

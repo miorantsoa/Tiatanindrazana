@@ -77,7 +77,6 @@ class Accueil extends CI_Controller{
         return $data;
     }
     public function resultvote($vote){
-    //    var_dump($vote);
         $totalvote = 0;
         foreach ($vote as $votet) :
             $totalvote = $totalvote + $votet->nbrvote;
@@ -115,14 +114,15 @@ class Accueil extends CI_Controller{
         $interval = date_diff(date_create(($articles[0]->datepublication)),date_create(date('Y-m-d')))->format('%a');
         if (count($articles) != 0) {
             if($this->session->userdata('user') || $interval >=2 || $articles[0]->niveau <= 1) {
-                    $article = $articles[0];
-                    $comment = $this->commentairemodel->get(null, $id);
-                    $data['commentaire'] = $comment;
-                    $lie = $this->articlesmodel->get(null, null, $article->idcategorie);
-                    $data['article_lie'] = $lie;
-                    $data['article'] = $article;
-                    $data['titre'] = $article->titre . " : Tia Tanindrazana";
-                    $this->homeView('detail', $data, $data);
+                $this->session->set_userdata('last_page', current_url());
+                $article = $articles[0];
+                $comment = $this->commentairemodel->get(null, $id);
+                $data['commentaire'] = $comment;
+                $lie = $this->articlesmodel->get(null, null, $article->idcategorie);
+                $data['article_lie'] = $lie;
+                $data['article'] = $article;
+                $data['titre'] = $article->titre . " : Tia Tanindrazana";
+                $this->homeView('detail', $data, $data);
             }
             else{
                 $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
@@ -137,6 +137,7 @@ class Accueil extends CI_Controller{
     }
 
     public function detail_categorie($id,$page = 1,$limit = 0,$q=null,$date1=null,$date2=null){
+        $this->session->set_userdata('last_page', current_url());
         $data = $this->indexData();
         $query = $this->input->post('recherche');
         if($q!=null){
@@ -165,7 +166,6 @@ class Accueil extends CI_Controller{
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
             $per_page = 5;
-            //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$start,$ordre='DESC',$idjournal=null
             $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'));
             $data['results'] = $resultats;
             $data['limit'] = $limit;
@@ -191,39 +191,44 @@ class Accueil extends CI_Controller{
         }
     }
     public function list_sarisary($id,$q=null,$date1=null,$date2=null){
-        $data = $this->indexData();
-        $query = $this->input->post('recherche');
-        if($q!=null){
-            $query = $q;
-        }
-        if($q == "-"){
-            $query = null;
-        }
-        $date_1 = $this->input->post('date1');
-        $date_2 = $this->input->post('date2');
-        if($date1!=null){
-            $date_1 = $date1;
-        }
-        if($date2!=null){
-            $date_2 = $date2;
-        }
-        $sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
-        $rubrique =$this->rubrique_model->getRubriqueById($id);
-        if(count($rubrique)!=0) {
-            $rubrique = $rubrique[0];
-            $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
-            $data['categorie'] = $rubrique;
-            $data['sarisary'] = $sarisary;
-            $data['sous_rubrique'] = $sous_rubrique;
-            $data['titre'] = $rubrique->libelle . " : Tia Tanindrazana";
-            $this->load->view('default/templates/header', $data);
-            $this->load->view('default/detailsarisary', $data);
-            $this->load->view('default/templates/footer');
+        if ($this->session->userdata('user')) {
+            $data = $this->indexData();
+            $query = $this->input->post('recherche');
+            if ($q != null) {
+                $query = $q;
+            }
+            if ($q == "-") {
+                $query = null;
+            }
+            $date_1 = $this->input->post('date1');
+            $date_2 = $this->input->post('date2');
+            if ($date1 != null) {
+                $date_1 = $date1;
+            }
+            if ($date2 != null) {
+                $date_2 = $date2;
+            }
+            $sarisary = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, null, null, $this->input->post('ordre'), true);
+            $rubrique = $this->rubrique_model->getRubriqueById($id);
+            if (count($rubrique) != 0) {
+                $rubrique = $rubrique[0];
+                $sous_rubrique = $this->rubrique_model->getSousCategorieByIdMere(10);
+                $data['categorie'] = $rubrique;
+                $data['sarisary'] = $sarisary;
+                $data['sous_rubrique'] = $sous_rubrique;
+                $data['titre'] = $rubrique->libelle . " : Tia Tanindrazana";
+                $this->load->view('default/templates/header', $data);
+                $this->load->view('default/detailsarisary', $data);
+                $this->load->view('default/templates/footer');
+            } else {
+                $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+                $erreur['message'] = "";
+                $this->load->view('errors/html/error_404', $erreur);
+            }
         }
         else{
-            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
-            $erreur['message'] = "";
-            $this->load->view('errors/html/error_404',$erreur);
+            $this->session->set_flashdata('erreur',"Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
+            redirect($this->session->userdata('last_page'));
         }
     }
     public function contact(){
@@ -235,15 +240,9 @@ class Accueil extends CI_Controller{
     }
 
     /***Fueilleter journal*/
-    public function feuilleter_journal($q=null,$date1=null,$date2=null){
+    public function feuilleter_journal($page = 1,  $start = 0,$date1=null,$date2=null){
+        $this->session->set_userdata('last_page', current_url());
         $data = $this->indexData();
-        $query = $this->input->post('recherche');
-        if($q!=null){
-            $query = $q;
-        }
-        if($q == "-"){
-            $query = null;
-        }
         $date_1 = $this->input->post('date1');
         $date_2 = $this->input->post('date2');
         if($date1!=null){
@@ -264,12 +263,21 @@ class Accueil extends CI_Controller{
         else{
             $ordre = $this->input->post('ordre');
         }
-        //$sarisary =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),true);
+        $per_page = 12;
         $data['titre'] = "Hamaky gazety : Tia Tanindrazana";
         $data['last'] = $this->feuillejournalmodel->getLast();
         //$idfeuille=null,$date1="",$date2="",$limit=null,$start=null,$order="desc"
-        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date_2,null,null,$ordre);
+        $total = $this->feuillejournalmodel->get(null,$date_1,$date_2);
+        $gazety = $this->feuillejournalmodel->get(null,$date_1,$date_2,$per_page,$start,$ordre);
         $data['gazety'] = $gazety;
+        $data['total'] = $total;
+        $data['start'] = $start;
+        $data['per_page'] = $per_page;
+        $data['page'] = $page;
+        $data['filtre'] = array(
+            'date1' => $date1,
+            'date2' => $date2
+        );
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/feuilleter_journal',$data);
         $this->load->view('default/templates/footer');
@@ -321,9 +329,10 @@ class Accueil extends CI_Controller{
 
     public function detail_info_utile($id){
         $data = $this->indexData();
-        $info_util = $this->infoutilemodel->get($id,null,null,null,null,null,null,null,true);
         if ($this->session->userdata('user')) {
+            $info_util = $this->infoutilemodel->get($id,null,null,null,null,null,null,null,true);
             if (count($info_util) != 0) {
+                $this->session->set_userdata('last_page', current_url());
                 //$id=null,$titre=null,$idcategorie=null,$contenu=null,$ordre='DESC',$date1=null,$date2=null
                 $data['associe'] = $this->infoutilemodel->get(null, null, $info_util[0]->idcatbeinfo);
                 $data['titre'] = $info_util[0]->titre . " : Tia Tanindrazana";
@@ -341,7 +350,7 @@ class Accueil extends CI_Controller{
         }
     }
     public function filtre_info_utile(){
-        
+        $this->session->set_userdata('last_page', current_url());
         $data = $this->indexData();
         $data['titre'] = "Ilaiko | Info util : Tia Tanindrazana";
         $data['categories'] = $this->infoutilemodel->getCategorie(1);
@@ -383,39 +392,20 @@ class Accueil extends CI_Controller{
     
     public function detail_filactu($date=null){
         $data = $this->indexData();
-        $interval = date_diff(date_create(($date)),date_create(date('Y-m-d')))->format('%a');
         $this->session->set_userdata('last_page', current_url());
-        if($this->session->userdata('user') || $interval >= 2) {
-            if ($date != null) {
-                $fil_actu = $this->filactu_model->getByDate($date);
-                $data['detail_fil'] = $fil_actu;
-                $data['titre'] = "Faham-baovao ny " . $date;
-            }
+        if ($date != null) {
+            $fil_actu = $this->filactu_model->getByDate($date);
+            $data['detail_fil'] = $fil_actu;
+            $data['titre'] = "Faham-baovao ny " . $date;
             $data['titre'] = "Faham-baovao : Tia Tanindrazana";
             $this->homeView('detail_fil_info', $data, $data);
         }
         else{
-            $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
-            redirect('accueil');
+            $erreur['heading'] = "Tsy misy ny pejy notadiavinao";
+            $erreur['message'] = "";
+            $this->load->view('errors/html/error_404',$erreur);
         }
     }
-
-    
-//    public function archive($q = null ,$date1 = null, $date2 = null, $limit = null , $numparution = null){
-//
-//        $data = $this->indexData();
-//        //$id,$numparution,$date1,$date2
-//        $data['titre'] = "Archive : Tia Tanindrazana";
-//        $journal = $this->journal->get(null,$numparution,$date1,$date2);
-//        $last_journal = $this->journal->getLastJournal();
-//        if(count($last_journal)!=0){
-//            $data['last_journal'] = $last_journal[0];
-//        }
-//        $data['archive'] = $journal;
-//        $this->load->view('default/templates/header',$data);
-//        $this->load->view('default/archive',$data);
-//        $this->load->view('default/templates/footer');
-//    }
     public function detailjournal($id){
         $data = $this->indexData();
         $gazety = $this->articlesmodel->getArticlesByJournal($id,false);//Tous les articles sauf la une
@@ -539,15 +529,6 @@ class Accueil extends CI_Controller{
                 $this->session->set_flashdata('message', $message);
                 redirect($this->session->userdata('last_page'));
             }
-//            $data = $this->indexData();
-//            $data['article_lie'] = $this->articlesmodel->getByRubrique($article->idcategorie);
-//            $data['article'] = $article;
-//            $data['titre'] =  $article->titre." : Tia Tanindrazana";
-//            $this->homeView('detail',$data,$data);
-//            $message = "Tsy afaka manao an'io operation io ianao";
-//            $data['message'] = $message;
-//            //redirection vers la page de l'article
-//            $this->homeView('detail',$data,$data);
         }
         else{
             $this->session->set_flashdata('erreur', "Raha te hijery an'io pejy io ianao dia misafidiana tolotra hafa");
@@ -607,6 +588,7 @@ class Accueil extends CI_Controller{
     public function payement(){
         $data = array();
         $this->load->model('abonnementmodel');
+        $test_email = $this->abonneemodel->getUserByEmail($this->input->post('emailutilisateur'));
         $data['civilite'] = $this->input->post('civilite');
         $data['nomutilisateur'] = $this->input->post('nomutilisateur');
         $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
@@ -614,13 +596,23 @@ class Accueil extends CI_Controller{
         $data['cin'] = $this->input->post('cin');
         $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
         $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
-        $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
-        $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
         $data['emailutilisateur'] = $this->input->post('emailutilisateur');
         $data['identifiant'] = $this->input->post('identifiant');
         $data['motdepasse'] = sha1($this->input->post('motdepasse'));
         $data['statututilisateur'] = 0;
-        $data['imageprofile'] = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')['path'];
+        if(count($test_email)!=0){
+            $this->session->set_flashdata('info_abonnee',array('user'=>$data,'message'=>"Efa misy mampiasa ny adiresy mailaka nosafidinao"));
+            redirect('accueil/inscription');
+        }
+        if(uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')) {
+            $data['imageprofile'] = uploadImage('lienimagepdp', 'upload/infouser', $this->input->post('identifiant') . '-' . 'profile')['path'];
+        }
+        if(uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')) {
+            $data['liencin_recto'] = uploadImage('lienimagerectocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'rectocin')['path'];
+        }
+        if(uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')) {
+            $data['liencin_verso'] = uploadImage('lienimageversocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'versocin')['path'];
+        }
         $abonnement = array();
         $abonnement['type']=$this->input->post('typeabonnement');
         $abonnement['debut'] = Date('Y-m-d');
@@ -637,7 +629,6 @@ class Accueil extends CI_Controller{
         }
         $this->session->set_userdata('info_user',$data);
         $this->session->set_userdata('abonnement',$abonnement);
-//        var_dump($data, $abonnement,$abo);
         $this->load->view('default/payement',$abo);
     }
 
@@ -691,6 +682,28 @@ class Accueil extends CI_Controller{
         $this->db->query('update tarifabonnement set prixabonnement =15000 where durreeabonnement = 3');
         $this->db->query('update tarifabonnement set prixabonnement =32500 where durreeabonnement = 6');
         $this->db->query('update tarifabonnement set prixabonnement =60000 where durreeabonnement = 12');
+        $this->db->trans_complete();
+        echo "Opération effecué";
+    }
+
+    public function update_view(){
+        $this->db->trans_start();
+        $this->db->query('drop view sous_categorie');
+        $this->db->query('
+        CREATE VIEW `sous_categorie` AS
+          SELECT
+            `categorie`.`idcategorie` AS `idcategorie`,
+            `categorie`.`libelle`     AS `libelle`,
+            `categorie`.`niveau`      AS `niveau`,
+            `categorie`.`rang_cat`    AS `rang_cat`,
+            `categorie_mere`.`idcategorie`            AS `idmere`,
+            `categorie_mere`.`libelle`                AS `catmere`
+          FROM ((`categorie`
+            JOIN `assoc_sous_categorie`
+              ON ((`categorie`.`idcategorie` = `assoc_sous_categorie`.`idcategorie2`))) JOIN
+            `categorie_mere`
+              ON ((`assoc_sous_categorie`.`idcategorie1` = `categorie_mere`.`idcategorie`)))
+        ');
         $this->db->trans_complete();
         echo "Opération effecué";
     }

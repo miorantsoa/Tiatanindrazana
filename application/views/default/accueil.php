@@ -25,17 +25,6 @@
                 <?php }?>
             </ul>
         </div> <!-- End Home-Slider-Gallery -->
-
-        <!--<div class="flexslider loading home-slider3-carousel">
-            <ul class="slides">
-                <li><img src="<?= base_url()?>/assets/default/images/content/300/1.jpg" alt="Thumbnail 1" title="Alvear Art Black and White Theme" /></li>
-                <li><img src="<?= base_url()?>/assets/default/images/content/300/2.jpg" alt="Thumbnail 2" title="Camerette - Your Time to Explore" /></li>
-                <li><img src="<?= base_url()?>/assets/default/images/content/300/3.jpg" alt="Thumbnail 3" title="Living Room in Italy" /></li>
-                <li><img src="<?= base_url()?>/assets/default/images/content/300/4.jpg" alt="Thumbnail 4" title="Mosaic Pool is Amazing And Beautiful Place" /></li>
-                <li><img src="<?= base_url()?>/assets/default/images//content/300/9.jpg" alt="Thumbnail 5" title="Platform House with Minimal Design" /></li>
-            </ul>
-        </div> <!-- End Home-Slider-Carousel -->
-
     </div> <!-- End Home-Slider3 -->
 
     <div class="headlines clearfix">
@@ -67,7 +56,10 @@
             <div class="text">
                 <h2><a href="<?= base_url('article/'.$article->url_tag)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
                 <p><?= getExtrait($article->extrait)."...</p>"?></p>
-                <div class="meta">Niseho ny&nbsp;&nbsp;|&nbsp;&nbsp;<?= reformat($article->datepublication)?>&nbsp;&nbsp;</div>
+                <div class="meta">
+                    <span class="pull-left">Niseho ny&nbsp;&nbsp;|&nbsp;&nbsp;<?= reformat($article->datepublication)?></span>&nbsp;&nbsp;
+                    <span class="pull-right"><a href="<?= base_url('article/'.$article->url_tag)?>">Hamaky ny tohiny...</a></span>
+                </div>
             </div>
         </div>
         <?php

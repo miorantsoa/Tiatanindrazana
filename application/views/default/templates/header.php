@@ -2,41 +2,13 @@
 <head>
     <!-- Your Basic Site Informations -->
     <title><?= $titre?></title>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <meta name="description" content="Enews is a news or magazine site template that built with very cool responsive template with clean design, fast load, seo friendly, beauty color and a slew of features." />
-    <meta name="keywords" content="Site Template, News, Magazine, Portofolio, HTML, CSS, jQuery, Newsletter, PHP Contact, Subscription, Responsive, Marketing, Clean, SEO" />
-    <meta name="author" content="Dots Theme" />
-
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta property="og:url"           content="<?= base_url('accueil')?>" />
+    <meta property="og:url"           content="<?= current_url()?>" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Tia Tanindrazana" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
-
-    <!-- Stylesheets-->
-    <!--<link rel="stylesheet" href="<?/*= base_url('assets/default/css/flexslider.css')*/?>">
-    <link rel="stylesheet" href="<?/*= base_url('assets/default/css/prettyPhoto.css')*/?>">
-    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/jquery.modal.min.css">
-
-    <link rel="stylesheet" href="<?/*= base_url('assets/default/css/bootstrap-responsive.min.css')*/?>">
-    <link rel="stylesheet" type="text/css" href="<?/*= base_url('assets/admin/css/font-awesome.min.css')*/?>">
-
-    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/color.css">
-    <link rel="stylesheet" href="<?/*= base_url()*/?>assets/default/css/style.css">
-    <link rel="shortcut icon" href="<?/*= base_url()*/?>/assets/default/images/favicon.ico">
-    <link rel="apple-touch-icon" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?/*= base_url()*/?>/assets/default/images/apple-touch-icon-114x114.png">-->
-    <!--<link rel="stylesheet" href="<?/*= base_url('assets/default/css/prettyPhoto.css')*/?>">
-    <link href="<?/*= base_url('assets/admin/css/jquery.datetimepicker.css')*/?>" rel="stylesheet">
-
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="<?/*= base_url('assets/default/css/app.css')*/?>">-->
+    <meta property="og:title"         content="<?= $titre?>" />
+    <meta property="og:description"   content="<?= ($article) ? $article->extrait : "Tonga soa eto amin'ny tranon-kalan'ny Gazety Tia tanindrazana"?>" />
+    <meta property="og:image"         content="<?= ($article) ? base_url($article->lien_image_une) : ""?>" />
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/default/css/bootstrap-responsive.min.css')?>">

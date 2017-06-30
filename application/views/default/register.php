@@ -23,7 +23,7 @@
                     $lien_action = 'accueil/payement';
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
-            <form id="enews-contact-form" method="post" action="#" data-parsley-validate="">
+            <form>
                 <fieldset>
                     <legend>Ny momba anao :</legend>
                     <div class="form-group">
@@ -224,9 +224,6 @@
             return $.ajax('<?= base_url("usercontroller/verifierMail?email=")?>'+ value)
         },
         messages: {fr: 'Efa misy mampiasa io mailaka io!'}
-    });
-    Parsley.on('form:submit', function() {
-        return false; // Don't submit form for this demo
     });
     $(document).ready(function () {
         $('#datetnaissance').datetimepicker({

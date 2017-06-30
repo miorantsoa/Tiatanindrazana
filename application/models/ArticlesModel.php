@@ -280,9 +280,7 @@ class ArticlesModel extends CI_Model {
             $this->db->where('journal.idjournal',$idjournal);
         }
         if($titre!=null && $contenu!=null && $resume!=null){
-            $this->db->like('article.titre',$titre);
-            $this->db->or_like('article.contenue',$contenu);
-            $this->db->or_like('article.resume',$resume);
+            $this->db->where("(article.titre LIKE '%$titre%' OR article.contenue LIKE '%$contenu%' OR article.resume LIKE '%$resume%')");
         }
         if($titre != null && $contenu==null && $resume==null)
             $this->db->like('article.titre',$titre);
