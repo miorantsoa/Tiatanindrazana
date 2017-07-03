@@ -9,7 +9,7 @@
                 <div class="x_content">
                     <?php
                     $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-                    $lien_action  = (isset($modif)) ? 'filactucontroller/updateFilActu' : 'usercontroller/addUserback';
+                    $lien_action  = (isset($modif)) ? 'usercontroller/updateFilActu' : 'usercontroller/addUserback';
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">

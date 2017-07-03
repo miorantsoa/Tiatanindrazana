@@ -277,6 +277,58 @@ class UserController extends CI_Controller
         $this->session->set_userdata('user',$temp);
         redirect('Accueil/monCompte');
     }
+    public function updateInfoUserBack(){
+
+        if ($this->input->post('civilite')!=""){
+            $Data['civilite']=$this->input->post('civilite');
+        }
+        if ($this->input->post('nomutilisateur')!=""){
+            $Data['nomutilisateur']=$this->input->post('nomutilisateur');
+        }
+        if ($this->input->post('prenomutilisateur')!=""){
+            $Data['prenomutilisateur']=$this->input->post('prenomutilisateur');
+        }
+        if ($this->input->post('naissanceutilisateur')!=""){
+            $Data['naissanceutilisateur']=$this->input->post('naissanceutilisateur');
+        }
+        if ($this->input->post('cin')!=""){
+            $Data['cin']=$this->input->post('cin');
+        }
+        if ($this->input->post('datedelivrancecin')!=""){
+            $Data['datedelivrancecin']=$this->input->post('datedelivrancecin');
+        }
+        if ($this->input->post('lieudelivrancecin')!=""){
+            $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
+        }
+        $liencinrecto = uploadImage('lienimagerectocin','upload/infouser','recto-cin-'.$this->input->post('identifiant'));
+        if ($liencinrecto!=null) {
+            $Data['liencin_recto'] = $liencinrecto['path'];
+        }
+
+        $lienverso = uploadImage('lienimageversocin','upload/infouser','verso-cin-'.$this->input->post('identifiant'));
+
+        if($lienverso!=null){
+            $Data['liencin_verso']=$lienverso['path'];
+        }
+        if ($this->input->post('emailutilisateur')!=""){
+            $Data['emailutilisateur']=$this->input->post('emailutilisateur');
+        }
+        if ($this->input->post('identifiant')!=""){
+            $Data['identifiant']=$this->input->post('identifiant');
+        }
+
+        $lienprofile = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant'));
+
+        if($lienprofile!=null){
+            $Data['imageprofile']=$lienprofile['path'];
+        };
+        $this->load->model('abonneemodel');
+        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $this->abonneemodel->updateUtilisateur($id,$Data);
+        $temp = $this->abonneemodel->getAbonneeAbonnementById($id);
+        $this->session->set_userdata('user',$temp);
+        redirect('admin/abonnee');
+    }
 
     public function modifiermotdepasse(){
         $Data = array(

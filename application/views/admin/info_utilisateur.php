@@ -33,9 +33,7 @@
                                     <div class="col-md-8">
                                         <h3><?= $abonnees[0]->nomutilisateur." ".$abonnees[0]->prenomutilisateur?></h3>
                                         <ul class="list-unstyled user_data">
-                                            <li><i></i> Né le <?= reformat($abonnees[0]->naissanceutilisateur)?></li>
-                                            <li><i></i> N° CIN : <?= $abonnees[0]->cin?></li>
-                                            <li><i></i> Livré le <?= reformat($abonnees[0]->datedelivrancecin)?> à <?= $abonnees[0]->lieudelivrancecin?></li>
+                                            <li><i></i> Mail : <?= $abonnees[0]->emailutilisateur	?></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -84,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+       <!--             <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
@@ -92,7 +90,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <img src="<?= base_url($abonnees[0]->liencin_recto) ?>" alt="" class="img img-thumbnail">
+                                    <img src="<?// base_url($abonnees[0]->liencin_recto) ?>" alt="" class="img img-thumbnail">
                                 </div>
                             </div>
                         </div>
@@ -103,11 +101,11 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <img src="<?= base_url($abonnees[0]->liencin_verso) ?>" alt="" class="img img-thumbnail">
+                                    <img src="<?// base_url($abonnees[0]->liencin_verso) ?>" alt="" class="img img-thumbnail">
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

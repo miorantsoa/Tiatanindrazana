@@ -603,11 +603,11 @@ class Accueil extends CI_Controller{
         $data['nomutilisateur'] = $this->input->post('nomutilisateur');
         $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
         $data['naissanceutilisateur'] =  $this->input->post('naissanceutilisateur');
-        $data['cin'] = $this->input->post('cin');
-        $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
-        $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
-        $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
-        $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
+ //       $data['cin'] = $this->input->post('cin');
+  //      $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
+  //      $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
+ //       $data['liencin_recto'] = uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')['path'];
+ //       $data['liencin_verso'] = uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')['path'];
         $data['emailutilisateur'] = $this->input->post('emailutilisateur');
         $data['identifiant'] = $this->input->post('identifiant');
         $data['motdepasse'] = sha1($this->input->post('motdepasse'));
