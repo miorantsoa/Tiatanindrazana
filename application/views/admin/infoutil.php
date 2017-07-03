@@ -14,14 +14,14 @@
                     <div class="x_title">
                         <h2>Liste Ilaiko | Info Utile</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a href="<?= base_url('admin/ajoutInfoUtile')?>"><i class="fa fa-plus-circle"></i>Nouveau info utile</a>
+                            <li><a href="<?= base_url('page/administration/ajoutInfoUtile')?>"><i class="fa fa-plus-circle"></i>Nouveau info utile</a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <form action="<?= base_url('admin/infoutile')?>" method="get">
+                            <form action="<?= base_url('page/administration/infoutile')?>" method="get">
                                 <div class="form-group has-feedback">
                                     <input type="text" name="date" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date création, date modification">
                                     <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
@@ -73,7 +73,7 @@
                                     </th>
                                     <th>
                                         <div class="btn btn-group-xs" role="group" aria-label="...">
-                                            <a href="<?=base_url('index.php/admin/editinfoutile/'.$info->idbeinfo)?>">
+                                            <a href="<?=base_url('index.php/page/administration/editinfoutile/'.$info->idbeinfo)?>">
                                                 <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                             </a>
                                             <a href="<?=base_url('index.php/infoutilecontroller/deleteInfoUtile/'.$info->idbeinfo)?>">

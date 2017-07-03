@@ -35,7 +35,7 @@
                     <div class="x_content">
                         <div class="row">
                             <div class="col-sm-4">
-                                <form action="<?= base_url('admin/feuillejournal')?>" method="get">
+                                <form action="<?= base_url('page/administration/feuillejournal')?>" method="get">
                                     <div class="form-group has-feedback">
                                         <input type="text" name="date" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution">
                                         <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
@@ -51,7 +51,7 @@
                                     <img class="img img-thumbnail" src="<?= base_url($journal->cheminmedia) ?>" alt="Test fotsiny">
                                     <div class="btn btn-group">
                                         <a href="<?= base_url('journalcontroller/deleteFeuille/'.$journal->idmedia)?>" class="btn btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
-                                        <a href="<?= base_url('admin/editSingleImage/'.$journal->idmedia)?>" type="button"  class="btn btn-info"><i class="fa fa-edit"></i> Modifier</a>
+                                        <a href="<?= base_url('page/administration/editSingleImage/'.$journal->idmedia)?>" type="button"  class="btn btn-info"><i class="fa fa-edit"></i> Modifier</a>
                                     </div>
                                 </div>
                             <?php endforeach;?>

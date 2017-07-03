@@ -43,7 +43,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <form action="<?= base_url('admin/utilisateur_active')?>" method="post">
+                            <form action="<?= base_url('page/administration/utilisateur_active')?>" method="post">
                                 <div class="form-group">
                                     <label for="civilite">Civilite</label>
                                     <select name="civilite" id="" class="form-control">
@@ -94,7 +94,7 @@
                                     <td><?= $abonnee->prenomutilisateur?></td>
                                     <td><?= $abonnee->nom.' '.$abonnee->prenom?></td>
                                     <td><?= reformat($abonnee->dateactivation)?></td>
-                                    <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
+                                    <td><a href="<?= base_url('page/administration/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>

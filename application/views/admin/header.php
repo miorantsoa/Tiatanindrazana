@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?= base_url('admin')?>" class="site_title"><i class="fa fa-paw"></i> <span>Tia Tanindrazana</span></a>
+              <a href="<?= base_url('page/administration')?>" class="site_title"><i class="fa fa-paw"></i> <span>Tia Tanindrazana</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -47,58 +47,58 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-edit"></i>Journal<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    	<li><a href="<?= base_url('index.php/admin/journal')?>">Tous les journaux</a></li>
-                        <li><a href="<?= base_url('admin/feuillejournal')?>"><i class="fa fa-sheet"></i>Feuilles journal</a></li>
-                        <li><a href="<?= base_url('index.php/admin/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
+                    	<li><a href="<?= base_url('index.php/page/administration/journal')?>">Tous les journaux</a></li>
+                        <li><a href="<?= base_url('page/administration/feuillejournal')?>"><i class="fa fa-sheet"></i>Feuilles journal</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/ajoutFeuilleJournal')?>">Ajout feuilleter journal</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Articles <span class="fa fa-chevron-down"></span></a>
                   	<ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/articles')?>">Tous les articles</a></li>
-                    	<li><a href="<?= base_url('index.php/admin/ajoutArticles')?>">Créer un article</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/articles')?>">Tous les articles</a></li>
+                    	<li><a href="<?= base_url('index.php/page/administration/ajoutArticles')?>">Créer un article</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i>Rubrique<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/rubrique')?>">Tous les rubriques</a></li>
-                      	<li><a href="<?= base_url('index.php/admin/ajoutRubrique')?>">Créer un rubrique</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/rubrique')?>">Tous les rubriques</a></li>
+                      	<li><a href="<?= base_url('index.php/page/administration/ajoutRubrique')?>">Créer un rubrique</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-rss"></i>Fil d'actualités<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/filactu')?>">Lister Fil d'actualités</a></li>
-                      <li><a href="<?= base_url('index.php/admin/ajoutFilActu')?>">Ajouter Fil d'actualité</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/filactu')?>">Lister Fil d'actualités</a></li>
+                      <li><a href="<?= base_url('index.php/page/administration/ajoutFilActu')?>">Ajouter Fil d'actualité</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Abonnées<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="<?= base_url('index.php/admin/abonnee')?>">Abonnée en attente</a></li>
-                        <li><a href="<?= base_url('index.php/admin/utilisateur_active')?>">Abonnée activé</a></li>
-                        <li><a href="<?= base_url('index.php/admin/utilisateur_expire')?>">Abonnement expiré</a></li>
-                        <li><a href="<?= base_url('index.php/admin/ajouterabonnee')?>">Ajouter nouvelle abonnee</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/abonnee')?>">Abonnée en attente</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/utilisateur_active')?>">Abonnée activé</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/utilisateur_expire')?>">Abonnement expiré</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/ajouterabonnee')?>">Ajouter nouvelle abonnee</a></li>
 
                       </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Publicité<span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                         <li><a href="<?= base_url('index.php/admin/publicite')?>">Lister publicité</a></li>
-                        <li><a href="<?= base_url('index.php/admin/ajoutPub')?>">Ajouter publicité</a></li>
+                         <li><a href="<?= base_url('index.php/page/administration/publicite')?>">Lister publicité</a></li>
+                        <li><a href="<?= base_url('index.php/page/administration/ajoutPub')?>">Ajouter publicité</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-lightbulb-o"></i>Info Utile / Ilaiko <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                          <li><a href="<?= base_url('index.php/admin/infoutile')?>">Lister info Utile / Ilaiko</a></li>
-                          <li><a href="<?= base_url('index.php/admin/ajoutInfoUtile')?>">Ajouter info Utile / Ilaiko</a></li>
-                          <li><a href="<?= base_url('index.php/admin/listecategorieutil')?>">Lister categorie</a></li>
-                          <li><a href="<?= base_url('index.php/admin/addcategorieilaiko')?>">Ajouter categorie</a></li>
+                          <li><a href="<?= base_url('index.php/page/administration/infoutile')?>">Lister info Utile / Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/page/administration/ajoutInfoUtile')?>">Ajouter info Utile / Ilaiko</a></li>
+                          <li><a href="<?= base_url('index.php/page/administration/listecategorieutil')?>">Lister categorie</a></li>
+                          <li><a href="<?= base_url('index.php/page/administration/addcategorieilaiko')?>">Ajouter categorie</a></li>
 
                       </ul>
                   </li>
                     <li><a><i class="fa fa-newspaper-o"></i> Sondage <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<?= base_url('index.php/admin/listesondage')?>">Tous les sondages</a></li>
-                            <li><a href="<?= base_url('index.php/admin/resultatsondage')?>">Resultats sondage</a></li>
-                            <li><a href="<?= base_url('index.php/admin/addsondage')?>">Ajouter sondage</a></li>
+                            <li><a href="<?= base_url('index.php/page/administration/listesondage')?>">Tous les sondages</a></li>
+                            <li><a href="<?= base_url('index.php/page/administration/resultatsondage')?>">Resultats sondage</a></li>
+                            <li><a href="<?= base_url('index.php/page/administration/addsondage')?>">Ajouter sondage</a></li>
                         </ul>
                     </li>
                 </ul>

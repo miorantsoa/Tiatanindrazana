@@ -177,7 +177,7 @@ class UserController extends CI_Controller
             $payement['idabonnee'] = $idnewuser;
             $this->abonneemodel->insertInfoPayement($payement);
             $this->db->trans_complete();
-            redirect('admin/abonnee');
+            redirect('page/administration/abonnee');
         }
         else{
             var_dump($this->input->post('motdepasse'));
@@ -185,12 +185,12 @@ class UserController extends CI_Controller
     }
     public function desactiver_compte($id){
         desactiver_compte($id);
-        redirect('admin/abonnee');
+        redirect('page/administration/abonnee');
     }
 
     public function delete_compte_vide($id){
         delete_compte_vide($id);
-        redirect('admin/abonnee');
+        redirect('page/administration/abonnee');
     }
 
 
@@ -212,7 +212,7 @@ class UserController extends CI_Controller
         $this->insert_activation($idUtilisateur);
         $this->db->trans_complete();
         send_confirmation($idUtilisateur);
-        redirect('admin/abonnee');
+        redirect('page/administration/abonnee');
     }
 
     
@@ -229,7 +229,7 @@ class UserController extends CI_Controller
             $this->session->set_flashdata('erreur',array(
                 'message'=>"Veuillez vous connecter d'abord",
             ));
-            redirect('admin','refresh');
+            redirect('page/administration','refresh');
         }
 
     }

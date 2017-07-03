@@ -7,19 +7,49 @@
 <head>
     <meta name="viewport" content="width = 1050, user-scalable = no" />
     <title><?= $titre?></title>
+    <style>
+        .zoom:after {
+            content:'';
+            display:block;
+            width:33px;
+            height:33px;
+            position:absolute;
+            top:0;
+            right:0;
+            background:url('<?= base_url('assets/default/images/icon.png')?>');
+        }
+
+        .zoom img {
+            display: block;
+        }
+
+        .zoom img::selection { background-color: transparent; }
+    </style>
     <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/default/js/modernizr.2.5.3.min.js')?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/default/js/zoom.js')?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/default/js/jquery.zoom.min.js')?>"></script>
+    <script>
+        $(document).ready(function(){
+            $('.el').zoom();
+            $('#ex2').zoom({ on:'grab' });
+            $('#ex3').zoom({ on:'click' });
+            $('#ex4').zoom({ on:'toggle' });
+        });
+    </script>
 </head>
 <body>
 
+<button></button>
 <div class="flipbook-viewport">
     <div class="container">
-        <div class="flipbook">
-            <?php foreach ($detail as $feuille):?>
-            <div style="background-image:url(<?= base_url($feuille->cheminmedia)?>)"></div>
-            <?php endforeach;?>
-        </div>
+        <div ignore="1" class="next-button"></div>
+            <div class="flipbook">
+                <?php foreach ($detail as $feuille):?>
+                    <div style="background-image:url(<?= base_url($feuille->cheminmedia)?>)" class='zoom el'></div>
+                <?php endforeach;?>
+            </div>
+        <div ignore="1" class="previous-button"></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -46,7 +76,7 @@
 
                 // Auto center this flipbook
 
-                autoCenter: true
+                autoCenter: false
 
             });
             $('.flipbook-viewport').zoom({

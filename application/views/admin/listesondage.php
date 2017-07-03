@@ -15,14 +15,14 @@
                     <div class="x_title">
                         <h2>Liste des sondages</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a href="<?= base_url('admin/addsondage')?>"><i class="fa fa-plus-circle"></i> Nouveau fil d'info</a>
+                            <li><a href="<?= base_url('page/administration/addsondage')?>"><i class="fa fa-plus-circle"></i> Nouveau fil d'info</a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <form action="<?= base_url('admin/filactu')?>" method="get">
+                            <form action="<?= base_url('page/administration/filactu')?>" method="get">
                                 <div class="form-group has-feedback">
                                     <input type="text" name="date" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution">
                                     <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
@@ -50,7 +50,7 @@
 
                                     <th>
                                         <div class="btn-group" role="group" aria-label="...">
-                                            <a href="<?=base_url('index.php/admin/updateSondage/'.$sondage->idsondage)?>">
+                                            <a href="<?=base_url('index.php/page/administration/updateSondage/'.$sondage->idsondage)?>">
                                                 <button type="button" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-pencil"></i> Modillier</button>
                                             </a>
                                         </div>

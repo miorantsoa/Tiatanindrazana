@@ -79,13 +79,13 @@
                             </a>
                           </th>
                         <th>
-                            <a href="<?= base_url('index.php/admin/editUne/'.$article->idarticle)?>">
+                            <a href="<?= base_url('index.php/page/administration/editUne/'.$article->idarticle)?>">
                                 <button type="button" class="btn btn-info btn-xs">La une : <?= $article->laune?></button>
                             </a>
                         </th>
                         <th>
                             <div class="btn btn-group" role="group" aria-label="...">
-                                <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
+                                <a href="<?=base_url('index.php/page/administration/editArticle/'.$article->idarticle)?>">
                                 <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                 </a>
 
@@ -132,7 +132,7 @@
               <ul class="pagination">
                   <?php
                   for($i = 1; $i<=$nbpage;$i++){?>
-                      <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('admin/articles/'.$categorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date'].'/'.$filtre['ordre']?>"><?= $i?></a></li>
+                      <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('dashboard/articles/'.$categorie.'/'.$i.'/'.$this->articlelibrarie->getLimit($i,$per_page)).'/'.$query.'/'.$filtre['date'].'/'.$filtre['ordre']?>"><?= $i?></a></li>
                   <?php }?>
                 <!--  <li><a href="#">&laquo;</a></li>
                   <li><a href="#">1</a></li>

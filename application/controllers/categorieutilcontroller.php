@@ -15,7 +15,7 @@ class categorieutilcontroller extends CI_Controller
               var_dump($this->input->post('categorie'));
              var_dump($this->input->post('niveau'));
         $this->categorieutilmodel->insert($this->input->post('categorie'),$this->input->post('niveau'));
-        redirect('admin/listecategorieutil','refresh');
+        redirect('page/administration/listecategorieutil','refresh');
     }
     public function update(){
         $this->load->model('categorieutilmodel');
@@ -24,12 +24,12 @@ class categorieutilcontroller extends CI_Controller
             'niveau' => $this->input->post('niveau'),
         );
         $this->categorieutilmodel->update($this->input->post('idcategorie'),$data);
-        redirect('admin/listecategorieutil','refresh');
+        redirect('page/administration/listecategorieutil','refresh');
     }
     public function delete($id){
         $this->load->model('categorieutilmodel');
         $this->categorieutilmodel->delete($id);
-        redirect('admin/listecategorieutil','refresh');
+        redirect('page/administration/listecategorieutil','refresh');
     }
 
     public function vote(){

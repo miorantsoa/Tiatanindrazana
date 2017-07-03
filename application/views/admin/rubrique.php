@@ -12,7 +12,7 @@
 					<div class="x_title">
 						<h2>Tous les rubriques</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a href="<?= base_url('admin/ajoutrubrique')?>"><i class="fa fa-plus-circle"></i> Nouveau rubrique</a>
+                            <li><a href="<?= base_url('page/administration/ajoutrubrique')?>"><i class="fa fa-plus-circle"></i> Nouveau rubrique</a>
                             </li>
                         </ul>
 						<div class="clearfix"></div>

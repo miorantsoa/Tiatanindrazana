@@ -47,7 +47,7 @@ class InfoUtileController extends CI_Controller {
         $id = $this->infoutilemodel->insert($data);
         $rubrique = $this->infoutilemodel->getCategorie($this->input->post('categorie'));
         add_url_tag_info($rubrique[0]->libelle,$this->input->post('titre'),$id);
-        redirect('admin/ajoutInfoUtile');
+        redirect('page/administration/ajoutInfoUtile');
     }
     public function updateInfoUtile(){
         $config = $this->configUpload();
@@ -64,7 +64,7 @@ class InfoUtileController extends CI_Controller {
         $this->load->library('infoutillibrary');
         //$id,$idcategorie,$contenu,$lienImage,$copyrightphoto,$lienutile
         $this->infoutillibrary->update($this->input->post('infoutile'),$this->input->post('categorie'),$this->input->post('contenu'),$photo,$this->input->post('copyrightphoto'), $this->input->post('lien'));
-        redirect('admin/infoutile');
+        redirect('page/administration/infoutile');
     }
 
     public function deleteInfoUtile($id){
@@ -80,7 +80,7 @@ class InfoUtileController extends CI_Controller {
             $info = $info[0];
             $data['publie'] = !$info->publie;
             $this->infoutilemodel->update($info->idbeinfo,$data);
-            redirect('admin/infoutile');
+            redirect('page/administration/infoutile');
         }
         else{
             $erreur['heading'] = "Tsy misy ny pejy notadiavinao";

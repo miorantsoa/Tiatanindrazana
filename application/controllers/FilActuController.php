@@ -17,7 +17,7 @@ class FilActuController extends CI_Controller{
 
         );
         $this->filactu_model->insertFilActu($data);
-        redirect('admin/ajoutFilActu','refresh');
+        redirect('page/administration/ajoutFilActu','refresh');
     }
     public function updateFilActu(){
         $this->load->model('filactu_model');
@@ -29,12 +29,12 @@ class FilActuController extends CI_Controller{
 
         );
         $this->filactu_model->update($this->input->post('idfilactu'),$data);
-        redirect('admin/filactu','refresh');
+        redirect('page/administration/filactu','refresh');
     }
     public function delete($id){
         $this->load->model('filactu_model');
         $this->filactu_model->delete($id);
-        redirect('admin/filactu','refresh');
+        redirect('page/administration/filactu','refresh');
     }
     public function edit_fil_actu($id){
         $this->load->model('filactu_model');
@@ -55,7 +55,7 @@ class FilActuController extends CI_Controller{
         if($fil_actu!=null && count($fil_actu)!=0) {
             $data['etat'] = !$fil_actu[0]->etat;
             $this->filactu_model->update($fil_actu[0]->idfilactualite,$data);
-            redirect('admin/filactu','refresh');
+            redirect('page/administration/filactu','refresh');
         }
         else{
             $erreur['heading'] = "Tsy misy ny pejy notadiavinao";

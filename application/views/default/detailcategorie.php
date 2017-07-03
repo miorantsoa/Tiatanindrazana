@@ -18,6 +18,13 @@
             </div>
             <div class="filtre search-page">
                 <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($categorie->libelle))?>">
+                    <input type="text" name="mois" placeholder="Volana" class="col-md-2 col-sm-4 filtre-form">
+                    <input type="text" name="annee" placeholder="Taona" class="col-md-2 col-sm-4 filtre-form">
+                    <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
+                </form>
+            </div>
+            <div class="filtre search-page">
+                <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($categorie->libelle))?>">
                     <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
@@ -57,7 +64,7 @@
                     }
                     if($nbpage >1){
                     for($i = 1; $i<=$nbpage;$i++){?>
-                        <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('accueil/recherche/cat/'.$categorie->idcategorie.'/page/'.$i.'/affiche/'.$this->articlelibrarie->getLimit($i,$per_page)).'/query/'.$query.'/date1/'.$filtre['date_1'].'/date2/'.$filtre['date_2']?>"><?= $i?></a></li>
+                        <li class="<?= ($page == $i) ? "active" : "" ?>"><a href="<?= base_url('accueil/recherche/cat/'.$categorie->idcategorie.'/page/'.$i.'/affiche/'.$this->articlelibrarie->getLimit($i,$per_page)).'/query/'.$query.'/date1/'.$filtre['date_1'].'/date2/'.$filtre['date_2'].'/annee/'.$filtre['annee'].'/mois/'.$filtre['mois']?>"><?= $i?></a></li>
                     <?php }?>
                 </ul>
                 <p>Pejy <?= $page?> amin'ny <?= $nbpage?></p>

@@ -34,10 +34,10 @@
                                 <th><?= substr(strip_tags($article->contenue),0,250)?>...</th>
                                 <th>
                                     <div class="btn btn-group btn-group-lg" role="group">
-                                        <a href="<?= base_url('index.php/admin/editUne/'.$article->idarticle)?>">
+                                        <a href="<?= base_url('index.php/page/administration/editUne/'.$article->idarticle)?>">
                                             <button type="button" class="btn btn-info btn-xs">La une : <?= $article->laune?></button>
                                         </a>
-                                        <a href="<?=base_url('index.php/admin/editArticle/'.$article->idarticle)?>">
+                                        <a href="<?=base_url('index.php/page/administration/editArticle/'.$article->idarticle)?>">
                                             <button type="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</button>
                                         </a>
                                     </div>

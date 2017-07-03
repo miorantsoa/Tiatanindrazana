@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin extends CI_Controller {
+class Dashboard extends CI_Controller {
     public function __construct() {
         parent::__construct();
     }
@@ -31,19 +31,6 @@ class Admin extends CI_Controller {
 	public function login(){
 	    $this->load->view('admin/login');
     }
-	/*public function articles(){
-        $this->load->model('rubrique_model');
-        $data['rubrique'] = $this->rubrique_model->getrubrique();
-        $date=$this->input->get('date');
-        $titre=$this->input->get('titre');
-        $rubrique=$this->input->get('rubrique');
-	    $this->load->model('articlesmodel');
-        $data['articles'] = $this->articlesmodel->getListArticle(true);
-	    if($date!=null || $titre!=null || $rubrique!=null){
-            $data['articles'] = $this->articlesmodel->get2($titre,$date,$rubrique);
-        }
-		$this->adminView('articles', $data);
-	}*/
 
     public function articles($id=null,$page = 1,$limit = 0,$_titre=null,$_date=null, $_ordre = null){
         $this->load->model('articlesmodel');
@@ -135,7 +122,7 @@ class Admin extends CI_Controller {
     public function editUne($idArticle){
         $this->load->library('articlelibrarie');
         $id = $this->articlelibrarie->setUne($idArticle);
-        redirect('admin/detailjournal/'.$id);
+        redirect('dashboard/detailjournal/'.$id);
     }
 
 

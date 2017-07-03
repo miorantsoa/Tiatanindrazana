@@ -2,7 +2,7 @@
     <div class="">
         <div class="row top_tiles">
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="<?= base_url('admin/articles')?>">
+                <a href="<?= base_url('page/administration/articles')?>">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-newspaper-o"></i></div>
                         <div class="count"><?= $articles?></div>
@@ -12,7 +12,7 @@
                 </a>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="<?= base_url('admin/articles/'.$top_cat_id)?>">
+                <a href="<?= base_url('page/administration/articles/'.$top_cat_id)?>">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-sort-amount-asc"></i></div>
                         <div class="count"><?= $top_cat?></div>
@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="<?= base_url('admin/abonnee')?>">
+                <a href="<?= base_url('page/administration/abonnee')?>">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-gears"></i></div>
                         <div class="count"><?= $new_user?></div>
@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="<?= base_url('admin/utilisateur_active')?>">
+                <a href="<?= base_url('page/administration/utilisateur_active')?>">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-group"></i></div>
                         <div class="count"><?= $user?></div>

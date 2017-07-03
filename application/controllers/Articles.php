@@ -57,7 +57,7 @@ class Articles extends CI_Controller{
         $rubrique = $this->rubrique_model->getRubriqueById($this->input->post('rubrique'));
         add_url_tag_article($rubrique[0]->libelle,$this->input->post('titre'),$date,$id);
 
-        redirect('admin/articles','refresh');
+        redirect('page/administration/articles','refresh');
     }
     public function isNewJournal($date){
         if($this->journallibrary->isnewJournal($date)){
@@ -90,11 +90,11 @@ class Articles extends CI_Controller{
         }
         //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$date,$etat
         $this->articlelibrarie->updateArticle($this->input->post('article'),$this->input->post('journal'),$this->input->post('rubrique'), $this->input->post('titre'), $this->input->post('date') ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$this->input->post('laune'),$this->input->post('niveau'),$image,true);
-        redirect('admin/articles');
+        redirect('page/administration/articles');
     }
     public function deleteArticle($id){
         $this->articlesmodel->deleteArticle($id);
-        redirect('admin/articles');
+        redirect('page/administration/articles');
     }
     public function editEtatPublication($id){
         //$idarticle,$idJournal, $idCategorie, $titre,$date, $extrait, $resume, $contenu, $laune, $niveau, $chemin_une,$etat
@@ -102,7 +102,7 @@ class Articles extends CI_Controller{
         if(count($article)!=0) {
             $article = $article[0];
             $this->articlelibrarie->updateArticle($article->idarticle, null, null, null, null, null, null, null, null, null, null, !$article->etatpublication);
-            redirect('admin/articles');
+            redirect('page/administration/articles');
         }
         else{
             $erreur['heading'] = "Tsy misy ny pejy notadiavinao";

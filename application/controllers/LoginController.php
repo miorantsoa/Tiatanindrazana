@@ -44,20 +44,20 @@ class LoginController extends CI_Controller {
                 'username'=>$data[0]->identifiant,
                 'admin' => $data[0]
             ));
-            redirect('admin','refresh');
+            redirect('page/administration','refresh');
         }
         else{
             $this->session->set_flashdata('erreur',array(
                 'message'=>"Verifier que votre mot de passe et votre identifiant correspond",
                 'identifiant'=>$user_name
                 ));
-            redirect('admin','refresh');
+            redirect('page/administration','refresh');
         }
     }
 
     public function deconnect_admin(){
         $this->session->unset_userdata('admin');
-        redirect('admin');
+        redirect('page/administration');
     }
 
     public function connectlog($email,$pass){

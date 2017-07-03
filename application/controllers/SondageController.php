@@ -15,7 +15,7 @@ class SondageController extends CI_Controller
   //      var_dump($this->input->post('question'));
    //     var_dump($this->input->post('dateparution'));
         $this->sondage_model->insertSondage($this->input->post('question'),$this->input->post('dateparution'));
-        redirect('admin/listesondage','refresh');
+        redirect('page/administration/listesondage','refresh');
     }
     public function updateSondage(){
         $this->load->model('sondage_model');
@@ -29,12 +29,12 @@ class SondageController extends CI_Controller
             'dateparution'=> $this->input->post('dateparution')
         );
         $this->sondage_model->update($this->input->post('idsondage'),$data);
-        redirect('admin/listesondage','refresh');
+        redirect('page/administration/listesondage','refresh');
     }
     public function deleteSondage($id){
         $this->load->model('sondage_model');
         $this->sondage_model->delete($id);
-        redirect('admin/listesondage','refresh');
+        redirect('page/administration/listesondage','refresh');
     }
 
     public function vote(){

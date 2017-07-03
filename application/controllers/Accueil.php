@@ -136,7 +136,7 @@ class Accueil extends CI_Controller{
         
     }
 
-    public function detail_categorie($id,$page = 1,$limit = 0,$q=null,$date1=null,$date2=null){
+    public function detail_categorie($id,$page = 1,$limit = 0,$q=null,$date1=null,$date2=null, $annee = null, $mois = null){
         $this->session->set_userdata('last_page', current_url());
         $data = $this->indexData();
         $query = $this->input->post('recherche');
@@ -148,6 +148,20 @@ class Accueil extends CI_Controller{
         }
         $date_1 = $this->input->post('date1');
         $date_2 = $this->input->post('date2');
+        $_annee = $this->input->post('annee');
+        $_mois = $this->input->post('mois');
+        if(!$_annee){
+            $_annee = 'null';
+        }
+        if(!$_mois){
+            $_mois = 'null';
+        }
+        if($annee != null){
+            $_annee = $annee;
+        }
+        if($mois!=null){
+            $_mois = $mois;
+        }
         if($date1!=null){
             $date_1 = $date1;
         }
@@ -161,12 +175,12 @@ class Accueil extends CI_Controller{
             $date_2 = "2030-01-01";
         }
 
-        $articles =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'));
+        $articles =  $this->articlesmodel->get(null,$query,$id,null,null,$date_1,$date_2,null,null,null,$this->input->post('ordre'),false, true, $_annee, $_mois);
         $rubrique =$this->rubrique_model->getRubriqueById($id);
         if(count($rubrique)!=0) {
             $rubrique = $rubrique[0];
             $per_page = 5;
-            $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'));
+            $resultats = $this->articlesmodel->get(null, $query, $id, null, null, $date_1, $date_2, null, $per_page, $limit, $this->input->post('ordre'),false, true, $_annee, $_mois);
             $data['results'] = $resultats;
             $data['limit'] = $limit;
             //$titre,$rubrique,$contenu,$resume,$date1,$date2,$laune,$limit,$maxlimit
@@ -180,7 +194,9 @@ class Accueil extends CI_Controller{
             $data['filtre'] = array(
                 "query" => $query,
                 "date_1" => $date_1,
-                "date_2" => $date_2
+                "date_2" => $date_2,
+                "annee" => $_annee,
+                "mois"=> $_mois
             );
             $this->homeView('detailcategorie', $data, $data);
         }

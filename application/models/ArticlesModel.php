@@ -261,11 +261,23 @@ class ArticlesModel extends CI_Model {
      * @param bool $publie
      * @return mixed
      */
-    public function get($idjournal=null, $titre=null, $rubrique=null, $contenu=null, $resume=null, $date1=null, $date2=null, $laune=false, $limit=null, $start=null, $ordre='DESC', $image=false, $publie=true){
+    public function get($idjournal=null, $titre=null, $rubrique=null, $contenu=null, $resume=null, $date1=null, $date2=null, $laune=false, $limit=null, $start=null, $ordre='DESC', $image=false, $publie=true, $annee=null, $mois= null){
         $this->requete_article();
         $this->db->limit($limit,$start);
         if($laune!=null || $laune!=false) {
             $this->db->where('article.laune', true);
+        }
+        if(!is_numeric($annee)){
+            $annee = null;
+        }
+        if(!is_numeric($mois)){
+            $mois = null;
+        }
+        if($annee != null){
+            $this->db->where("extract(YEAR from article.dateparution) = $annee");
+        }
+        if($mois != null){
+            $this->db->where("extract(MONTH from article.dateparution) = $mois");
         }
         if ($laune == false){
             $this->db->where('article.laune', false);
@@ -426,6 +438,8 @@ class ArticlesModel extends CI_Model {
             article.titre,
             categorie.libelle,
             categorie.niveau,
+            extract(MONTH from article.dateparution) as mois,
+            extract(YEAR from article.dateparution) as annee,
             article.dateparution,
             journal.idjournal,
             journal.liencouverture,

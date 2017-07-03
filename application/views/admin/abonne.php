@@ -43,7 +43,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <form action="<?= base_url('admin/abonnee')?>" method="post">
+                            <form action="<?= base_url('page/administration/abonnee')?>" method="post">
                                 <div class="form-group">
                                     <label for="civilite">Civilite</label>
                                     <select name="civilite" id="" class="form-control">
@@ -97,7 +97,7 @@
                                     <td><?= $abonnee->naissanceutilisateur?></td>
                                     <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
-                                    <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
+                                    <td><a href="<?= base_url('page/administration/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
                                     <td>
                                         <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
                                         <div id="myModal" class="modal fade" role="dialog">

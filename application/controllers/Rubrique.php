@@ -14,12 +14,12 @@ class Rubrique extends  CI_Controller{
             'niveau'=> $this->input->get('niveau')
         );
         $this->rubrique_model->insertRubrique($data);
-        redirect('admin/rubrique','refresh');
+        redirect('page/administration/rubrique','refresh');
     }
 
     public function delete($id){
         $this->load->model('rubrique_model');
         $this->rubrique_model->delete($id);
-        redirect('admin/rubrique','refresh');
+        redirect('page/administration/rubrique','refresh');
     }
 }
