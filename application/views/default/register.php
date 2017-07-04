@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label>Daty nahaterahana :</label>
                         <div class="input-group">
-                            <input type="text" id="datetnaissance" name="naissanceutilisateur" maxlength="80" required class="form-control" placeholder="Daty nahaterahana" min="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>"/>
+                            <input type="text" id="datetnaissance" name="naissanceutilisateur" maxlength="80" required class="form-control" placeholder="Daty nahaterahana" max="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>"/>
                             <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
                         </div>
                     </div>

@@ -24,12 +24,20 @@
         <div class="panel-heading">
             <h2>Safidy ny handoavam-bola</h2>
         </div>
-        <div class="panel-body">
-            <ul class="list-inline">
-                <li><input type="checkbox" name="mobile" value="airtel">Airtel Money(0 33 03 888 56)</li>
-                <li><input type="checkbox" name="mobile" value="telma">M'Vola(0 34 63 705 72)</li>
-                <li><input type="checkbox" name="mobile" value="orang">Orange Money(0 32 86 933 16)</li>
-            </ul>
+        <div class="btn-group">
+                <label class="btn btn-primary">
+                <input type="radio" name="mobile" value="autre" autocomplete="off" checked>Autre mode
+                </label>
+                <label class="btn btn-danger">
+                <input type="radio" name="mobile" value="airtel" autocomplete="off">Airtel Money(0 33 03 888 56)
+                </label>
+                <label class="btn btn-success">
+                <input type="radio" name="mobile" value="telma" autocomplete="off">M'Vola(0 34 63 705 72)
+                </label>
+                <label class="btn btn-warning">
+                <input type="radio" name="mobile" value="orang" autocomplete="off">Orange Money(0 32 86 933 16)
+                </label>
+
             <div class="form-group">
                 <label>Nomerao mpandefa</label>
                 <input type="text" name="num" placeholder="Nomereo mpandefa" class="form-control" required>
@@ -47,9 +55,9 @@
         <div class="panel-body">
             <h3>Raha misy ny olana aminy fidiranao ho mpikanbana eto aminay dia azo antsoina avy antrainy ireto laharana ireto:</h3>
             <br>
-            <p>0 34 20 300 24</p>
+            <p>+261 34 20 300 24</p>
             <br>
-            <p>0 34 03 888 56</p>
+            <p>+261 34 03 888 56</p>
 
         </div>
         <div class="panel-body">

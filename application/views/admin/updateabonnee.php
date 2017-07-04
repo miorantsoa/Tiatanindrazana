@@ -3,7 +3,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Nouvelle abonnee :</h3>
+                    <h3>Modifier abonnee :</h3>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -54,7 +54,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->naissanceutilisateur : null?>" required>
+                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>" value="<?=(isset($modif)) ? $modif[0]->naissanceutilisateur : null?>" required>
                             </div>
                         </div>
                         <div class="form-group">

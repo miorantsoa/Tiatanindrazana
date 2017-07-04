@@ -53,16 +53,15 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Date de naissance : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
                             </div>
                         </div>
-                        <div class="form-group">
+    <!--                    <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Numero CIN : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="number" name="cin" placeholder="CIN ****" id="cin" class="form-control" maxlength="15" minlength="8" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="number" name="cin" placeholder="CIN ****" id="cin" class="form-control" maxlength="15" minlength="8" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,7 +69,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="date" name="datedelivrancecin" placeholder="12/12/88" id="datedelivrancecin" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="date" name="datedelivrancecin" placeholder="12/12/88" id="datedelivrancecin" class="form-control" max="" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -78,7 +77,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="text" name="lieudelivrancecin" placeholder="" id="lieudelivrancecin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="text" name="lieudelivrancecin" placeholder="" id="lieudelivrancecin" class="form-control" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -86,7 +85,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="file" name="lienimagerectocin" placeholder="" id="lienimagerectocin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="file" name="lienimagerectocin" placeholder="" id="lienimagerectocin" class="form-control" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -94,9 +93,10 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="file" name="lienimageversocin" placeholder="" id="lienimageversocin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="file" name="lienimageversocin" placeholder="" id="lienimageversocin" class="form-control" value="" required>
                             </div>
                         </div>
+                        -->
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">E-Mail : <span class="required">*</span>
                             </label>
