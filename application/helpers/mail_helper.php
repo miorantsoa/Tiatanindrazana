@@ -6,13 +6,14 @@
  * Time: 10:43
  */
 function send($to,$sujet,$message){
-    $from = "miorantsoa.apsesame2013@gmail.com";
+    $from = "tiatanindrazanasite@gmail.com";
     $CI = & get_instance();
     $config = Array(
         'mailtype'  => 'html',
         'charset'   => 'utf-8'
     );
-    $CI->load->library('email', $config);
+    $CI->load->library('email'
+        , $config);
     $CI->email->from($from, 'Tia Tanindrazana Server');
     $CI->email->to($to);
     $CI->email->subject($sujet);
@@ -33,7 +34,11 @@ function send_confirmation($id_user){
         $message .= "<p>Votre compte vient d'être activé</p>";
         $message .="<p>Voici vos information de connexion : </p>";
         $message .="<p>Email : ".$to."</p>";
-        $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
+        $message .="<p>Mot de passe : ********************</p>";
+        $message .=" ";
+        $message .="Tia tanindrazana";
+        $message .="bureau Soenerana Imeuble Vidy Varotra";
+        $message .="Nous vous remercions";
         send($to,$sujet, $message);
     }
 }

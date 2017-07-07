@@ -73,13 +73,13 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <input type="text" name="identifiant" placeholder="" id="identifiant" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="text" name="identifiant" placeholder="" id="identifiant" class="form-control" value="<?=(isset($modif)) ? $modif[0]->identifiant : null?>" required>
                             </div>
                         </div>
 
 
                         <div class="ln_solid"></div>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <button type="submit" class="btn btn-success">Modifier</button>
                     </form>
                 </div>
             </div>

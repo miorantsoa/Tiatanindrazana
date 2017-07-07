@@ -672,7 +672,7 @@ class Accueil extends CI_Controller{
         $data = $this->indexData();
         $this->load->model('coruptionmodel');
         $data['titre'] = "Ireo kolikoly nozaraina : Tia Tanindrazana";
-        $data['Corruption'] = $this->coruptionmodel->getCorruption();
+        $data['Corruption'] = $this->coruptionmodel->getallcorruption();
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/Kolikoly',$data);
         $this->load->view('default/templates/footer');

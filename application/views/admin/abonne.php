@@ -81,11 +81,9 @@
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Date de naissance</th>
-                                    <th>CIN</th>
                                     <th>Email</th>
                                     <th>modifier</th>
                                     <th>detail</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,10 +93,9 @@
                                     <td><?= $abonnee->nomutilisateur?></td>
                                     <td><?= $abonnee->prenomutilisateur?></td>
                                     <td><?= $abonnee->naissanceutilisateur?></td>
-                                    <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
-                                    <td><a href="<?= base_url('admin/updateinfoabonnee/'.$abonnee->idutilisateur2)?>" class="btn">modifier</a></td>
-                                    <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
+                                    <td><a href="<?= base_url('admin/updateinfoabonnee/'.$abonnee->idutilisateur2)?>" class="btn btn-warning">modifier</a></td>
+                                    <td><a href="<?= base_url('admin/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn btn-success">Plus d'info</a></td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>

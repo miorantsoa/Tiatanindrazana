@@ -10,21 +10,23 @@
         <strong>Fananpiny / Prenom:</strong>
         <p><?php echo($this->session->userdata('user')[0]->prenomutilisateur)?></p>
         <strong>Daty nahaterahana / Date de naissance</strong>
-        <p><?php echo($this->session->userdata('user')[0]->naissanceutilisateur)?></p>
-        <strong>Laharana karapanondro / Numéro CIN</strong>
-        <p><?php echo($this->session->userdata('user')[0]->cin)?></p>
+        <p><?php // echo($this->session->userdata('user')[0]->naissanceutilisateur)?></p>
+  <!--      <strong>Laharana karapanondro / Numéro CIN</strong>
+        <p><?php // echo($this->session->userdata('user')[0]->cin)?></p>
         <strong>Daty nazahona karapanondro / Date de livraison CIN</strong>
-        <p><?php echo($this->session->userdata('user')[0]->datedelivrancecin)?></p>
+        <p><?php // echo($this->session->userdata('user')[0]->datedelivrancecin)?></p>
         <strong>Toerana nazahona karapanondro / Lieu d'obtention CIN</strong>
-        <p><?php echo($this->session->userdata('user')[0]->lieudelivrancecin)?></p>
+        <p><?php // echo($this->session->userdata('user')[0]->lieudelivrancecin)?></p>
         <strong>Sary recto karapanondro / image recto CIN</strong>
         <p></p>
-        <img src="<?= base_url($this->session->userdata('user')[0]->liencin_recto)?>">
+        <img src="<? // base_url($this->session->userdata('user')[0]->liencin_recto)?>">
         <p></p>
         <strong>Sary verso karapanondro / image verso CIN</strong>
         <p></p>
-        <img src="<?= base_url($this->session->userdata('user')[0]->liencin_verso)?>">
+        <img src="<? // base_url($this->session->userdata('user')[0]->liencin_verso)?>">
+        -->
         <p></p>
+
         <strong>Mailaka / E-mail <span class="font-required">*</span></strong>
         <p><?php echo($this->session->userdata('user')[0]->emailutilisateur)?></p>
         <p></p>

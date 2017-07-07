@@ -166,9 +166,22 @@ class UserController extends CI_Controller
             $jourabonnement = $moisabonnement * 30;
             $finabonnement = new DateTime($today .'+'.$jourabonnement.' day');
             $temp = $finabonnement->format('Y-m-d');
-            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
+            $this->abonneemodel->insertAssocitationAbonnement($this->input->post('tarifabonnement'), $idnewuser, $today, $temp);
 //            $date2['statututilisateur'] = 0;
 //            $this->abonneemodel->updateUtilisateur($idnewuser,$date2);
+
+            $numero = $this->input->post('num');
+            $operateur = "vidy varotra";
+            $abonnement = $this->input->post('tarifabonnement');
+            $trans_id = $this->input->post('trans_id');
+            $payement['numero'] = "local";
+            $payement['trans_id'] = "local";
+          //  var_dump($data, $abonnement, $operateur, $numero, $trans_id);
+            $iduser = $idnewuser;
+
+            $payement['idabonnee'] = $idnewuser;
+            $this->abonneemodel->insertInfoPayement($payement);
+
             $this->db->trans_complete();
 //            redirect('Accueil/Connection');
             $ip = $this->input->ip_address();
@@ -291,25 +304,7 @@ class UserController extends CI_Controller
         if ($this->input->post('naissanceutilisateur')!=""){
             $Data['naissanceutilisateur']=$this->input->post('naissanceutilisateur');
         }
-        if ($this->input->post('cin')!=""){
-            $Data['cin']=$this->input->post('cin');
-        }
-        if ($this->input->post('datedelivrancecin')!=""){
-            $Data['datedelivrancecin']=$this->input->post('datedelivrancecin');
-        }
-        if ($this->input->post('lieudelivrancecin')!=""){
-            $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
-        }
-        $liencinrecto = uploadImage('lienimagerectocin','upload/infouser','recto-cin-'.$this->input->post('identifiant'));
-        if ($liencinrecto!=null) {
-            $Data['liencin_recto'] = $liencinrecto['path'];
-        }
 
-        $lienverso = uploadImage('lienimageversocin','upload/infouser','verso-cin-'.$this->input->post('identifiant'));
-
-        if($lienverso!=null){
-            $Data['liencin_verso']=$lienverso['path'];
-        }
         if ($this->input->post('emailutilisateur')!=""){
             $Data['emailutilisateur']=$this->input->post('emailutilisateur');
         }
@@ -317,13 +312,8 @@ class UserController extends CI_Controller
             $Data['identifiant']=$this->input->post('identifiant');
         }
 
-        $lienprofile = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant'));
-
-        if($lienprofile!=null){
-            $Data['imageprofile']=$lienprofile['path'];
-        };
         $this->load->model('abonneemodel');
-        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $id = $this->input->post('idabonnee');
         $this->abonneemodel->updateUtilisateur($id,$Data);
         $temp = $this->abonneemodel->getAbonneeAbonnementById($id);
         $this->session->set_userdata('user',$temp);
