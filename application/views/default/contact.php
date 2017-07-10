@@ -3,25 +3,25 @@
     <div class="row-fluid">
 
         <div class="header">
-        <h1>Hitafa aminay</h1>
+        <h2>Hitafa aminay</h2>
         </div>
 
         <div class="header">
-            <h3>Tonian'ny fanoratana </h3>
+            <h4>Tonian'ny fanoratana </h4>
         </div>
         <div class="content">
             <p>RANAIVOSOA Tahiry Tiana <span class="label label-success">+261 33 15 300 91</span></p>
         </div>
             <br>
         <div class="header">
-            <h3>Politika</h3>
+            <h4>Politika</h4>
         </div>
         <div class="content">
             <p><span class="label label-success">+261 34 07 031 89</span> / <span class="label label-success">+261 33 24 772 87</span></p>
         </div>
         <br>
         <div class="header">
-            <h3>Toekarena</h3>
+            <h4>Toekarena</h4>
             </div>
         <div class="content">
             <p><span class="label label-success">+261 34 96 972 77</span></p>
@@ -35,7 +35,7 @@
         </div>
         <br>
         <div class="header">
-            <h3>Fanatanjahantena</h3>
+            <h4>Fanatanjahantena</h4>
         </div>
         <div class="header">
             <p><span class="label label-success">+261 34 14 928 77</span> / <span class="label label-success">+261 33 11 928 77</span></p>
