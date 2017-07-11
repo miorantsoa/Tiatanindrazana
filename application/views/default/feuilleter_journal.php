@@ -29,10 +29,16 @@
             <div class="panel-danger ">
                 <div class="panel-body">
                     <?php foreach ($gazety as $item):?>
+                        <?php $temp=$item->cheminmedia;
+                        if($item->min!=null){
+                            $temp=$item->min;
+                        }
+                        ?>
                     <div class="span2  archive">
                         <figure class="figure">
-                            <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($item->cheminmedia)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/detail_gazety/'.$item->idfeuille_journal)?>"><img src="<?= base_url($temp)?>" alt="<?= $item->alt?>" class="img-thumbnail"></a>
                         </figure>
+
                         <p class="span2 margin-top20">Gazety ny <?= $item->dateparution?></p>
                     </div>
                     <?php endforeach;?>

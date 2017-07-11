@@ -6,11 +6,12 @@
  * Time: 12:40
  */
 class Journal extends CI_Model{
-    public function insertJournal($numeroparution, $chemin_couverture,$dateparution){
+    public function insertJournal($numeroparution, $chemin_couverture,$dateparution,$min){
         $data = array(
             'numeroparution' => $numeroparution,
             'datepublication' => $dateparution,
-            'liencouverture' => $chemin_couverture
+            'liencouverture' => $chemin_couverture,
+            'min' => $min
         );
         $this->db->insert('journal',$data);
     }

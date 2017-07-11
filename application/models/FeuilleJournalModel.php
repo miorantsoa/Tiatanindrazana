@@ -21,13 +21,14 @@ class FeuilleJournalModel extends CI_Model {
         );
         $this->db->insert('assoc_feuille_image',$data);
     }
-    public function insertMedias($type,$nommedia,$cheminmedia,$creditmedia,$alt){
+    public function insertMedias($type,$nommedia,$cheminmedia,$creditmedia,$alt,$min){
         $data = array();
         $data['typemedia'] = $type;
         $data['nommedia'] = $nommedia;
         $data['cheminmedia'] = $cheminmedia;
         $data['creditmedia'] = $creditmedia;
         $data['alt'] = $alt;
+        $data['min'] = $min;
         $this->db->insert('media',$data);
         return $this->db->insert_id();
     }

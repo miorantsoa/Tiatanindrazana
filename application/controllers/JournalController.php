@@ -32,9 +32,17 @@ class JournalController extends CI_Controller {
         else {
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $min = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $nomf = $data['upload_data']['raw_name'].'_thumb'.$data['upload_data']['file_ext'];
+            $minlink = 'upload/couverture/'. $nomf;
+            $configmin = $this->configResize($min);
+            $this->load->library('image_lib', $configmin);
+            $this->image_lib->resize();
+
+
         }
         $this->load->model('journal');
-        $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
+        $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'),$minlink);
         echo "success";
     }
     public function delete($id){
@@ -67,6 +75,18 @@ class JournalController extends CI_Controller {
         $config['file_name'] = "couverture-".date('y-m-d').'-'.time('');
         return $config;
     }
+
+
+    public function configResize($image){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $image;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width']         = 250;
+        $config['height']       = 250;
+
+        return $config;
+    }
     /*Feuille journal*/
     public function addFeuille(){
         $this->load->library('globalfunction');
@@ -75,6 +95,7 @@ class JournalController extends CI_Controller {
         if(isset($_FILES['files']) && $_FILES['files']['name']!=null) {
             $idfeuille_journal = $this->feuillejournalmodel->insert($this->input->post('date_parution'));
             for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
+
                 $_FILES['file' . $i]['name'] = $_FILES['files']['name'][$i];
                 $_FILES['file' . $i]['type'] = $_FILES['files']['type'][$i];
                 $_FILES['file' . $i]['tmp_name'] = $_FILES['files']['tmp_name'][$i];
@@ -82,8 +103,19 @@ class JournalController extends CI_Controller {
                 $_FILES['file' . $i]['size'] = $_FILES['files']['size'][$i];
                 $name = $this->globalfunction->uploadImage('file' . $i, 'upload/journal', ($i + 1) . '-feuille-'.$this->input->post('date_parution'));
                 $file_name[] = $name['path'];
+                $min = null;
+                $minlink= null;
+                if($i==0){
+                    $file_namemin[] = $name['path'];
+                    $min = 'upload/journal/'. $name['upload_data']['file_name'];
+                    $nomf = $name['upload_data']['raw_name'].'_thumb'.$name['upload_data']['file_ext'];
+                    $minlink = 'upload/journal/'. $nomf;
+                    $configmin = $this->configResize($min);
+                    $this->load->library('image_lib', $configmin);
+                    $this->image_lib->resize();
+                }
                 //$type,$nommedia,$cheminmedia,$creditmedia,$alt
-                $id = $this->feuillejournalmodel->insertMedias($_FILES['file' . $i]['type'], $name['name'], $name['path'], "", "Illustration feuille journal page" . ($i + 1));
+                $id = $this->feuillejournalmodel->insertMedias($_FILES['file' . $i]['type'], $name['name'], $name['path'], "", "Illustration feuille journal page" . ($i + 1),$minlink);
                 $this->feuillejournalmodel->insertAssoc($idfeuille_journal,$id);
             }
         }
