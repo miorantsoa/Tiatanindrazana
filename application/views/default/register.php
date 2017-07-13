@@ -52,10 +52,11 @@
                     <div class="form-group">
                         <label>Daty nahaterahana :</label>
                         <div class="input-group">
-                            <input type="text" id="datetnaissance" name="naissanceutilisateur" maxlength="80" required class="form-control" placeholder="Daty nahaterahana"/>
+                            <input type="text" id="datetnaissance" name="naissanceutilisateur" maxlength="80" required class="form-control" placeholder="Daty nahaterahana" max="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>"/>
                             <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
                         </div>
                     </div>
+                    <!--
                     <div class="form-group">
                         <label>Laharana karapanondro :</label>
                         <input type="text" name="cin" minlength="12" maxlength="12" required class="form-control" placeholder="Laharana karapanondro"/>
@@ -79,6 +80,7 @@
                         <label>Sary verso karapanondro :</label>
                         <input id="lienimageversocin" name="lienimageversocin" type="file"  class="filestyle" data-buttonText="Hisafidy sary">
                     </div>
+                    -->
                     <div class="form-group">
                         <label>Mailaka :<span class="font-required">*</span></label>
                         <input  name="emailutilisateur" required="" class="form-control" placeholder="Mailaka" type="email" data-parsley-trigger="change" data-parsley-length="[10,150]" data-parsley-mail=""/>

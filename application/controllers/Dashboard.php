@@ -342,4 +342,12 @@ class Dashboard extends CI_Controller {
     public function  ajouterabonnee(){
         $this->adminView('addabonee');
     }
+
+    public function updateinfoabonnee ($id){
+        $this->load->model('abonneemodel');
+        $data['modif'] = $this->abonneemodel->getAbonneeById($id);
+        $data['id'] = $id;
+        $this->adminView('updateabonnee',$data);
+
+    }
 }

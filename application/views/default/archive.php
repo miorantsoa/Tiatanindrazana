@@ -34,9 +34,14 @@
         <div class="panel-danger ">
             <div class="panel-body">
                 <?php foreach ($archive as $journal):?>
+                    <?php $temp = $journal->liencouverture;
+                    if($journal->min!=null){
+                        $temp = $journal->min;
+                    }
+                    ?>
                     <div class="span2 no-margin-left archive">
                         <figure class="figure">
-                            <a href="<?= base_url('accueil/archive/'.$journal->idjournal.'/'.reformat($journal->datepublication))?>"><img src="<?= base_url($journal->liencouverture)?>" alt="" class="img-thumbnail"></a>
+                            <a href="<?= base_url('accueil/archive/'.$journal->idjournal.'/'.reformat($journal->datepublication))?>"><img src="<?= base_url($temp)?>" alt="" class="img-thumbnail"></a>
                         </figure>
                         <p class="span2 margin-top20">Gazety ny <?= reformat($journal->datepublication)?></p>
                     </div>
