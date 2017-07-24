@@ -6,14 +6,19 @@
  * Time: 10:43
  */
 function send($to,$sujet,$message){
-    $from = "noreply@tiatanindrazana.com";
+    $from = "no-reply@tiatanindrazana.com";
     $CI = & get_instance();
     $config = Array(
         'mailtype'  => 'html',
         'charset'   => 'utf-8'
     );
+    $header = null;
+    $value = null;
+    $CI->load->library('email'
+        , $config);
     $CI->load->library('email', $config);
     $CI->email->from($from, 'Tia Tanindrazana Server');
+    $CI->email->set_header($header, $value);
     $CI->email->to($to);
     $CI->email->subject($sujet);
     $CI->email->message($message);
@@ -36,7 +41,6 @@ function send_confirmation($id_user){
         $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
         $message .="<p>Pour acceder a votre compte veuiller vous rendre sur:</p>";
         $message .="<p><a href='<?= base_url('accueil/connection')?>'>http://www.tiatanindrazana.com/v2/accueil/connection</a></p>";
-        $message .=" ";
         $message .="Tia tanindrazana";
         $message .="Siège : Soenerana Immeuble Vidy Varotra";
         $message .="Nous vous remercions";

@@ -20,7 +20,7 @@ class JournalController extends CI_Controller {
         }
         $this->load->model('journal');
         $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
-        redirect('page/administration/journal');
+        redirect('admin/journal');
     }
     public function ajoutAjax(){
         $config = $this->configUpload();
@@ -48,7 +48,7 @@ class JournalController extends CI_Controller {
     public function delete($id){
         $this->load->model('journal');
         $this->journal->deleteJournal($id);
-        redirect('page/administration/journal');
+        redirect('admin/journal');
     }
     public function update(){
         $config = $this->configUpload();
@@ -63,7 +63,7 @@ class JournalController extends CI_Controller {
         }
         $this->load->library('journallibrary');
         $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'));
-        redirect('page/administration/journal');
+        redirect('admin/journal');
     }
 
     public function configUpload(){
@@ -105,13 +105,20 @@ class JournalController extends CI_Controller {
                 $file_name[] = $name['path'];
                 $min = null;
                 $minlink= null;
-                $file_namemin[] = $name['path'];
-                $min = 'upload/journal/'. $name['path'];
-                $nomf = $name['name'].'_thumb'.$name['ext'];
-                $minlink = 'upload/journal/'. $nomf;
-                $configmin = $this->configResize($min);
-                $this->load->library('image_lib', $configmin);
-                $this->image_lib->resize();
+                if($i==0){
+                    $file_namemin[] = $name['path'];
+                    $min = $name['path'];
+                    $temp = explode(".",$name['name']);
+                    if($temp[1]!=null){
+                        $temp[1] = ".".$temp[1];
+                    }
+                    $nomf = $temp[0].'_thumb'.$temp[1];
+                    $minlink = 'upload/journal/'. $nomf;
+                    $configmin = $this->configResize($min);
+                    $this->load->library('image_lib', $configmin);
+                    $this->image_lib->resize();
+
+                }
                 //$type,$nommedia,$cheminmedia,$creditmedia,$alt
                 $id = $this->feuillejournalmodel->insertMedias($_FILES['file' . $i]['type'], $name['name'], $name['path'], "", "Illustration feuille journal page" . ($i + 1),$minlink);
                 $this->feuillejournalmodel->insertAssoc($idfeuille_journal,$id);
@@ -120,13 +127,13 @@ class JournalController extends CI_Controller {
         else{
             $data['message'] = "Une erreur est survenu pendant l'upload";
         }
-        redirect('page/administration/feuillejournal');
+        redirect('admin/feuillejournal');
     }
 
     public function deleteFeuille($id){
         $this->load->model('feuillejournalmodel');
         $this->feuillejournalmodel->delete($id);
-        redirect('page/administration/feuillejournal');
+        redirect('admin/feuillejournal');
     }
 
     public function editImage(){
@@ -141,7 +148,7 @@ class JournalController extends CI_Controller {
         $data['cheminmedia'] = $image['path'];
         $data['nommedia'] = $image['name'];
         $this->feuillejournalmodel->editImage($id,$data);
-        redirect('page/administration/feuillejournal');
+        redirect('admin/feuillejournal');
     }
     /*Feuille journal*/
 }

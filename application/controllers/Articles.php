@@ -19,12 +19,19 @@ class Articles extends CI_Controller{
         $config = $this->configUpload();
         $this->load->library('upload', $config);
         $image = null;
+        $minlink= null;
         if (!$this->upload->do_upload('img-une')) {
             $error = array('error' => $this->upload->display_errors());
         }
         else {
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/'. $data['upload_data']['file_name'];
+            $min = 'upload/'. $data['upload_data']['file_name'];
+            $nomf = $data['upload_data']['raw_name'].'_thumb'.$data['upload_data']['file_ext'];
+            $minlink = 'upload/'. $nomf;
+            $configmin = $this->configResize($min);
+            $this->load->library('image_lib', $configmin);
+            $this->image_lib->resize();
         }
         if(!$this->input->post('rubrique')){
             $message['erreur'] = "Le rubrique ne peut pas être null";
@@ -53,7 +60,7 @@ class Articles extends CI_Controller{
             $laune = true;
         }
         else{ $laune = false;}
-        $id = $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$laune,$this->input->post('niveau'),$image,true);
+        $id = $this->articlelibrarie->ajoutArticle($journal,$this->input->post('rubrique'), $this->input->post('titre'),$date ,$this->input->post('resume'), $this->input->post('resume'), $this->input->post('contenu'),$laune,$this->input->post('niveau'),$image,true,$minlink);
         $rubrique = $this->rubrique_model->getRubriqueById($this->input->post('rubrique'));
         add_url_tag_article($rubrique[0]->libelle,$this->input->post('titre'),$date,$id);
 
@@ -74,6 +81,17 @@ class Articles extends CI_Controller{
         $config['max_width']     = 2024;
         $config['max_height']    = 1768;
         $config['file_name'] = date('y-m-d').'-'.time('');
+        return $config;
+    }
+
+    public function configResize($image){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $image;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width']         = 250;
+        $config['height']       = 250;
+
         return $config;
     }
 

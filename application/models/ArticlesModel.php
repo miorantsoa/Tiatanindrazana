@@ -63,7 +63,7 @@ class ArticlesModel extends CI_Model {
      * @param $niveau
      * @param $chemin_une
      */
-    public function insertArticle($idJournal, $idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune=false, $niveau, $chemin_une,$etat = true){
+    public function insertArticle($idJournal, $idCategorie, $titre, $date ,$extrait, $resume, $contenu, $laune=false, $niveau, $chemin_une,$etat = true,$min){
     	$data = array(
 			'idjournal'=>  $idJournal,
 			'idcategorie'=> $idCategorie,
@@ -75,7 +75,8 @@ class ArticlesModel extends CI_Model {
 			'laune'=> $laune,
 			'etatpublication'=> $etat,
 			'niveau'=> $niveau,
-			'lien_image_une'=> $chemin_une
+			'lien_image_une'=> $chemin_une,
+            'min' => $min
     	);
         $this->db->trans_start();
         $this->db->insert("article",$data);
@@ -201,6 +202,15 @@ class ArticlesModel extends CI_Model {
         return $article->result();
     }
 
+    public function getByURL($URL, $publie = true){
+        $this->requete_article();
+        if($publie == true){
+            $this->db->where('etatpublication',true);
+        }
+        $this->db->where('url',$URL);
+        $article = $this->db->get();
+        return $article->result();
+    }
     /**
      * @param null $titre
      * @param null $date
