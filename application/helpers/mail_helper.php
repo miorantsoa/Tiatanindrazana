@@ -6,15 +6,18 @@
  * Time: 10:43
  */
 function send($to,$sujet,$message){
-    $from = "tiatanindrazanasite@gmail.com";
+    $from = "no-reply@tiatanindrazana.com";
     $CI = & get_instance();
     $config = Array(
         'mailtype'  => 'html',
         'charset'   => 'utf-8'
     );
+    $header = null;
+    $value = null;
     $CI->load->library('email'
         , $config);
     $CI->email->from($from, 'Tia Tanindrazana Server');
+    $CI->email->set_header($header, $value);
     $CI->email->to($to);
     $CI->email->subject($sujet);
     $CI->email->message($message);
