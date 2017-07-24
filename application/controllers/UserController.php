@@ -176,6 +176,11 @@ class UserController extends CI_Controller
             $this->abonneemodel->insertAssocitationAbonnement($this->input->post('typeabonnement'), $idnewuser, $today, $temp);
             $payement['idabonnee'] = $idnewuser;
             $this->abonneemodel->insertInfoPayement($payement);
+            $payement['numero'] = "local";
+            $payement['trans_id'] = "local";
+            //  var_dump($data, $abonnement, $operateur, $numero, $trans_id);
+            $payement['idabonnee'] = $idnewuser;
+            $this->abonneemodel->insertInfoPayement($payement);
             $this->db->trans_complete();
             redirect('page/administration/abonnee');
         }
@@ -235,7 +240,8 @@ class UserController extends CI_Controller
     }
 
 
-    public function updateInfoUser(){
+    public function updateInfoUserBack(){
+
         if ($this->input->post('civilite')!=""){
             $Data['civilite']=$this->input->post('civilite');
         }
@@ -248,25 +254,7 @@ class UserController extends CI_Controller
         if ($this->input->post('naissanceutilisateur')!=""){
             $Data['naissanceutilisateur']=$this->input->post('naissanceutilisateur');
         }
-        if ($this->input->post('cin')!=""){
-            $Data['cin']=$this->input->post('cin');
-        }
-        if ($this->input->post('datedelivrancecin')!=""){
-            $Data['datedelivrancecin']=$this->input->post('datedelivrancecin');
-        }
-        if ($this->input->post('lieudelivrancecin')!=""){
-            $Data['lieudelivrancecin']=$this->input->post('lieudelivrancecin');
-        }
-        $liencinrecto = uploadImage('lienimagerectocin','upload/infouser','recto-cin-'.$this->input->post('identifiant'));
-        if ($liencinrecto!=null) {
-            $Data['liencin_recto'] = $liencinrecto['path'];
-        }
 
-        $lienverso = uploadImage('lienimageversocin','upload/infouser','verso-cin-'.$this->input->post('identifiant'));
-
-        if($lienverso!=null){
-            $Data['liencin_verso']=$lienverso['path'];
-        }
         if ($this->input->post('emailutilisateur')!=""){
             $Data['emailutilisateur']=$this->input->post('emailutilisateur');
         }
@@ -274,27 +262,12 @@ class UserController extends CI_Controller
             $Data['identifiant']=$this->input->post('identifiant');
         }
 
-        $lienprofile = uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant'));
-
-        if($lienprofile!=null){
-            $Data['imageprofile']=$lienprofile['path'];
-        };
         $this->load->model('abonneemodel');
-        $id = $this->session->userdata('user')[0]->idutilisateur2;
+        $id = $this->input->post('idabonnee');
         $this->abonneemodel->updateUtilisateur($id,$Data);
         $temp = $this->abonneemodel->getAbonneeAbonnementById($id);
         $this->session->set_userdata('user',$temp);
-        redirect('Accueil/monCompte');
-    }
-
-    public function modifiermotdepasse(){
-        $Data = array(
-          'motdepasse'=>  sha1($this->input->post('motdepasse'))
-        );
-        $id = $this->session->userdata('user')[0]->idutilisateur2;
-        $this->load->model('abonneemodel');
-        $this->abonneemodel->updateUtilisateur($id,$Data);
-        redirect('accueil/monCompte');
+        redirect('admin/abonnee');
     }
 
     public function configUpload($nomutilisateur,$prenomutilisateur,$detail)    {
@@ -307,12 +280,63 @@ class UserController extends CI_Controller
         return $config;
     }
 
-    /*public function addfavoris($idarticle){
-        if($this->session->userdata('user')) {
-            $iduser = $this->session->userdata('user')[0]->idutilisateur2;
-            $this->load->model('abonneemodel');
-            $this->abonneemodel->addFavoris($iduser,$idarticle);
-            redirect('accueil/monCompte');
+    public function oublie_mot_de_passe(){
+        $this->load->view('default/passe_oublie');
+    }
+    public function send_reset_mail(){
+        $email = $this->input->post('email');
+        $this->load->model('abonneemodel');
+        $user = $this->abonneemodel->getUserByEmail($email);
+        if(count($user)==0){
+            $this->session->set_flashdata('message',"Miala tsiny fa tsy mbola misy ato  aminay io kaonty io");
+            redirect('usercontroller/oublie_mot_de_passe');
         }
-    }*/
+        else{
+            $uniq_id = md5(uniqid($email, true));
+            $message = "<p>Midiarahaba anao <?= current($user)->civilite?> <?= current($user)->prenomutilisateur?>,</p>";
+            $message.= "</br><p>Mahavoray ity mailaka ity ianao satria nisy nangataka hanova ny teny miafina ampiasainao</p>";
+            $message.= "</br><p>Raha ianao no nangataka izany dia tsindrio araho ny rohy : <a href='".base_url('usercontroller/reinitialiser_mot_de_passe?uniq_id='.$uniq_id.'&id='.$user->idutilisateur2)."'></a></p>";
+            $message.= "<p>Raha tsy te hanova kosa ianao dia ataovy hoatran'ny tsy misy ity mailaka ity.</p>";
+            send($email,'Tia Tanindrazana : Hanova teny miafina hadino',$message);
+            $this->session->set_flashdata('message',"Efa lasa ny mailaka fangatahana fanovana teny miafina nangatahanao. Raha mbola tsy nahavoaray dia <a href='<?= base_url('usercontroller/oublie_mot_de_passe')?>'>Averina alefa</a>");
+            redirect('usercontroller/oublie_mot_de_passe');
+        }
+    }
+
+    public function reinitialiser_mot_de_passe(){
+        $user_id = $this->input->get('id');
+        $uniq_id = $this->input->get('uniq_id');
+        if(!empty($user_id) && !empty($uniq_id)) {
+            $data['id'] = $user_id;
+            $data['uniqId'] = $uniq_id;
+            $this->load->view('default/reset', $data);
+        }
+        else{
+            $this->session->set_flashdata('message',"Nisy olana ny fangatahana fanovana teny miafina nataonao.");
+            redirect('usercontroller/oublie_mot_de_passe');
+        }
+    }
+
+    public function reset(){
+        $new_pass = $this->input->post('motdepasse');
+        $id = $this->input->post('id');
+        $user = current($this->abonneemodel->getAbonneeById($id));
+        if($user!=null) {
+            $this->load->model('abonnementmodel');
+            $data['idutilisateur2'] = $user->idutilisateur2;
+            $data['motdepasse'] = $new_pass;
+            $this->abonneemodel->updateUtilisateur($id, $data);
+            $message = "<p>Miarahaba,</p>";
+            $message .= "</br><p>Tanteraka soa aman-tsara ny fanovana teny miafina nataonao.</p>";
+            $message .= "</br><p>Misaotra anao amin'ny fahatokisanao.</p>";
+            send($user->emailutilisateur, "Tia Tanindrazana : Fanonvana teny miafina", $message);
+            $this->session->set_flashdata('message', "Tanteraka soa aman-tsara ny fanovana teny miafina nataonao");
+            redirect('accueil/connection');
+        }
+        else{
+            $this->session->set_flashdata('message', "Miala tsiny fa tsy mbola misy ilay kaonty nampidirinao.");
+            redirect('accueil/connection');
+        }
+    }
+
 }

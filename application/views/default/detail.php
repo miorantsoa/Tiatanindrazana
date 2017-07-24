@@ -82,14 +82,15 @@
             <div class="form-comment" >
                 <h4>Hametraka fanehoan-kevitra</h4>
                 <p>Tsy maintsy fenoina izay misy <span class="font-required">*</span></p>
-                <form id="#com-form" action="<?= base_url('accueil/addCommentaire');?>" method="post">
+                <form id="com-form" action="<?= base_url('accueil/addCommentaire');?>" method="post" name="comm">
                     <label>Anarana <span class="font-required">*</span></label>
-                    <input type="text" name="nom" />
+                    <input type="text" name="nom" required/>
                     <label>Adiresy mailaka <span class="font-required">*</span></label>
-                    <input type="text" name="email" />
+                    <input type="text" name="email" required/>
                     <label>Fanehoan-kevitra <span class="font-required">*</span></label>
-                    <input type="hidden" name="article" value="<?= $article->idarticle?>">
-                    <textarea name="commentaire" id="message" placeholder="Hametraka fanehoan-kevitra..."></textarea>
+                    <input type="hidden" name="article" value="<?= $article->idarticle?>" required>
+                    <textarea name="commentaire" id="message" placeholder="Hametraka fanehoan-kevitra..." required></textarea>
+                    <div class="g-recaptcha" data-sitekey="6LdCZikUAAAAAGLIArvXNrMcngw1HhbzaE-pTHWl" id="captcha1"></div>
                     <button class="btn btn-blue" type="submit">Handefa</button>
                 </form>
             </div> <!-- End Form-Comment -->

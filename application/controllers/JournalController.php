@@ -105,15 +105,13 @@ class JournalController extends CI_Controller {
                 $file_name[] = $name['path'];
                 $min = null;
                 $minlink= null;
-                if($i==0){
-                    $file_namemin[] = $name['path'];
-                    $min = 'upload/journal/'. $name['upload_data']['file_name'];
-                    $nomf = $name['upload_data']['raw_name'].'_thumb'.$name['upload_data']['file_ext'];
-                    $minlink = 'upload/journal/'. $nomf;
-                    $configmin = $this->configResize($min);
-                    $this->load->library('image_lib', $configmin);
-                    $this->image_lib->resize();
-                }
+                $file_namemin[] = $name['path'];
+                $min = 'upload/journal/'. $name['path'];
+                $nomf = $name['name'].'_thumb'.$name['ext'];
+                $minlink = 'upload/journal/'. $nomf;
+                $configmin = $this->configResize($min);
+                $this->load->library('image_lib', $configmin);
+                $this->image_lib->resize();
                 //$type,$nommedia,$cheminmedia,$creditmedia,$alt
                 $id = $this->feuillejournalmodel->insertMedias($_FILES['file' . $i]['type'], $name['name'], $name['path'], "", "Illustration feuille journal page" . ($i + 1),$minlink);
                 $this->feuillejournalmodel->insertAssoc($idfeuille_journal,$id);

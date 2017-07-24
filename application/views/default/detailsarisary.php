@@ -29,10 +29,6 @@
             <?php foreach ($sous_rubrique as $rubrique):?>
             <li><a href="#" data-filter=".<?php echo str_replace(' ','',$rubrique->libelle)?>"><?= $rubrique->libelle?></a></li>
             <?php endforeach;?>
-            <!--<li><a href="#" data-filter=".web-design">Web Design</a></li>
-            <li><a href="#" data-filter=".typography">Typography</a></li>
-            <li><a href="#" data-filter=".design-inspiration">Design Inspiration</a></li>
-            <li><a href="#" data-filter=".wordpress">Wordpress</a></li>-->
         </ul> <!-- End Portofolio-Filter -->
 
         <div class="portofolio-items row">

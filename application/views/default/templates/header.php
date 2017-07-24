@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/jquery.modal.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css?v=13">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css?v=1">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -38,33 +38,65 @@
     <!-- JavaScript -->
     <script type="text/javascript" src="<?= base_url('assets/default/js/jquery-1.8.3.min.js')?>"></script>
     <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
+    <script src='https://www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit'></script>
+    <script>
+        var captcha;
+        var captcha1;
+        var RC2KEY = '6LdCZikUAAAAAGLIArvXNrMcngw1HhbzaE-pTHWl',
+            doSubmit = false;
+
+        function reCaptchaVerify(response) {
+            if (response === document.querySelector('.g-recaptcha-response').value){
+                doSubmit = true;
+                $("iframe" ).css( "border", "none" );
+            }
+        }
+
+
+        function reCaptchaExpired () {
+            /* do something when it expires */
+        }
+
+        var reCaptchaCallback = function() {
+            //Render the recaptcha1 on the element with ID "recaptcha1"
+            grecaptcha.render('captcha', {
+                'sitekey': RC2KEY,
+                'callback': reCaptchaVerify,
+                'expired-callback': reCaptchaExpired
+            });
+
+            //Render the recaptcha2 on the element with ID "recaptcha2"
+            grecaptcha.render('captcha1', {
+                'sitekey': RC2KEY,
+                'callback': reCaptchaVerify,
+                'expired-callback': reCaptchaExpired
+            });
+        }
+    </script>
 </head>
 <body>
-
 <div id="top-navigation">
-    <div id="dialog" title="Basic dialog" style="display:none;">
-        <div class="modal-header">
-            <h4 class="modal-title">Fampahafantarana</h4>
-        </div>
-        <div class="modal-body">
-            <p>Miala tsiny tompoko! Tsy manana fahafahana ny hijery an'io pekelaka io ianao. Mamorona kaonty vaovao manana fahafahana na midira amin'ny alalan'ny kaontinao.</p>
-        </div>
-        <div class="span12 aligncenter">
-            <a href="<?= base_url('accueil/connection')?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription')?>" class="btn btn-blue">Hisoratra anarana</a>
-        </div>
-    </div>
-
-    <div id="dialog2" title="Basic dialog" style="display:none;">
-        <div class="modal-header">
-            <h4 class="modal-title">Fampahafantarana</h4>
-        </div>
-        <div class="modal-body">
-            <p><?= $this->session->flashdata('message')?></p>
-        </div>
-    </div>
-
     <div class="container">
+        <div id="dialog" title="Basic dialog" style="display:none;">
+            <div class="modal-header">
+                <h4 class="modal-title">Fampahafantarana</h4>
+            </div>
+            <div class="modal-body">
+                <p>Miala tsiny tompoko! Tsy manana fahafahana ny hijery an'io pekelaka io ianao. Mamorona kaonty vaovao manana fahafahana na midira amin'ny alalan'ny kaontinao.</p>
+            </div>
+            <div class="span12 aligncenter">
+                <a href="<?= base_url('accueil/connection')?>" class="btn btn-green">Hiditra amin'ny kaonty</a> na  <a href="<?= base_url('accueil/inscription')?>" class="btn btn-blue">Hisoratra anarana</a>
+            </div>
+        </div>
 
+        <div id="dialog2" title="Basic dialog" style="display:none;">
+            <div class="modal-header">
+                <h4 class="modal-title">Fampahafantarana</h4>
+            </div>
+            <div class="modal-body">
+                <p><?= $this->session->flashdata('message')?></p>
+            </div>
+        </div>
         <!-- Navigation -->
         <ul class="nav-menu pull-left">
             <li class="active"><a href="<?= base_url("accueil")?>">Fandraisana</a></li>
@@ -73,14 +105,15 @@
             <li><a href="<?= base_url('accueil/contact')?>">Hitafa</a></li>
             <li><a href="<?= base_url('accueil/hamaky-gazety')?>"><i class="fa fa-newspaper-o"></i> Hamaky gazety</a></li>
         </ul>
-        <ul class="nav-menu  pull-right" style="margin-left: 10px;">
+
+        <ul class="account pull-right" style="margin-left: 10px;">
             <?php if(!$this->session->userdata('user')){?>
+                 <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-user"> </i> Hiditra </a></li>
                 <li><a href="<?= base_url('accueil/inscription')?>" data-placement="bottom" data-original-title="Hiditra mpikambana"><i class="fa fa-user-plus"> </i> Hiditra mpikambana</a></li>
-                <li><a href="<?= base_url('accueil/connection')?>" class="" data-placement="bottom" data-original-title="Hiditra amin'ny kaontiko"><i class="fa fa-sign-in"> </i> Hiditra </a></li>
             <?php }
             else{?>
-                <li><a href="<?= base_url('accueil/monCompte')?>" class="" data-placement="bottom" data-original-title="Kaontiko"><i class="fa fa-user"> </i> Kaontiko </a></li>
                 <li><a href="<?= base_url('logincontroller/deconnect')?>" class="" data-placement="bottom" data-original-title="Hivoaka ny kaontiko"><i class="fa fa-sign-in"> </i> Hivoaka </a></li>
+                <li><a href="<?= base_url('accueil/monCompte')?>" class="" data-placement="bottom" data-original-title="Kaontiko"><i class="fa fa-user"> </i> Kaontiko </a></li>
             <?php }?>
         </ul>
         <!-- Search Form -->

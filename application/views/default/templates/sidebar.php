@@ -36,19 +36,19 @@
                 <h4>Fanadihadiana</h4>
             </div>
 
-            <div class="content">
+            <div class="content" style="margin: 10px;">
                 <div align="center">
-                <p><a href="single_photo.html" title="View permalink House in The Woods"><?=count($sondage)!=0 ? $sondage[0]->question : 'mbola tsy misy fanadiahana' ?></a></p>
+                    <p><a href="single_photo.html" title="View permalink House in The Woods"><?=count($sondage)!=0 ? $sondage[0]->question : 'mbola tsy misy fanadiahana' ?></a></p>
                 </div>
                 <!-- Photo Galleries -->
                 <?php
                 $data = array();
 
-                $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
+                $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'form-sondage', 'name'=>'form-sondage');
                 $lien_action  ='sondagecontroller/vote';
                 echo form_open_multipart($lien_action,$attributes);
                 ?>
-                <form id="demo-form2" class="form-horizontal form-label-left" method="post">
+                <form id="demo-form2" class="form-horizontal form-label-left" method="post" onsubmit="check_if_capcha_is_filled()">
                     <input type="hidden" name="idsondage" value="<?=count($sondage)!=0 ? $sondage[0]->idsondage : null ?>">
                     <div class="radio">
                         <label><input type="radio" name="idreponse" value="1">Eny</label>
@@ -57,11 +57,13 @@
                         <label><input type="radio" name="idreponse" value="2">Tsia</label>
                     </div>
                     <div class="radio disabled">
-                        <label><input type="radio" name="idreponse" value="3">tsy maneo hevitra</label>
+                        <label><input type="radio" name="idreponse" value="3" checked>tsy maneo hevitra</label>
                     </div>
 
                     <div align="center">
-                    <input type="submit" name="submit" value="alefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
+                        <div class="g-recaptcha" data-callback="capcha_filled"
+                             data-expired-callback="capcha_expired" data-sitekey="6LdCZikUAAAAAGLIArvXNrMcngw1HhbzaE-pTHWl" id="captcha"></div>
+                        <input type="submit" name="submit" value="alefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
                     </div>
                 </form>
                 <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy naneo hevitra</a></div>
@@ -88,6 +90,27 @@
 
         </div>
     </div> <!-- End Widget -->
+    <?php if(isset($pub)){
+        $pub = current($pub)?>
+    <div class="widget clearfix">
+        <div class="best-picture">
+
+            <div class="header">
+                <h4>Doka</h4>
+            </div>
+
+            <div class="content">
+                <!-- Photo Galleries -->
+                <figure class="flexslider loading">
+                    <ul class="slides">
+                        <li><a href="<?= base_url($pub->lienredirection)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($pub->lienimage)?>" alt="<?=$pub->alt?>" /></a></li>
+                    </ul>
+                </figure>
+            </div>
+
+        </div>
+    </div> <!-- End Widget -->
+    <?php }?>
     <div class="widget clearfix">
         <div class="best-picture">
 
@@ -109,3 +132,12 @@
     
 </div> <!-- End Sidebar -->
 </div><!-- end row-fluid -->
+<script>
+	document.forms['form-sondage'].addEventListener('submit',function(e){
+		if (!doSubmit) {
+		    e.preventDefault();
+            $("iframe").css( "border", "1px solid red" );
+            return false;
+		}
+	})
+</script>

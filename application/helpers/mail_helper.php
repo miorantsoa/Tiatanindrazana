@@ -36,9 +36,10 @@ function send_confirmation($id_user){
         $message .="<p>Mot de passe : le mot de passe que vous avez choisis</p>";
         $message .="<p>Pour acceder a votre compte veuiller vous rendre sur:</p>";
         $message .="<p><a href='<?= base_url('accueil/connection')?>'>http://www.tiatanindrazana.com/v2/accueil/connection</a></p>";
-        $message .="<p>-------------------------------</p>";
-        $message .="<p>Cordialement</p>";
-        $message .="<p>Siege Vidy varotra Soanerana</p>";
+        $message .=" ";
+        $message .="Tia tanindrazana";
+        $message .="Siège : Soenerana Immeuble Vidy Varotra";
+        $message .="Nous vous remercions";
         send($to,$sujet, $message);
     }
 }

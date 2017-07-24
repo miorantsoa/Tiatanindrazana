@@ -9,13 +9,13 @@
                 <div class="x_content">
                     <?php
                     $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'demo-form2');
-                    $lien_action  = (isset($modif)) ? 'usercontroller/addUserback' : 'usercontroller/addUserback';
+                    $lien_action  = (isset($modif)) ? 'usercontroller/updateFilActu' : 'usercontroller/addUserback';
                     echo form_open_multipart($lien_action,$attributes);
                     ?>
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <input type="hidden" name="idabonnee" value="<?=(isset($id)) ? $id : null ?>">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Civilite : <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Civilte : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-check">
@@ -53,47 +53,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Date de naissance : <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Numero CIN : <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="number" name="cin" placeholder="CIN ****" id="cin" class="form-control" maxlength="15" minlength="8" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Date obtention CIN : <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="date" name="datedelivrancecin" placeholder="12/12/88" id="datedelivrancecin" class="form-control" max="<?= date('Y-m-d')?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Lieu obtention CIN : <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="text" name="lieudelivrancecin" placeholder="" id="lieudelivrancecin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Image recto CIN : <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="file" name="lienimagerectocin" placeholder="" id="lienimagerectocin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fil">Image verso CIN : <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <input type="file" name="lienimageversocin" placeholder="" id="lienimageversocin" class="form-control" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
+                                <input type="date" name="naissanceutilisateur" placeholder="12/12/1970" id="naissanceutilisateur" class="form-control" max="<?= date('Y-m-d',mktime(0, 0, 0, date("m"),   date("d"),   date("Y")-18))?>" value="<?=(isset($modif)) ? $modif[0]->heurepublication : null?>" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -152,11 +112,11 @@
                         <div class="form-group">
                             <label for="rubrique-mere" class="control-label col-md-3 col-sm-3 col-xs-12">Durree abonnement :</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select name="tarifabonnement" id="tarifabonnement" class="form-control col-md-3 col-sm-3 col-xs-12">
-                            <option value="6">3 mois</option>
-                            <option value="7">6 mois</option>
-                            <option value="8">12 mois</option>
-                        </select>
+                                <select name="tarifabonnement" id="tarifabonnement" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                    <option value="6">3 mois</option>
+                                    <option value="7">6 mois</option>
+                                    <option value="8">12 mois</option>
+                                </select>
                             </div>
                         </div>
                         <div class="ln_solid"></div>

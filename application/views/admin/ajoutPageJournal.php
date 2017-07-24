@@ -1,7 +1,7 @@
 <div class="right_col" role="main">
     <?= form_open_multipart(base_url('journalcontroller/addFeuille'));?>
         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-            <input type="text" name="date_parution" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution">
+            <input type="text" name="date_parution" class="form-control has-feedback-right" id="datetimepicker" placeholder="Date parution" required>
             <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
         </div>
 

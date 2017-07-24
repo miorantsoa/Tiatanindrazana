@@ -56,7 +56,7 @@ class Accueil extends CI_Controller{
             $data['sarisary'] = $this->articlesmodel->getLastSarisary()[0];
         }
         if(count($this->getPub(1))!=0) {
-            $data['banniere'] = $this->getPub(1)[0];
+            $data['banniere'] = current($this->getPub(1));
         }
         if(count($this->getPub(2))!=0) {
             $data['pub'] = $this->getPub(2);
@@ -609,9 +609,6 @@ class Accueil extends CI_Controller{
         $data['nomutilisateur'] = $this->input->post('nomutilisateur');
         $data['prenomutilisateur'] = $this->input->post('prenomutilisateur');
         $data['naissanceutilisateur'] =  $this->input->post('naissanceutilisateur');
-        $data['cin'] = $this->input->post('cin');
-        $data['datedelivrancecin'] = $this->input->post('datedelivrancecin');
-        $data['lieudelivrancecin'] = $this->input->post('lieudelivrancecin');
         $data['emailutilisateur'] = $this->input->post('emailutilisateur');
         $data['identifiant'] = $this->input->post('identifiant');
         $data['motdepasse'] = sha1($this->input->post('motdepasse'));
@@ -622,12 +619,6 @@ class Accueil extends CI_Controller{
         }
         if(uploadImage('lienimagepdp','upload/infouser',$this->input->post('identifiant').'-'.'profile')) {
             $data['imageprofile'] = uploadImage('lienimagepdp', 'upload/infouser', $this->input->post('identifiant') . '-' . 'profile')['path'];
-        }
-        if(uploadImage('lienimagerectocin','upload/infouser',$this->input->post('identifiant').'-'.'rectocin')) {
-            $data['liencin_recto'] = uploadImage('lienimagerectocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'rectocin')['path'];
-        }
-        if(uploadImage('lienimageversocin','upload/infouser',$this->input->post('identifiant').'-'.'versocin')) {
-            $data['liencin_verso'] = uploadImage('lienimageversocin', 'upload/infouser', $this->input->post('identifiant') . '-' . 'versocin')['path'];
         }
         $abonnement = array();
         $abonnement['type']=$this->input->post('typeabonnement');
@@ -687,12 +678,11 @@ class Accueil extends CI_Controller{
         $data = $this->indexData();
         $this->load->model('coruptionmodel');
         $data['titre'] = "Ireo kolikoly nozaraina : Tia Tanindrazana";
-        $data['Corruption'] = $this->coruptionmodel->getCorruption();
+        $data['Corruption'] = $this->coruptionmodel->getallcorruption();
         $this->load->view('default/templates/header',$data);
-        $this->load->view('default/Kolikoly',$data);
+        $this->load->view('default/kolikoly',$data);
         $this->load->view('default/templates/footer');
     }
-
     public function updateTarif(){
         $this->db->trans_start();
         $this->db->query('update tarifabonnement set prixabonnement =15000 where durreeabonnement = 3');
@@ -724,4 +714,17 @@ class Accueil extends CI_Controller{
         echo "Opération effecué";
     }
 
+    public function update_media(){
+        $this->db->trans_start();
+        $this->db->query('ALTER TABLE `abonnee` CHANGE `cin` `cin` VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL');
+        $this->db->query('ALTER TABLE `abonnee` CHANGE `datedelivrancecin` `datedelivrancecin` DATE NULL');
+        $this->db->query('ALTER TABLE `abonnee` CHANGE `lieudelivrancecin` `lieudelivrancecin` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL');
+        $this->db->query('ALTER TABLE `abonnee` CHANGE `liencin_recto` `liencin_recto` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL');
+        $this->db->query('ALTER TABLE `abonnee` CHANGE `liencin_verso` `liencin_verso` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL');
+        $this->db->query('ALTER TABLE `filactualite` CHANGE `extrait` `extrait` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL');
+        $this->db->query('ALTER TABLE `media` ADD `min` VARCHAR(150) NULL AFTER `cheminmedia`');
+        $this->db->query('ALTER TABLE `journal` ADD `min` VARCHAR(150) NULL AFTER `liencouverture`');
+        $this->db->trans_complete();
+        echo "Opération effecué";
+    }
 }

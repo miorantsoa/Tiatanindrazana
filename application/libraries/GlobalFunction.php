@@ -40,6 +40,7 @@ class GlobalFunction{
             $data = array('upload_data' => $this->CI->upload->data());
             $image['name'] = $data['upload_data']['file_name'];
             $image['path'] = substr($config['upload_path'],2).'/'. $data['upload_data']['file_name'];
+            $image['ext'] = $data['upload_data']['file_ext'];
         }
         return $image;
     }

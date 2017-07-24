@@ -48,7 +48,7 @@ class PubModel extends CI_Model{
     }
     public function getLastPub($position){
         $this->db->where('position',$position);
-        $this->db->where('datefindiffusion in (select max(datefindiffusion) as datediffusion from publicite)');
+        $this->db->where("datefindiffusion in (select max(datefindiffusion) as datediffusion from publicite where position = $position)");
         $pub = $this->db->get('publicite');
         return $pub->result();
     }

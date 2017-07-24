@@ -39,6 +39,12 @@
             <a href="<?= base_url("accueil")?>"><img href="<?= base_url("accueil")?>" src="<?= base_url()?>/assets/login/img/logoTT.png" alt="Tia Tanindrazana"/></a>
         </div>
         <div class="col-md-4 col-md-offset-4">
+            <br>
+            <?php if($this->session->flashdata('message')!=null){?>
+                <div class="alert alert-warning">
+                    <strong>Fampahafantarana : </strong> <?= $this->session->flashdata('message')?>
+                </div>
+            <?php }?>
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
                     <strong class="panel-title">Hiditra / Se Connecter</strong>
@@ -59,16 +65,14 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Teny miafina / mot de passe" name="password" type="password" value="" required>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">tatidio
-                                </label>
-                            </div>
                             <div>
                                 <a href="<?= base_url("accueil/inscription")?>">Mbola tsy manana kaonty?</a>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <button href="#" class="btn btn-lg btn-success btn-block">Hiditra</button>
+                            <div>
+                                <a href="<?= base_url("usercontroller/oublie_mot_de_passe")?>" class="pull-right">Nanadino teny miafina ve ianao?</a>
+                            </div>
                         </fieldset>
                     </form>
                 </div>

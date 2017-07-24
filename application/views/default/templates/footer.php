@@ -8,6 +8,19 @@
 <a href="#" class="scrollup" title="Hiverina miakatra!">Scroll</a>
 <div id="fb-root"></div>
 <script>
+    //Google recaptcha
+    var allowSubmit = false;
+    function capcha_filled () {
+        allowSubmit = true;
+    }
+    function capcha_expired () {
+        allowSubmit = false;
+    }
+    function check_if_capcha_is_filled (e) {
+        if(allowSubmit) return true;
+        e.preventDefault();
+        alert('Fill in the capcha!');
+    }
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

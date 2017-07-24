@@ -77,16 +77,15 @@
                     <div class="x_content">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
-                                <tr>
-                                    <th>Civilité</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Date de naissance</th>
-                                    <th>CIN</th>
-                                    <th>Email</th>
-                                    <th>detail</th>
-                                    <th></th>
-                                </tr>
+                            <tr>
+                                <th>Civilité</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Date de naissance</th>
+                                <th>Email</th>
+                                <th>modifier</th>
+                                <th>detail</th>
+                            </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($abonnees as $abonnee):?>
@@ -95,9 +94,9 @@
                                     <td><?= $abonnee->nomutilisateur?></td>
                                     <td><?= $abonnee->prenomutilisateur?></td>
                                     <td><?= $abonnee->naissanceutilisateur?></td>
-                                    <td><?= $abonnee->cin?></td>
                                     <td><?= $abonnee->emailutilisateur?></td>
-                                    <td><a href="<?= base_url('page/administration/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn">Plus d'info</a></td>
+                                    <td><a href="<?= base_url('page/administration/updateinfoabonnee/'.$abonnee->idutilisateur2)?>" class="btn btn-warning">Modifier</a></td>
+                                    <td><a href="<?= base_url('page/administration/info_abonnee/'.$abonnee->idutilisateur2)?>" class="btn btn-success">Plus d'info</a></td>
                                     <td>
                                         <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
                                         <div id="myModal" class="modal fade" role="dialog">
