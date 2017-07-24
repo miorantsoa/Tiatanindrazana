@@ -109,6 +109,9 @@ class JournalController extends CI_Controller {
                     $file_namemin[] = $name['path'];
                     $min = $name['path'];
                     $temp = explode(".",$name['name']);
+                    if($temp[1]!=null){
+                        $temp[1] = ".".$temp[1];
+                    }
                     $nomf = $temp[0].'_thumb'.$temp[1];
                     $minlink = 'upload/journal/'. $nomf;
                     $configmin = $this->configResize($min);
