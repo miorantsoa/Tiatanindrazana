@@ -34,6 +34,11 @@ class Rubrique_model extends CI_Model{
         }
         $this->db->trans_complete();
     }
+    public function getrubriquemere($id){
+        $this->db->where('idcategorie2',$id);
+        $rubmere = $this->db->get("assoc_sous_categorie");
+        return  $rubmere->result();
+    }
     public function getRubrique(){
         $rubrique = $this->db->get("categorie");
         return  $rubrique->result();
@@ -58,4 +63,8 @@ class Rubrique_model extends CI_Model{
         $this->db->delete('categorie');
     }
 
+    public function update($id,$data){
+        $this->db->where('idcategorie',$id);
+        $this->db->update('categorie',$data);
+    }
 }

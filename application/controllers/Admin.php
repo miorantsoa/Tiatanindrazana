@@ -118,6 +118,13 @@ class Admin extends CI_Controller {
         $data['rubrique'] = $this->rubrique_model->getFirstRang();
 		$this->adminView('ajouterRubrique',$data);
 	}
+	public function updateRubrique($id){
+        $this->load->model('rubrique_model');
+        $data['rubrique'] = $this->rubrique_model->getFirstRang();
+        $data['update'] = $this->rubrique_model->getRubriqueById($id);;
+      //  $data['mere'] = $this->rubrique_model->getrubriquemere($id);;
+        $this->adminView('ajouterRubrique',$data);
+    }
 	public function ajoutJournal(){
 		$this->adminView('ajoutJournal');
 	}
