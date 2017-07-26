@@ -22,15 +22,23 @@
 							<thead>
 								<tr>
 									<th>Nom du rubrique</th>
-									<th>Action</th>
+									<th>Niveau</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php foreach ($rubrique as $rub):?>
                                 <tr>
                                     <th><?=$rub->libelle?></th>
+                                    <th><?=$rub->niveau?></th>
                                     <th>
-                                        <a href="<?= base_url('index.php/rubrique/delere/'.$rub->idcategorie)?>">
+                                        <a href="<?=base_url('index.php/admin/updaterubrique/'.$rub->idcategorie)?>">
+                                            <button type="button" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-pencil"></i> Modillier</button>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="<?= base_url('index.php/rubrique/delete/'.$rub->idcategorie)?>">
                                             <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</button>
                                         </a>
                                     </th>

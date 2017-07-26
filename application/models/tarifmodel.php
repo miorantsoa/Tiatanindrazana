@@ -8,16 +8,38 @@
  */
 class tarifmodel extends CI_Model
 {
-    public function insert($question,$dateparution){
+    public function insert($libelle,$niveau){
 
         $data = array(
-            'question' => $question,
-            'dateparution' => $dateparution
+            'libelle' => $libelle,
+            'niveau_abonnement' => $niveau
         );
         $this->db->trans_start();
-        $this->db->insert("sondage",$data);
+        $this->db->insert("typeabonnement",$data);
 
         $this->db->trans_complete();
+    }
+    public function inserttype($idtype,$dateapp,$durreeabonnement,$prixabonnement){
+
+        $data = array(
+            'idtypeabon' => $idtype,
+            'dateapplication' => $dateapp,
+            'durreeabonnement' => $durreeabonnement,
+            'prixabonnement' => $prixabonnement
+
+        );
+        $this->db->trans_start();
+        $this->db->insert("tarifabonnement",$data);
+
+        $this->db->trans_complete();
+    }
+    public function update($id,$data){
+        $this->db->where('idsondage',$id);
+        $this->db->update('sondage',$data);
+    }
+    public function updatetype($id,$data){
+        $this->db->where('idtarif',$id);
+        $this->db->update('sondage',$data);
     }
     //public function update($id, $contenu, $)
     public function delete($id){
@@ -30,10 +52,7 @@ class tarifmodel extends CI_Model
         $res = $this->db->get('sondage');
         return $res->result();
     }
-    public function update($id,$data){
-        $this->db->where('idsondage',$id);
-        $this->db->update('sondage',$data);
-    }
+
 
     public function getall (){
         $detail_corruption = $this->db->get("sondage");

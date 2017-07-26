@@ -53,7 +53,7 @@ function send_fin_abonnement($id_user){
     $CI->load->model('abonneemodel');
     $abonnee = $CI->abonneemodel->getAbonneeById($id_user);
     if(count($abonnee)!=0){
-        $nom = $abonnee[0]->nomutilisateur;
+        $nom = $abonnee[0]->nomutilisateur;;
         $prenom = $abonnee[0]->prenomutilisateur;
         $to = $abonnee[0]->emailutilisateur;
         $sujet = "Fin abonnement";
