@@ -12,7 +12,7 @@ echo var_dump($Corruption);
         <div class="row-fluid">
             <div class="breadcrumb clearfix">
                 <span class="base">Ato no misy anao</span>
-                <p><a href="<?= base_url('accueil')?>">Fandraisana</a> <a>Ireo kolikoly no zaraina teto aminay</a></p>
+                <p><a href="<?= base_url('accueil')?>">Fandraisana</a> <a>Ireo kolikoly nozaraina teto aminay</a></p>
             </div> <!-- End Breadcrumb -->
             <div class="filtre search-page">
                 <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($Corruption->sujet))?>">

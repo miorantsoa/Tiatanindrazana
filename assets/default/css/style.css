@@ -665,7 +665,7 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 	}
 		#main-navigation ul li a {
 			font-family: Oswald, Arial, sans-serif;
-			color: #808080;
+			color: #505050;
 			text-transform: uppercase;
 			line-height: 1em;
 			padding: 10px 5px;
@@ -1153,7 +1153,8 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 .post { margin-bottom:20px;}
 	.post figure { position:relative;
 		background: #fff;
-		max-height:200px;
+		max-height:180px;
+		min-height:180px;
 		overflow: hidden;
 	}
 		.post figure .cat-name {
@@ -1164,20 +1165,20 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 			font-family:Oswald, Arial, sans-serif;
 			text-transform:uppercase;
 		}
-			.post figure .cat-name .base {
-				background-color:#f15620;
-				padding:5px 20px 5px 30px;
-				display:block;
-			}
-			.post figure .cat-name .arrow {
-				display:block;
-				position:absolute;
-				width:0;
-			    height:0;
-			    border-right:10px solid #be3201;
-			    border-bottom:10px solid transparent;	
-			}
-		
+		.post figure .cat-name .base {
+			background-color:#f15620;
+			padding:5px 20px 5px 30px;
+			display:block;
+		}
+		.post figure .cat-name .arrow {
+			display:block;
+			position:absolute;
+			width:0;
+			height:0;
+			border-right:10px solid #be3201;
+			border-bottom:10px solid transparent;
+		}
+
 	.post .text {
 		padding:10px 20px 20px;
 		border:1px solid #dadada;
@@ -1188,15 +1189,17 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 			line-height:1.25em;
 			border-bottom:2px dashed #dadada;
 			padding-bottom:20px;
-			margin-bottom:20px;	
+			margin-bottom:20px;
 		}
-		.post .text .meta {
-			border-top:1px solid #EAEAEA;
-			margin-top:15px;
-			padding-top:10px;
-			font-size:12px;
-			color:#707070;
-		}
+			.post .text .meta {
+				border-top:1px solid #EAEAEA;
+				margin-top:15px;
+				padding-top:10px;
+				font-size:12px;
+				color:#707070;
+				position: absolute;
+				bottom: 10px;
+			}
 			
 /* Homepage Reviews & Galleries */
 			
@@ -1414,6 +1417,11 @@ ul.nav-tabs { border-bottom:none; margin:0px; }
 		line-height:1.5em;
 		margin:0px;
 	}
+/*Custom post*/
+.home-page .post .text{
+	height: 300px !important;
+	position: relative;
+}
 	
 /* Blog Photos */
 

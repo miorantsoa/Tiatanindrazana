@@ -20,7 +20,7 @@ class JournalController extends CI_Controller {
         }
         $this->load->model('journal');
         $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
-        redirect('admin/journal');
+        redirect('page/administration/journal');
     }
     public function ajoutAjax(){
         $config = $this->configUpload();
@@ -48,7 +48,7 @@ class JournalController extends CI_Controller {
     public function delete($id){
         $this->load->model('journal');
         $this->journal->deleteJournal($id);
-        redirect('admin/journal');
+        redirect('page/administration/journal');
     }
     public function update(){
         $config = $this->configUpload();
@@ -63,7 +63,7 @@ class JournalController extends CI_Controller {
         }
         $this->load->library('journallibrary');
         $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'));
-        redirect('admin/journal');
+        redirect('page/administration/journal');
     }
 
     public function configUpload(){
@@ -127,13 +127,13 @@ class JournalController extends CI_Controller {
         else{
             $data['message'] = "Une erreur est survenu pendant l'upload";
         }
-        redirect('admin/feuillejournal');
+        redirect('page/administration/feuillejournal');
     }
 
     public function deleteFeuille($id){
         $this->load->model('feuillejournalmodel');
         $this->feuillejournalmodel->delete($id);
-        redirect('admin/feuillejournal');
+        redirect('page/administration/feuillejournal');
     }
 
     public function editImage(){
@@ -148,7 +148,7 @@ class JournalController extends CI_Controller {
         $data['cheminmedia'] = $image['path'];
         $data['nommedia'] = $image['name'];
         $this->feuillejournalmodel->editImage($id,$data);
-        redirect('admin/feuillejournal');
+        redirect('page/administration/feuillejournal');
     }
     /*Feuille journal*/
 }

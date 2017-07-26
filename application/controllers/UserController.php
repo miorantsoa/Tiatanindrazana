@@ -293,12 +293,16 @@ class UserController extends CI_Controller
         }
         else{
             $uniq_id = md5(uniqid($email, true));
-            $message = "<p>Midiarahaba anao <?= current($user)->civilite?> <?= current($user)->prenomutilisateur?>,</p>";
+            $civilite = $user[0]->civilite;
+            $prenom = $user[0]->prenomutilisateur;
+            $url = base_url('usercontroller/reinitialiser_mot_de_passe?uniq_id='.$uniq_id.'&id='.$user[0]->idutilisateur2);
+            $url_averina = base_url('usercontroller/oublie_mot_de_passe');
+            $message = "<p>Midiarahaba anao $civilite $prenom,</p>";
             $message.= "</br><p>Mahavoray ity mailaka ity ianao satria nisy nangataka hanova ny teny miafina ampiasainao</p>";
-            $message.= "</br><p>Raha ianao no nangataka izany dia tsindrio araho ny rohy : <a href='".base_url('usercontroller/reinitialiser_mot_de_passe?uniq_id='.$uniq_id.'&id='.$user->idutilisateur2)."'></a></p>";
+            $message.= "</br><p>Raha ianao no nangataka izany dia tsindrio araho ny rohy : <a href='$url'>Hanova teny miafina</a></p>";
             $message.= "<p>Raha tsy te hanova kosa ianao dia ataovy hoatran'ny tsy misy ity mailaka ity.</p>";
             send($email,'Tia Tanindrazana : Hanova teny miafina hadino',$message);
-            $this->session->set_flashdata('message',"Efa lasa ny mailaka fangatahana fanovana teny miafina nangatahanao. Raha mbola tsy nahavoaray dia <a href='<?= base_url('usercontroller/oublie_mot_de_passe')?>'>Averina alefa</a>");
+            $this->session->set_flashdata('message',"Efa lasa ny mailaka fangatahana fanovana teny miafina nangatahanao. Raha mbola tsy nahavoaray dia <a href='$url_averina'>Averina alefa</a>");
             redirect('usercontroller/oublie_mot_de_passe');
         }
     }
@@ -329,7 +333,7 @@ class UserController extends CI_Controller
             $message = "<p>Miarahaba,</p>";
             $message .= "</br><p>Tanteraka soa aman-tsara ny fanovana teny miafina nataonao.</p>";
             $message .= "</br><p>Misaotra anao amin'ny fahatokisanao.</p>";
-            send($user->emailutilisateur, "Tia Tanindrazana : Fanonvana teny miafina", $message);
+            send($user->emailutilisateur, "Tia Tanindrazana : Fanovana teny miafina", $message);
             $this->session->set_flashdata('message', "Tanteraka soa aman-tsara ny fanovana teny miafina nataonao");
             redirect('accueil/connection');
         }

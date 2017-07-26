@@ -685,9 +685,7 @@ class Accueil extends CI_Controller{
     }
     public function updateTarif(){
         $this->db->trans_start();
-        $this->db->query('update tarifabonnement set prixabonnement =15000 where durreeabonnement = 3');
-        $this->db->query('update tarifabonnement set prixabonnement =32500 where durreeabonnement = 6');
-        $this->db->query('update tarifabonnement set prixabonnement =60000 where durreeabonnement = 12');
+        $this->db->query('update typeabonnement set libelle = "Volamena" where libelle = "Gold"');
         $this->db->trans_complete();
         echo "Opération effecué";
     }
@@ -726,5 +724,8 @@ class Accueil extends CI_Controller{
         $this->db->query('ALTER TABLE `journal` ADD `min` VARCHAR(150) NULL AFTER `liencouverture`');
         $this->db->trans_complete();
         echo "Opération effecué";
+    }
+    public function add_column_min(){
+        $this->db->query('ALTER TABLE `article` ADD `min` VARCHAR(250) NULL AFTER `lien_image_une`');
     }
 }

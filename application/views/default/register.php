@@ -46,7 +46,7 @@
                         <input type="text" data-parsley-length="[4,80]" name="nomutilisateur" required class="form-control" placeholder="Anarana"/>
                     </div>
                     <div class="form-group">
-                        <label>Fananpiny :</label>
+                        <label>Fanampiny :</label>
                         <input type="text" name="prenomutilisateur" maxlength="80" required class="form-control" placeholder="Fanampin'anarana"/>
                     </div>
                     <div class="form-group">
@@ -94,12 +94,13 @@
                 <fieldset>
                     <legend>Safidy ny tolotra / Choix de l'offre:</legend>
                     <div class="">
+                        <?php foreach ($typeabonnement as $abonnement):?>
                         <div class="row pricing">
                             <?php
                     for($i = 1; $i<count($tarifabonnement);$i++){?>
                             <div class="col-md-4">
                                 <div class="well">
-                                    <h3><b>Tolotra Gold <?= $tarifabonnement[$i]->durreeabonnement?> Volana </b></h3>
+                                    <h3><b>Tolotra <?=$abonnement->libelle?> <?= $tarifabonnement[$i]->durreeabonnement?> Volana </b></h3>
                                     <input type="hidden" name="tarifabonnement">
                                     <input type="hidden" name="idtarif">
                                     <hr>
@@ -118,6 +119,7 @@
                             </div>
                             <?php }?>
                         </div>
+                        <?php endforeach;?>
                     </div>
                     <div class="data-status"></div> <!-- data submit status -->
                 </fieldset>

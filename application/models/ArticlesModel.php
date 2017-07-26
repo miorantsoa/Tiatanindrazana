@@ -444,6 +444,7 @@ class ArticlesModel extends CI_Model {
             article.extrait,
             article.laune,
             article.lien_image_une,
+            article.min,
             article.url_tag,
             article.titre,
             categorie.libelle,

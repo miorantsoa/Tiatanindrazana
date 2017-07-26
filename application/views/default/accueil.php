@@ -1,5 +1,5 @@
 
-<div class="row-fluid">
+<div class="row-fluid home-page">
 <div id="main" class="span8 image-preloader">
     <div id="home-slider" class="home-slider3">
 
@@ -7,7 +7,7 @@
             <ul class="slides">
                 <?php if(isset($laune)){?>
                 <li> <!-- One -->
-                    <img src="<?= base_url($laune->lien_image_une)?>" alt="Screenshoot 1" />
+                    <img src="<?= ($laune->min!=null)? base_url($laune->min): base_url($laune->lien_image_une)?>" alt="Screenshoot 1" />
                     <div class="content">
                         <div class="header">
                             <span class="date">
@@ -47,7 +47,7 @@
         ?>
         <div class="<?php echo ($count%2==0) ? "span6 post box" : "span6 post no-margin-left box"?>">
             <figure>
-                <img src="<?php echo ($article->lien_image_une)? base_url($article->lien_image_une) : base_url('assets/default/images/content/600/1.jpg')?>" alt="Thumbnail 1" />
+                <img src="<?php echo ($article->min)? base_url($article->min) : base_url($article->lien_image_une)?>" alt="Thumbnail 1" />
                 <div class="cat-name">
                     <span class="base"><?=$article->libelle?></span>
                     <span class="arrow"></span>

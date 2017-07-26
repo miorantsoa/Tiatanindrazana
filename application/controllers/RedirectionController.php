@@ -6,8 +6,7 @@
  * Date: 18/07/2017
  * Time: 14:39
  */
-class RedirectionConntroller extends CI_Controller
-{
+class RedirectionController extends CI_Controller{
     public function redirection ($URL){
         $this->load->model('articlesmodel');
         $ret = $this->ariclesmodel->getbyURL($URL);

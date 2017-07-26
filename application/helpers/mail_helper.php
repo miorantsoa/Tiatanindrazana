@@ -17,7 +17,7 @@ function send($to,$sujet,$message){
     $CI->load->library('email'
         , $config);
     $CI->load->library('email', $config);
-    $CI->email->from($from, 'Tia Tanindrazana Server');
+    $CI->email->from($from, 'Tia Tanindrazana');
     $CI->email->set_header($header, $value);
     $CI->email->to($to);
     $CI->email->subject($sujet);

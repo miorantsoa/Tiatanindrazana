@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/jquery.modal.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/css/font-awesome.min.css')?>">
-    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css?v=13">
+    <link rel="stylesheet" href="<?= base_url()?>assets/default/css/style.css?v=16">
     <link rel="stylesheet" href="<?= base_url()?>assets/default/css/color.css?v=1">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
@@ -29,10 +29,8 @@
     <![endif]-->
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="<?= base_url()?>/assets/default/images/favicon.ico">
-    <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url()?>/assets/default/images/logo_onglet.png">
+    <link rel="shortcut icon" href="<?= base_url()?>/assets/default/images/fav.png">
+    <link rel="apple-touch-icon" href="<?= base_url()?>/assets/default/images/fav.png">
     <link href="<?= base_url('assets/admin/css/jquery.datetimepicker.css')?>" rel="stylesheet">
 
     <!-- JavaScript -->
@@ -68,7 +66,6 @@
             //Render the recaptcha2 on the element with ID "recaptcha2"
             grecaptcha.render('captcha1', {
                 'sitekey': RC2KEY,
-                'callback': reCaptchaVerify,
                 'expired-callback': reCaptchaExpired
             });
         }
