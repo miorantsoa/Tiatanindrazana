@@ -22,7 +22,7 @@
 							<thead>
 								<tr>
 									<th>Nom du rubrique</th>
-									<th>Niveau</th>
+									<th>Niveau de restriction</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
 								</tr>
@@ -31,9 +31,9 @@
 								<?php foreach ($rubrique as $rub):?>
                                 <tr>
                                     <th><?=$rub->libelle?></th>
-                                    <th><?=$rub->niveau?></th>
+                                    <th><?=$rub->niveau ?> (<?= ($rub->niveau == 1) ? "Publique" : "Abonnée seulement"?>)</th>
                                     <th>
-                                        <a href="<?=base_url('index.php/admin/updaterubrique/'.$rub->idcategorie)?>">
+                                        <a href="<?=base_url('index.php/page/administration/updaterubrique/'.$rub->idcategorie)?>">
                                             <button type="button" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-pencil"></i> Modillier</button>
                                         </a>
                                     </th>

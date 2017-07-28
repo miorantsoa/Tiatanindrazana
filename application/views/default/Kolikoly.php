@@ -15,20 +15,14 @@ echo var_dump($Corruption);
                 <p><a href="<?= base_url('accueil')?>">Fandraisana</a> <a>Ireo kolikoly nozaraina teto aminay</a></p>
             </div> <!-- End Breadcrumb -->
             <div class="filtre search-page">
-                <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($Corruption->sujet))?>">
+                <form name="fikarohana" method="post" action="<?= base_url('accueil/kolikoly')?>">
                     <input type="text" name="recherche" value="" placeholder="lohateny , teny , fehezan-teny ..." class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <select name="ordre" id="ordre">
-                        <option value="">Fantina amin'ny daty</option>
-                        <option value="DESC">Daty midina</option>
-                        <option value="ASC">Daty miakatra</option>
+                        <option value="">Sokajy</option>
+                        <?php foreach ($categories as $category):?>
+                            <option value="<?= $categorie->idcatcorruption?>"><?= $categorie->libelle?></option>
+                        <?php endforeach;?>
                     </select>
-                    <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
-                </form>
-            </div>
-            <div class="filtre search-page">
-                <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$Corruption->idcatcorruption.'-'.tag_categorie($Corruption->sujet))?>">
-                    <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
-                    <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
                 </form>
             </div>
@@ -42,16 +36,16 @@ echo var_dump($Corruption);
                         </div>
                     </figure>
                     <div class="content">
-                        <h2><a href="<?= base_url('article/'.$article->sujet)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
+                        <h2><a href="<?= base_url('kolikoly/'.$article->sujet)?>" title="<?= $article->titre?>"><?= $article->titre?></a></h2>
                         <?= $article->extrait." ..."?>
                     </div>
                     <div class="meta">
                         <span class="pull-left"><?= reformat($article->datepublication)?></span>
-                        <span class="pull-right"><a href="<?= base_url('article/'.$article->url_tag)?>">Hamaky ny tohiny...</a></span>
+                        <span class="pull-right"><a href="<?= base_url('kolikoly/'.$article->url_tag)?>">Hamaky ny tohiny...</a></span>
                     </div>
                 </div>
             <?php endforeach;
-            if(!$results){?>
+            if(!$Corruption){?>
                 <div class="grey">
                     <img src="<?= base_url('assets/default/images/page-vide.png')?>" alt="">
                 </div>

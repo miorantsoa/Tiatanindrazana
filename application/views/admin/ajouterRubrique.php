@@ -9,11 +9,12 @@
 				</div>
 
 				<div class="x_content">
-                    <?php $lien = (isset($update)) ? 'index.php/rubrique/uptdaterubrique' : 'index.php/rubrique/addRubrique';
+                    <?php
+                    $lien = (isset($update)) ? 'index.php/rubrique/updaterubrique' : 'index.php/rubrique/addRubrique';
 
                     ?>
 					<br>
-					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="<?= base_url('index.php/rubrique/addRubrique')?>">
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="<?= base_url($lien)?>">
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="rubrique">Nom du rubrique <span class="required">*</span>
 							</label>

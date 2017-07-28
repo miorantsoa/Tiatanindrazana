@@ -97,7 +97,7 @@ class Dashboard extends CI_Controller {
 	}
 	public function rubrique(){
         $this->load->model('rubrique_model');
-        $data['rubrique'] = $this->rubrique_model->getFirstRang();
+        $data['rubrique'] = $this->rubrique_model->getRubrique();
 		$this->adminView('rubrique',$data);
 	}
 	public function ajoutRubrique(){
@@ -108,7 +108,7 @@ class Dashboard extends CI_Controller {
 	public function updateRubrique($id){
         $this->load->model('rubrique_model');
         $data['rubrique'] = $this->rubrique_model->getFirstRang();
-        $data['update'] = $this->rubrique_model->getRubriqueById($id);;
+        $data['update'] = $this->rubrique_model->getRubriqueById($id);
       //  $data['mere'] = $this->rubrique_model->getrubriquemere($id);;
         $this->adminView('ajouterRubrique',$data);
     }

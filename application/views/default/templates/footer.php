@@ -35,6 +35,7 @@
             $("#dialog").modal();
             console.log(error);
         }
+
         if(message){
             $("#dialog2").modal();
             console.log(message);
@@ -46,6 +47,9 @@
             width : 250
         });
     });
+    function open_dialog(){
+        $("#dialog").modal();
+    }
 </script>
 <noscript><link rel="stylesheet" href="<?= base_url()?>/assets/default/css/no-js.css"></noscript> <!-- If JavaScript Disabled -->
 <!--[if lt IE 9]>

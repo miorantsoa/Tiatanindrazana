@@ -59,6 +59,10 @@ function delete_compte_vide($id){
     $CI->db->trans_complete();
 }
 
+function get_interval($date1){
+    return date_diff(date_create(($date1)),date_create(date('Y-m-d')))->format('%a');
+}
+
 function uploadImage($inputname,$destination,$name){
      $CI = & get_instance();
      $CI->load->library('upload');

@@ -148,6 +148,13 @@ class Accueil extends CI_Controller{
         }
         $date_1 = $this->input->post('date1');
         $date_2 = $this->input->post('date2');
+
+        if($date_2 != null && strtotime($date_1)> strtotime($date_2)){
+            $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
+            $date_2 =  "";
+            $date_1 = "";
+        }
+
         $_annee = $this->input->post('annee');
         $_mois = $this->input->post('mois');
         if(!$_annee){
@@ -218,6 +225,13 @@ class Accueil extends CI_Controller{
             }
             $date_1 = $this->input->post('date1');
             $date_2 = $this->input->post('date2');
+
+            if($date_2 != null && strtotime($date_1)> strtotime($date_2)){
+                $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
+                $date_2 =  "";
+                $date_1 = "";
+            }
+
             if ($date1 != null) {
                 $date_1 = $date1;
             }
@@ -459,6 +473,15 @@ class Accueil extends CI_Controller{
         }
         $date_1 = $this->input->post('date1');
         $date_2 = $this->input->post('date2');
+
+        if($date_2 != null && strtotime($date_1)> strtotime($date_2)){
+            $data['error'] = "Tsy afaka kely noho ny daty nanombohana ny daty iafarana";
+            $date_2 =  "";
+            $date_1 = "";
+        }
+
+        var_dump((isset($data['error'])) ? $data['error'] : "");
+
         if($date1!=null){
             $date_1 = $date1;
         }
@@ -674,11 +697,12 @@ class Accueil extends CI_Controller{
         echo "Opération effectué";
     }
 
-    public function listekolikoly(){
+    public function kolikoly(){
         $data = $this->indexData();
         $this->load->model('coruptionmodel');
         $data['titre'] = "Ireo kolikoly nozaraina : Tia Tanindrazana";
         $data['Corruption'] = $this->coruptionmodel->getallcorruption();
+        $data['categories'] = array();
         $this->load->view('default/templates/header',$data);
         $this->load->view('default/kolikoly',$data);
         $this->load->view('default/templates/footer');

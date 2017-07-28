@@ -17,7 +17,7 @@ class Rubrique extends  CI_Controller{
         redirect('page/administration/rubrique','refresh');
     }
 
-    public function uptdaterubrique (){
+    public function updaterubrique (){
         $this->load->model('rubrique_model');
         $data = array(
             'libelle' => $this->input->get('rubrique'),
@@ -25,7 +25,11 @@ class Rubrique extends  CI_Controller{
             'niveau'=> $this->input->get('niveau')
         );
         $this->rubrique_model->update($this->input->get('idrub'),$data);
-        redirect('admin/rubrique','refresh');
+        redirect('page/administration/rubrique','refresh');
+    }
+
+    public  function updateassociation(){
+
     }
     public function delete($id){
         $this->load->model('rubrique_model');

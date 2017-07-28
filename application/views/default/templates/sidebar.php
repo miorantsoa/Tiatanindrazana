@@ -83,7 +83,7 @@
                 <!-- Photo Galleries -->
                 <figure class="flexslider loading">
                     <ul class="slides">
-                        <li><a href="<?= base_url($ampamoaka->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($ampamoaka->lien_image_une)?>" alt="<?=$ampamoaka->titre?>" /></a></li>
+                        <li><a href="<?= (isset($_SESSION['user'])) ? base_url($ampamoaka->lien_image_une) : "javascript:open_dialog()"?>" <?= (isset($_SESSION['user'])) ? 'data-rel="prettyPhoto[sliderGallery]"' : ""?>><img src="<?= base_url($ampamoaka->lien_image_une)?>" alt="<?=$ampamoaka->titre?>" /></a></li>
                     </ul>
                 </figure>
             </div>
@@ -122,7 +122,7 @@
                 <!-- Photo Galleries -->
                 <figure class="flexslider loading">
                     <ul class="slides">
-                        <li><a href="<?= base_url($sarisary->lien_image_une)?>" data-rel="prettyPhoto[sliderGallery]"><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
+                        <li><a href="<?= (isset($_SESSION['user'])) ? base_url($sarisary->lien_image_une) : "javascript:open_dialog()"?>" <?= (isset($_SESSION['user'])) ? 'data-rel="prettyPhoto[sliderGallery]"' : ""?>><img src="<?= base_url($sarisary->lien_image_une)?>" alt="<?=$sarisary->titre?>" /></a></li>
                     </ul>
                 </figure>
             </div>

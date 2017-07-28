@@ -64,7 +64,47 @@ class Rubrique_model extends CI_Model{
     }
 
     public function update($id,$data){
+        $rang = 1;
+        if($data['rubrique_mere'] !=""){
+            $rang = 2;
+        }
+        if($data['rubrique_mere'] =="" && $this->hasMere($id)){
+            $rang = 1;
+        }
+        $this->db->trans_start();
         $this->db->where('idcategorie',$id);
-        $this->db->update('categorie',$data);
+        $this->db->update('categorie',array(
+            'libelle' => $data['libelle'],
+            'niveau' => $data['niveau'],
+            'rang_cat' => $rang
+        ));
+        if($data['rubrique_mere'] !="") {
+            if($this->hasMere($id)) {
+                $this->db->where('idcategorie2', $id);
+                $this->db->update('assoc_sous_categorie', array('idcategorie1' => $data['rubrique_mere']));
+            }
+            else{
+                $data_assoc = array(
+                    'idcategorie1'=>$data['rubrique_mere'],
+                    'idcategorie2'=>$id                );
+                $this->db->insert("assoc_sous_categorie",$data_assoc);
+            }
+        }
+        else{
+            if($this->hasMere($id)){
+                $this->db->where('idcategorie2', $id);
+                $this->db->delete('assoc_sous_categorie');
+            }
+        }
+        $this->db->trans_complete();
+    }
+
+    function hasMere($id){
+        $this->db->where('idcategorie2',$id);
+        $result = $this->db->get('assoc_sous_categorie');
+        if($result->num_rows()>0){
+            return true;
+        }
+        return false;
     }
 }
