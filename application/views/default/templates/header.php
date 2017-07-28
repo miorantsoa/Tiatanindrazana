@@ -136,7 +136,10 @@
 
     <nav id="main-navigation" class="clearfix">
         <ul>
+            <?php $compteur = 0?>
             <?php foreach($rubriques as $rubrique):?>
+                <?php $compteur = $compteur + 1;?>
+                <?php if($compteur<12){ ?>
                 <li class="<?php echo ($rubrique->libelle == $active) ? "active" : "" ?>"><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle))?>" ><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
                     <?php if($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)){
                         $souscats = $this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie);
@@ -146,8 +149,19 @@
                             <li><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$souscat->idcategorie.'-'.tag_categorie($souscat->libelle))?>"><?= $souscat->libelle?></a>
                                 <?php endforeach; ?>
                         </ul>
+                        <?php }?>
                     <?php }?>
                 </li>
+                <?php if ($compteur==12){ ?>
+            <li><a href="#">SOKAJY HAFA <i class="arrow-main-nav"></i></a>
+                <?php } ?>
+                <ul class="container">
+                <?php if ($compteur>=12){?>
+                        <li class="<?php echo ($rubrique->libelle == $active) ? "active" : "" ?>"><a href="<?php echo ($this->articlelibrarie->is_sarisary($rubrique->idcategorie)) ? base_url('accueil/sarisary/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle)) : base_url('accueil/categorie/'.$rubrique->idcategorie.'-'.tag_categorie($rubrique->libelle))?>" ><?= $rubrique->libelle?><?php echo ($this->rubrique_model->getSousCategorieByIdMere($rubrique->idcategorie)) ? '<i class="arrow-main-nav"></i>' : ""?></a>
+
+                <?php }?>
+
             <?php endforeach;?>
-        </ul>
+                </ul>
+            </li>
     </nav> <!-- End Main-Navigation -->

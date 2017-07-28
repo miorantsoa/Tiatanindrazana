@@ -11,12 +11,14 @@ class JournalLibrary{
         // Assign the CodeIgniter super-object
         $this->CI =& get_instance();
     }
-    public function updateJournal($idjournal,$numparution,$image,$dateparution){
+    public function updateJournal($idjournal,$numparution,$image,$dateparution,$min){
         $data = null;
         if($numparution!="")
             $data['numeroparution'] = $numparution;
-        if($image!=null && $image!="")
+        if($image!=null && $image!="") {
             $data['liencouverture'] = $image;
+            $data['min'] = $min;
+        }
         if($dateparution!="")
             $data['datepublication'] = $dateparution;
         $this->CI->load->model('journal');

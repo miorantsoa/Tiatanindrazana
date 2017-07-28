@@ -17,9 +17,15 @@ class JournalController extends CI_Controller {
         else {
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $min = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $nomf = $data['upload_data']['raw_name'].'_thumb'.$data['upload_data']['file_ext'];
+            $minlink = 'upload/couverture/'. $nomf;
+            $configmin = $this->configResize($min);
+            $this->load->library('image_lib', $configmin);
+            $this->image_lib->resize();
         }
         $this->load->model('journal');
-        $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'));
+        $this->journal->insertJournal($this->input->post('numjournal'),$image,$this->input->post('dateParution'),$minlink);
         redirect('admin/journal');
     }
     public function ajoutAjax(){
@@ -60,9 +66,15 @@ class JournalController extends CI_Controller {
         else {
             $data = array('upload_data' => $this->upload->data());
             $image = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $min = 'upload/couverture/'. $data['upload_data']['file_name'];
+            $nomf = $data['upload_data']['raw_name'].'_thumb'.$data['upload_data']['file_ext'];
+            $minlink = 'upload/couverture/'. $nomf;
+            $configmin = $this->configResize($min);
+            $this->load->library('image_lib', $configmin);
+            $this->image_lib->resize();
         }
         $this->load->library('journallibrary');
-        $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'));
+        $this->journallibrary->updateJournal($this->input->post('idjournal'),$this->input->post('numjournal'),$image,$this->input->post('dateParution'),$minlink);
         redirect('admin/journal');
     }
 
