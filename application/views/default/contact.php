@@ -3,42 +3,64 @@
     <div class="row-fluid">
 
         <div class="header">
-        <h2>Hitafa aminay</h2>
+            <h4>Hitafa aminay </h4>
         </div>
 
-        <div class="header">
-            <h4>Tonian'ny fanoratana </h4>
-        </div>
         <div class="content">
-            <p>RANAIVOSOA Tahiry Tiana <span class="label label-success">+261 33 15 300 91</span></p>
+
+            <b>Birao</b>
+            <p>tel: <i>+261 33 24 772 87</i></p>
+            <p>email: <a href="#">titanindrazana@gmail.com</a></p>
+
+        </div>
+        <br>
+
+        <div class="content">
+            <b>Tonian'ny fanoratana</b>
+            <p>RANAIVOSOA Tahiry Tiana </p>
+            <p>tel: <i>+261 33 15 300 91</i>/<i>+261 34 05 031 42</i></p>
+
         </div>
             <br>
-        <div class="header">
-            <h4>Politika</h4>
-        </div>
+
+            <b>Politika</b>
+
         <div class="content">
-            <p><span class="label label-success">+261 34 07 031 89</span> / <span class="label label-success">+261 33 24 772 87</span></p>
+            <p>RANAIVOSOA Tahiry Tiana </p>
+            <p>tel: <i>+261 33 15 300 91</i>/<i>+261 34 05 031 42</i></p>
+            <p>RAFALIMANANA Toky </p>
+            <p>tel: <i>+261 34 61 132 75</i></p>
+            <p>JAONARY Mirija </p>
+            <p>tel: <i>+261 34 97 702 22</i></p>
         </div>
         <br>
-        <div class="header">
-            <h4>Toekarena</h4>
-            </div>
+
+            <b>Toekarena</b>
+
         <div class="content">
-            <p><span class="label label-success">+261 34 96 972 77</span></p>
+            <P>RAZAFIMONTRONA Dina</P>
+            <p>tel: <i>+261 34 96 972 77</i></p>
+
         </div>
         <br>
-        <div class="header">
-            <h3>Sosialy</h3>
-        </div>
+
+            <b>Sosialy</b>
+
         <div class="content">
-            <p><span class="label label-success">+261 34 14 377 41</span> / <span class="label label-success">+261 33 15 300 87</span></p>
+            <!--Rajosoarimandimby Patricia-->
+            <p>RAJOSOARIMANDIMBY Patricia</p>
+            <p>tel: <i>+261 34 14 377 41</i> / <i>+261 33 15 300 87</i></p>
+
         </div>
         <br>
-        <div class="header">
-            <h4>Fanatanjahantena</h4>
-        </div>
-        <div class="header">
-            <p><span class="label label-success">+261 34 14 928 77</span> / <span class="label label-success">+261 33 11 928 77</span></p>
+
+            <b>Fanatanjahantena</b>
+
+        <div class="content">
+            <!-- Ramanantsoavina Evariste -->
+            <p>RAMANANTSOAVINA Evariste</p>
+            <p>tel: <i>+261 34 14 928 77</i> / <i>+261 33 11 928 77</i></p>
+
         </div>
     </div> <!-- End Row-Fluid -->
 </div>

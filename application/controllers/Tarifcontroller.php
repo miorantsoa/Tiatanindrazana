@@ -8,7 +8,10 @@
  */
 class Tarifcontroller extends CI_Controller
 {
-    public function insertTarif(){}
+    //`idtarif`, `idtypeabon`, `dateapplication`, `durreeabonnement`, `prixabonnement`
+    public function insertTypeTarif(){
+
+    }
 
     public function updateTarif(){}
 
