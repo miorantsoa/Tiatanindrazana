@@ -142,6 +142,20 @@ class JournalController extends CI_Controller {
         redirect('page/administration/feuillejournal');
     }
 
+    public function addOnePage(){
+        $this->load->model('feuillejournalmodel');
+        $this->load->library('globalfunction');
+        $page = $this->input->post('page');
+        $name = $this->globalfunction->uploadImage('image', 'upload/journal', $page . '-feuille-'.$this->input->post('date_parution'));
+        $file_name[] = $name['path'];
+        $min = null;
+        $minlink= null;
+        //$type,$nommedia,$cheminmedia,$creditmedia,$alt
+        $id = $this->feuillejournalmodel->insertMedias('image', $name['name'], $name['path'], "", "Illustration feuille journal page" . $page,$minlink);
+        $this->feuillejournalmodel->insertAssoc($this->input->post('id'),$id);
+        redirect('page/administration/feuillejournal');
+
+    }
     public function deleteFeuille($id){
         $this->load->model('feuillejournalmodel');
         $this->feuillejournalmodel->delete($id);

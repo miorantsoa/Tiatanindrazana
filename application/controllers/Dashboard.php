@@ -305,6 +305,14 @@ class Dashboard extends CI_Controller {
         $data['id'] = $id;
         $this->adminView('editFeuille', $data);
     }
+
+    public  function add_one_page(){
+        $page = $this->input->get('page');
+        $id = $this->input->get('id');
+        $data['page'] = $page;
+        $data['id'] = $id;
+        $this->adminView('addFeuilleJournal', $data);
+    }
     /*Feuille journal*/
 
     public function addsondage(){

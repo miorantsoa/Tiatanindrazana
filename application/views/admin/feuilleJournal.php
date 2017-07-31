@@ -46,15 +46,27 @@
                         </div>
                         <div class="row">
                             <?php
+                            $i = 1;
                             foreach ($journals as $journal):?>
                                 <div class="col-md-3 col-sm-3 col-xs-12 box-image">
                                     <img class="img img-thumbnail" src="<?= base_url($journal->cheminmedia) ?>" alt="Test fotsiny">
+                                    <h3 class="label label-info">Page <?= $i?></h3>
                                     <div class="btn btn-group">
                                         <a href="<?= base_url('journalcontroller/deleteFeuille/'.$journal->idmedia)?>" class="btn btn-danger"><i class="fa fa-trash"></i> Supprimer</a>
                                         <a href="<?= base_url('page/administration/editSingleImage/'.$journal->idmedia)?>" type="button"  class="btn btn-info"><i class="fa fa-edit"></i> Modifier</a>
                                     </div>
                                 </div>
-                            <?php endforeach;?>
+                            <?php
+                            $i++;
+                            endforeach;
+                            if($i < 8){
+                            ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="<?= base_url('page/administration/add_one_page?page='.($i+1)).'&id='.$journals[0]->idfeuille_journal?>" class="btn btn-lg btn-info"><i class="fa fa-plus-circle"></i> Ajouter une page</a>
+                                    </div>
+                                </div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>

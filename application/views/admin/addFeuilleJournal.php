@@ -35,15 +35,16 @@
                     <div class="x_content">
                         <div class="row">
                             <div class="col-sm-4">
-                                <?php echo form_open_multipart('journalcontroller/editImage')?>
-                                    <div class="form-group">
-                                        <input type="hidden" value="<?= $id?>" name="idimage">
-                                        <input type="file" name="image" class="form-control has-feedback-right" id="uniqImage">
-                                        <div class="col-md-offset-4 col-md-4">
-                                            <img src="" id="thumbs" class="img img-thumbnail" hidden/>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-info">Enregistrer</button>
+                                <?php echo form_open_multipart('journalcontroller/addOnePage')?>
+                                <div class="form-group">
+                                    <input type="hidden" value="<?= $page?>" name="page">
+                                    <input type="hidden" value="<?= $id?>" name="id">
+                                    <input type="file" name="image" class="form-control has-feedback-right" id="uniqImage">
+                                </div>
+                                <div class="col-md-offset-4 col-md-4">
+                                    <img src="" id="thumbs" class="img img-thumbnail" hidden/>
+                                </div>
+                                <button type="submit" class="btn btn-info">Enregistrer</button>
                                 </form>
                             </div>
                         </div>

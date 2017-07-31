@@ -98,3 +98,12 @@
 
     </div> <!-- End Row-Fluid -->
 </div> <!-- End Main -->
+    <script>
+        document.forms['comm'].addEventListener('submit',function(e){
+            if (!doSubmitComm) {
+                $("#captcha1").find("iframe").css( "border", "1px solid red" );
+                e.preventDefault();
+                return false;
+            }
+        })
+    </script>

@@ -19,7 +19,7 @@
                             <span class="meta alignright"> <?= date('H:i',strtotime($fil->heurepublication))?></span>
                         </div>
                         <div class="span2 content pull-right">
-                            <p><a href="<?= base_url('accueil/fil-d-actualite/'.$fil->datepublication)?>" title="<?= $fil->extrait?>"><?= $fil->extrait?> -- <span class="meta">Tohiny</span></a></p>
+                            <p><a href="<?= base_url('accueil/fil-d-actualite/'.$fil->datepublication)?>" title="<?= $fil->contenue?>"><?= $fil->contenue?> </a></p>
                         </div>
                     </div>
                     <?php endforeach;?>
@@ -63,10 +63,10 @@
                     <div align="center">
                         <div class="g-recaptcha" data-callback="capcha_filled"
                              data-expired-callback="capcha_expired" data-sitekey="6LdCZikUAAAAAGLIArvXNrMcngw1HhbzaE-pTHWl" id="captcha"></div>
-                        <input type="submit" name="submit" value="alefa" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>/>
+                        <button type="submit" id="submitSondage" class="btn btn-green" <?= ($sondage)!=0 ? null :'disabled' ?>>Alefa</button>
                     </div>
                 </form>
-                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy naneo hevitra</a></div>
+                <div class="meta">&nbsp;&nbsp;&nbsp;&nbsp;valiny:&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="eny"><?= isset($rvote) ? number_format($rvote['0'],2,',',' ') : 0?>% eny</a>| <a href="#" id="tsia"><?= isset($rvote) ? number_format($rvote['1'],2,',',' ') : 0?>% tsia</a>| <a href="#" id="neutre"><?= isset($rvote) ? number_format($rvote['2'],2,',',' ') : 0?>% tsy naneo hevitra</a></div>
             </div>
 
         </div>
@@ -134,10 +134,29 @@
 </div><!-- end row-fluid -->
 <script>
 	document.forms['form-sondage'].addEventListener('submit',function(e){
+	    e.preventDefault();
+	    response = $('input[name=idreponse]:checked').val();
+	    idsondage = $('input[name=idsondage]').val();
+	    console.log(response);
 		if (!doSubmit) {
-		    e.preventDefault();
-            $("iframe").css( "border", "1px solid red" );
+            $("#captcha").find("iframe").css( "border", "1px solid red" );
             return false;
 		}
+		else{
+            $('#submitSondage').attr('disabled','disabled');
+            $('#submitSondage').append('<i class="fa fa-spinner fa-spin"/>');
+            $.post('<?= base_url('sondagecontroller/voteAjax')?>',{idreponse : response, idsondage: idsondage})
+            .done(function(data){
+                data = $.parseJSON(data);
+                console.log(data);
+                $("#eny").html((data.eny).toFixed(2) + "% Eny");
+                $("#tsia").html((data.tsia).toFixed(2) + "% Tsia");
+                $("#neutre").html((data.neutre).toFixed(2) + "% Tsy naneho hevitra");
+                $('#submitSondage').find('i').remove();
+                grecaptcha.reset();
+            }).fail(function(data){
+                alert(data);
+            });
+        }
 	})
 </script>

@@ -41,12 +41,16 @@
         var captcha;
         var captcha1;
         var RC2KEY = '6LdCZikUAAAAAGLIArvXNrMcngw1HhbzaE-pTHWl',
-            doSubmit = false;
+            doSubmit, doSubmitComm = false;
 
         function reCaptchaVerify(response) {
-            if (response === document.querySelector('.g-recaptcha-response').value){
+            if (response === document.querySelector('#captcha .g-recaptcha-response').value){
                 doSubmit = true;
                 $("iframe" ).css( "border", "none" );
+            }
+            if (response === document.querySelector('#captcha1 .g-recaptcha-response').value){
+                doSubmitComm = true;
+                $("#captcha1").find("iframe").css( "border", "none" );
             }
         }
 
@@ -66,6 +70,7 @@
             //Render the recaptcha2 on the element with ID "recaptcha2"
             grecaptcha.render('captcha1', {
                 'sitekey': RC2KEY,
+                'callback': reCaptchaVerify,
                 'expired-callback': reCaptchaExpired
             });
         }

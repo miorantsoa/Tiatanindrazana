@@ -55,6 +55,7 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<script type="text/javascript" src="<?= base_url('assets/default/js/titan.js')?>"></script>
 <script src="<?= base_url('assets/admin/js/jquery.datetimepicker.full.js')?>"></script>
 <script type='text/javascript' src='<?= base_url('assets/default/js/jquery.modal.min.js')?>'></script>
 <script type='text/javascript' src='<?= base_url('assets/default/js/bootstrap.min.js')?>'></script>

@@ -24,7 +24,7 @@
                 </form>
             </div>
             <div class="filtre search-page">
-                <form name="fikarohana" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($categorie->libelle))?>">
+                <form name="fikarohana" id="daterangeform" method="post" action="<?= base_url('accueil/categorie/'.$categorie->idcategorie.'-'.tag_categorie($categorie->libelle))?>">
                     <input type="text" name="date1" id="datetimepicker" value="" placeholder="Daty anombohana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="text" name="date2" id="datetimepicker2" value="" placeholder="Daty iafarana" class="col-md-4 col-sm-4 col-xs-12 filtre-form"/>
                     <input type="submit" name="submit" value="Fantina" class="btn btn-blue pull-right" />
@@ -76,14 +76,37 @@
     <script>
         $(document).ready(function () {
             $('#datetimepicker').datetimepicker({
-                timepicker:false,
                 format:'Y-m-d',
-                formatDate:'Y-m-d'
+                formatDate:'Y-m-d',
+                onShow:function( ct ){
+                    this.setOptions({
+                        maxDate:$('#datetimepicker2').val()?$('#datetimepicker2').val():false
+                    })
+                },
+                timepicker:false
             });
             $('#datetimepicker2').datetimepicker({
-                timepicker:false,
                 format:'Y-m-d',
-                formatDate:'Y-m-d'
+                formatDate:'Y-m-d',
+                onShow:function( ct ){
+                    this.setOptions({
+                        minDate:$('#datetimepicker').val()?$('#datetimepicker').val():false
+                    })
+                },
+                timepicker:false
             });
+//            $('#datetimepicker').datetimepicker({
+//                timepicker:false,
+//                format:'Y-m-d',
+//                formatDate:'Y-m-d'
+//            });
+//            $('#datetimepicker2').datetimepicker({
+//                timepicker:false,
+//                format:'Y-m-d',
+//                formatDate:'Y-m-d',
+//                onChangeDateTime:function(dp,$input){
+//                    alert($input.val())
+//                }
+//            });
         })
     </script>
